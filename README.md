@@ -7,11 +7,6 @@ editor_options:
 ![](inst/extdata/qrlabelr.jpg){style="display: block; margin-left: auto; margin-right: auto;"
 width="50"}
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/awkena/qrlabelr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
-
-
 # Create Plot Labels Easily With qrlabelr
 
 qrlabelr is a no-frills R package for designing experimental or trial
