@@ -208,7 +208,7 @@ pg_welcome <- argonDash::argonTabItem(
 
                 div(style = "margin-bottom: -20px;",
                 argonR::argonCarouselItem(
-                  src = "logos/new_usaid_logo.jpg",
+                  src = "logos/usaid_logo.png",
                   active = TRUE),
 
                 argonR::argonCarouselItem(
