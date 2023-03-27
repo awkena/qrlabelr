@@ -5,3 +5,4 @@
 ^desktop\.ini$
 ^[\.]ini$
 ^data-raw$
+^\.github$
