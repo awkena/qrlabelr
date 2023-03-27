@@ -176,9 +176,9 @@ manufacturers.
 -   [Alexander Wireko Kena](https://www.github.com/awkena)
 -   [Ebenezer Ogoe](https://github.com/Ebenezer-007)
 -   [Clara
-    Cruet-Burgos](https://www.researchgate.net/profile/Clara-M-Cruet-Burgos)
+    Cruet-Burgos](https://www.morrislab.org/people/clara-cruet-burgos)
 -   [Geoffrey Preston
-    Morris](https://www.researchgate.net/profile/Geoffrey-Morris)
+    Morris](https://www.morrislab.org/people/geoff-morris)
 
 ## License
 
