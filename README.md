@@ -1,11 +1,9 @@
----
-editor_options: 
-  markdown: 
-    wrap: 25
----
 
-![](inst/extdata/qrlabelr.jpg){style="display: block; margin-left: auto; margin-right: auto;"
-width="50"}
+
+# qrlabelr <img src='inst/extdata/qrlabelr.jpg' width = "140px" align="right"/>  
+
+<br>  
+
 
 # Create Plot Labels Easily With qrlabelr
 
