@@ -204,7 +204,7 @@ R, HTML, CSS, JavaScript
 
 For support and submission of feedback, email the maintainer **Alexander
 Kena** at
-[alex.kena24\@gmail.com](mailto:alex.kena@gmail.com){.email}
+[alex.kena24\@gmail.com](mailto:alex.kena24@gmail.com){.email}
 
 ## Roadmap
 
