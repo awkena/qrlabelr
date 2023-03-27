@@ -5,7 +5,7 @@ editor_options:
 ---
 
 ![](inst/extdata/qrlabelr.jpg){style="display: block; margin-left: auto; margin-right: auto;"
-width="100"}
+width="50"}
 
 # Create Plot Labels Easily With qrlabelr
 
