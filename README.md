@@ -109,7 +109,7 @@ the command:
 Then run the following code:
 
 ``` r
-  devtools::install_github("awkena/qrlabelr")
+  devtools::install_github("awkena/qrlabelr", build_vignettes = TRUE)
 ```
 
 #### Installing from a source package
