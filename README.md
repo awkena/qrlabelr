@@ -4,6 +4,11 @@
 
 <br>  
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/awkena/qrlabelr/actions/workflows/r.yml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/r.yml)
+
+<!-- badges: end -->
 
 # Create Plot Labels Easily With qrlabelr
 
