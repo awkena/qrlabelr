@@ -1,0 +1,14 @@
+Template,Type,Lab.W.in,Lab.H.in,pg.W.in,pg.H.in,Height.margin.in,Width.margin.in,nRows.pg,nColumns.pg,nLabel.pg,Rounded
+Avery 94220,Laser sheet,2,1,8.5,11,0.625,0.625,8,3,24,TRUE
+Avery 94200,Laser sheet,2.625,1,8.5,11,0.5,0.1875,10,3,30,TRUE
+Avery 94224,Laser sheet,3,1,8.5,11,0.625,0.875,8,2,16,TRUE
+Avery 94237,Laser sheet,3,2,8.5,11,1,0.85,4,2,8,TRUE
+Avery 94207,Laser sheet,4,2,8.5,11,0.5,0.156,5,2,10,TRUE
+Avery 94241,Laser sheet,5,2,8.5,11,0.75,1.75,4,1,4,TRUE
+Avery 94213,Laser sheet,5,3,8.5,11,0.625,1.75,3,1,3,TRUE
+Avery 94242,Laser sheet,6,2,8.5,11,0.75,1.25,4,1,4,TRUE
+OnlineLabel OL5125,Laser sheet,2,1,8.5,11,0.5,0.25,10,4,40,FALSE
+OnlineLabel RL778,Thermal roll,2,1,2.125,1.125,0.0625,0.0625,1,1,1,TRUE
+OnlineLabel RL2800,Inkjet roll,3,2,3.125,2.125,0.0625,0.0625,1,1,1,TRUE
+OnlineLabel RL782,Thermal roll,4,2,4.125,2.125,0.0625,0.0625,1,1,1,TRUE
+Treetag LTS14,Thermal roll,1,6,4,6,0,0,1,4,4,FALSE

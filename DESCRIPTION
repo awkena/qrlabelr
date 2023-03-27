@@ -1,0 +1,53 @@
+Package: qrlabelr
+Type: Package
+Title: Generate Machine and Human Readable Plot Labels Easily and Freely with qrlabelr
+Version: 0.0.0.9000
+Authors@R: c(
+  person("Alexander", "Wireko Kena", email = "alex.kena24@gmail.com", 
+         role = c("aut", "cre")),
+  person("Ebenezer", "Ogoe", email = "ebenezerogoe@gmail.com", 
+         role = c("aut")),
+  person("Clara", "Cruet Burgos", email = "clara.cruet_burgos@colostate.edu", 
+         role = c("aut")),
+  person("Geoffrey", "Preston Morris", email = "geoff.morris@colostate.edu", 
+         role = c("aut")))
+Maintainer: Alexander Wireko Kena <alex.kena24@gmail.com>
+Description: A no-frills open-source solution for designing experimental or trial plot labels 
+    affixed with QR codes. qrlabelr is an R package that features EasyPlotLabelR, 
+    a Shiny app that simplifies the complicated process of plot label design for non-R users. 
+    It also offers easily customizable functions that enable plot label generation outside the Shiny app.
+    It generates field plot labels that are compatible with the widely used 
+    digital data collection mobile app, Field Book. Our software builds on the foundation 
+    of an existing open-source program to offer more flexibility in plot label creation steps; 
+    guarantees true string fidelity after QR encoding; and provides faster label generation to users.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Imports: 
+    argonDash (>= 0.2.0),
+    argonR (>= 0.2.0),
+    assertthat (>= 0.2.1),
+    bslib (>= 0.4.2),
+    dplyr (>= 1.0.10),
+    FielDHub,
+    grid,
+    purrr (>= 1.0.1),
+    qrencoder (>= 0.1.0),
+    raster (>= 3.6.14),
+    reactable (>= 0.4.3),
+    readxl (>= 1.4.1),
+    shiny,
+    shinyBS,
+    shinycssloaders (>= 1.0.0),
+    shinyjs (>= 2.1.0),
+    shinyWidgets (>= 0.7.6),
+    tools,
+    utils,
+    uuid
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
