@@ -6,7 +6,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/awkena/qrlabelr/actions/workflows/r.yml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/r.yml)
+[![R-CMD-check](https://github.com/awkena/qrlabelr/actions/workflows/OScheck.yml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/OScheck.yml)
 [![test-coverage](https://github.com/awkena/qrlabelr/actions/workflows/codecov3.yml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/codecov3.yml)
 
 <!-- badges: end -->
