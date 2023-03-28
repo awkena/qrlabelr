@@ -7,6 +7,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/awkena/qrlabelr/actions/workflows/r.yml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/r.yml)
+[![test-coverage](https://github.com/awkena/qrlabelr/actions/workflows/codecov3.yml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/codecov3.yml)
 
 <!-- badges: end -->
 
