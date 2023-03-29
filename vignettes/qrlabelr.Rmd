@@ -32,6 +32,10 @@ Now, install the package by running the following commands:
 `library("devtools")`
 `install_github("awkena/qrlabelr")`
 
+Alternatively, you can install the package together with its vignettes as follows:
+
+`devtools::install_github("awkena/qrlabelr", build_vignettes = TRUE)`
+
 The method described above will download and install the `qrlabelr` package on your computer. Once the installation is complete, you can load the package by entering the following command in the console:
 
 `library(qrlabelr)`
