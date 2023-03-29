@@ -90,43 +90,43 @@ The two examples above use the Avery 94220 template by default to define the pag
 
 ```{r eval=FALSE}
 field_label(dat = qrlabelr::square_lattice,
-            wdt = 5, # label width in inches
-            hgt = 2, # label height in inches
-            page_wdt = 8.5, # page width in inches
-            page_hgt = 11, # page height in inches
-            top_mar = 0.75, # top margin in inches
-            bot_mar = 0.75, # bottom margin in inches
-            left_mar = 1.75, # left margin in inches
-            right_mar = 1.75, # right margin in inches
-            numrow = 4L, # number of label rows per page
-            numcol = 1L, # number of label columns per page
-            filename = 'PlotLabel', # name for pdf file to be created
-            font_sz = 10, # font size to use
-            Treetag = FALSE, # create a regular field plot label
-            Trial = 'PYT', # trial name to use
-            Year = 2023, # year of experiment
-            family = 'sans', # font style to use
-            rounded = TRUE, # rounded corners
-            IBlock = FALSE, # no iBlock
-            get_unique_id = "ruid", # use RUIDS in generating QRcodes
-            rname = "AWK", # specify researcher's name
-            seed_source = TRUE # seed source included in fieldbook
-            seed_source_id = "SEED_SOURCE" # seed source ID in fieldbook
+            wdt = 5, 
+            hgt = 2,
+            page_wdt = 8.5, 
+            page_hgt = 11,
+            top_mar = 0.75, 
+            bot_mar = 0.75, 
+            left_mar = 1.75, 
+            right_mar = 1.75, 
+            numrow = 4L, 
+            numcol = 1L, 
+            filename = 'PlotLabel', 
+            font_sz = 10, 
+            Treetag = FALSE, 
+            Trial = 'PYT', 
+            Year = 2023, 
+            family = 'sans', 
+            rounded = TRUE, 
+            IBlock = FALSE,
+            get_unique_id = "ruid", 
+            rname = "AWK", 
+            seed_source = TRUE 
+            seed_source_id = "SEED_SOURCE" 
             )
 ```
 
 It follows from the above examples that to create any custom rectangular label based on a template, users
-must specify the following as arguments in either the field_label or gp_label function:
-- wdt:  label width in inches
-- hgt: label height in inches
-- page_wdt: page width in inches
-- page_hgt: page height in inches
-- top_mar: top page margin in inches
-- bot_mar: bottom page margin in inches
-- left_mar: left page margin in inches
-- right_mar: right page margin in inches
-- numrow: number of label rows per page
-- numcol: number of label columns per page
+must specify the following as arguments in either the field_label or gp_label function:  
+- wdt:  label width in inches  
+- hgt: label height in inches  
+- page_wdt: page width in inches  
+- page_hgt: page height in inches  
+- top_mar: top page margin in inches  
+- bot_mar: bottom page margin in inches  
+- left_mar: left page margin in inches  
+- right_mar: right page margin in inches  
+- numrow: number of label rows per page  
+- numcol: number of label columns per page  
 
 The above arguments are passed to the create_label function to generate the desired labels
 based on the defined page setting 

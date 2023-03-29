@@ -112,7 +112,7 @@ the command:
   install.packages("devtools")
 ```
 
-Then run the following code:
+Then run the following code to install the package alongside its vignette:
 
 ``` r
   devtools::install_github("awkena/qrlabelr", build_vignettes = TRUE)
@@ -135,6 +135,7 @@ Run the following code in the RStudio console to launch the
 EasyPlotLabelR Shiny app:
 
 ``` r
+  library(qrlabelr)
   qrlabelr::run_app()
 ```
 
@@ -144,7 +145,7 @@ If the app does not run as expected, check the following:
 
 -   Was the package properly installed?
 
--   Were any warnings or error messages returned on package
+-   Were any warnings or error messages returned during package
     installation?
 
 -   Do you have the required dependencies installed?
