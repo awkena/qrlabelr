@@ -55,11 +55,12 @@ field_label(dat = qrlabelr::rcbd,
             font_sz = 10,
             IBlock = FALSE,
             get_unique_id = "ruid",
-            rname = "Adoma",
+            rname = "Adepa",
             family = "sans",
             seed_source = FALSE
 )
 ```
+
 The example shown above creates plot labels using a sample fieldbook generated with the FielDHub package. The fieldbook was based on Randomised Complete Block Design layout at two locations. It creates labels with QR codes generated using reproducible unique IDs, with the required information obtained from the supplied rcbd fieldbook.
 
 #### Creating general-purpose labels with customizable function
@@ -76,7 +77,7 @@ gp_label(dat = qrlabelr::square_lattice,
          top_right_txt2 = 'Col:',
          center_right_txt1 = 'iBlock:',
          center_right_txt2 = 'Seed:',
-         center_right_txt3 = 'AWK',
+         center_right_txt3 = 'Adepa',
          bottom_left_txt1 = 'Loc:',
          top_left_id1 = 'PLOT',
          top_left_id2 = 'ROW',
@@ -88,6 +89,7 @@ gp_label(dat = qrlabelr::square_lattice,
          bottom_left_id2 = 'TREATMENT',
 )
 ```
+
 The example shown above creates plot labels using a sample fieldbook generated using the FielDHub package. It generates labels in which the position and text used for the prefixes, and the IDs of the desired parameters have been defined by the the user. Universal Unique IDs were used to generate the embossed QR codes.
 
 The two examples above use the Avery 94220 template by default to define the page width, height and margins, label dimensions, among others. The versatility and flexibility of the functions allow for the creation of labels where the parameters of the labels can be defined by the user. See the code snippet below with comments for an example on how to manually generate field labels based on the Avery 94241 template.
@@ -111,10 +113,10 @@ field_label(dat = qrlabelr::square_lattice,
             Year = 2023, 
             family = 'sans', 
             rounded = TRUE, 
-            IBlock = FALSE,
+            IBlock = TRUE,
             get_unique_id = "ruid", 
             rname = "AWK", 
-            seed_source = TRUE 
+            seed_source = TRUE, 
             seed_source_id = "SEED_SOURCE" 
             )
 ```
