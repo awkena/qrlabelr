@@ -6,30 +6,24 @@
 \title{qrlabelr: An R package to generate digital field plot and general-purpose
 labels freely and easily.}
 \description{
-QRLabelr is an R package that provides a convenient and user-friendly web app for
-generating modern plot labels for use on fields and farmlands. The package is designed
-to help scientists, researchers, farmers, and other agricultural professionals create
-accurate and visually appealing plot labels that can be used for mapping and tracking
-their crops and fields. The app is built on top of the R programming language and makes
-use of the latest technologies to deliver a fast, responsive, and intuitive interface
-that is easy to use.
-
-With QRLabelr, users can quickly and easily create modern
-plot labels without the need for inefficient traditional methods such as hand-drawn
-labels or manual data entry. The app also features a wide range of customization
-options, allowing users to tailor their labels to their specific needs and preferences.
-Whether you're a small-scale farmer or a large-scale agribusiness, QRLabelr is
-the perfect solution for generating modern plot labels for use on your fields.
+A no-frills open-source solution for designing experimental or trial plot labels
+affixed with QR codes. qrlabelr is an R package that features EasyPlotLabelR,
+a Shiny app that simplifies the complicated process of plot label design for non-R users.
+It also offers easily customizable functions that enable plot label generation outside the Shiny app.
+It generates field plot labels that are compatible with the widely used
+digital data collection mobile app, Field Book. Our software builds on the foundation
+of an existing open-source program to offer more flexibility in plot label creation steps;
+guarantees true string fidelity after QR encoding; and provides faster label generation to users..
 }
 \section{Available vignettes}{
 
 This package comes with one vignette to get users up to speed as soon as possible. It
-provides a more thorough guide on how to use QRLabelr, from the data import
+provides a more thorough guide on how to use qrlabelr, from the data import
 stage to the generation of labels and saving it for printing. To access the vignette,
 run the command:
 \code{browseVignettes("qrlabelr")}
 }
 
 \author{
-Alex Kena | Ebenezer Ogoe | Clara Burgos | Geoffery Morris
+Alexander Kena | Ebenezer Ogoe | Clara Cruet-Burgos | Geoffrey Morris
 }
