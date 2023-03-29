@@ -194,9 +194,8 @@ manufacturers.
 
 -   Simplifies the process of plot label design.
 -   Generates plot labels compatible with the widely used digital data
-    collection mobile app, FielDHub.
--   Uses an informative unique ID to generate QR codes with different
-    error correction levels.
+    collection mobile app, FielD Book.
+-   Uses a reproducible or universal unique ID to generate QR codes with           different error correction levels.
 -   Allows for both preset common label templates and custom rectangular
     label design.
 -   Outputs a downloadable PDF file for printing and allows for
