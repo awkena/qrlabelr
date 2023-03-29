@@ -5,6 +5,8 @@
 #' @concept "plot labels"
 #'
 #' @export
+#' @importFrom shinyBS bsPopover
+#' @importFrom shinyBS popify
 run_app <- function() {
   # Find and launch the app
   appDir <- system.file("shinyapps", paste0("qrlabelr"), package = "qrlabelr")

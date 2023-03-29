@@ -38,7 +38,6 @@ Imports:
     reactable (>= 0.4.3),
     readxl (>= 1.4.1),
     shiny,
-    shinyBS,
     shinycssloaders (>= 1.0.0),
     shinyjs (>= 2.1.0),
     shinyWidgets (>= 0.7.6),
@@ -51,5 +50,6 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Depends: 
-    R (>= 2.10)
+    R (>= 2.10),
+    shinyBS (>= 0.61.1)
 Config/testthat/edition: 3

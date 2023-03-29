@@ -8,9 +8,10 @@
 #' @import reactable
 #' @import readxl
 #' @import shinyBS
+#' @importFrom shinyBS bsPopover popify
+
 #' @import shinyWidgets
 #' @import tools
-#'
 #' @importFrom purrr map
 #' @importFrom dplyr mutate
 #' @importFrom assertthat assert_that is.number is.count is.string
