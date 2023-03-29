@@ -8,8 +8,6 @@
 #' @import reactable
 #' @import readxl
 #' @import shinyBS
-#' @importFrom shinyBS bsPopover popify
-
 #' @import shinyWidgets
 #' @import tools
 #' @importFrom purrr map
