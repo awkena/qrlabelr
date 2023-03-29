@@ -2749,15 +2749,15 @@ observe({
     }
   })
 
-  # Automatically bookmark every time an input changes
-  observe({
-    reactiveValuesToList(input)
-    session$doBookmark()
-  })
+  # # Automatically bookmark every time an input changes
+  # observe({
+  #   reactiveValuesToList(input)
+  #   session$doBookmark()
+  # })
 
   # Update the query string
-  onBookmarked(updateQueryString)
+  # onBookmarked(updateQueryString)
 
 }
 
-shinyApp(ui, server, enableBookmarking = "url")
+shinyApp(ui, server)
