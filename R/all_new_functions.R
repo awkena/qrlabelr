@@ -282,7 +282,7 @@ create_label <- function(
   # Create QR codes from unique ids
   if (!is.null(unique_id)) {
     bb <- purrr::map(unique_id, make_qrcode)
-    nn <- length(bb) # total number fo labels to generate
+    nn <- length(bb) # total number of labels to generate
   } else {
     stop("Unique IDs for generating QR codes are missing!!")
   }

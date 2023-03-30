@@ -65,8 +65,7 @@ required:
 -   [purrr](https://CRAN.R-project.org/package=purrr): A complete and
     consistent functional programming toolkit for R.
 
--   [qrencoder](https://CRAN.R-project.org/package=purrr): Make QR codes
-    in *R*
+-   [qrencoder](https://CRAN.R-project.org/package=qrencoder): Quick Response          Code (QR Code) / Matrix Barcode Creator
 
 -   [raster](https://rspatial.org/raster/pkg/index.html): Geographic
     Data Analysis and Modeling. Reading, writing, manipulating,
@@ -84,17 +83,21 @@ required:
 -   [shinyjs](https://deanattali.com/shinyjs/): Easily improve the user
     experience of your Shiny apps in seconds
 
+-   [shinyBS](https://CRAN.R-project.org/package=shinyBS): Twitter Bootstrap        Components for Shiny
+
 -   [shinyWidgets](https://github.com/dreamRs/shinyWidgets): Collection
     of custom input controls and user interface components for 'Shiny'
     applications
+    
+-   [uuid](https://CRAN.R-project.org/package=uuid): Tools for Generating and       Handling of UUIDs
 
 -   [tools](https://www.rdocumentation.org/packages/tools/versions/3.6.2):
     Tools for package development, administration and documentation.
 
 ## Recommended packages
 
--   [Rtools](https://cran.r-project.org/bin/windows/Rtools/rtools43/rtools.html):
-    Needed for package development.
+-   [Rtools](https://cran.r-project.org/bin/windows/Rtools/rtools43/rtools.html):      Needed for package development.
+
 -   [rmarkdown](https://CRAN.R-project.org/package=rmarkdown): When
     installed, display of the project's README.md help will be rendered
     with R Markdown.
