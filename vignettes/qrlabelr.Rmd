@@ -1,5 +1,6 @@
 ---
 title: "How to use qrlabelr"
+author: "Ebenezer Ogoe and Alexander Kena"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{How to use qrlabelr}
@@ -20,7 +21,9 @@ library(qrlabelr)
 
 ## Introduction
 
-qrlabelr is a R package that provides functions and an intuitive Shiny app for generating machine and human readable plot labels affixed with QR codes. The app is designed to be user-friendly, fast and efficient, allowing researchers to create accurate and highly informative plot labels without the need for licensed commercial software. This vignette will guide you through the process of installing the package, and how to use its customizable functions, and the Shiny app. 
+qrlabelr is a R package that provides functions and an intuitive Shiny app for generating machine and human readable plot labels affixed with QR codes. The app is designed to be user-friendly, fast and efficient, allowing researchers to create accurate and highly informative plot labels without the need for licensed commercial software.  
+
+This vignette will guide you through the process of installing the package, and how to use its customizable functions, and the Shiny app.
 
 ## Installation
 
@@ -28,9 +31,10 @@ To install qrlabelr, you will first need to have R and the RStudio IDE installed
 
 `install.packages("devtools")`
 
-Now, install the package by running the following commands:
-`library("devtools")`
-`install_github("awkena/qrlabelr")`
+Now, install the package by running the following commands: 
+`library("devtools")`  
+
+`install_github("awkena/qrlabelr")`  
 
 Alternatively, you can install the package together with its vignettes as follows:
 
@@ -38,16 +42,34 @@ Alternatively, you can install the package together with its vignettes as follow
 
 The method described above will download and install the `qrlabelr` package on your computer. Once the installation is complete, you can load the package by entering the following command in the console:
 
-`library(qrlabelr)`
+`library(qrlabelr)`  
 
+## Generating field books
+To use qrlabelr, one must first generate a field book that shows the layout information for all experimental plots. Typically, layout information for all plots are obtained based on the experimental design and treatment randomization. There are free open-source software such as FieldHub (https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr.  
+
+Other user-preferred software such as BMS can equally be used to generate an input field book if desired.  
+
+**Input field books must be imported as a data frame into qrlabelr for use. We recommend that users save input field books as csv or as xls or xlsx files for easy import to qrlabelr **    
 
 ## Creating labels
+Creating field plot and general-purpose labels is easy. The qrlabelr package offers two user-centered options for creating plot labels affixed with QR codes.  
 
-Creating field plot and general-purpose labels is easy. You can choose to create labels using the web app, or with the use of functions. It boils down to a user's preference, as both the functions and web app were created to deliver the exact same features. We were only motivated by the need to serve both groups -- those comfortable with working with codes, and those who prefer to work with a GUI-based application. 
+The first option involves the use of customizable functions to create rectangular field plot labels or any rectangular general-purpose plot labels embossed with QR codes. This option is for users who find working in R comfortable.  
 
-### Creating plot labels with functions without the Shiny app
+The package also provides a helper function to access a user-friendly Shiny app (EasyPlotLabelR) for non-R users who may find working in R not so comfortable. This option allows users to run the Shiny app using their computer as host without the need for an internet.  
 
-#### Creating field plot labels with customizable function
+You can choose to create labels using the Shiny app, or with the use of customizable functions in R. It boils down to a user's preference, as both the functions and Shiny app were created to deliver the exact same features. We were only motivated by the need to serve both groups -- those comfortable with working with codes, and those who prefer to work with a GUI-based application.  
+
+### Label design
+Figure 1 shows 10 delineated positions available to users to be filled with human-readable text items (positions 1 - 9) and machine-readable QR code (position 10).  
+
+|<img src='C:/Users/rakro/Desktop/qrlabelr/inst/extdata/label_design.jpg' style="width: 400px;" />|
+|:--:| 
+| *Fig. 1. Label design by qrlabelr showing 9 delineated text positions and 1 QR code position* |  
+
+
+### Creating field plot labels with customizable function
+
 To create field plot labels with functions, use the `field_label()` function. Supply all required information as arguments to the function's parameters, as seen in the code snippet below:
 
 ```{r eval=FALSE}
@@ -61,9 +83,10 @@ field_label(dat = qrlabelr::rcbd,
 )
 ```
 
-The example shown above creates plot labels using a sample fieldbook generated with the FielDHub package. The fieldbook was based on Randomised Complete Block Design layout at two locations. It creates labels with QR codes generated using reproducible unique IDs, with the required information obtained from the supplied rcbd fieldbook.
+The example shown above creates plot labels using a sample fieldbook generated with the FielDHub package. The fieldbook was based on Randomized Complete Block Design layout at two locations. It creates labels with QR codes generated using reproducible unique IDs, with the required information obtained from the supplied rcbd fieldbook.
 
-#### Creating general-purpose labels with customizable function
+### Creating general-purpose labels with customizable function
+
 Similarly, to create general-purpose labels, invoke the `gp_label()` function as has been done in the code snippet below:
 
 ```{r eval=FALSE}
@@ -86,7 +109,7 @@ gp_label(dat = qrlabelr::square_lattice,
          center_right_id1 = 'IBLOCK',
          center_right_id2 = 'SEED_SOURCE',
          bottom_left_id1 = 'LOCATION',
-         bottom_left_id2 = 'TREATMENT',
+         bottom_left_id2 = 'TREATMENT'
 )
 ```
 
@@ -108,7 +131,6 @@ field_label(dat = qrlabelr::square_lattice,
             numcol = 1L, 
             filename = 'PlotLabel', 
             font_sz = 20, 
-            Treetag = FALSE, 
             Trial = 'PYT', 
             Year = 2023, 
             family = 'sans', 
@@ -121,29 +143,27 @@ field_label(dat = qrlabelr::square_lattice,
             )
 ```
 
-It follows from the above examples that to create any custom rectangular label based on a template, users
-must specify the following as arguments in either the field_label or gp_label function:  
-- wdt:  label width in inches  
-- hgt: label height in inches  
-- page_wdt: page width in inches  
-- page_hgt: page height in inches  
-- top_mar: top page margin in inches  
-- bot_mar: bottom page margin in inches  
-- left_mar: left page margin in inches  
-- right_mar: right page margin in inches  
-- numrow: number of label rows per page  
-- numcol: number of label columns per page  
+It follows from the above examples that to create any custom rectangular label based on a template, users must specify the following as arguments in either the field_label or gp_label function:\
+- wdt: label width in inches\
+- hgt: label height in inches\
+- page_wdt: page width in inches\
+- page_hgt: page height in inches\
+- top_mar: top page margin in inches\
+- bot_mar: bottom page margin in inches\
+- left_mar: left page margin in inches\
+- right_mar: right page margin in inches\
+- numrow: number of label rows per page\
+- numcol: number of label columns per page
 
-The above arguments are passed to the create_label function to generate the desired labels
-based on the defined page setting 
+The above arguments are passed to the create_label function to generate the desired labels based on the defined page setting
 
 ### Creating labels with Shiny app: EasyPlotLabelR
-To create your first plot label using the web app, you will need to open the
-EasyPlotLabelR web app. You can do this by entering the following command in the console:
+
+To create your first plot label using the web app, you will need to open the EasyPlotLabelR web app. You can do this by entering the following command in the console:
 
 `qrlabelr::run_app()`
 
-This will open a new window in your default web browser that displays the EasyPlotLabelR Shiny app. The user is then greeted with a Welcome page that provides an overview of the web app, some quick instructions to get started, sample labels, among others. In the header of the web app is a convenient Help button which can be accessed anytime for a quick overview of the purpose of each tab in generating a label. Th
+This will open a new window in your default web browser that displays the EasyPlotLabelR Shiny app. The user is then greeted with a Welcome page that provides an overview of the web app, some quick instructions to get started, sample labels, among others. In the header of the web app is a convenient Help button which can be accessed anytime for a quick overview of the purpose of each tab in generating a label.  
 
 #### Import fieldbook tab
 
@@ -155,28 +175,27 @@ In case a fieldbook is yet to be generated, a "Launch FielDHub" button has been 
 
 #### Label information tab
 
-This page contains widgets for choosing the type of label to generate, as well as populating the individual labels with information. 
+This page contains widgets for choosing the type of label to generate, as well as populating the individual labels with information.
 
 The first widget on this tab allows for the selection of the type of label to create. Choose Field plot labels with QR codes, the default option, to generate plot labels for field experiments. Otherwise, to create a general-purpose label, choose the General-purpose label with QR code option.
 
-Choosing the Field plot labels with QR codes option presents the user with three methods for setting unique IDs to be used to generate QR codes -- Reproducible unique IDs (RUID), Universal unique IDs (UUID), and Custom unique IDs. The RUID method is, however, not available when the user chooses the General-purpose label option. 
+Choosing the Field plot labels with QR codes option presents the user with three methods for setting unique IDs to be used to generate QR codes -- Reproducible unique IDs (RUID), Universal unique IDs (UUID), and Custom unique IDs. The RUID method is, however, not available when the user chooses the General-purpose label option.
 
-An RUID is generated by concatenating LOCATION and year of experiment, trial name, PLOT, ROW and COLUMN ids for each experimental plot Eg. KUMASI2023_PYT_101_1_1.  RUIDs are informative and reproducible, hence, can be regenerated when provided with the same fieldbook. For field experiments or trials, we strongly recommend the use of RUIDs. To generate RUIDs for QR codes, the user must first provide the LOCATION and year of the experiment, trial name, PLOT, ROW and COLUMN IDs using their designated widgets, respectively.
+An RUID is generated by concatenating LOCATION and year of experiment, trial name, PLOT, ROW and COLUMN ids for each experimental plot Eg. KUMASI2023_PYT_101_1\_1. RUIDs are informative and reproducible, hence, can be regenerated when provided with the same fieldbook. For field experiments or trials, we strongly recommend the use of RUIDs. To generate RUIDs for QR codes, the user must first provide the LOCATION and year of the experiment, trial name, PLOT, ROW and COLUMN IDs using their designated widgets, respectively.
 
 By default, the year of experiment widget is auto-populated with the current year as dictated by the time on the host machine.
 
 The UUID method produces random time-based IDs that are not reproducible and informative, but are highly unique due to their pseudo-random nature.
 
-if the imported fieldbook contains a column that represents unique IDs suitable for QR code generation, the user can choose the Custom unique IDs method. 
+if the imported fieldbook contains a column that represents unique IDs suitable for QR code generation, the user can choose the Custom unique IDs method.
 
 Before generating QR codes, it is possible to set the desired error correction level, which indicates how much of the QR code is used up for error correction. There are four levels, with 0 (7%) being the lowest level and 3 (30%) being the highest value possible. For field experiments, we strongly recommend that the error correction level be set to 3, which is the default setting.
 
-**Using the RUID method to produce unique IDs for QR code generation requires the user to first fill out all designated input widgets for label information before  clicking the "Generate QR codes" to generate the unique QR codes**. The "Generate QR codes" button is inactivated until a fieldbook is uploaded.
+**Using the RUID method to produce unique IDs for QR code generation requires the user to first fill out all designated input widgets for label information before clicking the "Generate QR codes" to generate the unique QR codes**. The "Generate QR codes" button is inactivated until a fieldbook is uploaded.
 
-There is also an option to show the seed source on the label which can be activated by ticking the corresponding checkbox. To allow for even more informative plot labels, there are options to input both the name of the researcher and the trial name. 
+There is also an option to show the seed source on the label which can be activated by ticking the corresponding checkbox. To allow for even more informative plot labels, there are options to input both the name of the researcher and the trial name.
 
 The widget labeled "Incomplete blocks", as can be inferred from the name, should be ticked if the experimental design consists of incomplete blocks. If checked, the user will be required to provide the input ID of the incomplete blocks using its designated widget.
-
 
 Lastly, there are drop-down input widgets for defining the various parameters of the imported fieldbook if the type of label to generate is Field plot labels. The options provided in these widgets correspond to the various names in the uploaded fieldbook. However, if general-purpose labels are to be generated, at each desired position, the prefix of the parameter to be displayed, and the ID of the parameter in the imported fieldbook are both to be defined by the user. It should be noted that not all positions have to be filled -- only those desired by the user.
 
@@ -210,7 +229,7 @@ After setting the desired values and being satisfied with the preview, click the
 
 #### Generate labels tab
 
-On this page are a number of input widgets related to the output -- a PDF file containing the desired labels. 
+On this page are a number of input widgets related to the output -- a PDF file containing the desired labels.
 
 There is a text input box to enter a prefix of the file to be downloaded. One can also choose to print all labels or only a subset of labels by using the "Print by REP and LOCATION" switch. By default, the program allows users to generate labels by LOCATION subsets.
 
