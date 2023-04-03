@@ -330,23 +330,16 @@ If the app does not run as expected, check the following:
 
 ## FAQ
 
-#### How much does it cost to use this app?
-
-This app is free of charge.
-
-#### Can I use fieldbooks generated with FielDHub?
-
-Yes, you can. This is in fact the recommended approach.
-
-#### Can I use my own generated fieldbooks?
+#### Can I use my own generated fieldbooks in Shiny app?
 
 Yes, you can. However, you would have to manually select the input ID
-for the various column names/ parameters in the app.
+for the various column names that correspond to the required label information.  
 
-#### How do I access my generated labels?
+#### How do I access my generated labels and updated fieldbook?
 
-On the Generate labels page, there is a download button which can be
-used to save all generated labels to a local machine.
+If plot labels were generated with the customizable functions, a PDF file containing the generated labels and an updated fieldbook would be saved to the user's working directory.
+
+If plot labels were generated using the Shiny app, there is a download button on the Generate label tab, which can be used to save all generated labels and updated fieldbook to a local machine.
 
 #### Are generated labels compatible with popular page templates?
 
