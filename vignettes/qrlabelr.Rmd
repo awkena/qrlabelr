@@ -73,12 +73,12 @@ The package also provides a helper function to access a user-friendly Shiny app 
 
 You can choose to create labels using the Shiny app, or with the use of customizable functions in R. It boils down to a user's preference, as both the functions and Shiny app were created to deliver the exact same features. We were only motivated by the need to serve both groups -- those comfortable with working with codes, and those who prefer to work with a GUI-based application.  
 
-### Label design and content
+### Label content
 Figure 1 shows 10 delineated positions available to users to be filled with human-readable text items (positions 1 - 9) and machine-readable QR code (position 10).  
 
 |<img src='images/label_design.JPG' style="width: 400px;" />|
 |:--:| 
-| *Fig. 1. Label design by qrlabelr showing 9 delineated text positions and 1 QR code position* |  
+| *Fig. 1. Content of rectangular plot label showing 9 delineated text positions and 1 QR code position* |  
 
 
 ### Creating field plot labels with customizable function
@@ -165,7 +165,7 @@ For a field plot label, the 9 text positions are mapped by default to the follow
 
 |<img src='images/label_4x2in.JPG' style="width: 400px;" />|
 |:--:| 
-| *Fig. 2. A field plot label design by qrlabelr showing 9 human-readable text items and 1 machine-readable QR code* |  
+| *Fig. 2. A field plot label designed using qrlabelr showing 9 human-readable text items and 1 machine-readable QR code* |  
 
 
 ### Creating general-purpose labels with customizable function

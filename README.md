@@ -157,12 +157,12 @@ The package also provides a helper function to access a user-friendly Shiny app 
 
 **Both the customizable functions and Shiny app were created to deliver the exact same features, so it all boils down to a user's preference.**  
 
-### Label design and content
+### Label content
 Figure 1 shows 10 delineated positions available to users to be filled with human-readable text items (positions 1 - 9) and machine-readable QR code (position 10).  
 
 |<img src='inst/extdata/label_design.JPG' style="width: 400px;" />|
 |:--:| 
-| *Fig. 1. Label design by qrlabelr showing 9 delineated text positions and 1 QR code position* |  
+| *Fig. 1. Content of rectangular plot label showing 9 delineated text positions and 1 QR code position* |  
 
 ### Creating field plot labels with customizable function
 
@@ -252,7 +252,7 @@ For a field plot label, the 9 text positions are mapped by default to the follow
 
 |<img src='inst/extdata/label_4x2in.JPG' style="width: 400px;" />|
 |:--:| 
-| *Fig. 2. A field plot label design by qrlabelr showing 9 human-readable text items and 1 machine-readable QR code* |  
+| *Fig. 2. A field plot label designed using qrlabelr showing 9 human-readable text items and 1 machine-readable QR code* |  
 
 ### Creating general-purpose labels with customizable function
 The `gp_label()` function allows for specific user-defined human-readable text items that can be used to fill out the nine (9) delineated text positions on the label. This function gives a lot of control to the user with respect to what human-readable text items gets displayed on the label.  
