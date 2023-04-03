@@ -201,6 +201,14 @@ gp_label(dat = qrlabelr::square_lattice,
 
 The above arguments are passed to the `create_label()` function to generate the desired labels based on the defined page setting and label dimension parameters.  
 
+To view details of the `field_label()` and the `gp_label()` functions in RStudio, run the following codes in the R console:  
+
+``` r
+?qrlabelr::field_label
+?qrlabelr::gp_label
+
+```
+
 **Note that the default label template for both the `field_label()` and the `gp_label()` functions is Avery 94220 (https://www.avery.com/blank/labels/94220).**
 
 ### Creating labels with Shiny app: EasyPlotLabelR
