@@ -915,8 +915,9 @@ field_label <- function(dat,
 
 #' Create a general-purpose (gp) label
 #' @description
-#' This function give more flexibility to the user to design any general-purpose
-#' label affixed with QR codes.
+#' This function gives more flexibility to the user to design any general-purpose
+#' label affixed with QR codes. This function gives a lot of control to the user with 
+#' respect to what human-readable text items gets displayed on the label.
 #'
 #' @param dat is an input data frame of fieldbook that contains plot attributes.
 #' @param get_unique_id is to be set to 'uuid' if universal unique ids are to be generated.
