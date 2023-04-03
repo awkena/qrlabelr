@@ -103,9 +103,9 @@ field_label(dat = qrlabelr::square_lattice,
             )
 ```
 
-The above example creates field plot labels using a sample fieldbook named `square_lattice` generated with the FielDHub package. The `square_lattice` sample fieldbook is available in the `qrlabelr` package, and it was based on a Square Lattice Design layout at two locations. The example above creates labels with QR codes generated using reproducible unique IDs method (`get_unique_id = "ruid"`); researcher's name = `AW Kena`; intra-blocks (`IBlock = TRUE`); and a font family = `sans`.  
+The above example creates field plot labels using a sample fieldbook named `square_lattice` generated with the FielDHub package. The `square_lattice` sample fieldbook is available in the `qrlabelr` package, and it was generated based on a Square Lattice Design layout at two locations.  
 
-The arguments `Trial = 'PYT'` and `Year = 2023` are required if the method for generating unique IDs for QR codes is set to `get_unique_id = "ruid"`.  Users can set the font size for the label using the `font_sz` argument. Rectangular labels with rounded corners are generated with the argument `rounded = TRUE`, else set it to FALSE. 
+It follows from the above example that to create any custom rectangular label based on a template, users must specify page setting and label dimension parameters using the following arguments:  
 
 It follows from the above examples that to create any custom rectangular label based on a template, users must specify page setting and label dimension parameters using the following arguments:\  
 - `wdt`: label width in inches\  
@@ -119,9 +119,27 @@ It follows from the above examples that to create any custom rectangular label b
 - `numrow`: number of label rows per page\  
 - `numcol`: number of label columns per page\  
 
+The example above creates labels with QR codes generated using the reproducible unique IDs method (`get_unique_id = "ruid"`); researcher's name = `AW Kena`; intra-blocks (`IBlock = TRUE`); and a font family = `sans`.  
+
+The arguments `Trial = 'PYT'` and `Year = 2023` are required if the method for generating unique IDs for QR codes is set to `get_unique_id = "ruid"`.  Users can set the font size for the label using the `font_sz` argument. Rectangular labels with rounded corners are generated with the argument `rounded = TRUE`, else set it to `rounded = FALSE`. 
+
+The following arguments must also be specified if the input field book was not generated with the FieldHub package:  
+`rep_id`: column id in input field book for REP; default is 'REP'  
+`plot_id`: column id in input field book for PLOT; default is 'PLOT'  
+`row_id`: column id in input field book ROW; default is 'ROW'  
+`col_id`: column id in input field book for COLUMN; default is 'COLUMN'  
+`loc_id`: column id in input field book for LOCATION; default is 'LOCATION'  
+`entry_id`: column id in input field book for TREATMENT OR ENTRY; default is 'TREATMENT'  
+`IBlock_id`: column id in input field book for IBLOCK; default is 'IBLOCK'  
+`seed_source_id`: column id in input field book for SEED_SOURCE; default is 'SEED_SOURCE'  
+
+The arguments `seed_source = TRUE` and `seed_source_id = "SEED_SOURCE" ` are optional and should be used only when the user intends to show seed source on the field label.
+
+
 The function creates a pdf file with a name prefix of `PlotLabel` that is saved to the user's working directory. The function also saves an updated fieldbook to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
 
 For a field plot label, the 9 text positions are mapped by default to the following human- readable text items as shown in Figure 2.  
+
 
 1. Top-left row 1 text position is mapped to Plot ID\    
 2. Top-left row 2 text position is mapped to Row ID\ 

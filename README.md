@@ -105,7 +105,8 @@ required:
 
 ## Installation
 
-To install qrlabelr, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:
+To install qrlabelr, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:  
+
 ``` r
 install.packages("devtools")
 ```
@@ -275,6 +276,9 @@ The above arguments are passed to the `create_label` function to generate the de
 
 **Note that the default label template for both the `field_label()` and the `gp_label()` functions is Avery 94220 (https://www.avery.com/blank/labels/94220).**
 
+### Creating labels with Shiny app: EasyPlotLabelR
+
+This will open a new window in your default web browser that displays the EasyPlotLabelR Shiny app. The user is then greeted with a Welcome page that provides an overview of the web app, some quick instructions to get started, sample labels, among others. In the header of the Shiny app is a convenient Help button which can be accessed anytime for a quick overview of the purpose of each tab in generating a label.  
 
 Run the following code in the RStudio console to launch the
 EasyPlotLabelR Shiny app:
@@ -283,6 +287,13 @@ EasyPlotLabelR Shiny app:
   library(qrlabelr)
   qrlabelr::run_app()
 ```
+
+Follow the simple steps in Figure 3 to use the Shiny app to create plot labels.
+
+|<img src='inst/extdata/instructions.PNG' style="width: 800px;" />|
+|:--:| 
+| *Fig. 3. Steps for creating plot labels using the Shiny app* |  
+
 
 ## Troubleshooting
 
