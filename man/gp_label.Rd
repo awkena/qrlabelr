@@ -76,8 +76,9 @@ from imported fieldbook. Set to 'custom' if imported fieldbook already has uniqu
 \item{...}{additional arguments passed to the \code{create_label} function.}
 }
 \description{
-This function give more flexibility to the user to design any general-purpose
-label affixed with QR codes.
+This function gives more flexibility to the user to design any general-purpose
+label affixed with QR codes. This function gives a lot of control to the user with 
+respect to what human-readable text items gets displayed on the label.
 }
 \examples{
 
