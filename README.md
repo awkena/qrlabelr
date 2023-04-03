@@ -1,7 +1,7 @@
 
 
 
-# qrlabelr <img src='inst/extdata/qrlabelr.jpg' width = "140px" align="right"/>  
+# qrlabelr <img src='inst/extdata/qrlabelr.JPG' width = "140px" align="right"/>  
 
 <br>  
 
@@ -105,23 +105,27 @@ required:
 
 ## Installation
 
-Install as you would normally install an R package from GitHub
-
-#### Installing from GitHub
-
-First install the `devtools` package and all required dependencies using
-the command:
-
+To install qrlabelr, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:
 ``` r
-  install.packages("devtools")
+install.packages("devtools")
 ```
 
-Then run the following code to install the package alongside its vignette:
-
+Now, install the package by running the following commands: 
 ``` r
-  devtools::install_github("awkena/qrlabelr", build_vignettes = TRUE)
+library("devtools")
+install_github("awkena/qrlabelr")
 ```
 
+Alternatively, you can install the package together with its vignettes as follows:
+``` r
+devtools::install_github("awkena/qrlabelr", build_vignettes = TRUE)
+```
+
+The method described above will download and install the `qrlabelr` package on your computer. Once the installation is complete, you can load the package by entering the following command in the console:
+
+``` r
+library(qrlabelr)
+```
 
 ## Usage
 ### Generating field books
@@ -140,10 +144,10 @@ The package also provides a helper function to access a user-friendly Shiny app 
 
 **Both the customizable functions and Shiny app were created to deliver the exact same features, so it all boils down to a user's preference.**  
 
-### Label design
+### Label design and content
 Figure 1 shows 10 delineated positions available to users to be filled with human-readable text items (positions 1 - 9) and machine-readable QR code (position 10).  
 
-|<img src='inst/extdata/label_design.jpg' style="width: 400px;" />|
+|<img src='inst/extdata/label_design.JPG' style="width: 400px;" />|
 |:--:| 
 | *Fig. 1. Label design by qrlabelr showing 9 delineated text positions and 1 QR code position* |  
 
@@ -151,7 +155,7 @@ Figure 1 shows 10 delineated positions available to users to be filled with huma
 
 To create field plot labels with functions, use the `field_label()` function. The versatility and flexibility of the function allow for the creation of rectangular labels based on any template, where the page setting and label dimension parameters can be defined by the user using specific arguments.  
 
-For instance, to create field plot labels based on the the Avery 94241 template, the `field_label()` function can be modified by supplying all required information as arguments to the function's parameters, as seen in the code snippet below:  
+For instance, to create field plot labels based on the the Avery 94241 template (https://www.avery.com/blank/labels/94241), the `field_label()` function can be modified by supplying all required information as arguments to the function's parameters, as seen in the code snippet below:  
 
 ``` r 
 library(qrlabelr)
@@ -176,53 +180,71 @@ field_label(dat = qrlabelr::square_lattice,
             IBlock = TRUE,
             get_unique_id = "ruid", 
             rname = "AW Kena", 
+            rep_id = 'REP',
+            plot_id = 'PLOT',
+            row_id = 'ROW', 
+            col_id = 'COLUMN', 
+            loc_id = 'LOCATION',
+            entry_id = 'TREATMENT', 
+            IBlock_id = 'IBLOCK', 
             seed_source = TRUE, 
             seed_source_id = "SEED_SOURCE" 
             )
 ```
 
-The above example creates field plot labels using a sample fieldbook named `square_lattice` generated with the FielDHub package. The `square_lattice` sample fieldbook is available in the `qrlabelr` package, and it was based on a Square Lattice Design layout at two locations. The example above creates labels with QR codes generated using reproducible unique IDs method (`get_unique_id = "ruid"`); researcher's name = `AW Kena`; intra-blocks (`IBlock = TRUE`); and a font family = `sans`.  
+The above example creates field plot labels using a sample fieldbook named `square_lattice` generated with the FielDHub package. The `square_lattice` sample fieldbook is available in the `qrlabelr` package, and it was generated based on a Square Lattice Design layout at two locations.  
 
-The arguments `Trial = 'PYT'` and `Year = 2023` are required if the method for generating unique IDs for QR codes is set to `get_unique_id = "ruid"`.  Users can set the font size for the label using the `font_sz` argument. Rectangular labels with rounded corners are generated with the argument `rounded = TRUE`, else set it to FALSE. 
+It follows from the above example that to create any custom rectangular label based on a template, users must specify page setting and label dimension parameters using the following arguments:  
+- `wdt`: label width in inches  
+- `hgt`: label height in inches  
+- `page_wdt`: page width in inches  
+- `page_hgt`: page height in inches  
+- `top_mar`: top page margin in inches  
+- `bot_mar`: bottom page margin in inches  
+- `left_mar`: left page margin in inches  
+- `right_mar`: right page margin in inches  
+- `numrow`: number of label rows per page  
+- `numcol`: number of label columns per page  
 
-It follows from the above examples that to create any custom rectangular label based on a template, users must specify page setting and label dimension parameters using the following arguments:\  
-- `wdt`: label width in inches\  
-- `hgt`: label height in inches\  
-- `page_wdt`: page width in inches\  
-- `page_hgt`: page height in inches\  
-- `top_mar`: top page margin in inches\  
-- `bot_mar`: bottom page margin in inches\  
-- `left_mar`: left page margin in inches\  
-- `right_mar`: right page margin in inches\  
-- `numrow`: number of label rows per page\  
-- `numcol`: number of label columns per page\  
+The example above creates labels with QR codes generated using the reproducible unique IDs method (`get_unique_id = "ruid"`); researcher's name = `AW Kena`; intra-blocks (`IBlock = TRUE`); and a font family = `sans`.  
+
+The arguments `Trial = 'PYT'` and `Year = 2023` are required if the method for generating unique IDs for QR codes is set to `get_unique_id = "ruid"`.  Users can set the font size for the label using the `font_sz` argument. Rectangular labels with rounded corners are generated with the argument `rounded = TRUE`, else set it to `rounded = FALSE`. 
+
+The following arguments must also be specified if the input field book was not generated with the FieldHub package:  
+`rep_id`: column id in input field book for REP; default is 'REP'  
+`plot_id`: column id in input field book for PLOT; default is 'PLOT'  
+`row_id`: column id in input field book ROW; default is 'ROW'  
+`col_id`: column id in input field book for COLUMN; default is 'COLUMN'  
+`loc_id`: column id in input field book for LOCATION; default is 'LOCATION'  
+`entry_id`: column id in input field book for TREATMENT OR ENTRY; default is 'TREATMENT'  
+`IBlock_id`: column id in input field book for IBLOCK; default is 'IBLOCK'  
+`seed_source_id`: column id in input field book for SEED_SOURCE; default is 'SEED_SOURCE'  
+
+The arguments `seed_source = TRUE` and `seed_source_id = "SEED_SOURCE" ` are optional and should be used only when the user intends to show seed source on the field label.
+
 
 The function creates a pdf file with a name prefix of `PlotLabel` that is saved to the user's working directory. The function also saves an updated fieldbook to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
 
 For a field plot label, the 9 text positions are mapped by default to the following human- readable text items as shown in Figure 2.  
 
-1. Top-left row 1 text position is mapped to Plot ID\    
-2. Top-left row 2 text position is mapped to Row ID\ 
-3. Top-right row 1 text position is mapped to Rep ID\  
-4. Top-right row 2 text position is mapped to Column ID\  
-5. Center-right row 1 text position is mapped to intra-block ID number if the field    layout is based on an incomplete block design\   
-6. Center-right row 2 text position is mapped to seed source for entries (optional)\  
-7. Center-right row 3 text position is mapped to name of researcher (optional)\  
-8. Bottom-left row 1 text position is mapped to Location of experiment or trial\  
-9. Bottom-left row 2 text position is mapped to Entry name\  
+1. Top-left row 1 text position is mapped to Plot ID      
+2. Top-left row 2 text position is mapped to Row ID   
+3. Top-right row 1 text position is mapped to Rep ID    
+4. Top-right row 2 text position is mapped to Column ID    
+5. Center-right row 1 text position is mapped to intra-block ID number if the field    layout is based on an incomplete block design     
+6. Center-right row 2 text position is mapped to seed source for entries (optional)  
+7. Center-right row 3 text position is mapped to name of researcher (optional)    
+8. Bottom-left row 1 text position is mapped to Location of experiment or trial    
+9. Bottom-left row 2 text position is mapped to Entry name   
 
-|<img src='inst/extdata/label_4x2in.jpg' style="width: 400px;" />|
+|<img src='inst/extdata/label_4x2in.JPG' style="width: 400px;" />|
 |:--:| 
 | *Fig. 2. A field plot label design by qrlabelr showing 9 human-readable text items and 1 machine-readable QR code* |  
-
-
-
-
 
 ### Creating general-purpose labels with customizable function
 The `gp_label()` function allows for specific user-defined human-readable text items that can be used to fill out the nine (9) delineated text positions on the label. This function gives a lot of control to the user with respect to what human-readable text items gets displayed on the label.  
 
-Similarly, to create any general-purpose labels other than a field plot label, invoke the `gp_label()` function as has been done in the code snippet below:
+To create any general-purpose labels other than a field plot label, invoke the `gp_label()` function as has been done in the code snippet below:
 
 ``` r
 library(qrlabelr)
@@ -251,7 +273,7 @@ gp_label(dat = qrlabelr::square_lattice,
 
 The above arguments are passed to the `create_label` function to generate the desired labels based on the defined page setting and label dimension parameters.  
 
-
+**Note that the default label template for both the `field_label()` and the `gp_label()` functions is Avery 94220 (https://www.avery.com/blank/labels/94220).**
 
 
 Run the following code in the RStudio console to launch the
