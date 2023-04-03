@@ -759,6 +759,10 @@ field_label <- function(dat,
     if (x > 0 && assertthat::is.count(x)) return (TRUE) else return (FALSE)
   }
 
+  # Assertion for dat argument
+  assertthat::assert_that(!missing(dat),
+                          msg = "Fieldbook is missing, please provide a fieldbook as a data frame.")
+  
   # Checking all flag inputs
   assertthat::assert_that(assertthat::is.flag(seed_source),
                           msg = paste("'seed_source'", error_flag))
@@ -995,6 +999,10 @@ gp_label <- function(dat,
                      bottom_left_id2 = NULL, # column id in dat containing text for bottom-left row 2
                      ...
 ){
+  
+  # Assertion for dat argument
+  assertthat::assert_that(!missing(dat),
+                          msg = "Fieldbook is missing, please provide a fieldbook as a data frame.")
 
   error_prompt <- "Invalid string entered for"
 
