@@ -41,6 +41,18 @@ Alternatively, you can install the package together with its vignettes as follow
 
 `devtools::install_github("awkena/qrlabelr", build_vignettes = TRUE)`
 
+To view vignettes for the package in RStudio, run the following code in the R console:  
+
+``` r
+utils::vignette("qrlabelr")
+```
+
+Similarly, the vignette can be viewed in your browser by running the following code in your R console:  
+
+``` r
+utils::browseVignettes("qrlabelr")
+```
+
 The method described above will download and install the `qrlabelr` package on your computer. Once the installation is complete, you can load the package by entering the following command in the console:
 
 `library(qrlabelr)`  
