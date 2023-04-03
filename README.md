@@ -134,7 +134,7 @@ To use qrlabelr, one must first generate a field book that shows the layout info
 
 Other user-preferred software such as BMS can equally be used to generate an input field book if desired.  
 
-**Input field books must be imported as a data frame into qrlabelr for use. We recommend that users save input field books as csv or as xls or xlsx files for easy import to qrlabelr **  
+**Input field books must be imported as a data frame into qrlabelr for use. We recommend that users save input field books as csv or as xls or xlsx files for easy import to qrlabelr**  
 
 ### Creating labels
 Creating field plot and general-purpose labels is easy. The qrlabelr package offers two user-centered options for creating plot labels affixed with QR codes.  
