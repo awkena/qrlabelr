@@ -742,7 +742,7 @@ field_label <- function(dat,
                         ...){
 
   error_numeric <- "must be a positive numeric value."
-  error_flag <- "must be a logical (i.e TRUE/FALSE) value."
+  error_flag <- "must be a logical or boolean value."
   error_string <- "must be string value."
 
   # Function to check for positive values -- may have to be relocated
@@ -802,7 +802,7 @@ field_label <- function(dat,
   # Assert inputs with NULL arguments as default if overwritten by the user
   if (!is.null(Year)) {
     assertthat::assert_that((assertthat::is.string(Year) || is.valid_number(Year)) && nchar(Year) == 4,
-                            msg = "Year must be a string e.g. ('2023') or numeric (e.g. 2023) value.")
+                            msg = "Year must be a string or numeric value of four characters.")
   }
 
   if (!is.null(seed_source_id)) {

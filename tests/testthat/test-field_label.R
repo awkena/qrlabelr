@@ -50,6 +50,7 @@ test_that("Field plot label PDF successful generation", {
   })
 
 test_that("Field plot label input errors", {
+  
   expect_error(field_label(font_sz = 10,
                            IBlock = FALSE,
                            get_unique_id = "ruid",
@@ -240,6 +241,125 @@ test_that("Field plot label input errors", {
                                              seed_source_id = "SEED_SOURCE" ),
                "'IBlock_id' must be string value.")
   
+  
+  expect_error(field_label(data.frame(LOCATION = rep("BAMBEY", 10), 
+                           PLOT = 1001:1010, 
+                           ROW = c(rep(1, 6), rep(2, 4)),
+                           COLUMN = c(1:6, 1:4),
+                           REP = rep(1, 10),
+                           IBLOCK = c(rep(1, 6), rep(2, 4)),
+                           TREATMENT = paste0("G-", 1:10),
+                           SEED_SOURCE = rep("OFF_NUR", 10)),
+                           font_sz = 10,
+                           IBlock = FALSE,
+                           get_unique_id = "go",
+                           rname = "AWK",
+                           family = "sans",
+                           seed_source = FALSE ), 
+               "'get_unique_id' must be a string value of one of these: 'ruid','uuid' or 'custom'")
+  
+  
+  
+  expect_error(field_label(data.frame(LOCATION = rep("BAMBEY", 10), 
+                                      PLOT = 1001:1010, 
+                                      ROW = c(rep(1, 6), rep(2, 4)),
+                                      COLUMN = c(1:6, 1:4),
+                                      REP = rep(1, 10),
+                                      IBLOCK = c(rep(1, 6), rep(2, 4)),
+                                      TREATMENT = paste0("G-", 1:10),
+                                      SEED_SOURCE = rep("OFF_NUR", 10)),
+                                       font_sz = 10,
+                                       IBlock = FALSE,
+                                       get_unique_id = "ruid",
+                                       rname = "AWK",
+                                       family = "sans",
+                                       seed_source = TRUE ,
+                                       seed_source_id = NULL), 
+               "Use the 'seed_source_id' argument to specify the column name in your fieldbook containing seed source ids.")
+  
+  expect_error(field_label(data.frame(LOCATION = rep("BAMBEY", 10), 
+                                      PLOT = 1001:1010, 
+                                      ROW = c(rep(1, 6), rep(2, 4)),
+                                      COLUMN = c(1:6, 1:4),
+                                      REP = rep(1, 10),
+                                      IBLOCK = c(rep(1, 6), rep(2, 4)),
+                                      TREATMENT = paste0("G-", 1:10),
+                                      SEED_SOURCE = rep("OFF_NUR", 10)),
+                                       font_sz = 10,
+                                       IBlock = FALSE,
+                                       get_unique_id = "ruid",
+                                       rname = "AWK",
+                                       family = "sans",
+                                       seed_source = FALSE,
+                                       Year = 11111), 
+               "Year must be a string or numeric value of four characters.")
+  
+  expect_error(field_label(data.frame(LOCATION = rep("BAMBEY", 10), 
+                                      PLOT = 1001:1010, 
+                                      ROW = c(rep(1, 6), rep(2, 4)),
+                                      COLUMN = c(1:6, 1:4),
+                                      REP = rep(1, 10),
+                                      IBLOCK = c(rep(1, 6), rep(2, 4)),
+                                      TREATMENT = paste0("G-", 1:10),
+                                      SEED_SOURCE = rep("OFF_NUR", 10)),
+                                       font_sz = 10,
+                                       IBlock = FALSE,
+                                       get_unique_id = "ruid",
+                                       rname = "AWK",
+                                       family = "sans",
+                                       seed_source = TRUE,
+                                       seed_source_id = 1), 
+               "Seed source ID must be a string value.")
+  
+  expect_error(field_label(data.frame(LOCATION = rep("BAMBEY", 10), 
+                                      PLOT = 1001:1010, 
+                                      ROW = c(rep(1, 6), rep(2, 4)),
+                                      COLUMN = c(1:6, 1:4),
+                                      REP = rep(1, 10),
+                                      IBLOCK = c(rep(1, 6), rep(2, 4)),
+                                      TREATMENT = paste0("G-", 1:10),
+                                      SEED_SOURCE = rep("OFF_NUR", 10)),
+                                       font_sz = 10,
+                                       IBlock = FALSE,
+                                       get_unique_id = "ruid",
+                                       rname = 11,
+                                       family = "sans",
+                                       seed_source = FALSE), 
+               "Researcher name must be a string value.")
+  
+  
+  expect_error(field_label(data.frame(LOCATION = rep("BAMBEY", 10), 
+                                      PLOT = 1001:1010, 
+                                      ROW = c(rep(1, 6), rep(2, 4)),
+                                      COLUMN = c(1:6, 1:4),
+                                      REP = rep(1, 10),
+                                      IBLOCK = c(rep(1, 6), rep(2, 4)),
+                                      TREATMENT = paste0("G-", 1:10),
+                                      SEED_SOURCE = rep("OFF_NUR", 10)),
+                                       font_sz = 10,
+                                       IBlock = FALSE,
+                                       get_unique_id = "ruid",
+                                       rname = 'AWK',
+                                       family = "sans",
+                                       seed_source = 11), 
+               "'seed_source' must be a logical or boolean value.")
+  
+  expect_error(field_label(data.frame(LOCATION = rep("BAMBEY", 10), 
+                                      PLOT = 1001:1010, 
+                                      ROW = c(rep(1, 6), rep(2, 4)),
+                                      COLUMN = c(1:6, 1:4),
+                                      REP = rep(1, 10),
+                                      IBLOCK = c(rep(1, 6), rep(2, 4)),
+                                      TREATMENT = paste0("G-", 1:10),
+                                      SEED_SOURCE = rep("OFF_NUR", 10)),
+                                       font_sz = 10,
+                                       IBlock = FALSE,
+                                       get_unique_id = "ruid",
+                                       rname = 'AWK',
+                                       family = "sans",
+                                       seed_source = FALSE,
+                                        Trial = 10), 
+               "'Trial' must be string value.")
   
   
 })
