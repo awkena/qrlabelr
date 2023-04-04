@@ -45,6 +45,7 @@ Imports:
     utils,
     uuid
 Suggests: 
+    covr,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
