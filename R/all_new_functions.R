@@ -100,7 +100,7 @@ create_label <- function(
     ...){
 
   error_numeric <- "must be a positive numeric value."
-  error_flag <- "must be a logical (i.e TRUE/FALSE) value."
+  error_flag <- "must be a logical or boolean value."
   error_string <- "must be string value."
 
   # Function to check for positive values -- may have to be relocated
