@@ -26,22 +26,31 @@ A no-frills open-source solution for designing experimental or trial plot labels
 Submit bug reports and feature suggestions, or track changes on the
 [issues page](https://github.com/awkena/qrlabelr/issues).
 
-## Table of contents
+# Table of contents
 
--   Requirements
--   Recommended modules
--   Installation
--   Usage
--   Troubleshooting
--   FAQ
--   Authors
--   License
--   Features
--   Tech stack
--   Support and Feedback
--   Related
+- [Requirements](#requirements)
+- [Recommended packages](#recommended-packages)
+- [Installation](#installation)
+- [Usage](#usage)  
+  - [Generating field books](#generating-field-books)  
+  - [Creating labels](#creating-labels)  
+  - [Label content](#label-content)  
+  - [Creating field plot labels with customizable function](#creating-field-plot-labels-with-customizable-function)  
+  - [Creating general-purpose labels with customizable function](#creating-general-purpose-labels-with-customizable-function)   
+  - [Creating labels with Shiny app: EasyPlotLabelR](#creating-labels-with-shiny-app-easyplotlabelr)  
+  
+        
+- [Troubleshooting](#troubleshooting)
+- [FAQ](#FAQ)
+- [Authors](#authors)
+- [License](#license)
+- [Features](#features)
+- [Tech stack](#tech-Stack)
+- [Support and Feedback](##support-and-feedback)
+- [Related](#related)
 
-## Requirements
+
+# Requirements
 
 To run this package locally on a machine, the following R packages are
 required:
@@ -95,7 +104,7 @@ required:
 -   [tools](https://www.rdocumentation.org/packages/tools/versions/3.6.2):
     Tools for package development, administration and documentation.
 
-## Recommended packages
+# Recommended packages
 
 -   [Rtools](https://cran.r-project.org/bin/windows/Rtools/rtools43/rtools.html):      Needed for package development.
 
@@ -103,7 +112,7 @@ required:
     installed, display of the project's README.md help will be rendered
     with R Markdown.
 
-## Installation
+# Installation
 
 To install qrlabelr, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:  
 
@@ -140,16 +149,20 @@ The method described above will download and install the `qrlabelr` package on y
 library(qrlabelr)
 ```
 
-## Usage
-### Generating field books
-To use qrlabelr, one must first generate a field book that shows the layout information for all experimental plots. Typically, layout information for all plots are obtained based on the experimental design and treatment randomization. There are free open-source software such as FieldHub (https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr.  
+**Users who have R and RStudio already installed must ensure they are up to date before installing qrlabelr**
 
-Other user-preferred software such as BMS can equally be used to generate an input field book if desired.  
+# Usage
+## Generating field books
+To use qrlabelr, one must first generate a field book that shows the layout information for all experimental plots. **A field book is required as an input data frame in qrlabelr.**  
+
+Typically, layout information for field plots are obtained based on the experimental design and treatment randomization. It is strongly recommended to have the grid coordinates of plots (row and column numbers of plots) included in the field book.
+
+There are free open-source software such as [FieldHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as BMS can equally be used to generate an input field book if desired.  
 
 **Input field books must be imported as a data frame into qrlabelr for use. We recommend that users save input field books as csv or as xls or xlsx files for easy import to qrlabelr**  
 
-### Creating labels
-Creating field plot and general-purpose labels is easy. The qrlabelr package offers two user-centered options for creating plot labels affixed with QR codes.  
+## Creating labels
+The qrlabelr package offers two user-centered options for creating plot labels affixed with QR codes.  
 
 The first option involves the use of customizable functions to create rectangular field plot labels or any rectangular general-purpose plot labels embossed with QR codes. This option is for users who find working in R comfortable.  
 
@@ -157,18 +170,19 @@ The package also provides a helper function to access a user-friendly Shiny app 
 
 **Both the customizable functions and Shiny app were created to deliver the exact same features, so it all boils down to a user's preference.**  
 
-### Label content
-Figure 1 shows 10 delineated positions available to users to be filled with human-readable text items (positions 1 - 9) and machine-readable QR code (position 10).  
+## Label content
+Figure 1 shows 10 delineated positions available to users that can be filled with human-readable text items (positions 1 - 9) and machine-readable QR code (position 10).  
 
 |<img src='inst/extdata/label_design.JPG' style="width: 400px;" />|
 |:--:| 
 | *Fig. 1. Content of rectangular plot label showing 9 delineated text positions and 1 QR code position* |  
 
-### Creating field plot labels with customizable function
 
-To create field plot labels with functions, use the `field_label()` function. The versatility and flexibility of the function allow for the creation of rectangular labels based on any template, where the page setting and label dimension parameters can be defined by the user using specific arguments.  
+## Creating field plot labels with customizable function
 
-For instance, to create field plot labels based on the the Avery 94241 template (https://www.avery.com/blank/labels/94241), the `field_label()` function can be modified by supplying all required information as arguments to the function's parameters, as seen in the code snippet below:  
+To create field plot labels in R, use the `field_label()` function. This function creates rectangular field plot labels based on a template, where the page setting and label dimension parameters can be defined by the user using specific arguments.  
+
+For instance, to create field plot labels based on the [Avery 94241 template](https://www.avery.com/blank/labels/94241), the `field_label()` function is used as shown in the code snippet below:  
 
 ``` r 
 library(qrlabelr)
@@ -254,7 +268,7 @@ For a field plot label, the 9 text positions are mapped by default to the follow
 |:--:| 
 | *Fig. 2. A field plot label designed using qrlabelr showing 9 human-readable text items and 1 machine-readable QR code* |  
 
-### Creating general-purpose labels with customizable function
+## Creating general-purpose labels with customizable function
 The `gp_label()` function allows for specific user-defined human-readable text items that can be used to fill out the nine (9) delineated text positions on the label. This function gives a lot of control to the user with respect to what human-readable text items gets displayed on the label.  
 
 To create any general-purpose labels other than a field plot label, invoke the `gp_label()` function as has been done in the code snippet below:
@@ -294,12 +308,9 @@ To view details of the `field_label()` and the `gp_label()` functions in RStudio
 
 ```
 
-**Note that the default label template for both the `field_label()` and the `gp_label()` functions is Avery 94220 (https://www.avery.com/blank/labels/94220).**
+**Note that the default label template for both the `field_label()` and the `gp_label()` functions is [Avery 94220 template](https://www.avery.com/blank/labels/94220).**
 
-### Creating labels with Shiny app: EasyPlotLabelR
-
-This will open a new window in your default web browser that displays the EasyPlotLabelR Shiny app. The user is then greeted with a Welcome page that provides an overview of the web app, some quick instructions to get started, sample labels, among others. In the header of the Shiny app is a convenient Help button which can be accessed anytime for a quick overview of the purpose of each tab in generating a label.  
-
+## Creating labels with Shiny app: EasyPlotLabelR
 Run the following code in the RStudio console to launch the
 EasyPlotLabelR Shiny app:
 
@@ -308,6 +319,9 @@ EasyPlotLabelR Shiny app:
   qrlabelr::run_app()
 ```
 
+This will open a new window in your default web browser that displays the EasyPlotLabelR Shiny app. The user is then greeted with a Welcome page that provides an overview of the web app, some quick instructions to get started, sample labels, among others. In the header of the Shiny app is a convenient Help button which can be accessed anytime for a quick overview of the purpose of each tab in generating a label.  
+
+
 Follow the simple steps in Figure 3 to use the Shiny app to create plot labels.
 
 |<img src='inst/extdata/instructions.PNG' style="width: 800px;" />|
@@ -315,7 +329,7 @@ Follow the simple steps in Figure 3 to use the Shiny app to create plot labels.
 | *Fig. 3. Steps for creating plot labels using the Shiny app* |  
 
 
-## Troubleshooting
+# Troubleshooting
 
 If the app does not run as expected, check the following:
 
@@ -328,26 +342,26 @@ If the app does not run as expected, check the following:
 
 -   Are all packages up to date?
 
-## FAQ
+# FAQ
 
-#### Can I use my own generated fieldbooks in Shiny app?
+## Can I use my own generated fieldbooks in Shiny app?
 
 Yes, you can. However, you would have to manually select the input ID
 for the various column names that correspond to the required label information.  
 
-#### How do I access my generated labels and updated fieldbook?
+## How do I access my generated labels and updated fieldbook?
 
 If plot labels were generated with the customizable functions, a PDF file containing the generated labels and an updated fieldbook would be saved to the user's working directory.
 
 If plot labels were generated using the Shiny app, there is a download button on the Generate label tab, which can be used to save all generated labels and updated fieldbook to a local machine.
 
-#### Are generated labels compatible with popular page templates?
+## Are generated labels compatible with popular page templates?
 
 Yes. We have gone the extra mile to ensure generated labels can be
 printed on papers from Avery, Uline, and other paper template
 manufacturers.
 
-## Authors
+# Authors
 
 -   [Alexander Wireko Kena](https://www.github.com/awkena)
 -   [Ebenezer Ogoe](https://github.com/Ebenezer-007)
@@ -356,11 +370,11 @@ manufacturers.
 -   [Geoffrey Preston
     Morris](https://www.morrislab.org/people/geoff-morris)
 
-## License
+# License
 
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
 
-## Features
+# Features
 
 -   Simplifies the process of plot label design.
 -   Generates plot labels compatible with the widely used digital data
@@ -371,22 +385,22 @@ manufacturers.
 -   Outputs a downloadable PDF file for printing and allows for
     downloading an updated field book.
 
-## Tech Stack
+# Tech Stack
 
 R, HTML, CSS, JavaScript
 
-## Support and Feedback
+# Support and Feedback
 
 For support and submission of feedback, email the maintainer **Alexander
 Kena** at
 [alex.kena24\@gmail.com](mailto:alex.kena24@gmail.com){.email}
 
-## Roadmap
+# Roadmap
 
 -   Add more features
 -   Find and fix bugs
 
-## Related
+# Related
 
 Below are some related projects
 
