@@ -2,6 +2,9 @@
 test_that("Field plot label PDF successful generation", {
   # skip_on_cran()
   
+  path <- tempdir()
+  setwd(path)
+  
   expect_invisible(
     field_label(dat = data.frame(LOCATION = rep("BAMBEY", 10), 
                                 PLOT = 1001:1010, 
@@ -39,8 +42,11 @@ test_that("Field plot label PDF successful generation", {
                                 IBlock_id = 'IBLOCK', 
                                 seed_source = TRUE, 
                                 seed_source_id = "SEED_SOURCE" ))
+  
   expect_true(length(list.files(path = ".", pattern = "\\.pdf$")) > 0)
   expect_true(length(list.files(path = ".", pattern = "\\.csv$")) > 0)
+  
+  on.exit(unlink(path))
   })
 
 test_that("Field plot label input errors", {

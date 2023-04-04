@@ -2,6 +2,9 @@
 test_that("General-purpose plot label PDF successful generation", {
   # skip_on_cran()
   
+  path <- tempdir()
+  setwd(path)
+  
   expect_invisible(
     gp_label(dat = data.frame(LOCATION = rep("BAMBEY", 10), 
                               PLOT = 1001:1010, 
@@ -40,9 +43,11 @@ test_that("General-purpose plot label PDF successful generation", {
                                center_right_id2 = 'SEED_SOURCE',
                                bottom_left_id1 = 'LOCATION',
                                bottom_left_id2 = 'TREATMENT'))
+  
   expect_true(length(list.files(path = ".", pattern = "\\.pdf$")) > 0)
   expect_true(length(list.files(path = ".", pattern = "\\.csv$")) > 0)
   
+  on.exit(unlink(path))
 })
 
 

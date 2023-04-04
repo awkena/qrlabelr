@@ -200,16 +200,12 @@ create_label <- function(
   }
 
   # Check if page setup matches label setup per page.
-  # Error message if the sum of label width, width margins and column spaces
-  # between labels is greater than the page width and vice versa
-  # Similarly, Error message if the sum of label height, height margins and
-  # row spaces between labels is greater than the page width and vice versa.
-  pg_wdt_check <- sum(wdt*numcol, left_mar, right_mar, (numcol-1)*col_space)
-
-  pg_hgt_check <- sum(hgt*numrow, top_mar, bot_mar, (numrow-1)*row_space)
-
-  if (page_wdt < pg_wdt_check | page_hgt < pg_hgt_check) {
-    stop("Page setup does not match label setup per page.")}
+  # Error message if either column spaces or the row spaces between labels 
+  # are less than zero
+  
+  if (col_space < 0 | row_space < 0) {
+    stop("Page setup does not match label setup per page.")
+  }
 
   # clean up any open graphical devices if function fails
   on.exit(grDevices::graphics.off())
