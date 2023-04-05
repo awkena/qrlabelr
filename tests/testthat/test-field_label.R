@@ -46,7 +46,7 @@ test_that("Field plot label PDF successful generation", {
   expect_true(length(list.files(path = ".", pattern = "\\.pdf$")) > 0)
   expect_true(length(list.files(path = ".", pattern = "\\.csv$")) > 0)
   
-  on.exit(unlink(path, recursive = TRUE))
+  on.exit(unlink(path))
   })
 
 test_that("Field plot label input errors", {

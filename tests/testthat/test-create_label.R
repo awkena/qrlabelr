@@ -33,7 +33,7 @@ test_that("Create plot label PDF successful generation", {
                                 sep = "_"), 
              ec_level = 3))
   expect_true(length(list.files(path = ".", pattern = "\\.pdf$")) > 0)
-  on.exit(unlink(path, recursive = TRUE))
+  on.exit(unlink(path))
   # expect_true(length(list.files(path = ".", pattern = "\\.csv$")) > 0)
   
 })
@@ -73,7 +73,7 @@ test_that("Create Treetag plot label PDF successful generation", {
                                    sep = "_"),
                  ec_level = 3))
   expect_true(length(list.files(path = ".", pattern = "\\.pdf$")) > 0)
-  on.exit(unlink(path, recursive = TRUE))
+  on.exit(unlink(path))
   # expect_true(length(list.files(path = ".", pattern = "\\.csv$")) > 0)
   
 })
