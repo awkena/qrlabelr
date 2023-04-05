@@ -186,7 +186,8 @@ The above example creates field plot labels using a sample fieldbook named `squa
 
 It follows from the above example that to create any custom rectangular label based on a template, users must specify page setting and label dimension parameters using the following arguments:  
 
-It follows from the above examples that to create any custom rectangular label based on a template, users must specify page setting and label dimension parameters using the following arguments:\  
+It follows from the above examples that to create any custom rectangular label based on a template, users must specify page setting and label dimension parameters using the following arguments:   
+
 - `wdt`: label width in inches\  
 - `hgt`: label height in inches\  
 - `page_wdt`: page width in inches\  
