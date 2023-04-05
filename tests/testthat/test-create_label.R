@@ -1,6 +1,6 @@
 
 test_that("Create plot label PDF successful generation", {
-  skip_on_cran()
+  #skip_on_cran()
   path <- tempdir()
   setwd(path)
   expect_invisible(
@@ -40,7 +40,7 @@ test_that("Create plot label PDF successful generation", {
 
 
 test_that("Create Treetag plot label PDF successful generation", {
-  skip_on_cran()
+  #skip_on_cran()
   path <- tempdir()
   setwd(path)
   expect_invisible(
@@ -80,7 +80,7 @@ test_that("Create Treetag plot label PDF successful generation", {
 
 
 test_that("Create plot label input errors", {
-  skip_on_cran()
+  #skip_on_cran()
   expect_error(create_label(wdt = 2, 
                       hgt = 1, 
                       page_wdt = 8.5, 

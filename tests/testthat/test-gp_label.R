@@ -1,6 +1,6 @@
 
 test_that("General-purpose plot label PDF successful generation", {
-  skip_on_cran()
+  #skip_on_cran()
   
   path <- tempdir()
   setwd(path)
@@ -53,7 +53,7 @@ test_that("General-purpose plot label PDF successful generation", {
 
 test_that("General-purpose plot label input errors", {
   
-  skip_on_cran()
+  #skip_on_cran()
   
   expect_error(gp_label(font_sz = 10,
                            get_unique_id = "uuid",

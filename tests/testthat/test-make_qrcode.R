@@ -11,6 +11,7 @@ test_that("QR code successful generation", {
 })
 
 test_that("Make QR code input errors", {
+  # skip_on_cran()
   expect_error(make_qrcode(), "Please provide a unique ID.")
   expect_error(make_qrcode("KUMASI2023_PYT_101_1_1", 
                            ec_level = 4), "Please provide an error

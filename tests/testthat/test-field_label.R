@@ -1,6 +1,6 @@
 
 test_that("Field plot label PDF successful generation", {
-  skip_on_cran()
+  #skip_on_cran()
   
   path <- tempdir()
   setwd(path)
@@ -50,7 +50,7 @@ test_that("Field plot label PDF successful generation", {
   })
 
 test_that("Field plot label input errors", {
-  skip_on_cran()
+  #skip_on_cran()
   
   expect_error(field_label(font_sz = 10,
                            IBlock = FALSE,
