@@ -68,6 +68,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @param bottom_left_1 String for bottom-left row 1 position on a rectangular label.
 #' @param bottom_left_2 String for bottom-left row 2 position on a rectangular label.
 #' @param unique_id is a vector containing unique identifiers or strings to generate QR codes.
+#' @param ec_level error correction level (`0` - `3`, lowest to highest)
 #' @param ... additional optional arguments to be supplied.
 #'
 #' @export
@@ -97,6 +98,7 @@ create_label <- function(
     bottom_left_1 = NULL, # Text for bottom-left row 1
     bottom_left_2 = NULL, # Text for bottom-left row 2
     unique_id = NULL, # Unique ids for QR codes
+    ec_level = 3,
     ...){
 
   error_numeric <- "must be a positive numeric value."
@@ -277,7 +279,7 @@ create_label <- function(
 
   # Create QR codes from unique ids
   if (!is.null(unique_id)) {
-    bb <- purrr::map(unique_id, make_qrcode)
+    bb <- unique_id |> purrr::map(\(x) make_qrcode(ec_level = ec_level, x))
     nn <- length(bb) # total number of labels to generate
   } else {
     stop("Unique IDs for generating QR codes are missing!!")

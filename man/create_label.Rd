@@ -30,6 +30,7 @@ create_label(
   bottom_left_1 = NULL,
   bottom_left_2 = NULL,
   unique_id = NULL,
+  ec_level = 3,
   ...
 )
 }
@@ -84,6 +85,8 @@ square corners.}
 \item{bottom_left_2}{String for bottom-left row 2 position on a rectangular label.}
 
 \item{unique_id}{is a vector containing unique identifiers or strings to generate QR codes.}
+
+\item{ec_level}{error correction level (`0` - `3`, lowest to highest)}
 
 \item{...}{additional optional arguments to be supplied.}
 }

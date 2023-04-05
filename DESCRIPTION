@@ -48,6 +48,7 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
+    shinytest2 (>= 0.2.1),
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Depends: 

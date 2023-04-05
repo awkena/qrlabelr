@@ -1,6 +1,6 @@
 
 test_that("Field plot label PDF successful generation", {
-  # skip_on_cran()
+  skip_on_cran()
   
   path <- tempdir()
   setwd(path)
@@ -46,10 +46,11 @@ test_that("Field plot label PDF successful generation", {
   expect_true(length(list.files(path = ".", pattern = "\\.pdf$")) > 0)
   expect_true(length(list.files(path = ".", pattern = "\\.csv$")) > 0)
   
-  on.exit(unlink(path))
+  on.exit(unlink(path, recursive = TRUE))
   })
 
 test_that("Field plot label input errors", {
+  skip_on_cran()
   
   expect_error(field_label(font_sz = 10,
                            IBlock = FALSE,

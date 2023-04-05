@@ -1,6 +1,6 @@
 
 test_that("Create plot label PDF successful generation", {
-  # skip_on_cran()
+  skip_on_cran()
   path <- tempdir()
   setwd(path)
   expect_invisible(
@@ -30,16 +30,17 @@ test_that("Create plot label PDF successful generation", {
              bottom_left_2 = paste0("G-", 1:10),
              unique_id = paste("KUMASI2023_PYT", c(101:110), 
                                c(rep(1, 6), rep(2, 4)), c(1:6, 1:4),
-                                sep = "_") ))
+                                sep = "_"), 
+             ec_level = 3))
   expect_true(length(list.files(path = ".", pattern = "\\.pdf$")) > 0)
-  on.exit(unlink(path))
+  on.exit(unlink(path, recursive = TRUE))
   # expect_true(length(list.files(path = ".", pattern = "\\.csv$")) > 0)
   
 })
 
 
 test_that("Create Treetag plot label PDF successful generation", {
-  # skip_on_cran()
+  skip_on_cran()
   path <- tempdir()
   setwd(path)
   expect_invisible(
@@ -69,16 +70,17 @@ test_that("Create Treetag plot label PDF successful generation", {
                  bottom_left_2 = paste0("G-", 1:10),
                  unique_id = paste("KUMASI2023_PYT", c(101:110), 
                                    c(rep(1, 6), rep(2, 4)), c(1:6, 1:4),
-                                   sep = "_") ))
+                                   sep = "_"),
+                 ec_level = 3))
   expect_true(length(list.files(path = ".", pattern = "\\.pdf$")) > 0)
-  on.exit(unlink(path))
+  on.exit(unlink(path, recursive = TRUE))
   # expect_true(length(list.files(path = ".", pattern = "\\.csv$")) > 0)
   
 })
 
 
 test_that("Create plot label input errors", {
-
+  skip_on_cran()
   expect_error(create_label(wdt = 2, 
                       hgt = 1, 
                       page_wdt = 8.5, 
