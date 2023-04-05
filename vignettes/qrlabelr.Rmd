@@ -21,11 +21,6 @@ knitr::opts_chunk$set(
 <img src='images/qrlabelr.JPG' width = "140px" align="center"/>  
 </p>
 
-```{r setup, eval=FALSE}
-library(qrlabelr)
-```
-
-
 
 # Table of contents
 
@@ -50,16 +45,19 @@ library(qrlabelr)
 
 # Introduction
 
-qrlabelr is a R package that provides customizable functions and an intuitive Shiny app for generating machine and human-readable plot labels affixed with QR codes. The app is designed to be user-friendly, fast and efficient, allowing researchers to create accurate and highly informative plot labels without the need for licensed commercial software.  
+**qrlabelr** is an R package that provides customizable functions and an intuitive Shiny app for generating machine and human-readable plot labels affixed with QR codes. The app is designed to be user-friendly, fast and efficient, allowing researchers to create accurate and highly informative plot labels without the need for licensed commercial software.  
 
-This vignette will guide you through the process of installing the package, and how to use its customizable functions, and the Shiny app.
+It generates field plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program to offer more flexibility in plot label creation steps;  guarantees true string fidelity after QR encoding; and provides faster label generation to users.  
+
+This vignette will guide you through the process of installing the package, and how to use its customizable functions, and the Shiny app.  
 
 # Installation
 To install qrlabelr, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:
 
 `install.packages("devtools")`
 
-Now, install the package by running the following commands: 
+Now, install the package by running the following commands:  
+
 `library("devtools")`  
 
 `install_github("awkena/qrlabelr")`  

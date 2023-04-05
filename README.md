@@ -397,14 +397,19 @@ manufacturers.
 
 # Features
 
--   Simplifies the process of plot label design.
+-   Simplifies the complicated process of plot label design.  
+-   Provides options that targets both R and non-R users.    
 -   Generates plot labels compatible with the widely used digital data
-    collection mobile app, FielD Book.
--   Uses a reproducible or universal unique ID to generate QR codes with           different error correction levels.
+    collection mobile app, Field Book.  
+-   Uses a reproducible or universal unique ID to generate QR codes with           different error correction levels.  
 -   Allows for both preset common label templates and custom rectangular
-    label design.
+    label design.  
 -   Outputs a downloadable PDF file for printing and allows for
-    downloading an updated field book.
+    downloading an updated field book.  
+-   Offers more flexibility in plot label creation steps.  
+-   Guarantees true string fidelity after QR encoding.  
+-   Generates plot labels faster.  
+-   Well-suited for field experiments or trials.  
 
 # Tech Stack
 
