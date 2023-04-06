@@ -67,19 +67,33 @@ It must be provided if \code{IBlock} is set to TRUE.}
 \item{seed_source_id}{is the column identifier for SEED_SOURCE in the imported field book.
 It must be provided if \code{seed_source} is set to TRUE.}
 
-\item{...}{additional arguments passed to the \code{create_label} function.}
+\item{...}{additional arguments passed to the \code{create_label()} function.}
+}
+\value{
+A PDF file containing field plot labels affixed with QR codes, and
+ an updated fieldbook-- all saved to the default or set working directory.
 }
 \description{
-Create human and machine readable plot labels that are well-suited for field experiments.
+Create machine and human-readable plot labels that are well-suited for field experiments.
 }
 \details{
 The default column identifiers for LOCATION, PLOT, ROW, COLUMN/RANGE, REP, TREATMENT
 are based on the column IDs of a fieldbook generated using the FieldHub package.
-#' If user imports any fieldbook generated without using the FieldHub package,
+If user imports any fieldbook generated with other programs,
 the user must specify the equivalent column identifiers used for LOCATION, PLOT, REP,
-ROW, COLUMN, and TREATMENT/ENTRY in the imported field book.
+ROW, COLUMN, and TREATMENT/ENTRY in the imported fieldbook.
 
-if \code{Year} is NULL, the function uses the current year as defined in the sys.time()
+if \code{get_unique_id = 'ruid'} (i.e. Reproducible Unique IDs), the function concatenates
+location, year, trial name, plot, row and column IDs. if \code{get_unique_id = 'uuid'} 
+(i.e. Universal Unique IDs), the function generates UUIDs by time randomly. 
+Note that UUIDs are uninformative and not reproducible.
+
+If input fieldbook already has unique IDs for each plot, the \code{get_unique_id} 
+argument should be set to 'custom'; and the \code{unique_id}
+argument must be specified as a string using the column name in the input fieldbook
+that denotes plot unique IDs.
+
+if \code{Year} is NULL, the function uses the current year as defined in the sys.time().
 
 If the user is printing labels for any incomplete block design, the imported
 fieldbook must include an IBLOCK column if the users wishes to display intra-blocking
@@ -88,17 +102,14 @@ information for experimental plots on the label.
 Set the \code{IBlock} argument to TRUE if the field layout has incomplete
 blocks within replications. The imported  fieldbook must include an IBLOCK column if
 the \code{IBlock} argument is set to TRUE.
-
-If imported field book already has an informative UNIQUE ID for each plot,
-the \code{get_unique_id} argument should be set to custom; and the \code{unique_id}
-argument must be specified.
 }
 \examples{
 
 \dontrun{
 Generate simple field plot labels using the square_lattice sample fieldbook
 library(qrlabelr)
-field_label(dat = square_lattice,
+field_label(
+dat = square_lattice,
 font_sz = 10,
 IBlock = FALSE,
 get_unique_id = "ruid",
@@ -109,7 +120,8 @@ seed_source = FALSE)
 
 \dontrun{
 Generate treetag labels using the square_lattice sample fieldbook
-field_label(dat = square_lattice,
+field_label(
+dat = square_lattice,
 wdt = 1,
 hgt = 6,
 top_mar = 0,

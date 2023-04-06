@@ -706,7 +706,10 @@ create_label <- function(
 
 #' Create field plot label function embossed with QR codes
 #' @description
-#' Create human and machine readable plot labels that are well-suited for field experiments.
+#' Create machine and human-readable plot labels that are well-suited for field experiments.
+#'  
+#' @return A PDF file containing field plot labels affixed with QR codes, and
+#'  an updated fieldbook-- all saved to the default or set working directory.
 #'
 #' @param dat is an input data frame of fieldbook that contains plot attributes.
 #' To design field plot labels, the imported fieldbook must have LOCATION, PLOT,
@@ -734,15 +737,26 @@ create_label <- function(
 #' are to be generated from imported fieldbook. Set to 'uuid' if universal unique ids
 #' are to be generated from imported fieldbook. Set to 'custom' if imported fieldbook
 #' already has unique IDs for each plot.
-#' @param ... additional arguments passed to the \code{create_label} function.
+#' @param ... additional arguments passed to the \code{create_label()} function.
+#' 
 #' @details
 #' The default column identifiers for LOCATION, PLOT, ROW, COLUMN/RANGE, REP, TREATMENT
 #' are based on the column IDs of a fieldbook generated using the FieldHub package.
-#' #' If user imports any fieldbook generated without using the FieldHub package,
+#' If user imports any fieldbook generated with other programs,
 #' the user must specify the equivalent column identifiers used for LOCATION, PLOT, REP,
-#' ROW, COLUMN, and TREATMENT/ENTRY in the imported field book.
-#'
-#' if \code{Year} is NULL, the function uses the current year as defined in the sys.time()
+#' ROW, COLUMN, and TREATMENT/ENTRY in the imported fieldbook.
+#' 
+#' if \code{get_unique_id = 'ruid'} (i.e. Reproducible Unique IDs), the function concatenates
+#' location, year, trial name, plot, row and column IDs. if \code{get_unique_id = 'uuid'} 
+#' (i.e. Universal Unique IDs), the function generates UUIDs by time randomly. 
+#' Note that UUIDs are uninformative and not reproducible.
+#' 
+#' If input fieldbook already has unique IDs for each plot, the \code{get_unique_id} 
+#' argument should be set to 'custom'; and the \code{unique_id}
+#' argument must be specified as a string using the column name in the input fieldbook
+#' that denotes plot unique IDs.
+#' 
+#' if \code{Year} is NULL, the function uses the current year as defined in the sys.time().
 #'
 #' If the user is printing labels for any incomplete block design, the imported
 #' fieldbook must include an IBLOCK column if the users wishes to display intra-blocking
@@ -752,16 +766,15 @@ create_label <- function(
 #' blocks within replications. The imported  fieldbook must include an IBLOCK column if
 #' the \code{IBlock} argument is set to TRUE.
 #'
-#' If imported field book already has an informative UNIQUE ID for each plot,
-#' the \code{get_unique_id} argument should be set to custom; and the \code{unique_id}
-#' argument must be specified.
+#' 
 #'
 #' @examples
 #'
 #' \dontrun{
 #' Generate simple field plot labels using the square_lattice sample fieldbook
 #' library(qrlabelr)
-#' field_label(dat = square_lattice,
+#' field_label(
+#' dat = square_lattice,
 #' font_sz = 10,
 #' IBlock = FALSE,
 #' get_unique_id = "ruid",
@@ -772,7 +785,8 @@ create_label <- function(
 #'
 #' \dontrun{
 #' Generate treetag labels using the square_lattice sample fieldbook
-#' field_label(dat = square_lattice,
+#' field_label(
+#' dat = square_lattice,
 #' wdt = 1,
 #' hgt = 6,
 #' top_mar = 0,
@@ -988,8 +1002,12 @@ field_label <- function(dat,
 #' Create a general-purpose (gp) label
 #' @description
 #' This function gives more flexibility to the user to design any general-purpose
-#' label affixed with QR codes. This function gives a lot of control to the user with 
-#' respect to what human-readable text items gets displayed on the label.
+#' label affixed with QR codes. It gives a lot of control to the user with 
+#' respect to what human-readable text items gets displayed on the label. 
+#' Arguments are passed to the `create_label()` function.
+#' 
+#' @return A PDF file containing plot labels affixed with QR codes, and
+#'  an updated fieldbook-- all saved to the default or set working directory. 
 #'
 #' @param dat is an input data frame of fieldbook that contains plot attributes.
 #' @param get_unique_id is to be set to 'uuid' if universal unique ids are to be generated.

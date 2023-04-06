@@ -75,10 +75,15 @@ from imported fieldbook. Set to 'custom' if imported fieldbook already has uniqu
 
 \item{...}{additional arguments passed to the \code{create_label} function.}
 }
+\value{
+A PDF file containing plot labels affixed with QR codes, and
+ an updated fieldbook-- all saved to the default or set working directory.
+}
 \description{
 This function gives more flexibility to the user to design any general-purpose
-label affixed with QR codes. This function gives a lot of control to the user with 
-respect to what human-readable text items gets displayed on the label.
+label affixed with QR codes. It gives a lot of control to the user with 
+respect to what human-readable text items gets displayed on the label. 
+Arguments are passed to the `create_label()` function.
 }
 \examples{
 
