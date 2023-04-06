@@ -115,7 +115,7 @@ required:
 
 # Installation
 
-To install qrlabelr, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:  
+To install **`qrlabelr`**, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:  
 
 ``` r
 install.packages("devtools")
@@ -209,7 +209,7 @@ RUIDs are informative and reproducible, hence, can be regenerated when provided 
 
 The UUID method produces random time-based unique IDs that are not reproducible and informative, but are highly unique due to their pseudo-random nature.  
 
-if the input fieldbook contains a column that represents unique IDs suitable for QR code generation, the user can choose the `custom` method.  
+if the input fieldbook contains a column that represents unique IDs suitable for QR code generation, the user can choose the `'custom'` method.  
 
 Users can set the desired **error correction level (ecl)** for generating QR codes. The ecl indicates how much of the QR code is used up for error correction. There are four levels, with 0 (7%) being the lowest level and 3 (30%) being the highest value possible. For field experiments, we strongly recommend that the error correction level be set to 3, which is the default setting.  
 
@@ -269,7 +269,7 @@ It follows from the above example that to create any custom rectangular label ba
 - `numrow`: number of label rows per page  
 - `numcol`: number of label columns per page  
 
-The example above creates labels with QR codes generated using the reproducible unique IDs method (`get_unique_id = "ruid"`); researcher's name = `AW Kena`; intra-blocks (`IBlock = TRUE`); and a font family = `sans`.  
+The example above creates labels with QR codes generated using the reproducible unique IDs method (`get_unique_id = "ruid"`); researcher's name = `"AW Kena"`; intra-blocks (`IBlock = TRUE`); and a font family of = `family = 'sans'`.  
 
 The arguments `Trial = 'PYT'` and `Year = 2023` are required if the method for generating unique IDs for QR codes is set to `get_unique_id = "ruid"`.  Users can set the font size for the label using the `font_sz` argument. Rectangular labels with rounded corners are generated with the argument `rounded = TRUE`, else set it to `rounded = FALSE`. 
 
@@ -287,7 +287,7 @@ The following arguments must also be specified if the input field book was not g
 The arguments `seed_source = TRUE` and `seed_source_id = "SEED_SOURCE" ` are optional and should be used only when the user intends to show seed source on the field label.  
 
 
-The function creates a pdf file with a name prefix of `PlotLabel` that is saved to the user's working directory. The function also saves an updated fieldbook to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
+The function creates a pdf file with a name prefix of `'PlotLabel'` that is saved to the user's working directory. The function also saves an updated fieldbook to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
 
 ## Creating general-purpose labels in R
 The `gp_label()` function allows for specific user-defined or preferred  human-readable text items to be displayed on a plot label. These texts can be used to fill out the nine (9) delineated text positions on the label (Figure 1). This function gives a lot of control to the user with respect to what human-readable text items gets displayed and their position on the label.  
@@ -319,7 +319,7 @@ gp_label(dat = qrlabelr::square_lattice,
          bottom_left_id2 = 'TREATMENT')
 ```
 
-The above arguments are passed to the `create_label` function to generate the desired labels based on the defined page setting and label dimension parameters.  
+The above arguments are passed to the `create_label()` function to generate the desired labels based on the defined page setting and label dimension parameters.  
 
 To view details of the `field_label()` and the `gp_label()` functions in RStudio, run the following codes in the R console:  
 

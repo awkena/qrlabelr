@@ -52,7 +52,7 @@ It generates field plot labels that are compatible with the widely used digital 
 This vignette will guide you through the process of installing the package, and how to use its customizable functions, and the Shiny app.  
 
 # Installation
-To install qrlabelr, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:
+To install **`qrlabelr`**, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:
 
 `install.packages("devtools")`
 
@@ -199,7 +199,7 @@ It follows from the above examples that to create any custom rectangular label b
 - `numrow`: number of label rows per page\  
 - `numcol`: number of label columns per page\  
 
-The example above creates labels with QR codes generated using the reproducible unique IDs method (`get_unique_id = "ruid"`); researcher's name = `AW Kena`; intra-blocks (`IBlock = TRUE`); and a font family = `sans`.  
+The example above creates labels with QR codes generated using the reproducible unique IDs method (`get_unique_id = "ruid"`); researcher's name = `"AW Kena"`; intra-blocks (`IBlock = TRUE`); and a font family of `family ='sans'`.  
 
 The arguments `Trial = 'PYT'` and `Year = 2023` are required if the method for generating unique IDs for QR codes is set to `get_unique_id = "ruid"`.  Users can set the font size for the label using the `font_sz` argument. Rectangular labels with rounded corners are generated with the argument `rounded = TRUE`, else set it to `rounded = FALSE`. 
 
@@ -216,7 +216,7 @@ The following arguments must also be specified if the input field book was not g
 
 The arguments `seed_source = TRUE` and `seed_source_id = "SEED_SOURCE" ` are optional and should be used only when the user intends to show seed source on the field label.  
 
-The function creates a pdf file with a name prefix of `PlotLabel` that is saved to the user's working directory. The function also saves an updated fieldbook to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
+The function creates a pdf file with a name prefix of `'PlotLabel'` that is saved to the user's working directory. The function also saves an updated fieldbook to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
 
 
 ## Creating general-purpose labels in R  
