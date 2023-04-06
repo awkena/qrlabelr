@@ -32,12 +32,11 @@ make_qrcode <- function(my_id, ec_level = 3){
 
 
 
-#' Create custom human and machine readable field plot labels
+#' Create custom machine and human-readable rectangular plot labels
 #'
 #' @description
-#' This function creates print-ready customized plot labels affixed with QR codes given the page setup (including
-#' page margins), label dimensions and the number of rows and columns of labels
-#' to print per page.
+#' This function creates print-ready customized plot labels affixed with QR codes given the page setup,
+#'  label dimensions, the number of rows and columns of labels to print per page.
 #'
 #' @return A PDF file containing experimental plot labels affixed with QR codes, and
 #'  saved to the default or set working directory.
