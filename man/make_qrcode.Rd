@@ -22,7 +22,7 @@ be plotted using the grid.draw function in the grid package.
 \examples{
 
 \dontrun{
-make_qrcode("PLT101-NURSERY", 4)
+make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 3)
 }
 
 

@@ -104,7 +104,7 @@ top_right_id2 = 'COLUMN',
 center_right_id1 = 'IBLOCK',
 center_right_id2 = 'SEED_SOURCE',
 bottom_left_id1 = 'LOCATION',
-bottom_left_id2 = 'TREATMENT',
+bottom_left_id2 = 'TREATMENT'
 )
 }
 
