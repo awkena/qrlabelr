@@ -15,7 +15,7 @@
 # Create Plot Labels Easily With qrlabelr
 
 A no-frills open-source solution for designing experimental or trial plot labels 
-    affixed with QR codes. **`qrlabelr`** is an R package that features EasyPlotLabelR, 
+    affixed with QR codes. **`qrlabelr`** is an R package that features **EasyPlotLabelR**, 
     a Shiny app that simplifies the complicated process of plot label design for non-R users. 
     It also offers easily customizable functions that enable plot label generation outside the Shiny app.
     It generates field plot labels that are compatible with the widely used 
