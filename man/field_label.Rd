@@ -144,3 +144,6 @@ seed_source_id = "SEED_SOURCE")
 }
 
 }
+\seealso{
+\code{\link{create_label}} and \code{\link{gp_label}}
+}

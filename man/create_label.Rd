@@ -170,3 +170,6 @@ ec_level = 3)
  }
 
 }
+\seealso{
+\code{\link{field_label}} and \code{\link{gp_label}}
+}

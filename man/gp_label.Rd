@@ -114,3 +114,6 @@ bottom_left_id2 = 'TREATMENT'
 }
 
 }
+\seealso{
+\code{\link{create_label}} and \code{\link{field_label}}
+}

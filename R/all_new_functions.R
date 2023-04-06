@@ -71,6 +71,8 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @param ec_level error correction level (`0` - `3`, lowest to highest)
 #' @param ... additional optional arguments to be supplied.
 #' 
+#' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
+#' 
 #' @examples
 #'
 #' \dontrun{
@@ -766,8 +768,8 @@ create_label <- function(
 #' blocks within replications. The imported  fieldbook must include an IBLOCK column if
 #' the \code{IBlock} argument is set to TRUE.
 #'
+#' @seealso \code{\link{create_label}} and \code{\link{gp_label}}
 #' 
-#'
 #' @examples
 #'
 #' \dontrun{
@@ -1032,6 +1034,8 @@ field_label <- function(dat,
 #' @param bottom_left_id1 is the column identifier in dat containing text for bottom-left row 1.
 #' @param bottom_left_id2 is the column identifier in dat containing text for bottom-left row 2.
 #' @param ... additional arguments passed to the \code{create_label} function.
+#'
+#'@seealso \code{\link{create_label}} and \code{\link{field_label}}
 #'
 #' @examples
 #'
