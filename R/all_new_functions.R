@@ -1214,3 +1214,156 @@ gp_label <- function(dat,
 
   cat("\n\n\tGenerated labels and updated fieldbook saved to working directory.")
 }
+
+
+
+#' Make an enhanced field layout plot with border rows 
+#' 
+#' @description
+#' A helper function that adds border rows to the entire perimeter of a
+#' field laid out in a rectangular or square grid. Each experimental plot must
+#' have a coordinate that is specified by row and column numbers in the 
+#' grid layout. 
+#' 
+#' @param x is the input data frame of fieldbook that has row and column 
+#' coordinates of each plot. 
+#' 
+#' @param row_id is the string column identifier for ROW in the input fieldbook.
+#' 
+#' @param col_id is the string column identifier for COLUMN in the input fieldbook.
+#' @param rep_id is the string column identifier for REP in the input fieldbook.
+#' @param trt_id is the string column identifier for TREATMENT in the input fieldbook.
+#' @param title is the title of the field layout plot.
+#' @param text_sz is the text size to print treatment names on the tiles.
+#' @param axis_title_sz is the text size for axis titles.
+#' @param xlab is a string to label x axis; default is 'Column'.
+#' @param ylab is a string to label y axis; default is 'Row'.
+#' 
+#' @note
+#' this function works best with input fieldbooks generated with the FieldHub package
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' Plot a field layout with border rows
+#' add_border(x = data.frame(LOCATION = rep("BAMBEY", 12), 
+#' PLOT = 1001:1012,
+#' ROW = c(rep(1, 6), rep(2, 6)),
+#' COLUMN = c(1:6, 1:6),
+#' REP = rep(1, 12),
+#' TREATMENT = sample(paste0("G-", 1:12))),
+#' text_sz = 3)
+#' }
+#' 
+#' @return a field layout with border rows around the entire perimeter.
+#' 
+#' @export
+#' 
+add_border <- function (x, 
+                        row_id = "ROW",
+                        col_id = "COLUMN",
+                        rep_id = "REP", 
+                        trt_id = "TREATMENT",
+                        title = "Field layout",
+                        text_sz = 3,
+                        axis_title_sz = 12,
+                        xlab = "Column",
+                        ylab = "Row"
+) {
+  
+  if (!inherits(x, what = "data.frame")) {
+    stop("Input fieldbook must be a data frame object.")
+  }
+  
+  # Subset relevant columns from input fieldbook 
+  
+  ROW <- x[, row_id]
+  
+  COLUMN <- x[, col_id]
+  
+  REP <- x[, rep_id]
+  
+  TREATMENT <- x[, trt_id]
+  
+  dat <- data.frame(ROW, COLUMN, REP, TREATMENT)
+  
+  # Get the number of rows, columns, reps and trts
+  nrows <- length(unique(dat$ROW))
+  ncols <- length(unique(dat$COLUMN))
+  nrep <- length(unique(dat$REP))
+  ntrt <- length(unique(dat$TREATMENT))
+  
+  
+  # Row and column ids for border rows
+  # bottom border row = 0, top border row = max row number + 1
+  # left border row = 0, right border row = max col number + 1
+  
+  start_row_bor <- start_col_bor <- 0
+  
+  end_row_bor <- nrows + 1
+  
+  end_col_bor <- ncols + 1
+  
+  # Generate border rows
+  bb <- data.frame(ROW = start_row_bor, 
+                   COLUMN = c(0, unique(dat$COLUMN), end_col_bor),
+                   REP = NA,
+                   TREATMENT = 'Border')
+  
+  tb <- data.frame(ROW = end_row_bor, 
+                   COLUMN = c(0, unique(dat$COLUMN), end_col_bor),
+                   REP = NA,
+                   TREATMENT = 'Border')
+  
+  lb <- data.frame(ROW = c(unique(dat$ROW)), 
+                   COLUMN = start_col_bor,
+                   REP = NA,
+                   TREATMENT = 'Border')
+  
+  rb <- data.frame(ROW = c(unique(dat$ROW)), 
+                   COLUMN = end_col_bor,
+                   REP = NA,
+                   TREATMENT = 'Border')
+  
+  # Plot field layout
+  pp <- ggplot2::ggplot(dat, ggplot2::aes(x = COLUMN, y = ROW)) + 
+    ggplot2::theme_classic() +
+    ggplot2::geom_tile(ggplot2::aes(fill = TREATMENT), col = "white") +
+    ggplot2::geom_text(ggplot2::aes(label = TREATMENT), size = text_sz) +
+    desplot::geom_tileborder(ggplot2::aes(group = 1, grp = REP), lwd = 1.5) +
+    ggplot2::scale_x_continuous(breaks = 1:max(dat$COLUMN)) +
+    ggplot2::scale_y_continuous(breaks = 1:max(dat$ROW)) +
+    ggplot2::labs(x = xlab, y = ylab, title = title) + 
+    ggplot2::theme(axis.title = ggplot2::element_text(size = axis_title_sz),
+                   legend.position = 'none',
+                   axis.line = ggplot2::element_blank(),
+                   axis.ticks = ggplot2::element_blank(),
+                   axis.text.x = ggplot2::element_blank(),
+                   axis.text.y=  ggplot2::element_blank())
+  
+  # Add bottom border
+  pp <- pp + ggplot2::annotate(geom = "tile", x = bb$COLUMN, y = bb$ROW, fill = "grey30") +
+    ggplot2::annotate(geom = "text", x = max(bb$COLUMN)/2, y = min(bb$ROW), 
+                      label = "Bottom border", color = "yellow", size = text_sz+1, fontface = 'bold')
+  
+  # Add top border
+  pp <- pp + ggplot2::annotate(geom = "tile", x = tb$COLUMN, y = tb$ROW, fill = "grey30") +
+    ggplot2::annotate(geom = "text", x = max(tb$COLUMN)/2, y = min(tb$ROW), 
+                      label = "Top border", color = "yellow", size = text_sz+1, fontface = 'bold')
+  
+  # Add left border
+  pp <- pp + ggplot2::annotate(geom = "tile", x = lb$COLUMN, y = lb$ROW, fill = "grey30") +
+    ggplot2::annotate(geom = "text", x = min(bb$COLUMN), y = max(tb$ROW)/2, 
+                      label = "Left border", color = "yellow", size = text_sz+1, 
+                      fontface = 'bold', angle = 90)
+  
+  # Add right border
+  pp <- pp + ggplot2::annotate(geom = "tile", x = rb$COLUMN, y = rb$ROW, fill = "grey30") +
+    ggplot2::annotate(geom = "text", x = max(bb$COLUMN), y = max(tb$ROW)/2, 
+                      label = "Right border", color = "yellow", size = text_sz+1, 
+                      fontface = 'bold', angle = 90)
+  
+  return(pp)
+  
+}
+

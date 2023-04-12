@@ -10,6 +10,7 @@
 #' @import shinyBS
 #' @import shinyWidgets
 #' @import tools
+#' @import ggplot2
 #' @importFrom purrr map
 #' @importFrom dplyr mutate
 #' @importFrom assertthat assert_that is.number is.count is.string
@@ -18,6 +19,7 @@
 #' @importFrom shinyjs show hideElement useShinyjs
 #' @importFrom utils setTxtProgressBar txtProgressBar write.csv
 #' @importFrom uuid UUIDgenerate
+#' @importFrom desplot geom_tileborder
 
 #'
 #'
