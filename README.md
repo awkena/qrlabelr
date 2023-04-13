@@ -158,7 +158,7 @@ To use qrlabelr, one must first generate a field book that shows the layout info
 
 Typically, layout information for field plots are obtained based on the experimental design and treatment randomization. It is strongly recommended to have the grid coordinates of plots (row and column numbers of plots) included in the field book.
 
-There are free open-source software such as [FieldHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as BMS can equally be used to generate an input field book if desired.  
+There are free open-source software such as [FielDHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as BMS can equally be used to generate an input field book if desired.  
 
 **Input field books must be imported as a data frame into qrlabelr for use. We recommend that users save input field books as csv or as xls or xlsx files for easy import to qrlabelr**  
 
