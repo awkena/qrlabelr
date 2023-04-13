@@ -2,7 +2,7 @@
 % Please edit documentation in R/all_new_functions.R
 \name{field_label}
 \alias{field_label}
-\title{Create field plot label function embossed with QR codes}
+\title{Create field plot labels embossed with QR codes}
 \usage{
 field_label(
   dat,

@@ -705,7 +705,7 @@ create_label <- function(
 } # End of create_label ()
 
 
-#' Create field plot label function embossed with QR codes
+#' Create field plot labels embossed with QR codes
 #' @description
 #' Create machine and human-readable plot labels that are well-suited for field experiments.
 #'  
