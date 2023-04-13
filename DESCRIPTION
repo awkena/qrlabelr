@@ -51,7 +51,8 @@ Suggests:
     knitr,
     rmarkdown,
     shinytest2 (>= 0.2.1),
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    vdiffr (>= 1.0.5)
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10),

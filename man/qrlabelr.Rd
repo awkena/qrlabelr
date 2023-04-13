@@ -3,8 +3,8 @@
 \docType{package}
 \name{qrlabelr}
 \alias{qrlabelr}
-\title{qrlabelr: An R package to generate digital field plot and general-purpose
-labels freely and easily.}
+\title{qrlabelr: An R package to easily generate machine and human-readable
+plot labels.}
 \description{
 A no-frills open-source solution for designing experimental or trial plot labels
 affixed with QR codes. qrlabelr is an R package that features EasyPlotLabelR,

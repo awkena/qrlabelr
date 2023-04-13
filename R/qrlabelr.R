@@ -1,5 +1,5 @@
-#' @title qrlabelr: An R package to generate digital field plot and general-purpose
-#' labels freely and easily.
+#' @title qrlabelr: An R package to easily generate machine and human-readable
+#' plot labels.
 #'
 #' @import argonDash
 #' @import argonR
