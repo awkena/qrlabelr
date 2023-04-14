@@ -12,7 +12,7 @@ make_qrcode(my_id, ec_level = 3)
 \item{ec_level}{error correction level (`0` - `3`, lowest to highest)}
 }
 \value{
-a raster grob image of QR code.
+QR code as a raster grob image object.
 }
 \description{
 A helper function for QR code generation using the qrencoder library.
@@ -20,9 +20,24 @@ The function converts the generated QR code into a raster grob image that can
 be plotted using the grid.draw function in the grid package.
 }
 \examples{
+ 
+library(qrlabelr)
+qr <- make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 3)
+
+# Plot QR code using the grid package
+grid::pushViewport(grid::viewport(x = grid::unit(0.5, "npc"),
+                                  y = grid::unit(0.5, "npc"),
+                                  width = grid::unit(1, "in"),
+                                  height = grid::unit(1, "in")))
+grid::grid.draw(qr)
+# clean up any open graphical device
+# grDevices::graphics.off()
+
 
 \dontrun{
-make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 3)
+library(qrlabelr)
+make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
+ 
 }
 
 

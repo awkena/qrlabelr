@@ -53,15 +53,21 @@ this function works best with input fieldbooks generated with the FieldHub packa
 }
 \examples{
 
-\dontrun{
-Plot a field layout with border rows
+
+# Plot a field layout with border rows
+
+library(qrlabelr)
+
+set.seed(123)
+
 add_border(x = data.frame(LOCATION = rep("BAMBEY", 12), 
-PLOT = 1001:1012,
-ROW = c(rep(1, 6), rep(2, 6)),
-COLUMN = c(1:6, 1:6),
-REP = rep(1, 12),
-TREATMENT = sample(paste0("G-", 1:12))),
+                         PLOT = c(1001:1012),
+                         ROW = c(rep(1, 6), rep(2, 6)),
+                         COLUMN = c(1:6, 1:6),
+                         REP = rep(1, 12),
+                         TREATMENT = sample(paste0("G-", 1:12))),
 text_sz = 3)
-}
+
+
 
 }

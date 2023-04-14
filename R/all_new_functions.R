@@ -7,12 +7,27 @@
 #' @param my_id unique ID string to be encoded to QR code
 #' @param ec_level error correction level (`0` - `3`, lowest to highest)
 #'
-#' @return a raster grob image of QR code.
+#' @returns QR code as a raster grob image object.
 #'
 #' @examples
+#'  
+#' library(qrlabelr)
+#' qr <- make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 3)
+#' 
+#' # Plot QR code using the grid package
+#' grid::pushViewport(grid::viewport(x = grid::unit(0.5, "npc"),
+#'                                   y = grid::unit(0.5, "npc"),
+#'                                   width = grid::unit(1, "in"),
+#'                                   height = grid::unit(1, "in")))
+#' grid::grid.draw(qr)
+#' # clean up any open graphical device
+#' # grDevices::graphics.off()
+#'
 #'
 #' \dontrun{
-#' make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 3)
+#' library(qrlabelr)
+#' make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
+#'  
 #' }
 #'
 #'
@@ -38,7 +53,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' This function creates print-ready customized plot labels affixed with QR codes given the page setup,
 #'  label dimensions, the number of rows and columns of labels to print per page.
 #'
-#' @return A PDF file containing experimental plot labels affixed with QR codes, and
+#' @returns a PDF file containing experimental plot labels affixed with QR codes, and
 #'  saved to the default or set working directory.
 #'
 #' @param wdt  is the label width in inches.
@@ -73,40 +88,28 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
-#'
+#' 
 #' \dontrun{
-#' Create rectangular plot labels based on the Avery 94220 template
+#' # Create rectangular plot labels based on the Avery 94220 template-- the default template
 #' library(qrlabelr)
-#' create_label(
-#' wdt = 2, 
-#' hgt = 1, 
-#' page_wdt = 8.5, 
-#' page_hgt = 11, 
-#' top_mar = 0.625, 
-#' bot_mar = 0.625, 
-#' left_mar = 0.625, 
-#' right_mar = 0.625, 
-#' numrow = 8L, 
-#' numcol = 3L, 
-#' filename = 'PlotLabel', 
+#'  
+#' create_label( 
 #' font_sz = 10,
-#' Treetag = FALSE,
-#' family = 'sans', 
-#' rounded = TRUE, 
 #' top_left_1 = paste("Plot:", 101:110), 
 #' top_left_2 = paste("Row:", c(rep(1, 6), rep(2, 4))), 
 #' top_right_1 = paste("Rep:", rep(1, 10)), 
 #' top_right_2 = paste("Col:", c(1:6, 1:4)), 
 #' center_right_1 = paste("iBLOCK:", c(rep(1, 6), rep(2, 4))), 
 #' center_right_2 = paste("Seed:", rep("OFF_NUR", 10)), 
-#' center_right_3 = rep("AWK", 10), 
+#' center_right_3 = rep("AWk", 10), 
 #' bottom_left_1 = paste("Loc:", rep("BAMBEY", 10)), 
 #' bottom_left_2 = paste0("G-", 1:10),
 #' unique_id = paste("KUMASI2023_PYT", c(101:110), 
 #'                   c(rep(1, 6), rep(2, 4)), c(1:6, 1:4),
 #'                   sep = "_"), 
 #' ec_level = 3)
-#'  }
+#' }
+#' 
 #'  
 #' \dontrun{
 #' Create treetag plot labels
@@ -709,7 +712,7 @@ create_label <- function(
 #' @description
 #' Create machine and human-readable plot labels that are well-suited for field experiments.
 #'  
-#' @return A PDF file containing field plot labels affixed with QR codes, and
+#' @returns a PDF file containing field plot labels affixed with QR codes, and
 #'  an updated fieldbook-- all saved to the default or set working directory.
 #'
 #' @param dat is an input data frame of fieldbook that contains plot attributes.
@@ -770,10 +773,11 @@ create_label <- function(
 #' @seealso \code{\link{create_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
-#'
-#' \dontrun{
-#' Generate simple field plot labels using the square_lattice sample fieldbook
+#' 
+#'\dontrun{
+#' # Generate field plot labels using the square_lattice sample fieldbook
 #' library(qrlabelr)
+#' 
 #' field_label(
 #' dat = square_lattice,
 #' font_sz = 10,
@@ -784,6 +788,7 @@ create_label <- function(
 #' seed_source = FALSE)
 #' }
 #'
+#' 
 #' \dontrun{
 #' Generate treetag labels using the square_lattice sample fieldbook
 #' field_label(
@@ -1007,7 +1012,7 @@ field_label <- function(dat,
 #' respect to what human-readable text items gets displayed on the label. 
 #' Arguments are passed to the `create_label()` function.
 #' 
-#' @return A PDF file containing plot labels affixed with QR codes, and
+#' @returns a PDF file containing plot labels affixed with QR codes, and
 #'  an updated fieldbook-- all saved to the default or set working directory. 
 #'
 #' @param dat is an input data frame of fieldbook that contains plot attributes.
@@ -1037,10 +1042,11 @@ field_label <- function(dat,
 #'@seealso \code{\link{create_label}} and \code{\link{field_label}}
 #'
 #' @examples
-#'
 #' \dontrun{
-#' Generate general-purpose label using the square_lattice sample fieldbook.
+#' # Generate general-purpose label using the square_lattice sample fieldbook.
 #' library(qrlabelr)
+#' 
+#' 
 #' gp_label(dat = square_lattice,
 #' get_unique_id = "uuid",
 #' font_sz = 10,
@@ -1062,6 +1068,48 @@ field_label <- function(dat,
 #' bottom_left_id1 = 'LOCATION',
 #' bottom_left_id2 = 'TREATMENT'
 #' )
+#' }
+#'
+#'
+#' \dontrun{
+#' Generate general-purpose label using the square_lattice sample fieldbook.
+#' library(qrlabelr)
+#' gp_label(dat = square_lattice,
+#' wdt = 5, 
+#' hgt = 2,
+#' page_wdt = 8.5, 
+#' page_hgt = 11,
+#' top_mar = 0.75, 
+#' bot_mar = 0.75, 
+#' left_mar = 1.75, 
+#' right_mar = 1.75, 
+#' numrow = 4L, 
+#' numcol = 1L, 
+#' filename = 'MyLabel', 
+#' font_sz = 20, 
+#' Trial = 'PYT', 
+#' Year = 2023, 
+#' rname = "Adoma", 
+#' get_unique_id = "uuid",
+#' family = "sans",
+#' top_left_txt1 = 'Plot:',
+#' top_left_txt2 = 'Row:', 
+#' top_right_txt1 = 'Rep:',
+#' top_right_txt2 = 'Col:',
+#' center_right_txt1 = 'iBlock:',
+#' center_right_txt2 = 'Seed:',
+#' center_right_txt3 = 'Adoma',
+#' bottom_left_txt1 = 'Loc:',
+#' top_left_id1 = 'PLOT',
+#' top_left_id2 = 'ROW',
+#' top_right_id1 = 'REP',
+#' top_right_id2 = 'COLUMN',
+#' center_right_id1 = 'IBLOCK',
+#' center_right_id2 = 'SEED_SOURCE',
+#' bottom_left_id1 = 'LOCATION',
+#' bottom_left_id2 = 'TREATMENT'
+#' )
+
 #' }
 #'
 #' @export
@@ -1244,18 +1292,24 @@ gp_label <- function(dat,
 #' 
 #' @examples
 #' 
-#' \dontrun{
-#' Plot a field layout with border rows
-#' add_border(x = data.frame(LOCATION = rep("BAMBEY", 12), 
-#' PLOT = 1001:1012,
-#' ROW = c(rep(1, 6), rep(2, 6)),
-#' COLUMN = c(1:6, 1:6),
-#' REP = rep(1, 12),
-#' TREATMENT = sample(paste0("G-", 1:12))),
-#' text_sz = 3)
-#' }
 #' 
-#' @return a field layout with border rows around the entire perimeter.
+#' # Plot a field layout with border rows
+#' 
+#' library(qrlabelr)
+#' 
+#' set.seed(123)
+#' 
+#' add_border(x = data.frame(LOCATION = rep("BAMBEY", 12), 
+#'                          PLOT = c(1001:1012),
+#'                          ROW = c(rep(1, 6), rep(2, 6)),
+#'                          COLUMN = c(1:6, 1:6),
+#'                          REP = rep(1, 12),
+#'                          TREATMENT = sample(paste0("G-", 1:12))),
+#' text_sz = 3)
+#' 
+#' 
+#' 
+#' @returns a field layout with border rows around the entire perimeter.
 #' 
 #' @export
 #' 

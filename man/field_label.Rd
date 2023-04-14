@@ -70,7 +70,7 @@ It must be provided if \code{seed_source} is set to TRUE.}
 \item{...}{additional arguments passed to the \code{create_label()} function.}
 }
 \value{
-A PDF file containing field plot labels affixed with QR codes, and
+a PDF file containing field plot labels affixed with QR codes, and
  an updated fieldbook-- all saved to the default or set working directory.
 }
 \description{
@@ -106,8 +106,9 @@ the \code{IBlock} argument is set to TRUE.
 \examples{
 
 \dontrun{
-Generate simple field plot labels using the square_lattice sample fieldbook
+# Generate field plot labels using the square_lattice sample fieldbook
 library(qrlabelr)
+
 field_label(
 dat = square_lattice,
 font_sz = 10,
@@ -117,6 +118,7 @@ rname = "Adoma",
 family = "sans",
 seed_source = FALSE)
 }
+
 
 \dontrun{
 Generate treetag labels using the square_lattice sample fieldbook

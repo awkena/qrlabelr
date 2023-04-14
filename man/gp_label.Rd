@@ -76,7 +76,7 @@ from imported fieldbook. Set to 'custom' if imported fieldbook already has uniqu
 \item{...}{additional arguments passed to the \code{create_label} function.}
 }
 \value{
-A PDF file containing plot labels affixed with QR codes, and
+a PDF file containing plot labels affixed with QR codes, and
  an updated fieldbook-- all saved to the default or set working directory.
 }
 \description{
@@ -86,10 +86,11 @@ respect to what human-readable text items gets displayed on the label.
 Arguments are passed to the `create_label()` function.
 }
 \examples{
-
 \dontrun{
-Generate general-purpose label using the square_lattice sample fieldbook.
+# Generate general-purpose label using the square_lattice sample fieldbook.
 library(qrlabelr)
+
+
 gp_label(dat = square_lattice,
 get_unique_id = "uuid",
 font_sz = 10,
@@ -101,6 +102,47 @@ top_right_txt2 = 'Col:',
 center_right_txt1 = 'iBlock:',
 center_right_txt2 = 'Seed:',
 center_right_txt3 = 'AWK',
+bottom_left_txt1 = 'Loc:',
+top_left_id1 = 'PLOT',
+top_left_id2 = 'ROW',
+top_right_id1 = 'REP',
+top_right_id2 = 'COLUMN',
+center_right_id1 = 'IBLOCK',
+center_right_id2 = 'SEED_SOURCE',
+bottom_left_id1 = 'LOCATION',
+bottom_left_id2 = 'TREATMENT'
+)
+}
+
+
+\dontrun{
+Generate general-purpose label using the square_lattice sample fieldbook.
+library(qrlabelr)
+gp_label(dat = square_lattice,
+wdt = 5, 
+hgt = 2,
+page_wdt = 8.5, 
+page_hgt = 11,
+top_mar = 0.75, 
+bot_mar = 0.75, 
+left_mar = 1.75, 
+right_mar = 1.75, 
+numrow = 4L, 
+numcol = 1L, 
+filename = 'MyLabel', 
+font_sz = 20, 
+Trial = 'PYT', 
+Year = 2023, 
+rname = "Adoma", 
+get_unique_id = "uuid",
+family = "sans",
+top_left_txt1 = 'Plot:',
+top_left_txt2 = 'Row:', 
+top_right_txt1 = 'Rep:',
+top_right_txt2 = 'Col:',
+center_right_txt1 = 'iBlock:',
+center_right_txt2 = 'Seed:',
+center_right_txt3 = 'Adoma',
 bottom_left_txt1 = 'Loc:',
 top_left_id1 = 'PLOT',
 top_left_id2 = 'ROW',
