@@ -14,7 +14,9 @@ add_border(
   text_sz = 3,
   axis_title_sz = 12,
   xlab = "Column",
-  ylab = "Row"
+  ylab = "Row",
+  border_bg = "grey80",
+  text_col = "grey10"
 )
 }
 \arguments{
@@ -38,6 +40,10 @@ coordinates of each plot.}
 \item{xlab}{is a string to label x axis; default is 'Column'.}
 
 \item{ylab}{is a string to label y axis; default is 'Row'.}
+
+\item{border_bg}{a string specifying the background color for the border rows.}
+
+\item{text_col}{a string specifying the text color for the border rows.}
 }
 \value{
 a field layout with border rows around the entire perimeter.

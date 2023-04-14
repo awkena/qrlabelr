@@ -1286,6 +1286,9 @@ gp_label <- function(dat,
 #' @param axis_title_sz is the text size for axis titles.
 #' @param xlab is a string to label x axis; default is 'Column'.
 #' @param ylab is a string to label y axis; default is 'Row'.
+#' @param border_bg a string specifying the background color for the border rows.
+#' @param text_col a string specifying the text color for the border rows.
+#' 
 #' 
 #' @note
 #' this function works best with input fieldbooks generated with the FieldHub package
@@ -1322,7 +1325,9 @@ add_border <- function (x,
                         text_sz = 3,
                         axis_title_sz = 12,
                         xlab = "Column",
-                        ylab = "Row"
+                        ylab = "Row",
+                        border_bg = "grey80",
+                        text_col = "grey10"
 ) {
   
   if (!inherits(x, what = "data.frame")) {
@@ -1383,7 +1388,7 @@ add_border <- function (x,
   pp <- ggplot2::ggplot(dat, ggplot2::aes(x = COLUMN, y = ROW)) + 
     ggplot2::theme_classic() +
     ggplot2::geom_tile(ggplot2::aes(fill = TREATMENT), col = "white") +
-    ggplot2::geom_text(ggplot2::aes(label = TREATMENT), size = text_sz) +
+    ggplot2::geom_text(ggplot2::aes(label = TREATMENT), size = text_sz, col = "grey5") +
     desplot::geom_tileborder(ggplot2::aes(group = 1, grp = REP), lwd = 1.5) +
     ggplot2::scale_x_continuous(breaks = 1:max(dat$COLUMN)) +
     ggplot2::scale_y_continuous(breaks = 1:max(dat$ROW)) +
@@ -1396,25 +1401,25 @@ add_border <- function (x,
                    axis.text.y=  ggplot2::element_blank())
   
   # Add bottom border
-  pp <- pp + ggplot2::annotate(geom = "tile", x = bb$COLUMN, y = bb$ROW, fill = "grey30") +
+  pp <- pp + ggplot2::annotate(geom = "tile", x = bb$COLUMN, y = bb$ROW, fill = border_bg) +
     ggplot2::annotate(geom = "text", x = max(bb$COLUMN)/2, y = min(bb$ROW), 
-                      label = "Bottom border", color = "yellow", size = text_sz+1, fontface = 'bold')
+                      label = "Bottom border", color = text_col, size = text_sz+1, fontface = 'bold')
   
   # Add top border
-  pp <- pp + ggplot2::annotate(geom = "tile", x = tb$COLUMN, y = tb$ROW, fill = "grey30") +
+  pp <- pp + ggplot2::annotate(geom = "tile", x = tb$COLUMN, y = tb$ROW, fill = border_bg) +
     ggplot2::annotate(geom = "text", x = max(tb$COLUMN)/2, y = min(tb$ROW), 
-                      label = "Top border", color = "yellow", size = text_sz+1, fontface = 'bold')
+                      label = "Top border", color = text_col, size = text_sz+1, fontface = 'bold')
   
   # Add left border
-  pp <- pp + ggplot2::annotate(geom = "tile", x = lb$COLUMN, y = lb$ROW, fill = "grey30") +
+  pp <- pp + ggplot2::annotate(geom = "tile", x = lb$COLUMN, y = lb$ROW, fill = border_bg) +
     ggplot2::annotate(geom = "text", x = min(bb$COLUMN), y = max(tb$ROW)/2, 
-                      label = "Left border", color = "yellow", size = text_sz+1, 
+                      label = "Left border", color = text_col, size = text_sz+1, 
                       fontface = 'bold', angle = 90)
   
   # Add right border
-  pp <- pp + ggplot2::annotate(geom = "tile", x = rb$COLUMN, y = rb$ROW, fill = "grey30") +
+  pp <- pp + ggplot2::annotate(geom = "tile", x = rb$COLUMN, y = rb$ROW, fill = border_bg) +
     ggplot2::annotate(geom = "text", x = max(bb$COLUMN), y = max(tb$ROW)/2, 
-                      label = "Right border", color = "yellow", size = text_sz+1, 
+                      label = "Right border", color = text_col, size = text_sz+1, 
                       fontface = 'bold', angle = 90)
   
   return(pp)
