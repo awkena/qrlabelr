@@ -985,8 +985,12 @@ field_label <- function(dat,
   } else {
     colnames(updat)[1] <- colnames(updat)[1]
   }
-
-  utils::write.csv(updat, file = "Updated_Fieldbook.csv", row.names = FALSE)
+  
+  # File name and timestamp for updated fieldbook
+  ts <- Sys.time() |> format(format = "%H_%M_%S") |> 
+    paste0("Updated_Fieldbook_", ... = _, ".csv")
+  
+  utils::write.csv(updat, file = ts, row.names = FALSE)
 
   # Send updated fieldbook from package environment to global environment
   .GlobalEnv$updated_fieldbook <- list(updated_fieldbook = updat)
@@ -1245,8 +1249,12 @@ gp_label <- function(dat,
   } else {
     colnames(updat)[1] <- colnames(updat)[1]
   }
+  
+  # File name and timestamp for updated fieldbook
+  ts <- Sys.time() |> format(format = "%H_%M_%S") |> 
+    paste0("Updated_Fieldbook_", ... = _, ".csv")
 
-  utils::write.csv(updat, file = "Updated_Fieldbook.csv", row.names = FALSE)
+  utils::write.csv(updat, file = ts, row.names = FALSE)
 
   # Send updated fieldbook from package environment to global environment
   .GlobalEnv$updated_fieldbook <- list(updated_fieldbook = updat)
