@@ -37,7 +37,7 @@ Imports:
     grid,
     purrr (>= 1.0.1),
     qrencoder (>= 0.1.0),
-    raster (>= 3.6.14),
+    raster (>= 3.6.23),
     reactable (>= 0.4.3),
     readxl (>= 1.4.1),
     shiny,
@@ -56,6 +56,6 @@ Suggests:
     vdiffr (>= 1.0.5)
 VignetteBuilder: knitr
 Depends: 
-    R (>= 2.10),
+    R (>= 4.1.0),
     shinyBS (>= 0.61.1)
 Config/testthat/edition: 3
