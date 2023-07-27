@@ -1,6 +1,5 @@
 
 
-  
   test_that("add_border function works", {
     set.seed(123)
     pp <- add_border(x = data.frame(LOCATION = rep("BAMBEY", 12), 
