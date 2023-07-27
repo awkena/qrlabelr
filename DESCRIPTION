@@ -51,6 +51,7 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
+    sf (>= 1.0.14),
     shinytest2 (>= 0.2.1),
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.5)
