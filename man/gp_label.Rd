@@ -2,7 +2,7 @@
 % Please edit documentation in R/all_new_functions.R
 \name{gp_label}
 \alias{gp_label}
-\title{Create a general-purpose (gp) label}
+\title{Create a general-purpose (gp) label with text aligned in a landscape orientation.}
 \usage{
 gp_label(
   dat,
@@ -30,7 +30,9 @@ gp_label(
 )
 }
 \arguments{
-\item{dat}{is an input data frame of fieldbook that contains plot attributes.}
+\item{dat}{is an input data frame or fieldbook that contains plot or label attributes.
+The order of the columns is not important, and the columns can be any name 
+the user desires.}
 
 \item{get_unique_id}{is to be set to 'uuid' if universal unique ids are to be generated.}
 
@@ -51,27 +53,27 @@ from imported fieldbook. Set to 'custom' if imported fieldbook already has uniqu
 
 \item{center_right_txt3}{is the prefix text for center-right row 3.}
 
-\item{bottom_left_txt1}{is the column identifier in dat containing text for bottom-left row 1.}
+\item{bottom_left_txt1}{is the column identifier in \code{dat} containing text for bottom-left row 1.}
 
-\item{bottom_left_txt2}{is the column identifier in dat containing text for bottom-left row 2.}
+\item{bottom_left_txt2}{is the column identifier in \code{dat} containing text for bottom-left row 2.}
 
-\item{top_left_id1}{is the column identifier in dat containing text for top-left row 1.}
+\item{top_left_id1}{is the column identifier in \code{dat} containing text for top-left row 1.}
 
-\item{top_left_id2}{is the column identifier in dat containing text for top-left row 2.}
+\item{top_left_id2}{is the column identifier in \code{dat} containing text for top-left row 2.}
 
-\item{top_right_id1}{is the column identifier in dat containing text for top-right row 1.}
+\item{top_right_id1}{is the column identifier in \code{dat} containing text for top-right row 1.}
 
-\item{top_right_id2}{is the column identifier in dat containing text for top-right row 2.}
+\item{top_right_id2}{is the column identifier in \code{dat} containing text for top-right row 2.}
 
-\item{center_right_id1}{is the column identifier in dat containing text for center-right row 1.}
+\item{center_right_id1}{is the column identifier in \code{dat} containing text for center-right row 1.}
 
-\item{center_right_id2}{is the column identifier in dat containing text for center-right row 2.}
+\item{center_right_id2}{is the column identifier in \code{dat} containing text for center-right row 2.}
 
-\item{center_right_id3}{is the column identifier in dat containing text for center-right row 3.}
+\item{center_right_id3}{is the column identifier in \code{dat} containing text for center-right row 3.}
 
-\item{bottom_left_id1}{is the column identifier in dat containing text for bottom-left row 1.}
+\item{bottom_left_id1}{is the column identifier in \code{dat} containing text for bottom-left row 1.}
 
-\item{bottom_left_id2}{is the column identifier in dat containing text for bottom-left row 2.}
+\item{bottom_left_id2}{is the column identifier in \code{dat} containing text for bottom-left row 2.}
 
 \item{...}{additional arguments passed to the \code{create_label} function.}
 }
@@ -80,10 +82,10 @@ a PDF file containing plot labels affixed with QR codes, and
  an updated fieldbook-- all saved to the default or set working directory.
 }
 \description{
-This function gives more flexibility to the user to design any general-purpose
-label affixed with QR codes. It gives a lot of control to the user with 
-respect to what human-readable text items gets displayed on the label. 
-Arguments are passed to the `create_label()` function.
+This is a wrapper function that gives more flexibility to the user to design 
+any general-purpose label affixed with QR codes. It gives nine(9) text 
+positions in landscape orientation that can be filled with human-readable text
+items as specified by the user. Arguments are passed to the `create_label()` function.
 }
 \examples{
 \dontrun{

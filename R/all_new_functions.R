@@ -1651,7 +1651,7 @@ gp_label_portrait <- function(
   if (!is.null(unique_id)) {
     bb <- dat[, unique_id] |> purrr::map(\(x) make_qrcode(ec_level = ec_level, x))
     nn <- length(bb) # total number of labels to generate
-  } else {
+  } else if (is.null(unique_id)) {
     stop("Unique IDs for generating QR codes are missing!!")
   }
   

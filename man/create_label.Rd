@@ -86,7 +86,7 @@ square corners.}
 
 \item{unique_id}{is a vector containing unique identifiers or strings to generate QR codes.}
 
-\item{ec_level}{error correction level (`0` - `3`, lowest to highest)}
+\item{ec_level}{error correction level (`0` - `3`, lowest to highest) for QR codes.}
 
 \item{...}{additional optional arguments to be supplied.}
 }
