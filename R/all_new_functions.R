@@ -82,7 +82,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @param bottom_left_1 String for bottom-left row 1 position on a rectangular label.
 #' @param bottom_left_2 String for bottom-left row 2 position on a rectangular label.
 #' @param unique_id is a vector containing unique identifiers or strings to generate QR codes.
-#' @param ec_level error correction level (`0` - `3`, lowest to highest)
+#' @param ec_level error correction level (`0` - `3`, lowest to highest) for QR codes.
 #' @param ... additional optional arguments to be supplied.
 #' 
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
@@ -360,7 +360,6 @@ create_label <- function(
   }
 
 
-
   # Generate label positions -- prints across rows of grid layout
   pos <- expand.grid(x = 1:numcol, y = 1:numrow)
 
@@ -499,9 +498,11 @@ create_label <- function(
   grid::pushViewport(lab_vp)
 
   bold_font <- grid::gpar(fontface = "bold", fontsize = fsize)
-  bold_font2 <- grid::gpar(fontface = "bold", fontsize = fsize-1)
-  bold_font3 <- grid::gpar(fontface = "bold", fontsize = fsize-2)
-  bold_font4 <- grid::gpar(fontface = "bold", fontsize = fsize-4)
+  bold_font2 <- grid::gpar(fontface = "bold", fontsize = fsize-2)
+  plain_font2 <- grid::gpar(fontface = "plain", fontsize = fsize-2)
+  plain_font3 <- grid::gpar(fontface = "plain", fontsize = fsize-4)
+  bold_font3 <- grid::gpar(fontface = "bold", fontsize = fsize-4)
+  plain_font4 <- grid::gpar(fontface = "plain", fontsize = floor(fsize/2.5))
 
   # Define progres bar parameters
   pro_bar <- txtProgressBar(min = 0, max = nn, style = 3, char = '=')
@@ -573,7 +574,7 @@ create_label <- function(
       grid::grid.text(label = blkid[i],
                       x = grid::unit(0.2, "npc"),
                       y = grid::unit(0.35, "npc"),
-                      rot = 360, gp = bold_font2, hjust = 0)
+                      rot = 360, gp = plain_font2, hjust = 0)
 
 
       # Go back to label viewport
@@ -583,21 +584,21 @@ create_label <- function(
       grid::grid.text(label = loc1[i], rot = 90,
                       x = grid::unit(lx, "in"),
                       y = grid::unit(ly, "in"),
-                      gp = bold_font3, hjust = 0, vp = tt)
+                      gp = plain_font4, hjust = 0, vp = tt)
 
       # Add seed source to label; note coordinates
       grid::grid.text(label = sds[i],
                       x = grid::unit(0.6, "npc"),
                       y = grid::unit(0.35, "npc"),
                       rot = 90, vp = tt,
-                      gp = bold_font3, hjust = 0, )
+                      gp = plain_font3, hjust = 0, )
 
       # Add researcher's name to label; note coordinates
       grid::grid.text(label = rname,
                       x = grid::unit(0.72, "npc"),
                       y = grid::unit(0.35, "npc"),
                       rot = 90, vp = tt,
-                      gp = bold_font3, hjust = 0, )
+                      gp = plain_font3, hjust = 0, )
 
 
       # Add entry or treatment name to label
@@ -610,7 +611,7 @@ create_label <- function(
       grid::grid.text(label = entry[i], rot = 90,
                       x = grid::unit(ee, "in"),
                       y = grid::unit(ey, "in"),
-                      gp = bold_font4, hjust = 0, vp = tt)
+                      gp = plain_font4, hjust = 0, vp = tt)
 
       grid::pushViewport(qq2)
 
@@ -657,13 +658,13 @@ create_label <- function(
       grid::grid.text(label = sds[i],
                       x = grid::unit(0.42, "npc"),
                       y = grid::unit(0.47, "npc"),
-                      gp = bold_font3, hjust = 0, vp = aa)
+                      gp = plain_font3, hjust = 0, vp = aa)
 
       # Add researcher's name to label; note coordinates
       grid::grid.text(label = rname,
                       x = grid::unit(0.42, "npc"),
                       y = grid::unit(0.35, "npc"),
-                      gp = bold_font3, hjust = 0, vp = aa)
+                      gp = plain_font3, hjust = 0, vp = aa)
 
       # Push viewport for qr code
 
@@ -683,7 +684,7 @@ create_label <- function(
       grid::grid.text(label = blkid[i],
                       x = grid::unit(0.01, "npc"),
                       y = grid::unit(0.8, "npc"),
-                      gp = bold_font2, hjust = 0)
+                      gp = plain_font3, hjust = 0)
 
       # Go back to label viewport
       grid::upViewport()
@@ -692,7 +693,7 @@ create_label <- function(
       grid::grid.text(label = loc1[i],
                       x= grid::unit(px, "in"),
                       y = grid::unit(ly, "in"),
-                      gp = bold_font3, hjust = 0, vp = aa)
+                      gp = plain_font4, hjust = 0, vp = aa)
 
       # Add entry or treatment name to label
       grid::grid.text(label = entry[i],
@@ -1009,17 +1010,19 @@ field_label <- function(dat,
 }
 
 
-#' Create a general-purpose (gp) label
+#' Create a general-purpose (gp) label with text aligned in a landscape orientation.
 #' @description
-#' This function gives more flexibility to the user to design any general-purpose
-#' label affixed with QR codes. It gives a lot of control to the user with 
-#' respect to what human-readable text items gets displayed on the label. 
-#' Arguments are passed to the `create_label()` function.
+#' This is a wrapper function that gives more flexibility to the user to design 
+#' any general-purpose label affixed with QR codes. It gives nine(9) text 
+#' positions in landscape orientation that can be filled with human-readable text
+#' items as specified by the user. Arguments are passed to the `create_label()` function.
 #' 
 #' @returns a PDF file containing plot labels affixed with QR codes, and
 #'  an updated fieldbook-- all saved to the default or set working directory. 
-#'
-#' @param dat is an input data frame of fieldbook that contains plot attributes.
+#'  
+#' @param dat is an input data frame or fieldbook that contains plot or label attributes.
+#' The order of the columns is not important, and the columns can be any name 
+#' the user desires.
 #' @param get_unique_id is to be set to 'uuid' if universal unique ids are to be generated.
 #' @param unique_id is a vector containing unique identifiers or strings to generate QR codes.
 #' from imported fieldbook. Set to 'custom' if imported fieldbook already has unique IDs for each plot.
@@ -1030,17 +1033,17 @@ field_label <- function(dat,
 #' @param center_right_txt1 is the prefix text for center-right row 1.
 #' @param center_right_txt2 is the prefix text for center-right row 2.
 #' @param center_right_txt3 is the prefix text for center-right row 3.
-#' @param bottom_left_txt1 is the column identifier in dat containing text for bottom-left row 1.
-#' @param bottom_left_txt2 is the column identifier in dat containing text for bottom-left row 2.
-#' @param top_left_id1 is the column identifier in dat containing text for top-left row 1.
-#' @param top_left_id2 is the column identifier in dat containing text for top-left row 2.
-#' @param top_right_id1 is the column identifier in dat containing text for top-right row 1.
-#' @param top_right_id2 is the column identifier in dat containing text for top-right row 2.
-#' @param center_right_id1 is the column identifier in dat containing text for center-right row 1.
-#' @param center_right_id2 is the column identifier in dat containing text for center-right row 2.
-#' @param center_right_id3 is the column identifier in dat containing text for center-right row 3.
-#' @param bottom_left_id1 is the column identifier in dat containing text for bottom-left row 1.
-#' @param bottom_left_id2 is the column identifier in dat containing text for bottom-left row 2.
+#' @param bottom_left_txt1 is the column identifier in \code{dat} containing text for bottom-left row 1.
+#' @param bottom_left_txt2 is the column identifier in \code{dat} containing text for bottom-left row 2.
+#' @param top_left_id1 is the column identifier in \code{dat} containing text for top-left row 1.
+#' @param top_left_id2 is the column identifier in \code{dat} containing text for top-left row 2.
+#' @param top_right_id1 is the column identifier in \code{dat} containing text for top-right row 1.
+#' @param top_right_id2 is the column identifier in \code{dat} containing text for top-right row 2.
+#' @param center_right_id1 is the column identifier in \code{dat} containing text for center-right row 1.
+#' @param center_right_id2 is the column identifier in \code{dat} containing text for center-right row 2.
+#' @param center_right_id3 is the column identifier in \code{dat} containing text for center-right row 3.
+#' @param bottom_left_id1 is the column identifier in \code{dat} containing text for bottom-left row 1.
+#' @param bottom_left_id2 is the column identifier in \code{dat} containing text for bottom-left row 2.
 #' @param ... additional arguments passed to the \code{create_label} function.
 #'
 #'@seealso \code{\link{create_label}} and \code{\link{field_label}}
@@ -1270,6 +1273,601 @@ gp_label <- function(dat,
 
   cat("\n\n\tGenerated labels and updated fieldbook saved to working directory.")
 }
+
+
+
+
+#' Create a general-purpose (gp) label with text aligned in a portrait orientation.
+#' @description
+#' This is a standalone function that gives more flexibility to the user to 
+#' design any general-purpose label affixed with QR codes. It gives 10 text 
+#' positions in portrait orientation that can be filled with human-readable text
+#' items as specified by the user. 
+#' 
+#' This function creates print-ready customized plot labels affixed with QR codes 
+#' given the page setup, label dimensions, the number of rows and columns of labels 
+#' to print per page.
+#'
+#' @returns a PDF file containing labels affixed with QR codes, and saved to the
+#' default or set working directory.
+#'
+#' @param dat is an input data frame or fieldbook that contains plot attributes.
+#' The order of the columns is not important, and the columns can be any name 
+#' the user desires.
+#' @param wdt  is the label width in inches.
+#' @param hgt is the label height in inches.
+#' @param page_wdt is the page width in inches.
+#' @param page_hgt is the page height in inches.
+#' @param top_mar is the page top margin in inches.
+#' @param bot_mar is the page bottom margin in inches.
+#' @param left_mar is the page left margin in inches.
+#' @param right_mar is the page right margin in inches.
+#' @param numrow is the number of label rows per page. It should be an integer.
+#' @param numcol is the number of label columns per page. It should be an integer.
+#' @param filename is a prefix for the pdf file to be created.
+#' @param font_sz is the font size to use.
+#' @param family is the font style to use to print labels.
+#' @param rounded Set to TRUE if label has round corners; set to false if label has
+#' square corners.
+#' @param bot_txt1 is the prefix text for bottom text position 1.
+#' @param bot_txt2 is the prefix text for bottom text position 2.
+#' @param bot_txt3 is the prefix text for bottom text position 3.
+#' @param cent_txt1 is the prefix text for center text position 1.
+#' @param cent_txt2 is the prefix text for center text position 2.
+#' @param cent_txt3 is the prefix text for center text position 3.
+#' @param cent_txt4 is the prefix text for center text position 4.
+#' @param top_txt1 is the prefix text for top text position 1.
+#' @param top_txt2 is the prefix text for top text position 2.
+#' @param top_txt3 is the prefix text for top text position 3.
+#' @param bot_txt1_id is the column identifier in \code{dat} containing text for bottom text position 1.
+#' @param bot_txt2_id is the column identifier in \code{dat} containing text for bottom text position 2.
+#' @param bot_txt3_id is the column identifier in \code{dat} containing text for bottom text position 3.
+#' @param cent_txt1_id is the column identifier in \code{dat} containing text for center text position 1.
+#' @param cent_txt2_id is the column identifier in \code{dat} containing text for center text position 2.
+#' @param cent_txt3_id is the column identifier in \code{dat} containing text for center text position 3.
+#' @param cent_txt4_id is the column identifier in \code{dat} containing text for center text position 4.
+#' @param top_txt1_id is the column identifier in \code{dat} containing text for top text position 1.
+#' @param top_txt2_id is the column identifier in \code{dat} containing text for top text position 2.
+#' @param top_txt3_id is the column identifier in \code{dat} containing text for top text position 3.
+#' @param unique_id is the column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.
+#' @param ec_level error correction level (`0` - `3`, lowest to highest) for QR codes.
+#' 
+#' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' # Create a general-purpose label in a portrait text orientation based on the 
+#' # 2 x 1 inch Avery 94220 template for laser-jet printers
+#' 
+#' library(qrlabelr)
+#' dat <- qrlabelr::square_lattice
+#' 
+#' dat$ids <- paste0(dat$LOCATION,'2023', '_PYT', '_', dat$PLOT, '_', dat$ROW, '_',
+#'                   dat$COLUMN)
+#'  
+#' gp_label_portrait(
+#'   dat,
+#'   wdt = 2,
+#'   hgt = 1, 
+#'   page_wdt = 8.5, 
+#'   page_hgt = 11,
+#'   top_mar = 0.625,
+#'   bot_mar = 0.625,
+#'   left_mar = 0.625,
+#'   right_mar = 0.625,
+#'   numrow = 8L,
+#'   numcol = 3L,
+#'   filename = 'PlotLabel',
+#'   font_sz = 10,
+#'   family = 'sans', 
+#'   rounded = TRUE,
+#'   bot_txt1 = 'Rubi', 
+#'   cent_txt2 = 'Rep:',  
+#'   cent_txt3 = 'R:', 
+#'   cent_txt4 = 'r:', 
+#'   top_txt1 = 'P:', 
+#'   top_txt2 = 'B:',
+#'   bot_txt2_id = 'ids',
+#'   bot_txt3_id = 'LOCATION',
+#'   cent_txt1_id = 'TREATMENT', 
+#'   cent_txt2_id = 'REP', 
+#'   cent_txt3_id = 'COLUMN', 
+#'   cent_txt4_id = 'ROW', 
+#'   top_txt1_id = 'PLOT',
+#'   top_txt2_id = 'IBLOCK',
+#'   top_txt3_id = 'SEED_SOURCE',
+#'   unique_id = 'ids',
+#'   ec_level = 1
+#' )
+#' }
+#' 
+#'  
+#' \dontrun{
+#' # Create a general-purpose label in a portrait text orientation based on the 
+#' # the 2 x 1 inch Online Label RL778 template for thermal roll printers
+#' 
+#' gp_label_portrait(
+#'   dat,
+#'   wdt = 2, # label width
+#'   hgt = 1, # Label height
+#'   page_wdt = 2.125, # page width
+#'   page_hgt = 1.125, # page height
+#'   top_mar = 0.0625, # top margin
+#'   bot_mar = 0.0625, # bottom margin
+#'   left_mar = 0.0625, # left margin
+#'   right_mar = 0.0625, # right margin
+#'   numrow = 1L, # number of label rows per page
+#'   numcol = 1L, # number of label columns per page
+#'   filename = 'PlotLabel', # name for pdf file to be created
+#'   font_sz = 10,
+#'   family = 'sans', # Font style to use
+#'   rounded = TRUE, # Rounded corners
+#'   bot_txt1 = 'Rubi', 
+#'   cent_txt2 = 'Rep:',  
+#'   cent_txt3 = 'R:', 
+#'   cent_txt4 = 'r:', 
+#'   top_txt1 = 'P:', 
+#'   top_txt2 = 'B:',
+#'   bot_txt2_id = 'ids',
+#'   bot_txt3_id = 'LOCATION',
+#'   cent_txt1_id = 'TREATMENT', 
+#'   cent_txt2_id = 'REP', 
+#'   cent_txt3_id = 'COLUMN', 
+#'   cent_txt4_id = 'ROW', 
+#'   top_txt1_id = 'PLOT',
+#'   top_txt2_id = 'IBLOCK',
+#'   top_txt3_id = 'SEED_SOURCE',
+#'   unique_id = 'ids',
+#'   ec_level = 1
+#' )
+#'  }
+#'
+#' @export
+
+
+gp_label_portrait <- function(
+    dat,
+    wdt = 2, # label width
+    hgt = 1, # Label height
+    page_wdt = 8.5, # page width
+    page_hgt = 11, # page height
+    top_mar = 0.625, # top margin
+    bot_mar = 0.625, # bottom margin
+    left_mar = 0.625, # left margin
+    right_mar = 0.625, # right margin
+    numrow = 8L, # number of label rows per page
+    numcol = 3L, # number of label columns per page
+    filename = 'PlotLabel', # name for pdf file to be created
+    font_sz = 8,
+    family = 'sans', # Font style to use
+    rounded = TRUE, # Rounded corners
+    bot_txt1 = NULL, # Bottom position position text 1
+    bot_txt2 = NULL, # Bottom position text 2
+    bot_txt3 = NULL, # Bottom position text 3
+    cent_txt1 = NULL, # Center position text 1 
+    cent_txt2 = NULL, # Center position text 2
+    cent_txt3 = NULL, # Center position text 3 
+    cent_txt4 = NULL, # Center position text 4
+    top_txt1 = NULL, # Top position text 1
+    top_txt2 = NULL, # Top position text 2 
+    top_txt3 = NULL, # Top position text 3
+    bot_txt1_id = NULL, # Bottom position text 1 column ID
+    bot_txt2_id = NULL, # Bottom position text 2 column ID
+    bot_txt3_id = NULL, # Bottom position text 3 column ID
+    cent_txt1_id = NULL, # Center position text 1 column ID
+    cent_txt2_id = NULL, # Center position text 2 column ID
+    cent_txt3_id = NULL, # Center position text 3 column ID
+    cent_txt4_id = NULL, # Center position text 4 column ID
+    top_txt1_id = NULL, # Top position text 1 column ID
+    top_txt2_id = NULL, # Top position text 2 column ID
+    top_txt3_id = NULL, # Top position text 3 column ID
+    unique_id = NULL, # Column ID for Unique ids for QR codes
+    ec_level = 3 # qr code error correction level
+    
+) {
+  
+  error_numeric <- "must be a positive numeric value."
+  error_flag <- "must be a logical or boolean value."
+  error_string <- "must be string value."
+  
+  # Function to check for positive values -- may have to be relocated
+  is.valid_number <- function (x) {
+    if (x >= 0 && assertthat::is.number(x)) return (TRUE) else return (FALSE)
+  }
+  
+  # Used in assertions to check if number is an integer and positive
+  is.valid_count <- function (x) {
+    if (x > 0 && assertthat::is.count(x)) return (TRUE) else return (FALSE)
+  }
+  
+  # Assertion for dat argument
+  assertthat::assert_that(!missing(dat),
+                          msg = "Input data frame is missing, please provide a one.")
+  
+  error_prompt <- "Invalid string entered for"
+  
+  
+  ## Assertions start
+  
+  # Checking all numeric inputs
+  assertthat::assert_that(is.valid_number(wdt),
+                          msg = paste("'wdt'", error_numeric))
+  assertthat::assert_that(is.valid_number(hgt),
+                          msg = paste("'hgt'",  error_numeric))
+  assertthat::assert_that(is.valid_number(page_wdt),
+                          msg = paste("'page_wdt'", error_numeric))
+  assertthat::assert_that(is.valid_number(page_hgt),
+                          msg = paste("'page_hgt'", error_numeric))
+  assertthat::assert_that(is.valid_number(top_mar),
+                          msg = paste("'top_mar'", error_numeric))
+  assertthat::assert_that(is.valid_number(bot_mar),
+                          msg = paste("'bot_mar'", error_numeric))
+  assertthat::assert_that(is.valid_number(left_mar),
+                          msg = paste("'left_mar'", error_numeric))
+  assertthat::assert_that(is.valid_number(right_mar),
+                          msg = paste("'right_mar'", error_numeric))
+  assertthat::assert_that(is.valid_count(numrow),
+                          msg = paste("'numrow'", "must be a positive integer."))
+  assertthat::assert_that(is.valid_count(numcol),
+                          msg = paste("'numcol'", "must be a positive integer."))
+  assertthat::assert_that(is.valid_number(font_sz),
+                          msg = paste("'font_sz'", error_numeric))
+  
+  # Checking all flag inputs
+  
+  assertthat::assert_that(assertthat::is.flag(rounded),
+                          msg = paste("'rounded'", error_flag))
+  
+  # Checking all string inputs
+  
+  assertthat::assert_that(assertthat::is.string(filename),
+                          msg = paste("'filename'", error_string))
+  
+  assertthat::assert_that(assertthat::is.string(family),
+                          msg = paste("'family'", error_string))
+  
+  ## -- Assertions end
+  
+  # Calculate space between label columns if any
+  if (numcol == 1) {
+    col_space <- 0
+  } else {
+    col_space <- (page_wdt - left_mar - right_mar - numcol*wdt)/(numcol-1)
+  }
+  
+  # Calculate space between label rows if any
+  if (numrow == 1) {
+    row_space <- 0
+  } else {
+    row_space <- (page_hgt - top_mar - bot_mar - numrow*hgt)/(numrow-1)
+  }
+  
+  # Check if page setup matches label setup per page.
+  # Error message if either column spaces or the row spaces between labels 
+  # are less than zero
+  
+  if (col_space < 0 | row_space < 0) {
+    stop("Page setup does not match label setup per page.")
+  }
+  
+  # Get number of labels
+  n_row <- nrow(dat)
+  
+  # Bottom text position 1 field
+  if (!is.null(bot_txt1_id)) {
+    assertthat::assert_that(assertthat::is.string(bot_txt1_id),
+                            msg = paste(error_prompt, "'bot_txt1_id'"))
+    text1 <- paste(bot_txt1, dat[, bot_txt1_id])
+  } else {
+    text1 <- rep(bot_txt1, n_row) 
+  }
+  
+  
+  # Bottom text position 2 field
+  if (!is.null(bot_txt2_id)) {
+    assertthat::assert_that(assertthat::is.string(bot_txt2_id),
+                            msg = paste(error_prompt, "'bot_txt2_id'"))
+    text2 <- paste(bot_txt2, dat[, bot_txt2_id])
+  } else {
+    text2 <- rep(bot_txt2, n_row) 
+  }
+  
+  # Bottom text position 3 field
+  if (!is.null(bot_txt3_id)) {
+    assertthat::assert_that(assertthat::is.string(bot_txt3_id),
+                            msg = paste(error_prompt, "'bot_txt3_id'"))
+    text3 <- paste(bot_txt3, dat[, bot_txt3_id])
+  } else {
+    text3 <- rep(bot_txt3, n_row) 
+  }
+  
+  
+  # Center text position 1
+  if (!is.null(cent_txt1_id)) {
+    assertthat::assert_that(assertthat::is.string(cent_txt1_id),
+                            msg = paste(error_prompt, "'cent_txt1_id'"))
+    text4 <- paste(cent_txt1, dat[, cent_txt1_id])
+  } else {
+    text4 <- rep(cent_txt1, n_row) 
+  }
+  
+  
+  # Center text position 2
+  if (!is.null(cent_txt2_id)) {
+    assertthat::assert_that(assertthat::is.string(cent_txt2_id),
+                            msg = paste(error_prompt, "'cent_txt2_id'"))
+    text5 <- paste(cent_txt2, dat[, cent_txt2_id])
+  } else {
+    text5 <- rep(cent_txt2, n_row) 
+  }
+  
+  # Center text position 3
+  if (!is.null(cent_txt3_id)) {
+    assertthat::assert_that(assertthat::is.string(cent_txt3_id),
+                            msg = paste(error_prompt, "'cent_txt3_id'"))
+    text6 <- paste(cent_txt3, dat[, cent_txt3_id])
+  } else {
+    text6 <- rep(cent_txt3, n_row) 
+  }
+  
+  # Center text position 4
+  if (!is.null(cent_txt4_id)) {
+    assertthat::assert_that(assertthat::is.string(cent_txt4_id),
+                            msg = paste(error_prompt, "'cent_txt4_id'"))
+    text7 <- paste(cent_txt4, dat[, cent_txt4_id])
+  } else {
+    text7 <- rep(cent_txt4, n_row) 
+  }
+  
+  # Top text position 1
+  if (!is.null(top_txt1_id)) {
+    assertthat::assert_that(assertthat::is.string(top_txt1_id),
+                            msg = paste(error_prompt, "'top_txt1_id'"))
+    text8 <- paste(top_txt1, dat[, top_txt1_id])
+  } else {
+    text8 <- rep(top_txt1, n_row) 
+  }
+  
+  # Top text position 2
+  if (!is.null(top_txt2_id)) {
+    assertthat::assert_that(assertthat::is.string(top_txt2_id),
+                            msg = paste(error_prompt, "'top_txt2_id'"))
+    text9 <- paste(top_txt2, dat[, top_txt2_id])
+  } else {
+    text9 <- rep(top_txt2, n_row) 
+  }
+  
+  # Top text position 3
+  if (!is.null(top_txt3_id)) {
+    assertthat::assert_that(assertthat::is.string(top_txt3_id),
+                            msg = paste(error_prompt, "'top_txt3_id'"))
+    text10 <- paste(top_txt3, dat[, top_txt3_id])
+  } else {
+    text10 <- rep(top_txt3, n_row) 
+  }
+  
+  # Create QR codes from unique ids
+  if (!is.null(unique_id)) {
+    bb <- dat[, unique_id] |> purrr::map(\(x) make_qrcode(ec_level = ec_level, x))
+    nn <- length(bb) # total number of labels to generate
+  } else {
+    stop("Unique IDs for generating QR codes are missing!!")
+  }
+  
+  
+  # clean up any open graphical devices if function fails
+  on.exit(grDevices::graphics.off())
+  
+  
+  # Generate label positions -- prints across rows of grid layout
+  pos <- expand.grid(x = 1:numcol, y = 1:numrow)
+  
+  duplication <- ceiling(nn/nrow(pos))
+  
+  label_pos <- do.call("rbind", replicate(duplication, pos, simplify = FALSE))
+  
+  corx <- label_pos$x # label x coordinate
+  
+  cory <- label_pos$y # label y coordinate
+  
+  
+  # Create pdf file to be saved in working directory
+  
+  filename <- paste0(filename, paste0(wdt,'in'), 'x',
+                     paste0(hgt,'in'), Sys.time()) # name of pdf file
+  
+  filename <- paste0(gsub(":","_", filename), ".pdf")
+  
+  # Font size to print text on labels
+  fsize <- font_sz
+  
+  # Define new coordinates for QR code
+  wdt1 <- 0.5 * wdt
+  hgt1 <- 0.5 * hgt
+  
+  qry <- hgt1/1.2
+  
+  # Create pdf file
+  # The argument family specifies the initial/default font family to be
+  # used. Device independent fonts that can be used include 'sans', 'serif' and
+  # 'mono', default is sans.
+  
+  grDevices::pdf(filename,
+                 width = page_wdt,
+                 height = page_hgt,
+                 onefile = TRUE,
+                 family = family) # Letter size paper from Avery
+  
+  # Grid layout for labels
+  label_layout <- grid::grid.layout(numrow, numcol,
+                                    widths = grid::unit(c(rep(wdt + col_space, numcol-1), wdt), "in"),
+                                    heights = grid::unit(c(rep(hgt + row_space, numrow-1), hgt), "in"))
+  
+  qq <- grid::viewport(x = grid::unit(1, "npc"),
+                       width = grid::unit(wdt1, "in"),
+                       height = grid::unit(qry, "in"),
+                       just = c('right','center'))
+  
+  # Create a viewport for each label
+  aa <- grid::viewport(x = grid::unit(0, "npc"),
+                       y = grid::unit(1, "npc"),
+                       width = grid::unit(wdt, "in"),
+                       height = grid::unit(hgt, "in"),
+                       just = c('left','top'))
+  
+  txt1x <- 0.95*wdt # x coordinate for txt1
+  
+  txt1y <- 0.05*hgt # y coordinate for txt1
+  
+  txt2x <- 0.9*wdt # x coordinate for txt2
+  
+  txt3x <- 0.6*wdt # y coordinate for txt3
+  
+  txt4x <- 0.5*wdt # y coordinate for txt4
+  
+  txt5x <- 0.4*wdt # x coordinate for txt5
+  
+  txt6x <- 0.3*wdt # x coordinate for txt6 and 7
+  
+  txt7y <- 0.55*hgt # y coordinate for txt7 and 9
+  
+  txt8x <- 0.2*wdt # x coordinate for txt8 and txt9
+  
+  txt10x <- 0.05*wdt # y coordinate for txt10
+  
+  
+  
+  # Viewport for a new page
+  new.page <- grid::viewport(width = grid::unit(page_wdt, "in"),
+                             height = grid::unit(page_hgt, "in"))
+  
+  # Create a viewport for each page using grid layout
+  lab_vp <- grid::viewport(layout = label_layout)
+  grid::pushViewport(lab_vp)
+  
+  bold_font <- grid::gpar(fontface = "bold", fontsize = fsize)
+  bold_font2 <- grid::gpar(fontface = "bold", fontsize = fsize-2)
+  plain_font2 <- grid::gpar(fontface = "plain", fontsize = fsize-2)
+  plain_font3 <- grid::gpar(fontface = "plain", fontsize = fsize-4)
+  bold_font3 <- grid::gpar(fontface = "bold", fontsize = fsize-4)
+  bold_font4 <- grid::gpar(fontface = "plain", fontsize = floor(fsize/2.5))
+  
+  
+  # Define progres bar parameters
+  pro_bar <- txtProgressBar(min = 0, max = nn, style = 3, char = '=')
+  
+  for (i in seq_len(nn)) {
+    
+    # set progress bar to chromosome indexing
+    setTxtProgressBar(pro_bar, value = i)
+    
+    label_posn <- c(x = corx[i], y = cory[i])
+    
+    
+    if (all(i != 1 & label_posn == c(1, 1))) {
+      grid::grid.newpage()
+      
+      grid::pushViewport(new.page)
+      grid::pushViewport(lab_vp)
+      
+    }
+    
+    
+    grid::pushViewport(grid::viewport(layout.pos.row=label_posn['y'],
+                                      layout.pos.col=label_posn['x']))
+    grid::pushViewport(aa)
+    
+    if (rounded == TRUE) {
+      grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+    } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+    
+    # Add text1 to label (bottom position 1); note coordinates
+    grid::grid.text(label = text1[i],
+                    x = grid::unit(txt1x, "in"),
+                    y = grid::unit(txt1y, "in"), rot = 90,
+                    gp = bold_font2, hjust = 0, vp = aa)
+    
+    # Add text2 to label (bottom position 2); note coordinates
+    grid::grid.text(label = text2[i],
+                    x = grid::unit(txt2x, "in"),
+                    y = grid::unit(txt1y, "in"), rot = 90,
+                    gp = bold_font4, hjust = 0, vp = aa)
+    
+    
+    # Add text3 to label (bottom position 3); note coordinates
+    grid::grid.text(label = text3[i],
+                    x = grid::unit(txt3x, "in"),
+                    y = grid::unit(txt1y, "in"), rot = 90,
+                    gp = plain_font3, hjust = 0, vp = aa)
+    
+    # Add text4 to label (center position 1); note coordinates
+    grid::grid.text(label = text4[i],
+                    x = grid::unit(txt4x, "in"),
+                    y = grid::unit(txt1y, "in"), rot = 90,
+                    gp = plain_font3, hjust = 0, vp = aa)
+    
+    # Add text5 to label (center position 2); note coordinates
+    grid::grid.text(label = text5[i],
+                    x = grid::unit(txt5x, "in"),
+                    y = grid::unit(txt1y, "in"), rot = 90,
+                    gp = bold_font2, just = c(-0.5, 0.5), vp = aa)
+    
+    
+    # Define viewport for QR code; note coordinates and dimension
+    
+    grid::pushViewport(qq)
+    
+    # Add first QR code
+    grid::grid.draw(bb[[i]])
+    # grid::popViewport()
+    
+    
+    # Go back to label viewport
+    grid::upViewport()
+    
+    # Add text6 to label (center position 3); note coordinates
+    grid::grid.text(label = text6[i],
+                    x = grid::unit(txt6x, "in"),
+                    y = grid::unit(txt1y, "in"), rot = 90,
+                    gp = bold_font3, hjust = 0, vp = aa)
+    
+    
+    # Add text7 to label (center position 4); note coordinates
+    grid::grid.text(label = text7[i],
+                    x = grid::unit(txt6x, "in"),
+                    y = grid::unit(txt7y, "in"), rot = 90,
+                    gp = bold_font3, hjust = 0, vp = aa)
+    
+    
+    # Add text8 to label (top position 1); note coordinates
+    grid::grid.text(label = text8[i],
+                    x = grid::unit(txt8x, "in"),
+                    y = grid::unit(txt1y, "in"), rot = 90,
+                    gp = bold_font3, hjust = 0, vp = aa)
+    
+    
+    # Add text9 to label (top position 2); note coordinates
+    grid::grid.text(label = text9[i],
+                    x = grid::unit(txt8x, "in"),
+                    y = grid::unit(txt7y, "in"), rot = 90,
+                    gp = bold_font3, hjust = 0, vp = aa)
+    
+    
+    # Add text10 to label (top position 3); note coordinates
+    grid::grid.text(label = text10[i],
+                    x = grid::unit(txt10x, "in"),
+                    y = grid::unit(txt1y, "in"), rot = 90,
+                    gp = bold_font, hjust = 0, vp = aa)
+    
+    
+    grid::popViewport(2)
+    
+    
+  } # End of create_label ()
+  
+  cat("\n\n\tGenerated labels saved to working directory as a PDF file.")
+} 
 
 
 

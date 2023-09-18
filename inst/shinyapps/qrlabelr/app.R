@@ -184,6 +184,7 @@ argonFooter <- argonDash::argonDashFooter(
   )
 )
 
+
 # Welcome page
 pg_welcome <- argonDash::argonTabItem(
   tabName = "welcome",

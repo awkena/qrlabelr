@@ -386,10 +386,8 @@ manufacturers.
 
 -   [Alexander Wireko Kena](https://www.github.com/awkena)
 -   [Ebenezer Ogoe](https://github.com/Ebenezer-007)
--   [Clara
-    Cruet-Burgos](https://www.morrislab.org/people/clara-cruet-burgos)
--   [Geoffrey Preston
-    Morris](https://www.morrislab.org/people/geoff-morris)
+-   [Clara Cruet-Burgos](https://www.morrislab.org/people/clara-cruet-burgos)
+-   [Geoffrey Preston    Morris](https://www.morrislab.org/people/geoff-morris)
 
 # License
 
@@ -417,9 +415,7 @@ R, HTML, CSS, JavaScript
 
 # Support and Feedback
 
-For support and submission of feedback, email the maintainer **Alexander
-Kena** at
-[alex.kena24\@gmail.com](mailto:alex.kena24@gmail.com){.email}
+For support and submission of feedback, email the maintainer **Alexander Kena** at [alex.kena24@gmail.com](mailto:alex.kena24@gmail.com){.email}
 
 # Roadmap
 
