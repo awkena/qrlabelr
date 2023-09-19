@@ -279,7 +279,7 @@ br(),
   # Some intro text that may need to be summarized into two paragraphs or less
   argonR::argonH1("Welcome!", display = 4),
 
-  p("Welcome to EasyPlotLabelR: a Shiny app for designing print-ready
+  p("Welcome to EasyPlotLabelR: a Shiny app for the qrlabelr package for designing print-ready
     plot labels affixed with QR codes. This app simplifies the complicated process
     of plot label design. It generates plot labels that are compatible with the
     widely used digital data collection mobile app, Field Book.",
@@ -287,7 +287,7 @@ br(),
 
   p("The software requires users to upload a fieldbook (csv, xls, or xlsx file format)
   that contains plot and field map information. Users can either upload a fieldbook
-  that already contains plot unique IDs or opt for the app to create reproducible
+  that already contains custom unique plot IDs or opt for the app to create reproducible
   unique IDs for each plot.", style = "text-align: justify; margin-top: 10px;"),
 
   p("Users can either choose from a list of preset common label templates or opt to
@@ -564,8 +564,9 @@ pg_label_info <- argonDash::argonTabItem(
 
               shinyBS::popify(shinyWidgets::pickerInput(inputId = "label_type",
                                   label = "Select type of label",
-                                  choices = c("Field plot label with QR code" = "field",
-                                              "General purpose label with QR code" = "gp"),
+                                  choices = c("Field plot label" = "field",
+                                              "General-purpose landscape text label" = "gp",
+                                              "General-purpose portrait text label" = "gpp"),
                                   selected = "Field plot label with QR code",
                                   width = "75%",
                                   options = list(style = "btn-primary")),
@@ -810,7 +811,123 @@ pg_label_info <- argonDash::argonTabItem(
           )))
     ),
 
+   #-----------------------------------------------------------------------------------------------#
+   # Input widgets for general purpose labels with portrait text orientation (15 widgets)
+   argonR::argonRow(center = TRUE,
+                    shinyWidgets::pickerInput(inputId = "QRcode_id2", label = "Select QR code ID",
+                                choices = warn_2, options = list(style = "btn-primary"))
+   ),
+   
+   br(),
+   
+   argonR::argonRow(
+     argonR::argonColumn(width = 6,
+                         shinyWidgets::dropdownButton(
+                           inputId = "toptxt",
+                           label = "Top text positions",
+                           status = "success",
+                           icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                           width = "250%",
+                           margin = "5%",
+                           circle = FALSE,
+                           size = "sm",
+                           
+                           argonR::argonRow(
+                             
+                             argonR::argonColumn(width = 6,
+                                                 textInput(inputId = "top_txt1", label = "ROW 1 text prefix",
+                                                           value = "", placeholder = "Enter a short text"),
+                                                 textInput(inputId = "top_txt2", label = "ROW 2 text prefix",
+                                                           value = "", placeholder = "Enter a short text"),
+                                                 textInput(inputId = "top_txt3", label = "ROW 3 text prefix",
+                                                           value = "", placeholder = "Enter a short text")
+                             ),
+                             
+                             argonR::argonColumn(width = 6,
+                                                 selectInput("top_sel1", "Select ID for ROW 1", choices = warn_2),
+                                                 selectInput("top_sel2", "Select ID for ROW 2", choices = warn_2),
+                                                 selectInput("top_sel3", "Select ID for ROW 3", choices = warn_2)
+                             )
+                             
+                           ))),
+     
+     br(), br(), br(),
+     
+     argonR::argonColumn(width = 6,
+                         shinyWidgets::dropdownButton(
+                           inputId = "centtxt",
+                           label = "Center text positions",
+                           status = "success",
+                           icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                           width = "250%",
+                           margin = "5%",
+                           circle = FALSE,
+                           size = "sm",
+                           
+                           argonR::argonRow(
+                             
+                             argonR::argonColumn(width = 6,
+                                                 textInput(inputId = "cent_txt1", label = "ROW 1 text prefix",
+                                                           value = "", placeholder = "Enter a short text"),
+                                                 textInput(inputId = "cent_txt2", label = "ROW 2 text prefix",
+                                                           value = "", placeholder = "Enter a short text"),
+                                                 textInput(inputId = "cent_txt3", label = "ROW 3 text prefix",
+                                                           value = "", placeholder = "Enter a short text"),
+                                                 textInput(inputId = "cent_txt4", label = "ROW 4 text prefix",
+                                                           value = "", placeholder = "Enter a short text")),
+                             
+                             argonR::argonColumn(width = 6,
+                                                 selectInput("cent_sel1", "Select ID for ROW 1", choices = warn_2),
+                                                 selectInput("cent_sel2", "Select ID for ROW 2", choices = warn_2),
+                                                 selectInput("cent_sel3", "Select ID for ROW 3", choices = warn_2),
+                                                 selectInput("cent_sel4", "Select ID for ROW 4", choices = warn_2)
+                             )
+                             
+                           )))
+   ),
+   
+   br(), br(), br(),
+   
+   argonR::argonRow(
+     
+     argonR::argonColumn(width = 6,
+                         shinyWidgets::dropdownButton(
+                           inputId = "bottxt",
+                           label = "Bottom text positions",
+                           status = "success",
+                           icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                           width = "250%",
+                           margin = "5%",
+                           circle = FALSE,
+                           size = "sm",
+                           
+                           argonR::argonRow(
+                             argonR::argonColumn(width = 6,
+                                                 textInput(inputId = "bot_txt1", label = "ROW 1 text prefix",
+                                                           value = "", placeholder = "Enter a short text"),
+                                                 textInput(inputId = "bot_txt2", label = "ROW 2 text prefix",
+                                                           value = "", placeholder = "Enter a short text"),
+                                                 textInput(inputId = "bot_txt3", label = "ROW 3 text prefix",
+                                                           value = "", placeholder = "Enter a short text")
+                             ),
+                             
+                             argonR::argonColumn(width = 6,
+                                                 selectInput("bot_sel1", "Select ID for ROW 1", choices = warn_2),
+                                                 selectInput("bot_sel2", "Select ID for ROW 2", choices = warn_2),
+                                                 selectInput("bot_sel3", "Select ID for ROW 3", choices = warn_2),
+                             )
+                             
+                           )))
+   ),
+   
+   
+   
+   #----------------------------------------------------------------------------------------------#   
+   
+   
     br(),
+   
+   
 
     argonR::argonRow(
       argonR::argonColumn(width = 4,
@@ -1332,8 +1449,16 @@ server <- function(input, output, session) {
 
 
     tryCatch({
-      reactive_create_label <- reactive(create_label())
-      reactive_create_label()
+      if (input$label_type == "field" || input$label_type == "gp") {
+        reactive_create_label <- reactive(create_label())
+        reactive_create_label()
+        
+      } else if (input$label_type == "gpp") {
+        
+        reactive_gp_label_portrait <- reactive(gp_label_portrait())
+        reactive_gp_label_portrait()
+        
+      }
     },
     warning = function(cond) {
       showModal(modalDialog(title = "Warning",
@@ -1357,28 +1482,41 @@ server <- function(input, output, session) {
   })
 
 
+  
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   #                 Section 3. Observe() Expressions and Downloaders                        #
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-
+  
   ## Input widget controls if type of label = field plot labels
   observe({
     if (input$label_type == "field"){
-
-      ## Hide the input widget for IBlock if the respective checkbox is set to false
-    if (input$IBlock == FALSE ) {
-      shinyjs::hide(id = "IBlock_id")
-    } else {
-      shinyjs::show(id = "IBlock_id")
-    }
-
- # Show the input widget for setting the Unique ID
+      
+      shinyjs::show(id = "IBlock")
+      shinyjs::show(id = "uniqueids")
+      shinyjs::show(id = "seed_source")
+      shinyjs::show(id = "rname")
+      shinyjs::show(id = "plot_id")
+      shinyjs::show(id = "rep_id")
+      shinyjs::show(id = "row_id")
+      shinyjs::show(id = "col_id")
+      shinyjs::show(id = "entry_id")
+      shinyjs::show(id = "loc_id")
+      
+      
+      ## Hide the input widget for IBlock if the respective checkbox is set to false  
+      if (input$IBlock == FALSE ) {
+        shinyjs::hide(id = "IBlock_id")
+      } else {
+        shinyjs::show(id = "IBlock_id")
+      }
+      
+      # Show the input widget for setting the Unique ID 
       if (input$uniqueids == "use_my_ids") {
         shinyjs::show(id = "unique_id")
       } else {
         shinyjs::hide(id = "unique_id")
-      }
-
+      }  
+      
       # Show the input widget for trial name and year of experiment
       if (input$uniqueids == "uuids" | input$uniqueids == "use_my_ids") {
         shinyjs::hide(id = "tname")
@@ -1387,75 +1525,124 @@ server <- function(input, output, session) {
         shinyjs::show(id = "tname")
         shinyjs::show(id = "yr")
       }
-
+      
       ## Show the input widget for setting seed source if the respective checkbox is true
       if(input$seed_source == FALSE) {
         shinyjs::hide(id = "seed")
-
+        
       } else {
         shinyjs::show(id = "seed")
       }
-    # Hide all widgets for general purpose labels
+      # Hide all widgets for general purpose labels -- landscape
       shinyjs::hide(id = "QRcode_id")
       shinyjs::hide(id = "toplt")
       shinyjs::hide(id = "toprt")
       shinyjs::hide(id = "centrt")
       shinyjs::hide(id = "botlt")
-
-
+      
+      shinyjs::hide(id = "QRcode_id2")
+      shinyjs::hide(id = "toptxt")
+      shinyjs::hide(id = "centtxt")
+      shinyjs::hide(id = "bottxt")
+      
+      
     } else {
       shinyjs::hide(id = "tname")
       shinyjs::hide(id = "yr")
+      
+    }
+  })
+  
+  
+  # Hide all widgets for field plot labels and gp portrait if label type is 
+  # gp landscape
+  observe({
+    if (input$label_type == "gp") {
+      
       shinyjs::show(id = "toplt")
       shinyjs::show(id = "toprt")
       shinyjs::show(id = "centrt")
       shinyjs::show(id = "botlt")
-    }
-  })
-
-
-    # Hide all widgets for field plot labels if label type is general purpose
-    observe({
-      if (input$label_type == "gp") {
-        # Hide widgets for field plot labels
-        shinyjs::hide(id = "IBlock")
-        # shinyjs::hide(id = "uniqueids")
-        shinyjs::hide(id = "seed_source")
-        shinyjs::hide(id = "seed")
-        shinyjs::hide(id = "IBlock_id")
-        shinyjs::hide(id = "rname")
-        shinyjs::hide(id = "plot_id")
-        shinyjs::hide(id = "rep_id")
-        shinyjs::hide(id = "row_id")
-        shinyjs::hide(id = "col_id")
-        shinyjs::hide(id = "entry_id")
-        shinyjs::hide(id = "loc_id")
-        shinyjs::hide(id = "unique_id")
-
-        # Show the input widget for setting the QRcode ID for gp
-        if (input$uniqueids == "use_my_ids") {
-          shinyjs::show(id = "QRcode_id")
-        } else {
-          shinyjs::hide(id = "QRcode_id")
-        }
-
+      
+      # Hide widgets for field plot labels
+      shinyjs::hide(id = "IBlock")
+      # shinyjs::hide(id = "uniqueids")
+      shinyjs::hide(id = "seed_source")
+      shinyjs::hide(id = "seed")
+      shinyjs::hide(id = "IBlock_id")
+      shinyjs::hide(id = "rname")
+      shinyjs::hide(id = "plot_id")
+      shinyjs::hide(id = "rep_id")
+      shinyjs::hide(id = "row_id")
+      shinyjs::hide(id = "col_id")
+      shinyjs::hide(id = "entry_id")
+      shinyjs::hide(id = "loc_id")
+      shinyjs::hide(id = "unique_id")
+      
+      shinyjs::hide(id = "QRcode_id2")
+      shinyjs::hide(id = "toptxt")
+      shinyjs::hide(id = "centtxt")
+      shinyjs::hide(id = "bottxt")
+      
+      
+      
+      # Show the input widget for setting the QRcode ID for gp
+      if (input$uniqueids == "use_my_ids") {
+        shinyjs::show(id = "QRcode_id")
+        
       } else {
-        shinyjs::show(id = "IBlock")
-        shinyjs::show(id = "uniqueids")
-        shinyjs::show(id = "seed_source")
-        shinyjs::show(id = "rname")
-        shinyjs::show(id = "plot_id")
-        shinyjs::show(id = "rep_id")
-        shinyjs::show(id = "row_id")
-        shinyjs::show(id = "col_id")
-        shinyjs::show(id = "entry_id")
-        shinyjs::show(id = "loc_id")
-
-      }
-
-
-    })
-
+        shinyjs::hide(id = "QRcode_id")
+      }  
+      
+    } 
+    
+  })
+  
+  
+  # Hide all widgets for gp portrait if label type is gp landscape 
+  observe({
+    if (input$label_type == "gpp") {
+      
+      shinyjs::show(id = "QRcode_id2")
+      shinyjs::show(id = "toptxt")
+      shinyjs::show(id = "centtxt")
+      shinyjs::show(id = "bottxt")
+      
+      # Hide widgets for field plot labels
+      shinyjs::hide(id = "IBlock")
+      shinyjs::hide(id = "seed_source")
+      shinyjs::hide(id = "seed")
+      shinyjs::hide(id = "IBlock_id")
+      shinyjs::hide(id = "rname")
+      shinyjs::hide(id = "plot_id")
+      shinyjs::hide(id = "rep_id")
+      shinyjs::hide(id = "row_id")
+      shinyjs::hide(id = "col_id")
+      shinyjs::hide(id = "entry_id")
+      shinyjs::hide(id = "loc_id")
+      shinyjs::hide(id = "unique_id")
+      
+      
+      shinyjs::hide(id = "QRcode_id")
+      shinyjs::hide(id = "toplt")
+      shinyjs::hide(id = "toprt")
+      shinyjs::hide(id = "centrt")
+      shinyjs::hide(id = "botlt")
+      
+      
+      
+      
+    } else {
+      
+      
+    }
+    
+    
+  })
+  
+  
+  
+  
   ## Downloads generated labels
   output$down_labels <- downloadHandler(
     filename = function() {
@@ -1465,7 +1652,7 @@ server <- function(input, output, session) {
       file.copy(pdf_filename, file)
     }
   )
-
+  
   ## Downloads updated Fieldbook with unique IDs
   output$down_fieldbook <- downloadHandler(
     filename = function() {
@@ -1475,7 +1662,7 @@ server <- function(input, output, session) {
       file.copy("Updated_Fieldbook.csv", file)
     }
   )
-
+  
   ## Show or hide the imported Fieldbook according to the state of the switch
   observe({
     if (input$preview_dat == TRUE) {
@@ -1484,13 +1671,13 @@ server <- function(input, output, session) {
       shinyjs::hideElement(id = "fieldbookcard")
     }
   })
-
+  
   # Create reactive object for common labels
   cls <- reactive({
     read.csv("data/common_labels.csv", header = TRUE,
              colClasses = c(rep("character",2), rep("numeric", 9), "logical"))
   })
-
+  
   ## Load and render common labels in a table
   observe({
     output$common_labels <- reactable::renderReactable({
@@ -1499,68 +1686,68 @@ server <- function(input, output, session) {
       })
     })
   })
-
+  
   # Update page and label setup inputs when label templates are selected
   observeEvent(input$templates,{
-
+    
     clabs <- cls()
-
+    
     updateNumericInput(session, inputId = "wdt",
                        value = clabs$Lab.W.in[clabs$Template == input$templates])
-
+    
     updateNumericInput(session, inputId = "hgt",
                        value = clabs$Lab.H.in[clabs$Template == input$templates])
-
+    
     updateNumericInput(session, inputId = "page_wdt",
                        value = clabs$pg.W.in[clabs$Template == input$templates])
-
+    
     updateNumericInput(session, inputId = "page_hgt",
                        value = clabs$pg.H.in[clabs$Template == input$templates])
-
-
+    
+    
     updateNumericInput(session, inputId = "numrow",
                        value = clabs$nRows.pg[clabs$Template == input$templates])
-
+    
     updateNumericInput(session, inputId = "numcol",
                        value = clabs$nColumns.pg[clabs$Template == input$templates])
-
+    
     updateNumericInput(session, inputId = "top_mar",
                        value = clabs$Height.margin.in[clabs$Template == input$templates])
-
+    
     updateNumericInput(session, inputId = "bot_mar",
                        value = clabs$Height.margin.in[clabs$Template == input$templates])
-
+    
     updateNumericInput(session, inputId = "left_mar",
                        value = clabs$Width.margin.in[clabs$Template == input$templates])
-
+    
     updateNumericInput(session, inputId = "right_mar",
                        value = clabs$Width.margin.in[clabs$Template == input$templates])
-
+    
     shinyWidgets::updatePrettyCheckbox(session, inputId = "rounded",
                          value = clabs$Rounded[clabs$Template == input$templates])
-
+    
   })
-
-# Auto fill Label information tab with column names if field book was generated
-# using FieldHub or BMS
+  
+  # Auto fill Label information tab with column names if field book was generated
+  # using FieldHub or BMS
   observe({
     tryCatch({
-
+      
       # If the user confirms the submitted Fieldbook was generated using FieldHub,
       # set the selectInputs to the right IDs automatically
       # Otherwise, update input widgets with column names obtained from the data
       if(input$from_fieldhub == TRUE ){
         autoset_fieldhub()
-
+        
       }else if(input$from_BMS == TRUE){
         autoset_BMS()
-
+        
       } else {
         init_label_info()
-
+        
       }
-
-
+      
+      
     },
     warning = function(cond) {
       showModal(modalDialog(title = "Warning",
@@ -1574,7 +1761,7 @@ server <- function(input, output, session) {
                             with FieldHub' switch from the Data import page."))
     })
   })
-
+  
   # Update numeric input widget for label preview; observed only when the submited data
   # action button is clicked
   observe({
@@ -1582,64 +1769,64 @@ server <- function(input, output, session) {
     updateNumericInput(session, inputId = "lab_sel", value = 1, step = 1,
                        min = 1, max = nrow(dat))
   })
-
-
-
+  
+  
+  
   # Update REP and LOC select inputs in the Generate labels tab
   observe({
     if(input$label_type == "field"){
-    req(input$rep_id, input$loc_id)
-    Rep_levels <- unique(dat[,input$rep_id]) # Unique Rep ids
-    Loc_levels <- unique(dat[,input$loc_id])# Unique Location ids
-
-    shinyWidgets::updatePickerInput(session, inputId = "REP", choices =  Rep_levels)
-
-    shinyWidgets::updatePickerInput(session, inputId = "LOC", choices = Loc_levels)
+      req(input$rep_id, input$loc_id)
+      Rep_levels <- unique(dat[,input$rep_id]) # Unique Rep ids
+      Loc_levels <- unique(dat[,input$loc_id])# Unique Location ids
+      
+      shinyWidgets::updatePickerInput(session, inputId = "REP", choices =  Rep_levels)
+      
+      shinyWidgets::updatePickerInput(session, inputId = "LOC", choices = Loc_levels)
     }
   })
-
-
+  
+  
   # Hide or show respective widgets as and when necessary
   observe({
     if (input$label_type == "field") {
-    if (input$all_labels == TRUE) {
-      shinyjs::disable(id = "loca")
-      shinyjs::disable(id = "bal_design")
-      shinyjs::disable(id = "Repl")
-
-    } else {
-      shinyjs::enable(id = "bal_design")
-      shinyjs::enable(id = "Repl")
-      shinyjs::enable(id = "loca")
-    }
-
-    if (input$all_labels == FALSE & input$bal_design == FALSE) {
-      shinyjs::disable(id = "Repl")
+      if (input$all_labels == TRUE) {
+        shinyjs::disable(id = "loca")
+        shinyjs::disable(id = "bal_design")
+        shinyjs::disable(id = "Repl")
+        
+      } else {
+        shinyjs::enable(id = "bal_design")
+        shinyjs::enable(id = "Repl")
+        shinyjs::enable(id = "loca")
+      }
+      
+      if (input$all_labels == FALSE & input$bal_design == FALSE) {
+        shinyjs::disable(id = "Repl")
+        shinyjs::hide(id = "Repl")
+        
+      } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
+        shinyjs::show(id = "Repl")
+        shinyjs::enable(id = "Repl")
+        shinyjs::disable(id = "all_labels")
+      }
+    } 
+  })
+  
+  observe({
+    if (input$label_type == "gp" || input$label_type == "gpp") {
+      shinyjs::hide(id = "loca")
+      shinyjs::hide(id = "bal_design")
+      shinyjs::hide(id = "all_labels")
       shinyjs::hide(id = "Repl")
-
-    } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
+      
+    } else {
+      shinyjs::show(id = "loca")
+      shinyjs::show(id = "bal_design")
+      shinyjs::show(id = "all_labels")
       shinyjs::show(id = "Repl")
-      shinyjs::enable(id = "Repl")
-      shinyjs::disable(id = "all_labels")
     }
-    }
-})
-
-observe({
-  if (input$label_type == "gp") {
-    shinyjs::hide(id = "loca")
-    shinyjs::hide(id = "bal_design")
-    shinyjs::hide(id = "all_labels")
-    shinyjs::hide(id = "Repl")
-
-  } else {
-    shinyjs::show(id = "loca")
-    shinyjs::show(id = "bal_design")
-    shinyjs::show(id = "all_labels")
-    shinyjs::show(id = "Repl")
-  }
-})
-
+  })
+  
   observe({
     if (input$bal_design == TRUE) {
       shinyjs::disable(id = "all_labels")
@@ -1647,21 +1834,21 @@ observe({
       shinyjs::enable(id = "all_labels")
     }
   })
-
+  
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   #                   Section 4. Regular functions (the "workhorses")                       #
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-
+  
   # Used in assertion to check for positive numbers
   is.valid_number <- function (x) {
     if (x >= 0 && assertthat::is.number(x)) return (TRUE) else return (FALSE)
   }
-
+  
   # Used in assertions to check if number is an integer and positive
   is.valid_count <- function (x) {
     if (x > 0 && assertthat::is.count(x)) return (TRUE) else return (FALSE)
   }
-
+  
   # Initialize label info
   init_label_info <- function() {
     updateSelectInput(inputId = "rep_id", choices = dat_columns)
@@ -1673,8 +1860,8 @@ observe({
     updateSelectInput(inputId = "entry_id", choices = dat_columns)
     updateSelectInput(inputId = "unique_id", choices = dat_columns)
     updateSelectInput(inputId = "seed", choices = dat_columns)
-
-    # Update select inputs for general purpose labels
+    
+    # Update select inputs for general purpose landscape labels
     updateSelectInput(inputId = "toplt_sel_r1", choices = c("none", dat_columns), selected = "none")
     updateSelectInput(inputId = "toplt_sel_r2", choices = c("none", dat_columns), selected = "none")
     updateSelectInput(inputId = "toprt_sel_r1", choices = c("none", dat_columns), selected = "none")
@@ -1685,9 +1872,25 @@ observe({
     updateSelectInput(inputId = "botlt_sel_r1", choices = c("none", dat_columns), selected = "none")
     updateSelectInput(inputId = "botlt_sel_r2", choices = c("none", dat_columns), selected = "none")
     shinyWidgets::updatePickerInput(session, inputId = "QRcode_id", choices = c("none", dat_columns), selected = "none")
-
+    
+    # Update select inputs for general purpose portrait labels
+    updateSelectInput(inputId = "top_sel1", choices = c("none", dat_columns), selected = "none")
+    updateSelectInput(inputId = "top_sel2", choices = c("none", dat_columns), selected = "none")
+    updateSelectInput(inputId = "top_sel3", choices = c("none", dat_columns), selected = "none")
+    updateSelectInput(inputId = "cent_sel1", choices = c("none", dat_columns), selected = "none")
+    updateSelectInput(inputId = "cent_sel2", choices = c("none", dat_columns), selected = "none")
+    updateSelectInput(inputId = "cent_sel3", choices = c("none", dat_columns), selected = "none")
+    updateSelectInput(inputId = "cent_sel4", choices = c("none", dat_columns), selected = "none")
+    updateSelectInput(inputId = "bot_sel1", choices = c("none", dat_columns), selected = "none")
+    updateSelectInput(inputId = "bot_sel2", choices = c("none", dat_columns), selected = "none")
+    updateSelectInput(inputId = "bot_sel3", choices = c("none", dat_columns), selected = "none")
+    shinyWidgets::updatePickerInput(session, inputId = "QRcode_id2", choices = c("none", dat_columns), selected = "none")
+    
   }
-
+  
+  
+  
+  
   # Invoked to automatically set the respective input widgets if a FieldHub-generated
   # fieldbook is uploaded
   autoset_fieldhub <- function() {
@@ -1699,16 +1902,16 @@ observe({
     updateSelectInput(inputId = "col_id", choices = dat_columns, selected = "COLUMN")
     updateSelectInput(inputId = "entry_id", choices = dat_columns, selected = "TREATMENT")
   }
-
+  
   autoset_BMS <- function() {
     if(ext == "xls" | ext == "xlsx" ){
-    updateSelectInput(inputId = "rep_id", choices = dat_columns, selected = "REP_NO")
-    updateSelectInput(inputId = "row_id", choices = dat_columns, selected = "FIELDMAP RANGE")
-    updateSelectInput(inputId = "loc_id", choices = dat_columns, selected = "LOCATION_NAME")
-    updateSelectInput(inputId = "IBlock_id", choices = dat_columns, selected = "BLOCK_NO")
-    updateSelectInput(inputId = "plot_id", choices = dat_columns, selected = "PLOT_NO")
-    updateSelectInput(inputId = "col_id", choices = dat_columns, selected = "FIELDMAP COLUMN")
-    updateSelectInput(inputId = "entry_id", choices = dat_columns, selected = "DESIGNATION")
+      updateSelectInput(inputId = "rep_id", choices = dat_columns, selected = "REP_NO")
+      updateSelectInput(inputId = "row_id", choices = dat_columns, selected = "FIELDMAP RANGE")
+      updateSelectInput(inputId = "loc_id", choices = dat_columns, selected = "LOCATION_NAME")
+      updateSelectInput(inputId = "IBlock_id", choices = dat_columns, selected = "BLOCK_NO")
+      updateSelectInput(inputId = "plot_id", choices = dat_columns, selected = "PLOT_NO")
+      updateSelectInput(inputId = "col_id", choices = dat_columns, selected = "FIELDMAP COLUMN")
+      updateSelectInput(inputId = "entry_id", choices = dat_columns, selected = "DESIGNATION")
     }else{
       updateSelectInput(inputId = "rep_id", choices = dat_columns, selected = "REP_NO")
       updateSelectInput(inputId = "row_id", choices = dat_columns, selected = "FIELDMAP.RANGE")
@@ -1717,52 +1920,97 @@ observe({
       updateSelectInput(inputId = "plot_id", choices = dat_columns, selected = "PLOT_NO")
       updateSelectInput(inputId = "col_id", choices = dat_columns, selected = "FIELDMAP.COLUMN")
       updateSelectInput(inputId = "entry_id", choices = dat_columns, selected = "DESIGNATION")
-
+      
     }
-
+    
   }
-
+  
   # Update picker input for label unique ID generation method when
   # depending on the method selected for label generation
   observe({
     if (input$label_type == "gp"){
-
-      shinyWidgets::updatePickerInput(session, inputId = "uniqueids",
+      
+      shinyWidgets::updatePickerInput(session, inputId = "uniqueids", 
                         label = "Select method for unique IDs",
-                        choices = c("Universal Unique IDs" = "uuids",
+                        choices = c("Universal Unique IDs" = "uuids", 
                                     "Custom Unique IDs" = "use_my_ids"))
-
+      
     } else if (input$label_type == "field") {
-      shinyWidgets::updatePickerInput(session, inputId = "uniqueids",
+      shinyWidgets::updatePickerInput(session, inputId = "uniqueids", 
                         label = "Select method for unique IDs",
                         choices = c("Reproducible Unique IDs" = "get_unique_id",
-                                    "Universal Unique IDs" = "uuids",
+                                    "Universal Unique IDs" = "uuids", 
                                     "Custom Unique IDs" = "use_my_ids"))
     }
   })
-
-
-
+  
+  # Update picker input for label unique ID generation method when
+  # depending on the method selected for label generation
+  observe({
+    if (input$label_type == "gpp"){
+      
+      shinyWidgets::updatePickerInput(session, inputId = "uniqueids", 
+                        label = "Select method for unique IDs",
+                        choices = c("Custom Unique IDs" = "use_my_ids"))
+      
+    } else if (input$label_type == "field") {
+      shinyWidgets::updatePickerInput(session, inputId = "uniqueids", 
+                        label = "Select method for unique IDs",
+                        choices = c("Reproducible Unique IDs" = "get_unique_id",
+                                    "Universal Unique IDs" = "uuids", 
+                                    "Custom Unique IDs" = "use_my_ids"))
+    }
+  })
+  
+  
+  # Update picker input for label templates depending on the method selected 
+  # for label generation
+  observe({
+    if (input$label_type == "gpp"){
+      
+      shinyWidgets::updatePickerInput(session, inputId = "templates", label = "Select a desired template",
+                        choices = c("Custom","Avery 94220", "Avery 94200", "Avery 94224",
+                                    "Avery 94237", "Avery 94207", "Avery 94241",
+                                    "Avery 94213", "Avery 94242", "OnlineLabel OL5125",
+                                    "OnlineLabel RL778", "OnlineLabel RL2800",
+                                    "OnlineLabel RL782"),
+                        selected = "Avery 94220",
+                        options = list(style = "btn-primary"))
+      
+      
+    } else {
+      shinyWidgets::updatePickerInput(session, inputId = "templates", label = "Select a desired template",
+                        choices = c("Custom","Avery 94220", "Avery 94200", "Avery 94224",
+                                    "Avery 94237", "Avery 94207", "Avery 94241",
+                                    "Avery 94213", "Avery 94242", "OnlineLabel OL5125",
+                                    "OnlineLabel RL778", "OnlineLabel RL2800",
+                                    "OnlineLabel RL782", "Treetag LTS14"),
+                        selected = "Avery 94220",
+                        options = list(style = "btn-primary"))
+    }
+  })
+  
+  
   ## Create an augmented fieldbook containing unique IDs
   create_aug_fieldbook <- function() {
-
-      if (input$uniqueids == "get_unique_id" | input$uniqueids == "uuids") {
-
-        updat <- dplyr::mutate(dat, UNIQUE_ID())
-        colnames(updat)[ncol(updat)] <- 'UNIQUE_ID'
-      } else {
-        updat <- dat
-      }
-
-    if (colnames(updat)[1] == 'ID') {
-       colnames(updat)[1] <- 'SN'
-     } else {
-      colnames(updat)[1] <- colnames(updat)[1]
+    
+    if (input$uniqueids == "get_unique_id" | input$uniqueids == "uuids") {
+      
+      updat <- dplyr::mutate(dat, UNIQUE_ID())
+      colnames(updat)[ncol(updat)] <- 'UNIQUE_ID'
+    } else {
+      updat <- dat
     }
-
-    utils::write.csv(updat, file = "Updated_Fieldbook.csv", row.names = FALSE)
+    
+    if (colnames(updat)[1] == 'ID') {
+      colnames(updat)[1] <- 'SN'
+    } else {
+      colnames(updat)[1] <- colnames(updat)[1] 
+    }
+    
+    write.csv(updat, file = "Updated_Fieldbook.csv", row.names = FALSE)
   }
-
+  
   ## Function make QR codes as raster object
   ## Input file is the unique id created for each label
   #' New wrapper function for QR code generation -- 10x faster using the qrencode
@@ -1770,492 +2018,696 @@ observe({
   #' @param my_id unique ID string to be encoded to QR code
   #' @param ec_level error correction level (`0` - `3`, lowest to highest)
   make_qrcode <- function(my_id, ec_level = input$ec_level){
-
+    
     # Create qrcode and store as a rasterGrob image
-
+    
     aa <- raster::raster(qrencoder::qrencode_raw(as.character(my_id), ec_level))
     qr <- grid::rasterGrob(raster::as.raster(aa, col = c('white','black')),
                            interpolate = FALSE)
-
+    
     return(qr)
   }
-
+  
   # Create reactive objects for plot, rep, row, column, loc and entry
-
-
+  
+  
   lab_inf <- reactive({
     if (input$label_type == "field") {
-    #req(input$label_type == "field")
-
-    plott <- paste("Plot ID:", dat[, input$plot_id]) # Plot ids
-
-    repp <- paste("Rep ID:", dat[, input$rep_id]) # Rep ids
-
-    loc <- paste("Loc:", dat[, input$loc_id]) # Location ids
-
-    roww <- paste("Row ID:", dat[, input$row_id]) # Row ids
-
-    coll <- paste("Col. ID:", dat[, input$col_id]) # Column ids
-
-    entry <-  dat[, input$entry_id]
-
-    rnames <- rep(input$rname, nrow(dat)) # Researcher's name
-
-  #' Block ids if it is an incomplete block design
-
-    if (input$IBlock == TRUE) {
-
-      iblock <- paste("iBlock ID:", dat[, input$IBlock_id])
-
-    } else {
-      iblock <- rep("No iBlock", nrow(dat))
-    }
-
-    if(input$seed_source == TRUE) {
-
-      sdsource  <- paste("Seed:", dat[, input$seed])
-
-    } else {
-      sdsource  <- NULL
-    }
-
-    # Combine all results as a list for field plot labels
-    fld_all <- list(plott, roww, repp, coll, iblock, sdsource, rnames, loc, entry)
-
+      #req(input$label_type == "field")
+      
+      plott <- paste("Plot ID:", dat[, input$plot_id]) # Plot ids
+      
+      repp <- paste("Rep ID:", dat[, input$rep_id]) # Rep ids
+      
+      loc <- paste("Loc:", dat[, input$loc_id]) # Location ids
+      
+      roww <- paste("Row ID:", dat[, input$row_id]) # Row ids
+      
+      coll <- paste("Col. ID:", dat[, input$col_id]) # Column ids
+      
+      entry <-  dat[, input$entry_id]
+      
+      rnames <- rep(input$rname, nrow(dat)) # Researcher's name
+      
+      #' Block ids if it is an incomplete block design
+      
+      if (input$IBlock == TRUE) {
+        
+        iblock <- paste("iBlock ID:", dat[, input$IBlock_id])
+        
+      } else {
+        iblock <- rep("No iBlock", nrow(dat))
+      }
+      
+      if(input$seed_source == TRUE) {
+        
+        sdsource  <- paste("Seed:", dat[, input$seed])
+        
+      } else {
+        sdsource  <- NULL
+      }
+      
+      # Combine all results as a list for field plot labels
+      fld_all <- list(plott, roww, repp, coll, iblock, sdsource, rnames, loc, entry)
+      
     } else if (input$label_type == "gp") {
       #req(input$label_type == "gp")
-
+      
       if (input$toplt_sel_r1 != "none") {
-          tp_lt_r1 <- paste(input$toplt_txt_r1, dat[, input$toplt_sel_r1]) # top left position row 1
+        tp_lt_r1 <- paste(input$toplt_txt_r1, dat[, input$toplt_sel_r1]) # top left position row 1
       } else {
         tp_lt_r1 <- rep(input$toplt_txt_r1, nrow(dat))
       }
-
+      
       if (input$toplt_sel_r2 != "none") {
         tp_lt_r2 <- paste(input$toplt_txt_r2, dat[, input$toplt_sel_r2]) # top left position row 2
       } else {
         tp_lt_r2 <- rep(input$toplt_txt_r2, nrow(dat))
       }
-
+      
       if (input$toprt_sel_r1 != "none") {
         tp_rt_r1 <- paste(input$toprt_txt_r1, dat[, input$toprt_sel_r1]) # top right position row 1
       } else {
         tp_rt_r1 <- rep(input$toprt_txt_r1, nrow(dat))
       }
-
+      
       if (input$toprt_sel_r2 != "none") {
         tp_rt_r2 <- paste(input$toprt_txt_r2, dat[, input$toprt_sel_r2]) # top right position row 2
       } else {
         tp_rt_r2 <- rep(input$toprt_txt_r2, nrow(dat))
       }
-
+      
       if (input$centrt_sel_r1 != "none") {
         ct_rt_r1 <- paste(input$centrt_txt_r1, dat[, input$centrt_sel_r1]) # center right position row 1
       } else {
         ct_rt_r1 <- rep(input$centrt_txt_r1, nrow(dat))
       }
-
+      
       if (input$centrt_sel_r2 != "none") {
         ct_rt_r2 <- paste(input$centrt_txt_r2, dat[, input$centrt_sel_r2]) # center right position row 2
       } else {
         ct_rt_r2 <- rep(input$centrt_txt_r2, nrow(dat))
       }
-
+      
       if (input$centrt_sel_r3 != "none"){
         ct_rt_r3 <- paste(input$centrt_txt_r3, dat[, input$centrt_sel_r3]) # center right position row 1
       } else {
         ct_rt_r3 <- rep(input$centrt_txt_r3, nrow(dat))
       }
-
+      
       if (input$botlt_sel_r1 != "none"){
         bt_lt_r1 <- paste(input$botlt_txt_r1, dat[, input$botlt_sel_r1]) # bottom left position row 1
       } else {
         bt_lt_r1 <- rep(input$botlt_txt_r1, nrow(dat))
       }
-
+      
       if (input$botlt_sel_r2 != "none"){
         bt_lt_r2 <- paste(input$botlt_txt_r2, dat[, input$botlt_sel_r2]) # bottom left position row 2
-
+        
       } else {
         bt_lt_r2 <- rep(input$botlt_txt_r2, nrow(dat))
       }
-
+      
       # Combine all results as a list for general purpose plot labels
       fld_all <- list(tp_lt_r1, tp_lt_r2, tp_rt_r1, tp_rt_r2, ct_rt_r1, ct_rt_r2,
                       ct_rt_r3, bt_lt_r1, bt_lt_r2)
+      
+    } else if (input$label_type == "gpp") {
+      
+      if (input$bot_sel1 != "none") {
+        text1 <- paste(input$bot_txt1, dat[, input$bot_sel1]) # bot position row 1
+      } else {
+        text1 <- rep(input$bot_txt1, nrow(dat))
+      }
+      
+      if (input$bot_sel2 != "none") {
+        text2 <- paste(input$bot_txt2, dat[, input$bot_sel2]) # bot position row 2
+      } else {
+        text2 <- rep(input$bot_txt2, nrow(dat))
+      }
+      
+      if (input$bot_sel3 != "none") {
+        text3 <- paste(input$bot_txt3, dat[, input$bot_sel3]) # bot position row 3
+      } else {
+        text3 <- rep(input$bot_txt3, nrow(dat))
+      }
+      
+      if (input$cent_sel1 != "none") {
+        text4 <- paste(input$cent_txt1, dat[, input$cent_sel1]) # center position row 1
+      } else {
+        text4 <- rep(input$cent_txt1, nrow(dat))
+      }
+      
+      if (input$cent_sel2 != "none") {
+        text5 <- paste(input$cent_txt2, dat[, input$cent_sel2]) # center position row 2
+      } else {
+        text5 <- rep(input$cent_txt2, nrow(dat))
+      }
+      
+      if (input$cent_sel3 != "none") {
+        text6 <- paste(input$cent_txt3, dat[, input$cent_sel3]) # center position row 3
+      } else {
+        text6 <- rep(input$cent_txt3, nrow(dat))
+      }
+      
+      if (input$cent_sel4 != "none") {
+        text7 <- paste(input$cent_txt4, dat[, input$cent_sel4]) # center position row 4
+      } else {
+        text7 <- rep(input$cent_txt4, nrow(dat))
+      }
+      
+      if (input$top_sel1 != "none") {
+        text8 <- paste(input$top_txt1, dat[, input$top_sel1]) # top position row 1
+      } else {
+        text8 <- rep(input$top_txt1, nrow(dat))
+      }
+      
+      if (input$top_sel2 != "none") {
+        text9 <- paste(input$top_txt2, dat[, input$top_sel2]) # top position row 2
+      } else {
+        text9 <- rep(input$top_txt2, nrow(dat))
+      }
+      
+      if (input$top_sel3 != "none") {
+        text10 <- paste(input$top_txt3, dat[, input$top_sel3]) # top position row 3
+      } else {
+        text10 <- rep(input$top_txt3, nrow(dat))
+      }
+      
+      # Combine all results as a list for general purpose plot labels
+      fld_all <- list(text1, text2, text3, text4, text5, text6, text7, text8,
+                      text9, text10)
+      
     }
-
-   fld_all
-})
-
+    
+    fld_all
+  })
+  
   # Generate unique ids for all plots
-
-    UNIQUE_ID <- reactive({
+  
+  UNIQUE_ID <- reactive({
     if (input$label_type == "field") {
-    if (input$uniqueids == "get_unique_id") {
-
-      trial_name <- gsub(" ", "_", input$tname)
-      loc2 <- dat[, input$loc_id]
-      plott2 <- dat[, input$plot_id]
-      rows <- dat[, input$row_id]
-      cols <- dat[, input$col_id]
-
-      ids <- paste(paste0(gsub(" ", "", loc2), input$yr), trial_name,
-            plott2, rows, cols, sep = "_" )
-
-    } else if (input$uniqueids == "uuids") {
-      ids <- uuid::UUIDgenerate(use.time = TRUE, n = nrow(dat), output = "string")
-
-    } else if (input$uniqueids == "use_my_ids") {
-
-      ids <- dat[, input$unique_id]
-    }
-
+      if (input$uniqueids == "get_unique_id") {
+        
+        trial_name <- gsub(" ", "_", input$tname)
+        loc2 <- dat[, input$loc_id]
+        plott2 <- dat[, input$plot_id]
+        rows <- dat[, input$row_id]
+        cols <- dat[, input$col_id]
+        
+        ids <- paste(paste0(gsub(" ", "", loc2), input$yr), trial_name,
+                     plott2, rows, cols, sep = "_" )
+        
+      } else if (input$uniqueids == "uuids") {
+        ids <- uuid::UUIDgenerate(use.time = TRUE, n = nrow(dat), output = "string")
+        
+      } else if (input$uniqueids == "use_my_ids") {
+        
+        ids <- dat[, input$unique_id]
+      }
+      
     } else if (input$label_type == "gp") {
-
+      
       if (input$uniqueids == "uuids") {
         ids <- uuid::UUIDgenerate(use.time = TRUE, n = nrow(dat), output = "string")
-
+        
       } else if (input$uniqueids == "use_my_ids") {
-
-
+        
+        
         ids <- dat[, input$QRcode_id]
       }
+      
+    } else if (input$label_type == "gpp") {
+      
+      ids <- dat[, input$QRcode_id2]
+      
     }
-     ids
+    ids
   })
-
-# Store qr codes as reactive values
+  
+  # Store qr codes as reactive values
   bb <- reactiveValues(bb = NULL)
-
+  
   observeEvent(input$gen_qrcode,{
-
+    
     # Show the spinning animation
     shinyjs::addClass(id = "Animate", class = "fas fa-spinner fa-spin")
     req(UNIQUE_ID())
-
+    
     # Disable the buttons so the user does not click them in the middle of processing
     shinyjs::disable(id = "gen_qrcode")
-
+    
     shinyjs::disable(id = "ec_level")
-
+    
     withProgress(message = paste("Generating", length(UNIQUE_ID()), "QR codes."),
                  detail = 'This may take a while...',
                  value = 0, {
-
-
+                   
+                   
                    bb$bb <- purrr::map(UNIQUE_ID(), make_qrcode, .progress = TRUE)
-
+                   
                  })
-
-
+    
+    
     shinyjs::enable(id = "gen_qrcode")
     shinyjs::enable(id = "ec_level")
     # stop the spinning animation
     shinyjs::removeClass(id = "Animate", class = "fas fa-spinner fa-spin")
-
+    
     # Show a modal on successful generation of QR codes
     showModal(modalDialog(title = "QR codes have been successfully generated!",
                           "Proceed to the 'Template setup' to select a label template or create a
                           custom label.", "When done, click the 'Generate labels' button to design labels.",
                           footer = modalButton("OK"),
                           easyClose = TRUE))
-
-
+    
+    
   })
-
+  
   # Preview labels
-
+  
   observeEvent(input$submit_dat,{
-
+    
     output$preview <- renderPlot({
-
+      
       tryCatch({
-
+        
         # Define new coordinates for QR code
         wdt1 <- 0.5 * input$wdt
         hgt1 <- 0.5 * input$hgt
-
+        
         qry <- hgt1/1.2
-
+        
         bold_font <- grid::gpar(fontface = "bold", fontsize = input$font_size,
                                 fontfamily = input$family)
-        bold_font2 <- grid::gpar(fontface = "bold", fontsize = input$font_size-1,
+        bold_font2 <- grid::gpar(fontface = "bold", fontsize = input$font_size-2,
                                  fontfamily = input$family)
-        bold_font3 <- grid::gpar(fontface = "bold", fontsize = input$font_size-2,
+        plain_font2 <- grid::gpar(fontface = "plain", fontsize = input$font_size-2,
+                                  fontfamily = input$family)
+        bold_font3 <- grid::gpar(fontface = "bold", fontsize = input$font_size-4,
                                  fontfamily = input$family)
-        bold_font4 <- grid::gpar(fontface = "bold", fontsize = input$font_size-4,
+        plain_font3 <- grid::gpar(fontface = "plain", fontsize = input$font_size-4,
+                                  fontfamily = input$family)
+        plain_font4 <- grid::gpar(fontface = "plain", fontsize = input$font_size-floor(input$font_size/2.5),
+                                  fontfamily = input$family)
+        bold_font4 <- grid::gpar(fontface = "bold", fontsize = input$font_size-floor(input$font_size/2.5),
                                  fontfamily = input$family)
-
-        if (input$templates == "Treetag LTS14") {
-
-
-          tt <- grid::viewport(x = grid::unit(0, "npc"),
-                               y = grid::unit(1, "npc"),
-                               width = grid::unit(input$wdt, "in"),
-                               height = grid::unit(input$hgt, "in"),
-                               just = c('left','top'))
-
-          # Viewport for first QR codes
-          qq <- grid::viewport(x = grid::unit(0.57, "npc"),
-                               y = grid::unit(0.3, "npc"),
-                               angle = 90,
-                               width = grid::unit(wdt1, "in"),
-                               height = grid::unit(qry, "in"),
-                               just = c('right','center'))
-
-          # Viewport for IBlock
-          bl <- grid::viewport(x = grid::unit(0.1, "npc"),
-                               y = grid::unit(0.3, "npc"),
-                               angle = 90,
-                               width = grid::unit(0.55*input$wdt, "in"),
-                               height = grid::unit(0.8*hgt1, "in"),
-                               just = "left")
-
-          # Viewport for second QR code
-          qq2 <- grid::viewport(x = grid::unit(0.5, "npc"),
-                                y = grid::unit(0.9, "npc"),
-                                width = grid::unit(wdt1, "inches"),
-                                height = grid::unit(qry, "inches"),
-                                just = c('center'))
-
-          px <- 0.11*input$wdt # x coordinate for plot
-
-          py <- 0.05*input$hgt # y coordinate for plot
-
-          rx <- 0.27*input$wdt # x coordinate for row
-
-          ry <- 0.4*input$hgt # y coordinate for Rep
-
-          lx <- 0.9*input$wdt # x coordinate for location
-
-          ly <- 0.4*input$hgt # y coordinate for location
-
-          ex <- 0.9*input$wdt # x coordinate for first entry
-
-          ee <- 0.85*input$wdt # x coordinate for second entry
-
-          ey <- 0.83*input$hgt # y coordinate for second entry
-
-          nx <- 0.6*input$wdt # x coordinate for researcher's name
-
-
-          grid::pushViewport(tt)
-
-          if (input$rounded == TRUE) {
-            grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
-          } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
-
-          # Add Plot ID to label; note coordinates
-          grid::grid.text(label = lab_inf()[[1]][input$lab_sel],
-                          x = grid::unit(px, "in"),
-                          y = grid::unit(py, "in"), rot = 90,
-                          gp = bold_font, hjust = 0, vp = tt)
-
-          # Add Rep ID to label; note coordinates
-          grid::grid.text(label = lab_inf()[[3]][input$lab_sel],
-                          x= grid::unit(px, "in"),
-                          y = grid::unit(ry, "in"), rot = 90,
-                          gp = bold_font, hjust = 0, vp = tt)
-
-          # Add Row ID to label; note coordinates
-          grid::grid.text(label = lab_inf()[[2]][input$lab_sel],
-                          x = grid::unit(rx, "in"),
-                          y = grid::unit(py, "in"), rot = 90,
-                          gp = bold_font2, hjust = 0, vp = tt)
-
-          # Add column ID to label; note coordinates
-          grid::grid.text(label = lab_inf()[[4]][input$lab_sel],
-                          x = grid::unit(rx, "in"),
-                          y = grid::unit(ry, "in"), rot = 90,
-                          gp = bold_font2, hjust = 0, vp = tt)
-
-
-          # Define viewport for QR code; note coordinates and dimension
-
-          grid::pushViewport(qq)
-
-          # Add first QR code
-          grid::grid.draw(bb$bb[[input$lab_sel]])
-          grid::popViewport()
-
-          # Define viewport for Block ID if it is an incomplete block design
-
-          grid::pushViewport(bl)
-
-          # Add Block ID to label; note coordinates
-          grid::grid.text(label = lab_inf()[[5]][input$lab_sel],
-                          x = grid::unit(0.2, "npc"),
-                          y = grid::unit(0.35, "npc"),
-                          rot = 360, gp = bold_font2,
-                          hjust = 0)
-
-
-          # Go back to label viewport
-          grid::upViewport()
-
-          # Add location of experiment to label
-          grid::grid.text(label = lab_inf()[[8]][input$lab_sel],
-                          rot = 90,
-                          x = grid::unit(lx, "in"),
-                          y = grid::unit(ly, "in"),
-                          gp = bold_font3, hjust = 0, vp = tt)
-
-
-           # Add seed source to label; note coordinates
-          grid::grid.text(label = lab_inf()[[6]][input$lab_sel],
-                          x = grid::unit(0.6, "npc"),
-                          y = grid::unit(0.35, "npc"),
-                          rot = 90, vp = tt,
-                          gp = bold_font3, hjust = 0, )
-
-           # Add researcher's name to label; note coordinates
-          grid::grid.text(label = lab_inf()[[7]][input$lab_sel],
-                          x = grid::unit(0.72, "npc"),
-                          y = grid::unit(0.35, "npc"),
-                          rot = 90, vp = tt,
-                          gp = bold_font3, hjust = 0, )
-
-
-          # Add entry or treatment name to label
-          grid::grid.text(label = lab_inf()[[9]][input$lab_sel], rot = 90,
-                          x= grid::unit(ex, "in"),
-                          y = grid::unit(py, "in"),
-                          gp = bold_font3, hjust = 0, vp = tt)
-
-          # Add entry or treatment name to label
-          grid::grid.text(label = lab_inf()[[9]][input$lab_sel], rot = 90,
-                          x = grid::unit(ee, "in"),
-                          y = grid::unit(ey, "in"),
-                          gp = bold_font4, hjust = 0, vp = tt)
-
-          grid::pushViewport(qq2)
-
-          # Add second QR code
-          grid::grid.draw(bb$bb[[input$lab_sel]])
-
-          grid::popViewport()
-          # End for treetag field plot label preview
-
-        } else {
-          #' Create a viewport for each label
-          aa <- grid::viewport(x = grid::unit(0, "npc"),
-                               y = grid::unit(1, "npc"),
-                               width = grid::unit(input$wdt, "in"),
-                               height = grid::unit(input$hgt, "in"),
-                               just = c('left','top'))
-
-          # Define viewport for QR code; note coordinates and dimension
-
-          qq <- grid::viewport(x = grid::unit(0.5, "npc"),
-                               width = grid::unit(wdt1, "in"),
-                               height = grid::unit(qry, "in"),
-                               just = c('right','center'))
-
-          # Define viewport for Block ID if it is an incomplete block design
-
-          bl <- grid::viewport(x = grid::unit(0.47, "npc"),
-                               width = grid::unit(0.55*input$wdt, "in"),
-                               height = grid::unit(0.8*hgt1, "in"),
-                               just = "left")
-
-          # Coordinates for adding text labels to grids
-          px <- 0.1*input$wdt # x coordinate for plot
-
-          py <- 0.92*input$hgt # y coordinate for plot
-
-          rx <- 0.6*input$wdt # x coordinate for rep
-
-          ry <- 0.78*input$hgt # y coordinate for row
-
-          ly <- 0.22*input$hgt # y coordinate for location
-
-          ex <- 0.05*input$wdt # x coordinate for entry
-
-          ey <- 0.1*input$hgt # y coordinate for entry
-
-          grid::pushViewport(aa)
-
-          if (input$rounded == TRUE) {
-            grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
-          } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
-
-
-          # Add Plot ID to label; note coordinates
-          grid::grid.text(label = lab_inf()[[1]][input$lab_sel],
-                          x = grid::unit(px, "in"),
-                          y = grid::unit(py, "in"),
-                          gp = bold_font, hjust = 0, vp = aa)
-
-          # Add Rep ID to label; note coordinates
-          grid::grid.text(label = lab_inf()[[3]][input$lab_sel],
-                          x = grid::unit(rx, "in"),
-                          y = grid::unit(py, "in"),
-                          gp = bold_font, hjust = 0, vp = aa)
-
-          # Add Row ID to label; note coordinates
-          grid::grid.text(label = lab_inf()[[2]][input$lab_sel],
-                          x = grid::unit(px, "in"),
-                          y = grid::unit(ry, "in"),
-                          gp = bold_font2, hjust = 0, vp = aa)
-
-          # Add column ID to label; note coordinates
-          grid::grid.text(label = lab_inf()[[4]][input$lab_sel],
-                          x = grid::unit(rx, "in"),
-                          y = grid::unit(ry, "in"),
-                          gp = bold_font2, hjust = 0, vp = aa)
-
-          # Add seed source to label; note coordinates
-          grid::grid.text(label = lab_inf()[[6]][input$lab_sel],
-                          x = grid::unit(0.42, "npc"),
-                          y = grid::unit(0.47, "npc"),
-                          gp = bold_font3, hjust = 0, vp = aa)
-
-          # Add researcher's name to label; note coordinates
-          grid::grid.text(label = lab_inf()[[7]][input$lab_sel],
-                          x = grid::unit(0.42, "npc"),
-                          y = grid::unit(0.35, "npc"),
-                          gp = bold_font3, hjust = 0, vp = aa)
-
-
-          # Push viewport for qr code
-
-          grid::pushViewport(qq)
-
-          # Add QR code
-          grid::grid.draw(bb$bb[[input$lab_sel]])
-          grid::popViewport()
-
-          # Define viewport for Block ID if it is an incomplete block design
-
-          grid::pushViewport(bl)
-
-          # Add Block ID to label; note coordinates
-
-          grid::grid.text(label = lab_inf()[[5]][input$lab_sel],
-                          x = grid::unit(0.01, "npc"),
-                          y = grid::unit(0.8, "npc"),
-                          gp = bold_font2, hjust = 0)
-
-          # Go back to label viewport
-          grid::upViewport()
-
-          # Add location of experiment to label
-          grid::grid.text(label = lab_inf()[[8]][input$lab_sel],
-                          x= grid::unit(px, "in"),
-                          y = grid::unit(ly, "in"),
-                          gp = bold_font3, hjust = 0, vp = aa)
-
-          # Add entry or treatment name to label
-          grid::grid.text(label = lab_inf()[[9]][input$lab_sel],
-                          x= grid::unit(ex, "in"),
-                          y = grid::unit(ey, "in"),
-                          gp = bold_font3, hjust = 0, vp = aa)
-
-          grid::popViewport()
-
+        
+        if (input$label_type == "gp" || input$label_type == "field") {
+          if (input$templates == "Treetag LTS14") {
+            
+            
+            tt <- grid::viewport(x = grid::unit(0, "npc"),
+                                 y = grid::unit(1, "npc"),
+                                 width = grid::unit(input$wdt, "in"),
+                                 height = grid::unit(input$hgt, "in"),
+                                 just = c('left','top'))
+            
+            # Viewport for first QR codes
+            qq <- grid::viewport(x = grid::unit(0.57, "npc"),
+                                 y = grid::unit(0.3, "npc"),
+                                 angle = 90,
+                                 width = grid::unit(wdt1, "in"),
+                                 height = grid::unit(qry, "in"),
+                                 just = c('right','center'))
+            
+            # Viewport for IBlock
+            bl <- grid::viewport(x = grid::unit(0.1, "npc"),
+                                 y = grid::unit(0.3, "npc"),
+                                 angle = 90,
+                                 width = grid::unit(0.55*input$wdt, "in"),
+                                 height = grid::unit(0.8*hgt1, "in"),
+                                 just = "left")
+            
+            # Viewport for second QR code
+            qq2 <- grid::viewport(x = grid::unit(0.5, "npc"),
+                                  y = grid::unit(0.9, "npc"),
+                                  width = grid::unit(wdt1, "inches"),
+                                  height = grid::unit(qry, "inches"),
+                                  just = c('center'))
+            
+            px <- 0.11*input$wdt # x coordinate for plot
+            
+            py <- 0.05*input$hgt # y coordinate for plot
+            
+            rx <- 0.27*input$wdt # x coordinate for row
+            
+            ry <- 0.4*input$hgt # y coordinate for Rep
+            
+            lx <- 0.9*input$wdt # x coordinate for location
+            
+            ly <- 0.4*input$hgt # y coordinate for location
+            
+            ex <- 0.9*input$wdt # x coordinate for first entry
+            
+            ee <- 0.85*input$wdt # x coordinate for second entry
+            
+            ey <- 0.83*input$hgt # y coordinate for second entry
+            
+            nx <- 0.6*input$wdt # x coordinate for researcher's name
+            
+            
+            grid::pushViewport(tt)
+            
+            if (input$rounded == TRUE) {
+              grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+            } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            
+            # Add Plot ID to label; note coordinates
+            grid::grid.text(label = lab_inf()[[1]][input$lab_sel],
+                            x = grid::unit(px, "in"),
+                            y = grid::unit(py, "in"), rot = 90,
+                            gp = bold_font, hjust = 0, vp = tt)
+            
+            # Add Rep ID to label; note coordinates
+            grid::grid.text(label = lab_inf()[[3]][input$lab_sel],
+                            x= grid::unit(px, "in"),
+                            y = grid::unit(ry, "in"), rot = 90,
+                            gp = bold_font, hjust = 0, vp = tt)
+            
+            # Add Row ID to label; note coordinates
+            grid::grid.text(label = lab_inf()[[2]][input$lab_sel],
+                            x = grid::unit(rx, "in"),
+                            y = grid::unit(py, "in"), rot = 90,
+                            gp = bold_font2, hjust = 0, vp = tt)
+            
+            # Add column ID to label; note coordinates
+            grid::grid.text(label = lab_inf()[[4]][input$lab_sel],
+                            x = grid::unit(rx, "in"),
+                            y = grid::unit(ry, "in"), rot = 90,
+                            gp = bold_font2, hjust = 0, vp = tt)
+            
+            
+            # Define viewport for QR code; note coordinates and dimension
+            
+            grid::pushViewport(qq)
+            
+            # Add first QR code
+            grid::grid.draw(bb$bb[[input$lab_sel]])
+            grid::popViewport()
+            
+            # Define viewport for Block ID if it is an incomplete block design
+            
+            grid::pushViewport(bl)
+            
+            # Add Block ID to label; note coordinates
+            grid::grid.text(label = lab_inf()[[5]][input$lab_sel],
+                            x = grid::unit(0.2, "npc"),
+                            y = grid::unit(0.35, "npc"),
+                            rot = 360, gp = bold_font2,
+                            hjust = 0)
+            
+            
+            # Go back to label viewport
+            grid::upViewport()
+            
+            # Add location of experiment to label
+            grid::grid.text(label = lab_inf()[[8]][input$lab_sel],
+                            rot = 90,
+                            x = grid::unit(lx, "in"),
+                            y = grid::unit(ly, "in"),
+                            gp = bold_font3, hjust = 0, vp = tt)
+            
+            
+            # Add seed source to label; note coordinates
+            grid::grid.text(label = lab_inf()[[6]][input$lab_sel],
+                            x = grid::unit(0.6, "npc"),
+                            y = grid::unit(0.35, "npc"),
+                            rot = 90, vp = tt,
+                            gp = bold_font3, hjust = 0, )
+            
+            # Add researcher's name to label; note coordinates
+            grid::grid.text(label = lab_inf()[[7]][input$lab_sel],
+                            x = grid::unit(0.72, "npc"),
+                            y = grid::unit(0.35, "npc"),
+                            rot = 90, vp = tt,
+                            gp = bold_font3, hjust = 0, )
+            
+            
+            # Add entry or treatment name to label
+            grid::grid.text(label = lab_inf()[[9]][input$lab_sel], rot = 90,
+                            x= grid::unit(ex, "in"),
+                            y = grid::unit(py, "in"),
+                            gp = bold_font3, hjust = 0, vp = tt)
+            
+            # Add entry or treatment name to label
+            grid::grid.text(label = lab_inf()[[9]][input$lab_sel], rot = 90,
+                            x = grid::unit(ee, "in"),
+                            y = grid::unit(ey, "in"),
+                            gp = bold_font4, hjust = 0, vp = tt)
+            
+            grid::pushViewport(qq2)
+            
+            # Add second QR code
+            grid::grid.draw(bb$bb[[input$lab_sel]])
+            
+            grid::popViewport()
+            # End for treetag field plot label preview
+            
+          } else if (input$templates != "Treetag LTS14") {
+            
+            
+            #' Create a viewport for each label
+            aa <- grid::viewport(x = grid::unit(0, "npc"),
+                                 y = grid::unit(1, "npc"),
+                                 width = grid::unit(input$wdt, "in"),
+                                 height = grid::unit(input$hgt, "in"),
+                                 just = c('left','top'))
+            
+            # Define viewport for QR code; note coordinates and dimension
+            
+            qq <- grid::viewport(x = grid::unit(0.5, "npc"),
+                                 width = grid::unit(wdt1, "in"),
+                                 height = grid::unit(qry, "in"),
+                                 just = c('right','center'))
+            
+            # Define viewport for Block ID if it is an incomplete block design
+            
+            bl <- grid::viewport(x = grid::unit(0.47, "npc"),
+                                 width = grid::unit(0.55*input$wdt, "in"),
+                                 height = grid::unit(0.8*hgt1, "in"),
+                                 just = "left")
+            
+            # Coordinates for adding text labels to grids
+            px <- 0.1*input$wdt # x coordinate for plot
+            
+            py <- 0.92*input$hgt # y coordinate for plot
+            
+            rx <- 0.6*input$wdt # x coordinate for rep
+            
+            ry <- 0.78*input$hgt # y coordinate for row
+            
+            ly <- 0.22*input$hgt # y coordinate for location
+            
+            ex <- 0.05*input$wdt # x coordinate for entry
+            
+            ey <- 0.1*input$hgt # y coordinate for entry
+            
+            grid::pushViewport(aa)
+            
+            if (input$rounded == TRUE) {
+              grid::grid.roundrect(gp = gpar(lwd = 0.5))
+            } else (grid::grid.rect(gp = gpar(lwd = 0.5)))
+            
+            # Add Plot ID to label; note coordinates
+            grid::grid.text(label = lab_inf()[[1]][input$lab_sel],
+                            x = grid::unit(px, "in"),
+                            y = grid::unit(py, "in"),
+                            gp = bold_font, hjust = 0, vp = aa)
+            
+            # Add Rep ID to label; note coordinates
+            grid::grid.text(label = lab_inf()[[3]][input$lab_sel],
+                            x = grid::unit(rx, "in"),
+                            y = grid::unit(py, "in"),
+                            gp = bold_font, hjust = 0, vp = aa)
+            
+            # Add Row ID to label; note coordinates
+            grid::grid.text(label = lab_inf()[[2]][input$lab_sel],
+                            x = grid::unit(px, "in"),
+                            y = grid::unit(ry, "in"),
+                            gp = bold_font2, hjust = 0, vp = aa)
+            
+            # Add column ID to label; note coordinates
+            grid::grid.text(label = lab_inf()[[4]][input$lab_sel],
+                            x = grid::unit(rx, "in"),
+                            y = grid::unit(ry, "in"),
+                            gp = bold_font2, hjust = 0, vp = aa)
+            
+            # Add seed source to label; note coordinates
+            grid::grid.text(label = lab_inf()[[6]][input$lab_sel],
+                            x = grid::unit(0.42, "npc"),
+                            y = grid::unit(0.47, "npc"),
+                            gp = bold_font3, hjust = 0, vp = aa)
+            
+            # Add researcher's name to label; note coordinates
+            grid::grid.text(label = lab_inf()[[7]][input$lab_sel],
+                            x = grid::unit(0.42, "npc"),
+                            y = grid::unit(0.35, "npc"),
+                            gp = bold_font3, hjust = 0, vp = aa)
+            
+            
+            # Push viewport for qr code
+            
+            grid::pushViewport(qq)
+            
+            # Add QR code
+            grid::grid.draw(bb$bb[[input$lab_sel]])
+            grid::popViewport()
+            
+            # Define viewport for Block ID if it is an incomplete block design
+            
+            grid::pushViewport(bl)
+            
+            # Add Block ID to label; note coordinates
+            
+            grid::grid.text(label = lab_inf()[[5]][input$lab_sel],
+                            x = grid::unit(0.01, "npc"),
+                            y = grid::unit(0.8, "npc"),
+                            gp = bold_font2, hjust = 0)
+            
+            # Go back to label viewport
+            grid::upViewport()
+            
+            # Add location of experiment to label
+            grid::grid.text(label = lab_inf()[[8]][input$lab_sel],
+                            x= grid::unit(px, "in"),
+                            y = grid::unit(ly, "in"),
+                            gp = bold_font3, hjust = 0, vp = aa)
+            
+            # Add entry or treatment name to label
+            grid::grid.text(label = lab_inf()[[9]][input$lab_sel],
+                            x= grid::unit(ex, "in"),
+                            y = grid::unit(ey, "in"),
+                            gp = bold_font3, hjust = 0, vp = aa)
+            
+            grid::popViewport()
+            
+          }
+          
+        } else if (input$label_type == "gpp"){
+          if (input$templates != "Treetag LTS14") {
+            qq <- grid::viewport(x = grid::unit(1, "npc"),
+                                 width = grid::unit(wdt1, "in"),
+                                 height = grid::unit(qry, "in"),
+                                 just = c('right','center'))
+            
+            # Create a viewport for each label
+            aa <- grid::viewport(x = grid::unit(0, "npc"),
+                                 y = grid::unit(1, "npc"),
+                                 width = grid::unit(input$wdt, "in"),
+                                 height = grid::unit(input$hgt, "in"),
+                                 just = c('left','top'))
+            
+            txt1x <- 0.95*input$wdt # x coordinate for txt1
+            
+            txt1y <- 0.05*input$hgt # y coordinate for txt1
+            
+            txt2x <- 0.9*input$wdt # x coordinate for txt2
+            
+            txt3x <- 0.6*input$wdt # y coordinate for txt3
+            
+            txt4x <- 0.5*input$wdt # y coordinate for txt4
+            
+            txt5x <- 0.4*input$wdt # x coordinate for txt5
+            
+            txt6x <- 0.3*input$wdt # x coordinate for txt6 and 7
+            
+            txt7y <- 0.55*input$hgt # y coordinate for txt7 and 9
+            
+            txt8x <- 0.2*input$wdt # x coordinate for txt8 and txt9
+            
+            txt10x <- 0.05*input$wdt # y coordinate for txt10
+            
+            grid::pushViewport(aa)
+            
+            if (input$rounded == TRUE) {
+              grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+            } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            
+            # Add text1 to label (bottom position 1); note coordinates
+            grid::grid.text(label = lab_inf()[[1]][input$lab_sel],
+                            x = grid::unit(txt1x, "in"),
+                            y = grid::unit(txt1y, "in"), rot = 90,
+                            gp = bold_font2, hjust = 0, vp = aa)
+            
+            # Add text2 to label (bottom position 2); note coordinates
+            grid::grid.text(label = lab_inf()[[2]][input$lab_sel],
+                            x = grid::unit(txt2x, "in"),
+                            y = grid::unit(txt1y, "in"), rot = 90,
+                            gp = bold_font4, hjust = 0, vp = aa)
+            
+            
+            # Add text3 to label (bottom position 3); note coordinates
+            grid::grid.text(label = lab_inf()[[3]][input$lab_sel],
+                            x = grid::unit(txt3x, "in"),
+                            y = grid::unit(txt1y, "in"), rot = 90,
+                            gp = plain_font3, hjust = 0, vp = aa)
+            
+            # Add text4 to label (center position 1); note coordinates
+            grid::grid.text(label = lab_inf()[[4]][input$lab_sel],
+                            x = grid::unit(txt4x, "in"),
+                            y = grid::unit(txt1y, "in"), rot = 90,
+                            gp = plain_font3, hjust = 0, vp = aa)
+            
+            # Add text5 to label (center position 2); note coordinates
+            grid::grid.text(label = lab_inf()[[5]][input$lab_sel],
+                            x = grid::unit(txt5x, "in"),
+                            y = grid::unit(txt1y, "in"), rot = 90,
+                            gp = bold_font2, just = c(-0.5, 0.5), vp = aa)
+            
+            
+            # Define viewport for QR code; note coordinates and dimension
+            
+            grid::pushViewport(qq)
+            
+            # Add first QR code
+            grid::grid.draw(bb$bb[[input$lab_sel]])
+            # grid::popViewport()
+            
+            
+            # Go back to label viewport
+            grid::upViewport()
+            
+            # Add text6 to label (center position 3); note coordinates
+            grid::grid.text(label = lab_inf()[[6]][input$lab_sel],
+                            x = grid::unit(txt6x, "in"),
+                            y = grid::unit(txt1y, "in"), rot = 90,
+                            gp = bold_font3, hjust = 0, vp = aa)
+            
+            
+            # Add text7 to label (center position 4); note coordinates
+            grid::grid.text(label = lab_inf()[[7]][input$lab_sel],
+                            x = grid::unit(txt6x, "in"),
+                            y = grid::unit(txt7y, "in"), rot = 90,
+                            gp = bold_font3, hjust = 0, vp = aa)
+            
+            
+            # Add text8 to label (top position 1); note coordinates
+            grid::grid.text(label = lab_inf()[[8]][input$lab_sel],
+                            x = grid::unit(txt8x, "in"),
+                            y = grid::unit(txt1y, "in"), rot = 90,
+                            gp = bold_font3, hjust = 0, vp = aa)
+            
+            
+            # Add text9 to label (top position 2); note coordinates
+            grid::grid.text(label = lab_inf()[[9]][input$lab_sel],
+                            x = grid::unit(txt8x, "in"),
+                            y = grid::unit(txt7y, "in"), rot = 90,
+                            gp = bold_font3, hjust = 0, vp = aa)
+            
+            
+            # Add text10 to label (top position 3); note coordinates
+            grid::grid.text(label = lab_inf()[[10]][input$lab_sel],
+                            x = grid::unit(txt10x, "in"),
+                            y = grid::unit(txt1y, "in"), rot = 90,
+                            gp = bold_font, hjust = 0, vp = aa)
+            
+            
+            grid::popViewport()
+            
+          }
         }
-
+        
       },
       warning = function(cond) {
         showModal(modalDialog(title = "Warning",
@@ -2266,31 +2718,31 @@ observe({
         showModal(modalDialog(title = "Error",
                               "A label preview error occurred. Check the page/label setting parameters or
                            the input for label to preview."))
-
+        
       })
-
-    }) # end of label preview for field plot labels
-
+      
+    }) # end of label preview
+    
   })
-
-
+  
+  
   # Generate labels functions
   create_label <- function(){
-
+    
     # Calculate space between label columns if any
     if (input$numcol == 1) {
       col_space <- 0
     } else {col_space <- (input$page_wdt - input$left_mar - input$right_mar -
-                          input$numcol*input$wdt)/(input$numcol-1)
+                            input$numcol*input$wdt)/(input$numcol-1)
     }
-
+    
     # Calculate space between label rows if any
     if (input$numrow == 1) {
       row_space <- 0
     } else {row_space <- (input$page_hgt - input$top_mar - input$bot_mar -
-                          input$numrow*input$hgt)/(input$numrow-1)
+                            input$numrow*input$hgt)/(input$numrow-1)
     }
-
+    
     #' Check if page setup matches label setup per page.
     #' Error message if either column spaces or the row spaces between labels 
     #' are less than zero
@@ -2300,61 +2752,61 @@ observe({
       showModal(modalDialog(title = "Error",
                             "Page setup does not match label setup per page!"))
     }
-
+    
     # clean up any open graphical devices if function fails
     on.exit(grDevices::graphics.off())
-
-
+    
+    
     if (input$label_type == "field") {
-    #' Subset label info from imported field book
-    #' bal_design
-    if (input$all_labels == TRUE & input$bal_design == FALSE ) {
-      plotid <- lab_inf()[[1]] # Plot ids
-      repid <- lab_inf()[[2]] # Rep ids
-      rowid <- lab_inf()[[3]] # Row ids
-      colid <- lab_inf()[[4]]   # Column ids
-      Blkid <- lab_inf()[[5]] # iBlocks
-      seed_src <- lab_inf()[[6]] # seed source
-      rname <- lab_inf()[[7]]
-      loc1 <-  lab_inf()[[8]] # Location ids
-      Entry <- lab_inf()[[9]]# Entry or treatment ids
-
-      qrcds <- bb$bb # QR codes
-
-    } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
-
-      cc <- which(dat[, input$rep_id] == input$REP & dat[, input$loc_id] == input$LOC)
-
-      plotid <- lab_inf()[[1]][cc] # Plot ids
-      repid <- lab_inf()[[2]][cc] # Rep ids
-      rowid <- lab_inf()[[3]][cc] # Row ids
-      colid <- lab_inf()[[4]][cc]   # Column ids
-      Blkid <- lab_inf()[[5]][cc] # iBlocks
-      seed_src <- lab_inf()[[6]][cc] # seed source
-      rname <- lab_inf()[[7]][cc]
-      loc1 <-  lab_inf()[[8]][cc] # Location ids
-      Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
-
-      qrcds <- bb$bb[cc] # QR codes
-
-
-    } else if (input$all_labels == FALSE & input$bal_design == FALSE) {
-
-      cc <- which(dat[,input$loc_id] == input$LOC)
-
-      plotid <- lab_inf()[[1]][cc] # Plot ids
-      repid <- lab_inf()[[2]][cc] # Rep ids
-      rowid <- lab_inf()[[3]][cc] # Row ids
-      colid <- lab_inf()[[4]][cc]   # Column ids
-      Blkid <- lab_inf()[[5]][cc] # iBlocks
-      seed_src <- lab_inf()[[6]][cc] # seed source
-      rname <- lab_inf()[[7]][cc]
-      loc1 <-  lab_inf()[[8]][cc] # Location ids
-      Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
-
-      qrcds <- bb$bb[cc] # QR codes
-
-    }
+      #' Subset label info from imported field book
+      #' bal_design
+      if (input$all_labels == TRUE & input$bal_design == FALSE ) {
+        plotid <- lab_inf()[[1]] # Plot ids
+        repid <- lab_inf()[[2]] # Rep ids
+        rowid <- lab_inf()[[3]] # Row ids
+        colid <- lab_inf()[[4]]   # Column ids
+        Blkid <- lab_inf()[[5]] # iBlocks
+        seed_src <- lab_inf()[[6]] # seed source
+        rname <- lab_inf()[[7]]
+        loc1 <-  lab_inf()[[8]] # Location ids
+        Entry <- lab_inf()[[9]]# Entry or treatment ids
+        
+        qrcds <- bb$bb # QR codes
+        
+      } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
+        
+        cc <- which(dat[, input$rep_id] == input$REP & dat[, input$loc_id] == input$LOC)
+        
+        plotid <- lab_inf()[[1]][cc] # Plot ids
+        repid <- lab_inf()[[2]][cc] # Rep ids
+        rowid <- lab_inf()[[3]][cc] # Row ids
+        colid <- lab_inf()[[4]][cc]   # Column ids
+        Blkid <- lab_inf()[[5]][cc] # iBlocks
+        seed_src <- lab_inf()[[6]][cc] # seed source
+        rname <- lab_inf()[[7]][cc]
+        loc1 <-  lab_inf()[[8]][cc] # Location ids
+        Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
+        
+        qrcds <- bb$bb[cc] # QR codes
+        
+        
+      } else if (input$all_labels == FALSE & input$bal_design == FALSE) {
+        
+        cc <- which(dat[,input$loc_id] == input$LOC)
+        
+        plotid <- lab_inf()[[1]][cc] # Plot ids
+        repid <- lab_inf()[[2]][cc] # Rep ids
+        rowid <- lab_inf()[[3]][cc] # Row ids
+        colid <- lab_inf()[[4]][cc]   # Column ids
+        Blkid <- lab_inf()[[5]][cc] # iBlocks
+        seed_src <- lab_inf()[[6]][cc] # seed source
+        rname <- lab_inf()[[7]][cc]
+        loc1 <-  lab_inf()[[8]][cc] # Location ids
+        Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
+        
+        qrcds <- bb$bb[cc] # QR codes
+        
+      }
     } else if (input$label_type == "gp") {
       plotid <- lab_inf()[[1]] # Top-left row 1
       repid <- lab_inf()[[3]] # Top-left row 2
@@ -2365,62 +2817,62 @@ observe({
       rname <- lab_inf()[[7]] # Center-right row 3
       loc1 <-  lab_inf()[[8]] # Bottom-left row 1
       Entry <- lab_inf()[[9]]# Bottom-left row 2
-
+      
       qrcds <- bb$bb # QR codes
     }
-
+    
     nn <- length(qrcds)
-
+    
     # Call the function to create the augmented fieldbook containing unique IDs
     create_aug_fieldbook()
-
-
+    
+    
     #' Generate label positions -- prints across rows of grid layout
     pos <- expand.grid(x = 1:input$numcol, y = 1:input$numrow)
-
+    
     duplication <- ceiling(nn/nrow(pos))
-
+    
     label_pos <- do.call("rbind", replicate(duplication, pos, simplify = FALSE))
-
+    
     corx <- label_pos$x # label x coordinate
-
+    
     cory <- label_pos$y # label y coordinate
-
+    
     #' Create pdf file to be saved in working directory
-
+    
     pdf_filename <<- paste0(input$filename, paste0(input$wdt,'in'), 'x',
                             paste0(input$hgt,'in'), Sys.time()) # name of pdf file
-
+    
     pdf_filename <<- paste0(gsub(":","_", pdf_filename), ".pdf")
-
-
+    
+    
     #' Font size to print text on labels
     fsize <- input$font_size
-
+    
     # Define new coordinates for QR code
     wdt1 <- 0.5 * input$wdt
     hgt1 <- 0.5 * input$hgt
-
+    
     qry <- hgt1/1.2
-
+    
     #' Create pdf file
     #' The argument input$family specifies the initial/default font input$family to be
     #' used. Device-independent fonts include "sans", "serif", and "mono",
-
+    
     grDevices::pdf(pdf_filename,
                    width = input$page_wdt,
                    height = input$page_hgt,
                    onefile = TRUE,
                    family = input$family) # Letter size paper from Avery
-
+    
     #' Grid layout for labels
     label_layout <- grid::grid.layout(input$numrow, input$numcol,
                                       widths = grid::unit(c(rep(input$wdt + col_space,input$numcol-1),
                                                             input$wdt), "in"),
                                       heights = grid::unit(c(rep(input$hgt + row_space,input$numrow-1),
                                                              input$hgt), "in"))
-
-
+    
+    
     if (input$templates == "Treetag LTS14") {
       # Viewport for first QR codes
       qq <- grid::viewport(x = grid::unit(0.57, "npc"),
@@ -2429,7 +2881,7 @@ observe({
                            width = grid::unit(wdt1, "in"),
                            height = grid::unit(qry, "in"),
                            just = c('right','center'))
-
+      
       # Viewport for IBlock
       bl <- grid::viewport(x = grid::unit(0.1, "npc"),
                            y = grid::unit(0.3, "npc"),
@@ -2437,34 +2889,34 @@ observe({
                            width = grid::unit(0.55*input$wdt, "in"),
                            height = grid::unit(0.8*hgt1, "in"),
                            just = "left")
-
+      
       # Viewport for second QR code
       qq2 <- grid::viewport(x = grid::unit(0.5, "npc"),
                             y = grid::unit(0.9, "npc"),
                             width = grid::unit(wdt1, "inches"),
                             height = grid::unit(qry, "inches"),
                             just = c('center'))
-
+      
       px <- 0.11*input$wdt # x coordinate for plot
-
+      
       py <- 0.05*input$hgt # y coordinate for plot
-
+      
       rx <- 0.27*input$wdt # x coordinate for row
-
+      
       ry <- 0.4*input$hgt # y coordinate for Rep
-
+      
       lx <- 0.9*input$wdt # x coordinate for location
-
+      
       ly <- 0.4*input$hgt # y coordinate for location
-
+      
       ex <- 0.9*input$wdt # x coordinate for first entry
-
+      
       ee <- 0.85*input$wdt # x coordinate for second entry
-
+      
       ey <- 0.83*input$hgt # y coordinate for second entry
-
+      
       nx <- 0.6*input$wdt # x coordinate for researcher's name
-
+      
     } else {
       #' Create a viewport for each label
       aa <- grid::viewport(x = grid::unit(0, "npc"),
@@ -2472,288 +2924,563 @@ observe({
                            width = grid::unit(input$wdt, "in"),
                            height = grid::unit(input$hgt, "in"),
                            just = c('left','top'))
-
+      
       # Define viewport for QR code; note coordinates and dimension
-
+      
       qq <- grid::viewport(x = grid::unit(0.5, "npc"),
                            width = grid::unit(wdt1, "in"),
                            height = grid::unit(qry, "in"),
                            just = c('right','center'))
-
+      
       # Define viewport for Block ID if it is an incomplete block design
-
+      
       bl <- grid::viewport(x = grid::unit(0.47, "npc"),
                            width = grid::unit(0.55*input$wdt, "in"),
                            height = grid::unit(0.8*hgt1, "in"),
                            just = "left")
-
+      
       # Coordinates for adding text labels to grids
       px <- 0.1*input$wdt # x coordinate for plot
-
+      
       py <- 0.92*input$hgt # y coordinate for plot
-
+      
       rx <- 0.6*input$wdt # x coordinate for rep
-
+      
       ry <- 0.78*input$hgt # y coordinate for row
-
+      
       ly <- 0.22*input$hgt # y coordinate for location
-
+      
       ex <- 0.05*input$wdt # x coordinate for entry
-
+      
       ey <- 0.1*input$hgt # y coordinate for entry
-
+      
     } # end of if statement to create viewports
-
+    
     # Viewport for a new page
     new.page <- grid::viewport(width = grid::unit(input$page_wdt, "in"),
                                height = grid::unit(input$page_hgt, "in"))
-
+    
     #' Create a viewport for each page using grid layout
     lab_vp <- grid::viewport(layout = label_layout)
     grid::pushViewport(lab_vp)
-
-
+    
     bold_font <- grid::gpar(fontface = "bold", fontsize = fsize)
-    bold_font2 <- grid::gpar(fontface = "bold", fontsize = fsize-1)
-    bold_font3 <- grid::gpar(fontface = "bold", fontsize = fsize-2)
-    bold_font4 <- grid::gpar(fontface = "bold", fontsize = fsize-4)
-
+    bold_font2 <- grid::gpar(fontface = "bold", fontsize = fsize-2)
+    plain_font2 <- grid::gpar(fontface = "plain", fontsize = fsize-2)
+    plain_font3 <- grid::gpar(fontface = "plain", fontsize = fsize-4)
+    bold_font3 <- grid::gpar(fontface = "bold", fontsize = fsize-4)
+    bold_font4 <- grid::gpar(fontface = "plain", fontsize = floor(fsize/2.5))
+    
     withProgress(message = paste("Designing", nn, "labels."), value = 0, {
-
+      
       for (i in seq_len(nn)) {
-
+        
         # Increment the progress bar, and update the detail text.
         incProgress(1/nn, detail = paste("Label", i))
-
+        
         label_posn <- c(x = corx[i], y = cory[i])
-
+        
         # Generate QR code
         #bb <- make_qr(UNIQUE_ID[i])
-
+        
         if (all(i != 1 & label_posn == c(1, 1))) {
           grid::grid.newpage()
-
+          
           grid::pushViewport(new.page)
           grid::pushViewport(lab_vp)
-
+          
         }
-
+        
         if (input$templates == "Treetag LTS14") {
-
+          
           tt <- grid::viewport(layout.pos.row=label_posn['y'],
                                layout.pos.col=label_posn['x'])
-
-
+          
+          
           grid::pushViewport(tt)
-
-
+          
+          
           if (input$rounded == TRUE) {
             grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
           } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
-
+          
           # Add Plot ID to label; note coordinates
           grid::grid.text(label = plotid[i],
                           x = grid::unit(px, "in"),
                           y = grid::unit(py, "in"), rot = 90,
                           gp = bold_font, hjust = 0, vp = tt)
-
+          
           # Add Rep ID to label; note coordinates
           grid::grid.text(label = repid[i],
                           x = grid::unit(px, "in"),
                           y = grid::unit(ry, "in"), rot = 90,
                           gp = bold_font, hjust = 0, vp = tt)
-
+          
           # Add Row ID to label; note coordinates
           grid::grid.text(label = rowid[i],
                           x = grid::unit(rx, "in"),
                           y = grid::unit(py, "in"), rot = 90,
                           gp = bold_font2, hjust = 0, vp = tt)
-
+          
           # Add column ID to label; note coordinates
           grid::grid.text(label = colid[i],
                           x = grid::unit(rx, "in"),
                           y = grid::unit(ry, "in"), rot = 90,
                           gp = bold_font2, hjust = 0, vp = tt)
-
-
+          
+          
           # Define viewport for QR code; note coordinates and dimension
-
+          
           grid::pushViewport(qq)
-
+          
           # Add first QR code
           grid::grid.draw(qrcds[[i]])
           grid::popViewport()
-
+          
           # Define viewport for Block ID if it is an incomplete block design
-
+          
           grid::pushViewport(bl)
-
+          
           # Add Block ID to label; note coordinates
           grid::grid.text(label = Blkid[i],
                           x = grid::unit(0.2, "npc"),
                           y = grid::unit(0.35, "npc"),
-                          rot = 360, gp = bold_font2, hjust = 0)
-
-
+                          rot = 360, gp = plain_font2, hjust = 0)
+          
+          
           # Go back to label viewport
           grid::upViewport()
-
+          
           # Add location of experiment to label
           grid::grid.text(label = loc1[i], rot = 90,
                           x= grid::unit(lx, "in"),
                           y = grid::unit(ly, "in"),
-                          gp = bold_font3, hjust = 0, vp = tt)
-
+                          gp = plain_font4, hjust = 0, vp = tt)
+          
           # Add seed source to label; note coordinates
           grid::grid.text(label = seed_src[i],
                           x = grid::unit(0.6, "npc"),
                           y = grid::unit(0.35, "npc"),
                           rot = 90, vp = tt,
-                          gp = bold_font3, hjust = 0, )
-
+                          gp = plain_font3, hjust = 0, )
+          
           # Add researcher's name to label; note coordinates
           grid::grid.text(label = rname[i],
                           x = grid::unit(0.72, "npc"),
                           y = grid::unit(0.35, "npc"),
                           rot = 90, vp = tt,
-                          gp = bold_font3, hjust = 0, )
-
-
+                          gp = plain_font3, hjust = 0, )
+          
+          
           # Add entry or treatment name to label
           grid::grid.text(label = Entry[i], rot = 90,
                           x= grid::unit(ex, "in"),
                           y = grid::unit(py, "in"),
                           gp = bold_font3, hjust = 0, vp = tt)
-
+          
           # Add entry or treatment name to label tear-off
           grid::grid.text(label = Entry[i], rot = 90,
                           x = grid::unit(ee, "in"),
                           y = grid::unit(ey, "in"),
                           gp = bold_font4, hjust = 0, vp = tt)
-
+          
           grid::pushViewport(qq2)
-
+          
           # Add second QR code
           grid::grid.draw(qrcds[[i]])
-
+          
           grid::popViewport(2)
-
+          
         }else{
           grid::pushViewport(grid::viewport(layout.pos.row=label_posn['y'],
                                             layout.pos.col=label_posn['x']))
           grid::pushViewport(aa)
-
+          
           if(input$rounded == TRUE){
-            grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
-          }else(grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
-
+            grid::grid.roundrect(gp = gpar(lwd = 0.5))
+          }else(grid::grid.rect(gp = gpar(lwd = 0.5)))
+          
           # Add Plot ID to label; note coordinates
           grid::grid.text(label = plotid[i],
                           x = grid::unit(px, "in"),
                           y = grid::unit(py, "in"),
                           gp = bold_font, hjust = 0, vp = aa)
-
+          
           # Add Rep ID to label; note coordinates
           grid::grid.text(label = repid[i],
                           x = grid::unit(rx, "in"),
                           y = grid::unit(py, "in"),
                           gp = bold_font, hjust = 0, vp = aa)
-
+          
           # Add Row ID to label; note coordinates
           grid::grid.text(label = rowid[i],
                           x = grid::unit(px, "in"),
                           y = grid::unit(ry, "in"),
                           gp = bold_font2, hjust = 0, vp = aa)
-
+          
           # Add column ID to label; note coordinates
           grid::grid.text(label = colid[i],
                           x = grid::unit(rx, "in"),
                           y = grid::unit(ry, "in"),
                           gp = bold_font2, hjust = 0, vp = aa)
-
+          
           # Add seed source to label; note coordinates
           grid::grid.text(label = seed_src[i],
                           x = grid::unit(0.42, "npc"),
                           y = grid::unit(0.47, "npc"),
                           gp = bold_font3, hjust = 0, vp = aa)
-
+          
           # Add researcher's name to label; note coordinates
           grid::grid.text(label = rname[i],
                           x = grid::unit(0.42, "npc"),
                           y = grid::unit(0.35, "npc"),
                           gp = bold_font3, hjust = 0, vp = aa)
-
+          
           # Push viewport for qr code
-
+          
           grid::pushViewport(qq)
-
+          
           # Add QR code
           grid::grid.draw(qrcds[[i]])
           grid::popViewport()
-
+          
           # Define viewport for Block ID if it is an incomplete block design
-
+          
           grid::pushViewport(bl)
-
+          
           # Add Block ID to label; note coordinates
           # Add Block ID to label; note coordinates
-
+          
           grid::grid.text(label = Blkid[i],
                           x = grid::unit(0.01, "npc"),
                           y = grid::unit(0.8, "npc"),
                           gp = bold_font2, hjust = 0)
-
+          
           # Go back to label viewport
           grid::upViewport()
-
+          
           # Add location of experiment to label
           grid::grid.text(label = loc1[i],
                           x= grid::unit(px, "in"),
                           y = grid::unit(ly, "in"),
                           gp = bold_font3, hjust = 0, vp = aa)
-
+          
           # Add entry or treatment name to label
           grid::grid.text(label = Entry[i],
                           x= grid::unit(ex, "in"),
                           y = grid::unit(ey, "in"),
                           gp = bold_font3, hjust = 0, vp = aa)
-
+          
           grid::popViewport(2)
         }
-
+        
       }
     })
     #grDevices::dev.off()
-
+    
     # Show a modal on successful generation of labels
     showModal(modalDialog(title = "Success", "Labels have been successfully generated!
                           Click the 'Download labels' button to download a PDF file
                           containing the generated labels to your computer.",
                           footer = modalButton("OK"),
                           easyClose = TRUE))
-
+    
     # Enable the initially disabled 'Download labels' button
     shinyjs::enable(id = "down_labels")
     shinyjs::enable(id = "down_fieldbook")
-  }
-
+  } # End of create_label for field plot and gp landscape
+  
+  
+  #---------------------------------------------------------------------------------------#
+  
+  gp_label_portrait <- function() {
+    
+    # Calculate space between label columns if any
+    if (input$numcol == 1) {
+      col_space <- 0
+    } else {col_space <- (input$page_wdt - input$left_mar - input$right_mar -
+                            input$numcol*input$wdt)/(input$numcol-1)
+    }
+    
+    # Calculate space between label rows if any
+    if (input$numrow == 1) {
+      row_space <- 0
+    } else {row_space <- (input$page_hgt - input$top_mar - input$bot_mar -
+                            input$numrow*input$hgt)/(input$numrow-1)
+    }
+    
+    #' Check if page setup matches label setup per page.
+    #' Error message if either column spaces or the row spaces between labels 
+    #' are less than zero
+    
+    if (col_space < 0 | row_space < 0) {
+      
+      showModal(modalDialog(title = "Error",
+                            "Page setup does not match label setup per page!"))
+    }
+    
+    # clean up any open graphical devices if function fails
+    on.exit(grDevices::graphics.off())
+    
+    if (input$label_type == "gpp") {
+      text1 <- lab_inf()[[1]] # Top-left row 1
+      text2 <- lab_inf()[[2]] # Top-left row 2
+      text3 <- lab_inf()[[3]] # Top-right row 1
+      text4 <- lab_inf()[[4]] # Top-right row 2
+      text5 <- lab_inf()[[5]] # Center-right row 1
+      text6 <- lab_inf()[[6]] # Center-right row 2
+      text7 <- lab_inf()[[7]] # Center-right row 3
+      text8 <-  lab_inf()[[8]] # Bottom-left row 1
+      text9 <- lab_inf()[[9]]# Bottom-left row 2
+      text10 <- lab_inf()[[10]]# Bottom-left row 2
+      
+      qrcds <- bb$bb # QR codes
+    }
+    
+    nn <- length(qrcds)
+    
+    #' Generate label positions -- prints across rows of grid layout
+    pos <- expand.grid(x = 1:input$numcol, y = 1:input$numrow)
+    
+    duplication <- ceiling(nn/nrow(pos))
+    
+    label_pos <- do.call("rbind", replicate(duplication, pos, simplify = FALSE))
+    
+    corx <- label_pos$x # label x coordinate
+    
+    cory <- label_pos$y # label y coordinate
+    
+    #' Create pdf file to be saved in working directory
+    
+    pdf_filename <<- paste0(input$filename, paste0(input$wdt,'in'), 'x',
+                            paste0(input$hgt,'in'), Sys.time()) # name of pdf file
+    
+    pdf_filename <<- paste0(gsub(":","_", pdf_filename), ".pdf")
+    
+    
+    #' Font size to print text on labels
+    fsize <- input$font_size
+    
+    # Define new coordinates for QR code
+    wdt1 <- 0.5 * input$wdt
+    hgt1 <- 0.5 * input$hgt
+    
+    qry <- hgt1/1.2
+    
+    #' Create pdf file
+    #' The argument input$family specifies the initial/default font input$family to be
+    #' used. Device-independent fonts include "sans", "serif", and "mono",
+    
+    grDevices::pdf(pdf_filename,
+                   width = input$page_wdt,
+                   height = input$page_hgt,
+                   onefile = TRUE,
+                   family = input$family) # Letter size paper from Avery
+    
+    #' Grid layout for labels
+    label_layout <- grid::grid.layout(input$numrow, input$numcol,
+                                      widths = grid::unit(c(rep(input$wdt + col_space,input$numcol-1),
+                                                            input$wdt), "in"),
+                                      heights = grid::unit(c(rep(input$hgt + row_space,input$numrow-1),
+                                                             input$hgt), "in"))
+    
+    qq <- grid::viewport(x = grid::unit(1, "npc"),
+                         width = grid::unit(wdt1, "in"),
+                         height = grid::unit(qry, "in"),
+                         just = c('right','center'))
+    
+    # Create a viewport for each label
+    aa <- grid::viewport(x = grid::unit(0, "npc"),
+                         y = grid::unit(1, "npc"),
+                         width = grid::unit(input$wdt, "in"),
+                         height = grid::unit(input$hgt, "in"),
+                         just = c('left','top'))
+    
+    txt1x <- 0.95*input$wdt # x coordinate for txt1
+    
+    txt1y <- 0.05*input$hgt # y coordinate for txt1
+    
+    txt2x <- 0.9*input$wdt # x coordinate for txt2
+    
+    txt3x <- 0.6*input$wdt # y coordinate for txt3
+    
+    txt4x <- 0.5*input$wdt # y coordinate for txt4
+    
+    txt5x <- 0.4*input$wdt # x coordinate for txt5
+    
+    txt6x <- 0.3*input$wdt # x coordinate for txt6 and 7
+    
+    txt7y <- 0.55*input$hgt # y coordinate for txt7 and 9
+    
+    txt8x <- 0.2*input$wdt # x coordinate for txt8 and txt9
+    
+    txt10x <- 0.05*input$wdt # y coordinate for txt10
+    
+    
+    
+    # Viewport for a new page
+    new.page <- grid::viewport(width = grid::unit(input$page_wdt, "in"),
+                               height = grid::unit(input$page_hgt, "in"))
+    
+    # Create a viewport for each page using grid layout
+    lab_vp <- grid::viewport(layout = label_layout)
+    grid::pushViewport(lab_vp)
+    
+    bold_font <- grid::gpar(fontface = "bold", fontsize = fsize)
+    bold_font2 <- grid::gpar(fontface = "bold", fontsize = fsize-2)
+    plain_font2 <- grid::gpar(fontface = "plain", fontsize = fsize-2)
+    plain_font3 <- grid::gpar(fontface = "plain", fontsize = fsize-4)
+    bold_font3 <- grid::gpar(fontface = "bold", fontsize = fsize-4)
+    bold_font4 <- grid::gpar(fontface = "plain", fontsize = floor(fsize/2.5))
+    
+    withProgress(message = paste("Designing", nn, "labels."), value = 0, {
+      
+      for (i in seq_len(nn)) {
+        
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/nn, detail = paste("Label", i))
+        
+        label_posn <- c(x = corx[i], y = cory[i])
+        
+        # Generate QR code
+        #bb <- make_qr(UNIQUE_ID[i])
+        
+        if (all(i != 1 & label_posn == c(1, 1))) {
+          grid::grid.newpage()
+          
+          grid::pushViewport(new.page)
+          grid::pushViewport(lab_vp)
+          
+        }
+        
+        grid::pushViewport(grid::viewport(layout.pos.row=label_posn['y'],
+                                          layout.pos.col=label_posn['x']))
+        grid::pushViewport(aa)
+        
+        if (input$rounded == TRUE) {
+          grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+        } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+        
+        # Add text1 to label (bottom position 1); note coordinates
+        grid::grid.text(label = text1[i],
+                        x = grid::unit(txt1x, "in"),
+                        y = grid::unit(txt1y, "in"), rot = 90,
+                        gp = bold_font2, hjust = 0, vp = aa)
+        
+        # Add text2 to label (bottom position 2); note coordinates
+        grid::grid.text(label = text2[i],
+                        x = grid::unit(txt2x, "in"),
+                        y = grid::unit(txt1y, "in"), rot = 90,
+                        gp = bold_font4, hjust = 0, vp = aa)
+        
+        
+        # Add text3 to label (bottom position 3); note coordinates
+        grid::grid.text(label = text3[i],
+                        x = grid::unit(txt3x, "in"),
+                        y = grid::unit(txt1y, "in"), rot = 90,
+                        gp = plain_font3, hjust = 0, vp = aa)
+        
+        # Add text4 to label (center position 1); note coordinates
+        grid::grid.text(label = text4[i],
+                        x = grid::unit(txt4x, "in"),
+                        y = grid::unit(txt1y, "in"), rot = 90,
+                        gp = plain_font3, hjust = 0, vp = aa)
+        
+        # Add text5 to label (center position 2); note coordinates
+        grid::grid.text(label = text5[i],
+                        x = grid::unit(txt5x, "in"),
+                        y = grid::unit(txt1y, "in"), rot = 90,
+                        gp = bold_font2, just = c(-0.5, 0.5), vp = aa)
+        
+        
+        # Define viewport for QR code; note coordinates and dimension
+        
+        grid::pushViewport(qq)
+        
+        # Add first QR code
+        grid::grid.draw(qrcds[[i]])
+        # grid::popViewport()
+        
+        
+        # Go back to label viewport
+        grid::upViewport()
+        
+        # Add text6 to label (center position 3); note coordinates
+        grid::grid.text(label = text6[i],
+                        x = grid::unit(txt6x, "in"),
+                        y = grid::unit(txt1y, "in"), rot = 90,
+                        gp = bold_font3, hjust = 0, vp = aa)
+        
+        
+        # Add text7 to label (center position 4); note coordinates
+        grid::grid.text(label = text7[i],
+                        x = grid::unit(txt6x, "in"),
+                        y = grid::unit(txt7y, "in"), rot = 90,
+                        gp = bold_font3, hjust = 0, vp = aa)
+        
+        
+        # Add text8 to label (top position 1); note coordinates
+        grid::grid.text(label = text8[i],
+                        x = grid::unit(txt8x, "in"),
+                        y = grid::unit(txt1y, "in"), rot = 90,
+                        gp = bold_font3, hjust = 0, vp = aa)
+        
+        
+        # Add text9 to label (top position 2); note coordinates
+        grid::grid.text(label = text9[i],
+                        x = grid::unit(txt8x, "in"),
+                        y = grid::unit(txt7y, "in"), rot = 90,
+                        gp = bold_font3, hjust = 0, vp = aa)
+        
+        
+        # Add text10 to label (top position 3); note coordinates
+        grid::grid.text(label = text10[i],
+                        x = grid::unit(txt10x, "in"),
+                        y = grid::unit(txt1y, "in"), rot = 90,
+                        gp = bold_font, hjust = 0, vp = aa)
+        
+        
+        grid::popViewport(2)
+        
+        
+      } 
+      
+    })
+    
+    # Show a modal on successful generation of labels
+    showModal(modalDialog(title = "Success", "Labels have been successfully generated!
+                          Click the 'Download labels' button to download a PDF file
+                          containing the generated labels to your computer.",
+                          footer = modalButton("OK"),
+                          easyClose = TRUE))
+    
+    # Enable the initially disabled 'Download labels' button
+    shinyjs::enable(id = "down_labels")
+    shinyjs::enable(id = "down_fieldbook")
+    
+  }# End of gp_label_portrait ()
+  #----------------------------------------------------------------------------------------#
   session$onSessionEnded(function(){
     list_of_pdfs <- list.files(pattern = "\\.pdf$|\\.csv$")
-
+    
     if(!is.null(list_of_pdfs)) {
       file.remove(list_of_pdfs)
     }
   })
-
-  # # Automatically bookmark every time an input changes
+  
+  # Automatically bookmark every time an input changes
   # observe({
   #   reactiveValuesToList(input)
   #   session$doBookmark()
   # })
-
+  
   # Update the query string
-  # onBookmarked(updateQueryString)
-
+  #onBookmarked(updateQueryString)
+  
 }
 
 shinyApp(ui, server)
+
+  
+  
+  
