@@ -1018,14 +1018,14 @@ field_label <- function(dat,
 #' items as specified by the user. Arguments are passed to the `create_label()` function.
 #' 
 #' @returns a PDF file containing plot labels affixed with QR codes, and
-#'  an updated fieldbook-- all saved to the default or set working directory. 
+#'  an updated field book-- all saved to the default or set working directory. 
 #'  
-#' @param dat is an input data frame or fieldbook that contains plot or label attributes.
+#' @param dat is an input data frame or field book that contains plot or label attributes.
 #' The order of the columns is not important, and the columns can be any name 
 #' the user desires.
 #' @param get_unique_id is to be set to 'uuid' if universal unique ids are to be generated.
-#' @param unique_id is a vector containing unique identifiers or strings to generate QR codes.
-#' from imported fieldbook. Set to 'custom' if imported fieldbook already has unique IDs for each plot.
+#' @param unique_id is the column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.
+#'  Set to 'custom' if imported field book already has unique IDs for each plot.
 #' @param top_left_txt1 is the prefix text for top-left row 1.
 #' @param top_left_txt2 is the prefix text for top-left row 2.
 #' @param top_right_txt1 is the prefix text for the top-right row 1.
