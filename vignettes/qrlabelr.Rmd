@@ -309,7 +309,7 @@ To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait
 ?qrlabelr::gp_label_portrait
 ```
 
-**Note that the default label template for both the above functions is [Avery 94220 template](https://www.avery.com/blank/labels/94220).**. 
+**Note that the default label template for the above functions is [Avery 94220 template](https://www.avery.com/blank/labels/94220).**. 
 
 
 ## Creating labels with Shiny app: EasyPlotLabelR  
@@ -331,11 +331,11 @@ Figure 3 shows the main pages or tabs available in the Shiny app and their corre
 
 ### Import fieldbook tab  
 
-To create plot labels, start by clicking on the "Import fieldbook" sidebar menu. This presents a page with a number of input widgets all geared towards the upload of a fieldbook. Click the "Browse..." button and navigate to a desired fieldbook in CSV, XLS, or XLSX format. If the fieldbook was generated with FieldHub or BMS, turn on the "Generated with FieldHub" or Generated with BMS switch respectively. These switches allow users to automatically populate relevant input widgets fields that will be covered in subsequent sections. However, users should turn off these switches if the imported fieldbook was generated using other programs.  
+To create plot labels, start by clicking on the "Import field book" sidebar menu. This presents a page with a number of input widgets all geared towards the upload of a field book. Click the "Browse..." button and navigate to a desired field book in CSV, XLS, or XLSX format. If the field book was generated with FieldHub or BMS, turn on the "Generated with FieldHub" or Generated with BMS switch respectively. These switches allow users to automatically populate relevant input widgets fields that will be covered in subsequent sections. However, users should turn off these switches if the imported field book was generated using other programs.  
 
-To preview the uploaded fieldbook right in the app, turn on the switch labelled "Preview Fieldbook". This displays the uploaded fieldbook in a dedicated card from which the fieldbook can be examined, but not modified. Click the "Submit Fieldbook" button after all the necessary configurations have been made, and click the Next button to move to the next tab.  
+To preview the uploaded field book right in the app, turn on the switch labelled "Preview Field book". This displays the uploaded field book in a dedicated card from which the field book can be examined, but not modified. Click the "Submit Field book" button after all the necessary configurations have been made, and click the Next button to move to the next tab.  
 
-In case a fieldbook is yet to be generated, a "Launch FielDHub" button has been provided for convenience. This opens the GitHub page of the author of FielDHub in a new window, allowing for the fast and easy generation of a fieldbook.  
+In case a field book is yet to be generated, a "Launch FielDHub" button has been provided for convenience. This opens the GitHub page of the author of FielDHub in a new window, allowing for the fast and easy generation of a fieldbook.  
 
 ### Label information tab  
 

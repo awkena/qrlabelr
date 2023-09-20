@@ -14,7 +14,7 @@
 
 # Create Plot Labels Easily With qrlabelr
 
-A no-frills open-source solution for designing print-ready labels affixed with QR codes. **`qrlabelr`** is an R package that features **EasyPlotLabelR**, a Shiny app that simplifies the complicated process of plot label design for non-R users. It also offers easily customizable functions that enable label generation outside the Shiny app. It generates field plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program to offer more flexibility in plot label creation steps; guarantees true string fidelity after QR encoding; and provides faster label generation to users.
+A no-frills open-source solution for designing print-ready labels affixed with QR codes. **`qrlabelr`** is an R package that features **EasyPlotLabelR**, a Shiny app that simplifies the complicated process of plot label design for non-R users. It also offers easily customizable functions that enable label generation outside the Shiny app. It generates plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program to offer more flexibility in plot label creation steps; guarantees true string fidelity after QR encoding; and provides faster label generation to users.
 
 Submit bug reports and feature suggestions, or track changes on the
 [issues page](https://github.com/awkena/qrlabelr/issues).
@@ -372,7 +372,7 @@ To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait
 ?qrlabelr::gp_label_portrait
 ```
 
-**Note that the default label template for both the above functions is [Avery 94220 template](https://www.avery.com/blank/labels/94220).**
+**Note that the default label template for the above functions is [Avery 94220 template](https://www.avery.com/blank/labels/94220).**
 
 ## Creating labels with Shiny app: EasyPlotLabelR
 Run the following code in the RStudio console to launch the
@@ -390,7 +390,7 @@ Follow the simple steps in Figure 3 to use the Shiny app to create plot labels.
 
 |<img src='inst/extdata/instructions.PNG' style="width: 800px;" />|
 |:--:| 
-| *Fig. 3. Steps for creating plot labels using the Shiny app* |  
+| *Fig. 3. Steps for creating labels using the Shiny app* |  
 
 
 # Troubleshooting
@@ -417,9 +417,9 @@ for the various column names that correspond to the required label information.
 
 If plot labels were generated with the customizable functions, a PDF file containing the generated labels and an updated fieldbook would be saved to the user's working directory.
 
-If plot labels were generated using the Shiny app, there is a download button on the Generate label tab, which can be used to save all generated labels and updated fieldbook to a local machine.
+If labels were generated using the Shiny app, there is a download button on the `Generate label tab`, which can be used to save all generated labels and updated fieldbook to a local machine.
 
-## Are generated labels compatible with popular page templates?
+## Are generated labels compatible with popular label templates?
 
 Yes. We have gone the extra mile to ensure generated labels can be
 printed on papers from Avery, Uline, and other paper template
