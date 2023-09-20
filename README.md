@@ -169,7 +169,7 @@ The package also provides a helper function to access a user-friendly Shiny app 
 ## Label content
 The qrlabelr package designs machine and human-readable plot labels. The specific information that is displayed on labels depends on whether one is designing **field plot labels** for field experiments or any **general purpose label**.  The general-purpose label option comes with two text orientation formats on the label: landscape (Figure 1) and portrait (Figure 2) formats.
 
-Figure 1 and 2 show delineated text positions available to users that can be filled with human-readable text items and machine-readable QR code.  
+Figure 1 and 2 show delineated text positions available to users that can be filled with human-readable texts and machine-readable QR code.  
 
 |<img src='inst/extdata/landscape_label.PNG' style="width: 400px;" />|
 |:--:| 
@@ -180,7 +180,7 @@ Figure 1 and 2 show delineated text positions available to users that can be fil
 | *Fig. 2. Plot label design and content in qrlabelr for a portrait text orientation label format. A. There are ten (10) delineated text positions and 1 QR code position for any rectangular label with portrait text orientation. B. An example of a general-purpose label with a portrait text orientation.* |. 
 
 
-For a field plot label option, a landscape text orientation is used. The nine (9) text positions are mapped by default to the following human-readable text items as shown in Figure 1.  
+For a field plot label option, a landscape text orientation is used. The nine (9) text positions are mapped by default to the following human-readable texts as shown in Figure 1.  
 
 1. Top-left row 1 text position is mapped to **Plot ID**      
 2. Top-left row 2 text position is mapped to **Row ID**   
@@ -192,7 +192,7 @@ For a field plot label option, a landscape text orientation is used. The nine (9
 8. Bottom-left row 1 text position is mapped to **Location of experiment** or trial    
 9. Bottom-left row 2 text position is mapped to **Entry name**     
 
-**To change any of these default human-readable text items to specific user-preferred texts, use the `gp_label()` customizable function in R or the `General-purpose landscape text label` method in the Shiny app.**. 
+**To change any of these default human-readable texts to user-preferred texts, use the `gp_label()` customizable function in R or the `General-purpose landscape text label` method in the Shiny app.**. 
 
 
 
@@ -287,7 +287,7 @@ The function creates a pdf file with a name prefix of `'PlotLabel'` that is save
 
 ## Creating general-purpose labels in R  
 
-The `gp_label()` and the `gp_label_portrait()`functions allow for specific user-defined or preferred  human-readable text items to be displayed on a label. These texts can be used to fill out the delineated text positions on the label (Figure 1 and 2). These functions give a lot of control to the user with respect to what human-readable text items, their position,  and orientation on the label.  
+The `gp_label()` and the `gp_label_portrait()`functions allow for specific user-defined or preferred  human-readable texts to be displayed on a label. These texts can be used to fill out the delineated text positions on the label (Figure 1 and 2). These functions give a lot of control to the user with respect to what human-readable texts, their position,  and orientation on the label.  
 
 To create any general-purpose label with a landscape text orientation, invoke the `gp_label()` function as has been done in the code snippet below:
 
@@ -318,7 +318,7 @@ gp_label(dat = qrlabelr::square_lattice,
 
 The above arguments are passed to the `create_label()` function to generate the desired labels based on the defined page setting and label dimension parameters.  
 
-The `gp_label_portrait()` function is, however, a standalone function that places human-readable text items on the label in a portrait orientation as shown in Figure 2. The code snippet below demonstrates how to use the `gp_label_portrait()` function in R.  
+The `gp_label_portrait()` function is, however, a standalone function that places human-readable texts on the label in a portrait orientation as shown in Figure 2. The code snippet below demonstrates how to use the `gp_label_portrait()` function in R.  
 
 ``` r
 library(qrlabelr)
