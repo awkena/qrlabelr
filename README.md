@@ -180,7 +180,7 @@ Figure 1 and 2 show delineated text positions available to users that can be fil
 | *Fig. 2. Plot label design and content in qrlabelr for a portrait text orientation label format. A. There are ten (10) delineated text positions and 1 QR code position for any rectangular label with portrait text orientation. B. An example of a general-purpose label with a portrait text orientation.* |. 
 
 
-For a field plot label option, a landscape text orientation is used. The text nine (9) text positions are mapped by default to the following human-readable text items as shown in Figure 1.  
+For a field plot label option, a landscape text orientation is used. The nine (9) text positions are mapped by default to the following human-readable text items as shown in Figure 1.  
 
 1. Top-left row 1 text position is mapped to **Plot ID**      
 2. Top-left row 2 text position is mapped to **Row ID**   
