@@ -14,14 +14,7 @@
 
 # Create Plot Labels Easily With qrlabelr
 
-A no-frills open-source solution for designing experimental or trial plot labels 
-    affixed with QR codes. **`qrlabelr`** is an R package that features **EasyPlotLabelR**, 
-    a Shiny app that simplifies the complicated process of plot label design for non-R users. 
-    It also offers easily customizable functions that enable plot label generation outside the Shiny app.
-    It generates field plot labels that are compatible with the widely used 
-    digital data collection mobile app, Field Book. Our software builds on the foundation 
-    of an existing open-source program to offer more flexibility in plot label creation steps; 
-    guarantees true string fidelity after QR encoding; and provides faster label generation to users.
+A no-frills open-source solution for designing print-ready labels affixed with QR codes. **`qrlabelr`** is an R package that features **EasyPlotLabelR**, a Shiny app that simplifies the complicated process of plot label design for non-R users. It also offers easily customizable functions that enable label generation outside the Shiny app. It generates field plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program to offer more flexibility in plot label creation steps; guarantees true string fidelity after QR encoding; and provides faster label generation to users.
 
 Submit bug reports and feature suggestions, or track changes on the
 [issues page](https://github.com/awkena/qrlabelr/issues).
@@ -121,16 +114,17 @@ To install **`qrlabelr`**, you will first need to have R and the RStudio IDE ins
 install.packages("devtools")
 ```
 
-Now, install the package by running the following commands: 
+Now, install the qrlabelr package by running the following commands: 
 ``` r
-library("devtools")
-install_github("awkena/qrlabelr")
+devtools::install_github("awkena/qrlabelr")
 ```
 
 Alternatively, you can install the package together with its vignettes as follows:
 ``` r
 devtools::install_github("awkena/qrlabelr", build_vignettes = TRUE)
 ```
+
+One must have the `knitr` package installed before vignettes can be built during package installation.  
 
 To view vignettes for the package in RStudio, run the following code in the R console:  
 
@@ -150,38 +144,43 @@ The method described above will download and install the `qrlabelr` package on y
 library(qrlabelr)
 ```
 
-**Users who have R and RStudio already installed must ensure they are up to date before installing qrlabelr**
+**Users who have R and RStudio already installed must ensure they are up to date before installing qrlabelr. All installed packages must also be updated before installing qrlabelr from GitHub**  
 
 # Usage
 ## Generating field books
-To use qrlabelr, one must first generate a field book that shows the layout information for all experimental plots. **A field book is required as an input data frame in qrlabelr.**  
+To use qrlabelr, one must first generate a field book or data input that shows individual experimental plot or label attributes. **A field or study book is required as an input data input in qrlabelr.**  
 
-Typically, layout information for field plots are obtained based on the experimental design and treatment randomization. It is strongly recommended to have the grid coordinates of plots (row and column numbers of plots) included in the field book.
+Typically, layout information for field plots are obtained based on the experimental design and treatment randomization. For field plot labels, it is strongly recommended to have the grid coordinates of plots (row and column numbers of plots) included in the field book.
 
 There are free open-source software such as [FielDHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as BMS can equally be used to generate an input field book if desired.  
 
-**Input field books must be imported as a data frame into qrlabelr for use. We recommend that users save input field books as csv or as xls or xlsx files for easy import to qrlabelr**  
+**Input data must be imported as a data frame into qrlabelr for use. We recommend that users save input data as csv or as xls or xlsx files for easy import to qrlabelr**  
 
 ## Plot label design options  
 The qrlabelr package offers two user-centered options for creating plot labels affixed with QR codes.  
 
-The first option involves the use of customizable functions to create rectangular field plot labels or any rectangular general-purpose plot labels embossed with QR codes. This option is for users who find working in R comfortable.  
+The first option involves the use of customizable functions to create rectangular field plot labels or any rectangular general-purpose labels embossed with QR codes. This option is for users who find working in R comfortable.  
 
-The package also provides a helper function to access a user-friendly Shiny app (EasyPlotLabelR) for non-R users who may find working in R not so comfortable. This option allows users to run the Shiny app using their computer as host without the need for an internet.  
+The package also provides a helper function to access a user-friendly Shiny app (EasyPlotLabelR) for non-R users who may find working in R not so comfortable. This option allows users to run the Shiny app using their computer as host without the need for internet.  
 
 **Both the customizable functions and Shiny app were created to deliver the exact same features, so it all boils down to a user's preference.**  
 
 
 ## Label content
-The qrlabelr package designs machine and human-readable plot labels. The specific information that is displayed on plot labels depends on whether one is designing **field plot labels** for field experiments or any **general purpose plot label**.  
+The qrlabelr package designs machine and human-readable plot labels. The specific information that is displayed on labels depends on whether one is designing **field plot labels** for field experiments or any **general purpose label**.  The general-purpose label option comes with two text orientation formats on the label: landscape (Figure 1) and portrait (Figure 2) formats.
 
-Figure 1 shows 10 delineated positions available to users that can be filled with human-readable text items (positions 1 - 9) and machine-readable QR code (position 10).  
+Figure 1 and 2 show delineated text positions available to users that can be filled with human-readable text items and machine-readable QR code.  
 
-|<img src='inst/extdata/label_design.JPG' style="width: 400px;" />|
+|<img src='inst/extdata/landscape_label.PNG' style="width: 400px;" />|
 |:--:| 
-| *Fig. 1. Content of rectangular plot label showing 9 delineated text positions and 1 QR code position* |  
+| *Fig. 1. Plot label design and content in qrlabelr for a landscape text orientation label format. A. There are nine (9) delineated text positions and 1 QR code position for any rectangular label (A). For a field plot label, the nine delineated text positions are mapped to specific human-readable texts by default as shown in B.* |. 
 
-For a field plot label, the nine (9) text positions are mapped by default to the following human- readable text items as shown in Figure 2.  
+|<img src='inst/extdata/portrait_label.PNG' style="width: 300px;" />|
+|:--:| 
+| *Fig. 2. Plot label design and content in qrlabelr for a portrait text orientation label format. A. There are ten (10) delineated text positions and 1 QR code position for any rectangular label with portrait text orientation. B. An example of a general-purpose label with a portrait text orientation.* |. 
+
+
+For a field plot label option, a landscape text orientation is used. The text nine (9) text positions are mapped by default to the following human-readable text items as shown in Figure 1.  
 
 1. Top-left row 1 text position is mapped to **Plot ID**      
 2. Top-left row 2 text position is mapped to **Row ID**   
@@ -193,23 +192,20 @@ For a field plot label, the nine (9) text positions are mapped by default to the
 8. Bottom-left row 1 text position is mapped to **Location of experiment** or trial    
 9. Bottom-left row 2 text position is mapped to **Entry name**     
 
-**To change any of these default human-readable text items to specific user-preferred texts, use the `gp_label()` customizable function in R or the `General-purpose label with QR code` method in the Shiny app.**
+**To change any of these default human-readable text items to specific user-preferred texts, use the `gp_label()` customizable function in R or the `General-purpose landscape text label` method in the Shiny app.**. 
 
 
-|<img src='inst/extdata/label_4x2in.JPG' style="width: 400px;" />|
-|:--:| 
-| *Fig. 2. A field plot label designed using qrlabelr showing 9 human-readable text items and 1 machine-readable QR code* |  
 
 ## QR code generation  
-Affixing QR codes on the plot labels makes them machine-readable for easy plot identification and tracking. The text for generating QR codes must be unique for each plot.  
+Affixing QR codes on labels makes them machine-readable for easy plot/sample identification and tracking. The text for generating QR codes must be unique for each plot/sample.  
 
-The qrlabelr package provides three methods for producing unique IDs for each plot. These methods are **reproducible unique IDs (`RUID`)**, **universal unique IDs (`UUID`)**, and **custom unique IDs (`custom`)**. The RUID method is, however, not available when the user chooses the `gp_label()` function in R or the `General-purpose label` option in the Shiny app.  
+The qrlabelr package provides three methods for producing unique IDs for each plot. These methods are **reproducible unique IDs (`RUID`)**, **universal unique IDs (`UUID`)**, and **custom unique IDs (`custom`)**. The RUID method is, however, only available when the user chooses the `field_label()` function in R or the `Field plot label` option in the Shiny app.  
 
-RUIDs are informative and reproducible, hence, can be regenerated when provided with the same input fieldbook. For field experiments or trials, we strongly recommend the use of RUIDs. An RUID is generated by concatenating LOCATION and year of experiment, trial name, PLOT, ROW and COLUMN ids for each experimental plot Eg. **`KUMASI2023_PYT_101_1_1`**.  
+RUIDs are informative and reproducible, hence, can be regenerated when provided with the same input field book. For field experiments or trials, we strongly recommend the use of RUIDs. An RUID is generated by concatenating LOCATION and year of experiment, trial name, PLOT, ROW and COLUMN ids for each experimental plot Eg. **`KUMASI2023_PYT_101_1_1`**.  
 
 The UUID method produces random time-based unique IDs that are not reproducible and informative, but are highly unique due to their pseudo-random nature.  
 
-if the input fieldbook contains a column that represents unique IDs suitable for QR code generation, the user can choose the `'custom'` method.  
+if the input field book contains a column that represents unique IDs suitable for QR code generation, the user can choose the `'custom'` method.  
 
 Users can set the desired **error correction level (ecl)** for generating QR codes. The ecl indicates how much of the QR code is used up for error correction. There are four levels, with 0 (7%) being the lowest level and 3 (30%) being the highest value possible. For field experiments, we strongly recommend that the error correction level be set to 3, which is the default setting.  
 
@@ -255,7 +251,7 @@ field_label(dat = qrlabelr::square_lattice,
             )
 ```
 
-The above example creates field plot labels using a sample fieldbook named `square_lattice` generated with the FielDHub package. The `square_lattice` sample fieldbook is available in the `qrlabelr` package, and it was generated based on a Square Lattice Design layout at two locations.  
+The above example creates field plot labels using a sample field book named `square_lattice` generated with the FielDHub package. The `square_lattice` sample field book is available in the `qrlabelr` package, and it was generated based on a Square Lattice Design layout at two locations.  
 
 It follows from the above example that to create any custom rectangular label based on a template, users must specify page setting and label dimension parameters using the following arguments:  
 - `wdt`: label width in inches  
@@ -287,12 +283,13 @@ The following arguments must also be specified if the input field book was not g
 The arguments `seed_source = TRUE` and `seed_source_id = "SEED_SOURCE" ` are optional and should be used only when the user intends to show seed source on the field label.  
 
 
-The function creates a pdf file with a name prefix of `'PlotLabel'` that is saved to the user's working directory. The function also saves an updated fieldbook to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
+The function creates a pdf file with a name prefix of `'PlotLabel'` that is saved to the user's working directory. The function also saves an updated field book to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
 
-## Creating general-purpose labels in R
-The `gp_label()` function allows for specific user-defined or preferred  human-readable text items to be displayed on a plot label. These texts can be used to fill out the nine (9) delineated text positions on the label (Figure 1). This function gives a lot of control to the user with respect to what human-readable text items gets displayed and their position on the label.  
+## Creating general-purpose labels in R  
 
-To create any general-purpose labels other than a field plot label, invoke the `gp_label()` function as has been done in the code snippet below:
+The `gp_label()` and the `gp_label_portrait()`functions allow for specific user-defined or preferred  human-readable text items to be displayed on a label. These texts can be used to fill out the delineated text positions on the label (Figure 1 and 2). These functions give a lot of control to the user with respect to what human-readable text items, their position,  and orientation on the label.  
+
+To create any general-purpose label with a landscape text orientation, invoke the `gp_label()` function as has been done in the code snippet below:
 
 ``` r
 library(qrlabelr)
@@ -321,15 +318,61 @@ gp_label(dat = qrlabelr::square_lattice,
 
 The above arguments are passed to the `create_label()` function to generate the desired labels based on the defined page setting and label dimension parameters.  
 
-To view details of the `field_label()` and the `gp_label()` functions in RStudio, run the following codes in the R console:  
+The `gp_label_portrait()` function is, however, a standalone function that places human-readable text items on the label in a portrait orientation as shown in Figure 2. The code snippet below demonstrates how to use the `gp_label_portrait()` function in R.  
+
+``` r
+library(qrlabelr)
+dat <- qrlabelr::square_lattice
+
+dat$ids <- paste0(dat$LOCATION,'2023', '_PYT', '_', dat$PLOT, '_', dat$ROW, '_', dat$COLUMN)
+ 
+gp_label_portrait(
+  dat,
+  wdt = 2,
+  hgt = 1, 
+  page_wdt = 8.5, 
+  page_hgt = 11,
+  top_mar = 0.625,
+  bot_mar = 0.625,
+  left_mar = 0.625,
+  right_mar = 0.625,
+  numrow = 8L,
+  numcol = 3L,
+  filename = 'PlotLabel',
+  font_sz = 10,
+  family = 'sans', 
+  rounded = TRUE,
+  bot_txt1 = 'Rubi', 
+  cent_txt2 = 'Rep:',  
+  cent_txt3 = 'R:', 
+  cent_txt4 = 'r:', 
+  top_txt1 = 'P:', 
+  top_txt2 = 'B:',
+  bot_txt2_id = 'ids',
+  bot_txt3_id = 'LOCATION',
+  cent_txt1_id = 'TREATMENT', 
+  cent_txt2_id = 'REP', 
+  cent_txt3_id = 'COLUMN', 
+  cent_txt4_id = 'ROW', 
+  top_txt1_id = 'PLOT',
+  top_txt2_id = 'IBLOCK',
+  top_txt3_id = 'SEED_SOURCE',
+  unique_id = 'ids',
+  ec_level = 1
+)
+
+
+```
+
+To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait()` functions in RStudio, run the following codes in the R console:  
 
 ``` r
 ?qrlabelr::field_label
 ?qrlabelr::gp_label
-
+?qrlabelr::gp_label_portrait
 ```
 
-**Note that the default label template for both the `field_label()` and the `gp_label()` functions is [Avery 94220 template](https://www.avery.com/blank/labels/94220).**
+**Note that the default label template for both the above functions is [Avery 94220 template](https://www.avery.com/blank/labels/94220).**
 
 ## Creating labels with Shiny app: EasyPlotLabelR
 Run the following code in the RStudio console to launch the
