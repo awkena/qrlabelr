@@ -5,7 +5,7 @@ argonHeader <- argonDash::argonDashHeader(
   separator = FALSE,
   separator_color = "secondary",
 
-  argonR::argonH1("EasyPlotLabelR", display = 3, class = "text-center"),
+  argonR::argonH1("EasyQrlabelr", display = 3, class = "text-center"),
 
 
   # Add a help info drop down menu to page; positioned at top-right corner
@@ -279,7 +279,7 @@ br(),
   # Some intro text that may need to be summarized into two paragraphs or less
   argonR::argonH1("Welcome!", display = 4),
 
-  p("Welcome to EasyPlotLabelR: a Shiny app for the qrlabelr package for designing print-ready
+  p("Welcome to EasyQrlabelR: a Shiny app for the qrlabelr package for designing print-ready
     plot labels affixed with QR codes. This app simplifies the complicated process
     of plot label design. It generates plot labels that are compatible with the
     widely used digital data collection mobile app, Field Book.",
@@ -1158,9 +1158,9 @@ pg_template_setup <- argonDash::argonTabItem(
 # Piece everything together in UI
 ui <- function(request) {
   argonDash::argonDashPage(
-  title = "EasyPlotLabelR",
+  title = "EasyQrlabelr",
   author = "Alexander Wireko Kena, Ebenezer Ogoe, Clara Cruet Burgos, Geoffrey Preston Morris",
-  description = "A Shiny app to generate custom print-ready field plot labels affixed with QR codes",
+  description = "A Shiny app to generate custom print-ready plot labels affixed with QR codes",
   sidebar = argonSidebar,
   navbar = NULL,
   header = argonHeader,
