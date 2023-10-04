@@ -108,7 +108,13 @@ required:
 
 # Installation
 
-To install **`qrlabelr`**, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:  
+To install **`qrlabelr`**, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from CRAN:  
+
+``` r
+install.packages("qrlabelr")
+```
+
+The development version of **`qrlabelr`** can be installed from GitHub as follows:
 
 ``` r
 install.packages("devtools")

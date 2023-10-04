@@ -45,85 +45,85 @@ gp_label_portrait(
 )
 }
 \arguments{
-\item{dat}{is an input data frame or fieldbook that contains plot attributes.
+\item{dat}{An input data frame or field book that contains plot attributes.
 The order of the columns is not important, and the columns can be any name 
 the user desires.}
 
-\item{wdt}{is the label width in inches.}
+\item{wdt}{The label width in inches.}
 
-\item{hgt}{is the label height in inches.}
+\item{hgt}{The label height in inches.}
 
-\item{page_wdt}{is the page width in inches.}
+\item{page_wdt}{The page width in inches.}
 
-\item{page_hgt}{is the page height in inches.}
+\item{page_hgt}{The page height in inches.}
 
-\item{top_mar}{is the page top margin in inches.}
+\item{top_mar}{The page top margin in inches.}
 
-\item{bot_mar}{is the page bottom margin in inches.}
+\item{bot_mar}{The page bottom margin in inches.}
 
-\item{left_mar}{is the page left margin in inches.}
+\item{left_mar}{The page left margin in inches.}
 
-\item{right_mar}{is the page right margin in inches.}
+\item{right_mar}{The page right margin in inches.}
 
-\item{numrow}{is the number of label rows per page. It should be an integer.}
+\item{numrow}{The number of label rows per page. It should be an integer.}
 
-\item{numcol}{is the number of label columns per page. It should be an integer.}
+\item{numcol}{The number of label columns per page. It should be an integer.}
 
-\item{filename}{is a prefix for the pdf file to be created.}
+\item{filename}{A prefix for the pdf file to be created.}
 
-\item{font_sz}{is the font size to use.}
+\item{font_sz}{The font size to use.}
 
-\item{family}{is the font style to use to print labels.}
+\item{family}{The font style to use to print labels.}
 
 \item{rounded}{Set to TRUE if label has round corners; set to false if label has
 square corners.}
 
-\item{bot_txt1}{is the prefix text for bottom text position 1.}
+\item{bot_txt1}{The prefix text for bottom text position 1.}
 
-\item{bot_txt2}{is the prefix text for bottom text position 2.}
+\item{bot_txt2}{The prefix text for bottom text position 2.}
 
-\item{bot_txt3}{is the prefix text for bottom text position 3.}
+\item{bot_txt3}{The prefix text for bottom text position 3.}
 
-\item{cent_txt1}{is the prefix text for center text position 1.}
+\item{cent_txt1}{The prefix text for center text position 1.}
 
-\item{cent_txt2}{is the prefix text for center text position 2.}
+\item{cent_txt2}{The prefix text for center text position 2.}
 
-\item{cent_txt3}{is the prefix text for center text position 3.}
+\item{cent_txt3}{The prefix text for center text position 3.}
 
-\item{cent_txt4}{is the prefix text for center text position 4.}
+\item{cent_txt4}{The prefix text for center text position 4.}
 
-\item{top_txt1}{is the prefix text for top text position 1.}
+\item{top_txt1}{The prefix text for top text position 1.}
 
-\item{top_txt2}{is the prefix text for top text position 2.}
+\item{top_txt2}{The prefix text for top text position 2.}
 
-\item{top_txt3}{is the prefix text for top text position 3.}
+\item{top_txt3}{The prefix text for top text position 3.}
 
-\item{bot_txt1_id}{is the column identifier in \code{dat} containing text for bottom text position 1.}
+\item{bot_txt1_id}{The column identifier in \code{dat} containing text for bottom text position 1.}
 
-\item{bot_txt2_id}{is the column identifier in \code{dat} containing text for bottom text position 2.}
+\item{bot_txt2_id}{The column identifier in \code{dat} containing text for bottom text position 2.}
 
-\item{bot_txt3_id}{is the column identifier in \code{dat} containing text for bottom text position 3.}
+\item{bot_txt3_id}{The column identifier in \code{dat} containing text for bottom text position 3.}
 
-\item{cent_txt1_id}{is the column identifier in \code{dat} containing text for center text position 1.}
+\item{cent_txt1_id}{The column identifier in \code{dat} containing text for center text position 1.}
 
-\item{cent_txt2_id}{is the column identifier in \code{dat} containing text for center text position 2.}
+\item{cent_txt2_id}{The column identifier in \code{dat} containing text for center text position 2.}
 
-\item{cent_txt3_id}{is the column identifier in \code{dat} containing text for center text position 3.}
+\item{cent_txt3_id}{The column identifier in \code{dat} containing text for center text position 3.}
 
-\item{cent_txt4_id}{is the column identifier in \code{dat} containing text for center text position 4.}
+\item{cent_txt4_id}{The column identifier in \code{dat} containing text for center text position 4.}
 
-\item{top_txt1_id}{is the column identifier in \code{dat} containing text for top text position 1.}
+\item{top_txt1_id}{The column identifier in \code{dat} containing text for top text position 1.}
 
-\item{top_txt2_id}{is the column identifier in \code{dat} containing text for top text position 2.}
+\item{top_txt2_id}{The column identifier in \code{dat} containing text for top text position 2.}
 
-\item{top_txt3_id}{is the column identifier in \code{dat} containing text for top text position 3.}
+\item{top_txt3_id}{The column identifier in \code{dat} containing text for top text position 3.}
 
-\item{unique_id}{is the column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.}
+\item{unique_id}{The column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.}
 
-\item{ec_level}{error correction level (`0` - `3`, lowest to highest) for QR codes.}
+\item{ec_level}{The error correction level (`0` - `3`, lowest to highest) for QR codes.}
 }
 \value{
-a PDF file containing labels affixed with QR codes, and saved to the
+A PDF file containing labels affixed with QR codes, and saved to the
 default or set working directory.
 }
 \description{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/all_new_functions.R
 \name{create_label}
 \alias{create_label}
-\title{Create custom machine and human-readable rectangular plot labels}
+\title{Create custom machine- and human-readable rectangular plot labels}
 \usage{
 create_label(
   wdt = 2,
@@ -35,33 +35,33 @@ create_label(
 )
 }
 \arguments{
-\item{wdt}{is the label width in inches.}
+\item{wdt}{The label width in inches.}
 
-\item{hgt}{is the label height in inches.}
+\item{hgt}{The label height in inches.}
 
-\item{page_wdt}{is the page width in inches.}
+\item{page_wdt}{The page width in inches.}
 
-\item{page_hgt}{is the page height in inches.}
+\item{page_hgt}{The page height in inches.}
 
-\item{top_mar}{is the page top margin in inches.}
+\item{top_mar}{The page top margin in inches.}
 
-\item{bot_mar}{is the page bottom margin in inches.}
+\item{bot_mar}{The page bottom margin in inches.}
 
-\item{left_mar}{is the page left margin in inches.}
+\item{left_mar}{The page left margin in inches.}
 
-\item{right_mar}{is the page right margin in inches.}
+\item{right_mar}{The page right margin in inches.}
 
-\item{numrow}{is the number of label rows per page. It should be an integer.}
+\item{numrow}{The number of label rows per page. It should be an integer.}
 
-\item{numcol}{is the number of label columns per page. It should be an integer.}
+\item{numcol}{The number of label columns per page. It should be an integer.}
 
-\item{filename}{is a prefix for the pdf file to be created.}
+\item{filename}{A character prefix for the pdf file to be created.}
 
-\item{font_sz}{is the font size to use.}
+\item{font_sz}{The font size to use.}
 
 \item{Treetag}{Set to TRUE if creating a treetag label.}
 
-\item{family}{is the font style to use to print labels.}
+\item{family}{The font style to use to print labels.}
 
 \item{rounded}{Set to TRUE if label has round corners; set to false if label has
 square corners.}
@@ -84,18 +84,18 @@ square corners.}
 
 \item{bottom_left_2}{String for bottom-left row 2 position on a rectangular label.}
 
-\item{unique_id}{is a vector containing unique identifiers or strings to generate QR codes.}
+\item{unique_id}{A vector containing unique identifiers or strings to generate QR codes.}
 
-\item{ec_level}{error correction level (`0` - `3`, lowest to highest) for QR codes.}
+\item{ec_level}{The error correction level (`0` - `3`, lowest to highest) for QR codes.}
 
-\item{...}{additional optional arguments to be supplied.}
+\item{...}{Additional optional arguments to be supplied.}
 }
 \value{
-a PDF file containing experimental plot labels affixed with QR codes, and
+A PDF file containing experimental plot labels affixed with QR codes, and
  saved to the default or set working directory.
 }
 \description{
-This function creates print-ready customized plot labels affixed with QR codes given the page setup,
+Create print-ready customized plot labels affixed with QR codes given the page setup,
  label dimensions, the number of rows and columns of labels to print per page.
 }
 \examples{

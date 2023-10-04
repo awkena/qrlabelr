@@ -2,7 +2,7 @@
 % Please edit documentation in R/all_new_functions.R
 \name{add_border}
 \alias{add_border}
-\title{Make an enhanced field layout plot with border rows}
+\title{Make an enhanced field layout plot with border rows.}
 \usage{
 add_border(
   x,
@@ -20,33 +20,33 @@ add_border(
 )
 }
 \arguments{
-\item{x}{is the input data frame of fieldbook that has row and column 
+\item{x}{The input data frame of field book that has row and column 
 coordinates of each plot.}
 
-\item{row_id}{is the string column identifier for ROW in the input fieldbook.}
+\item{row_id}{The string column identifier for ROW in the input field book.}
 
-\item{col_id}{is the string column identifier for COLUMN in the input fieldbook.}
+\item{col_id}{The string column identifier for COLUMN in the input field book.}
 
-\item{rep_id}{is the string column identifier for REP in the input fieldbook.}
+\item{rep_id}{The string column identifier for REP in the input field book.}
 
-\item{trt_id}{is the string column identifier for TREATMENT in the input fieldbook.}
+\item{trt_id}{The string column identifier for TREATMENT in the input field book.}
 
-\item{title}{is the title of the field layout plot.}
+\item{title}{The title of the field layout plot.}
 
-\item{text_sz}{is the text size to print treatment names on the tiles.}
+\item{text_sz}{The text size to print treatment names on the tiles.}
 
-\item{axis_title_sz}{is the text size for axis titles.}
+\item{axis_title_sz}{The text size for axis titles.}
 
-\item{xlab}{is a string to label x axis; default is 'Column'.}
+\item{xlab}{A string to label x axis; default is 'Column'.}
 
-\item{ylab}{is a string to label y axis; default is 'Row'.}
+\item{ylab}{A string to label y axis; default is 'Row'.}
 
-\item{border_bg}{a string specifying the background color for the border rows.}
+\item{border_bg}{A string specifying the background color for the border rows.}
 
-\item{text_col}{a string specifying the text color for the border rows.}
+\item{text_col}{A string specifying the text color for the border rows.}
 }
 \value{
-a field layout with border rows around the entire perimeter.
+A field layout plot with border rows around the entire perimeter.
 }
 \description{
 A helper function that adds border rows to the entire perimeter of a
@@ -55,13 +55,11 @@ have a coordinate that is specified by row and column numbers in the
 grid layout.
 }
 \note{
-this function works best with input fieldbooks generated with the FieldHub package
+This function works best with input field books generated with the 'FieldHub' package
 }
 \examples{
-
-
+\dontshow{if (rlang::is_installed(c("ggplot2", "desplot"))) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Plot a field layout with border rows
-
 library(qrlabelr)
 
 set.seed(123)
@@ -75,5 +73,5 @@ add_border(x = data.frame(LOCATION = rep("BAMBEY", 12),
 text_sz = 3)
 
 
-
+\dontshow{\}) # examplesIf}
 }

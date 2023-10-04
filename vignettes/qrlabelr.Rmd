@@ -52,8 +52,11 @@ It generates field plot labels that are compatible with the widely used digital 
 This vignette will guide you through the process of installing the package, and how to use its customizable functions, and the Shiny app.  
 
 # Installation
-To install **`qrlabelr`**, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from GitHub:
+To install **`qrlabelr`**, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from CRAN:  
 
+`install.packages("qrlabelr")`
+
+The development version of **`qrlabelr`** can be installed from GitHub as follows:
 `install.packages("devtools")`
 
 Now, install the qrlabelr package by running the following commands:  
@@ -68,15 +71,11 @@ One must have the `knitr` package installed before vignettes can be built during
 
 To view vignettes for the package in RStudio, run the following code in the R console:  
 
-``` r
-utils::vignette("qrlabelr")
-```
+`utils::vignette("qrlabelr")`
 
 Similarly, the vignette can be viewed in your browser by running the following code in your R console:  
 
-``` r
-utils::browseVignettes("qrlabelr")
-```
+`utils::browseVignettes("qrlabelr")`
 
 The method described above will download and install the `qrlabelr` package on your computer. Once the installation is complete, you can load the package by entering the following command in the console:
 

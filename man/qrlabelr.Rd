@@ -3,11 +3,10 @@
 \docType{package}
 \name{qrlabelr}
 \alias{qrlabelr}
-\title{qrlabelr: An R package to easily generate machine and human-readable
-plot labels.}
+\title{Generate Machine- and Human-Readable Plot Labels for Experiments.}
 \description{
 A no-frills open-source solution for designing experimental or trial plot labels
-affixed with QR codes. qrlabelr is an R package that features EasyPlotLabelR,
+affixed with QR codes. qrlabelr is an R package that features EasyQrlabelr,
 a Shiny app that simplifies the complicated process of plot label design for non-R users.
 It also offers easily customizable functions that enable plot label generation outside the Shiny app.
 It generates field plot labels that are compatible with the widely used
@@ -25,5 +24,5 @@ run the command:
 }
 
 \author{
-Alexander Kena | Ebenezer Ogoe | Clara Cruet-Burgos | Geoffrey Morris
+Alexander Kena | Ebenezer Ogoe
 }

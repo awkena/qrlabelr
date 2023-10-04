@@ -25,88 +25,88 @@ field_label(
 )
 }
 \arguments{
-\item{dat}{is an input data frame of fieldbook that contains plot attributes.
-To design field plot labels, the imported fieldbook must have LOCATION, PLOT,
-ROW, COLUMN/RANGE, REP, TREATMENT columns. The order of the columns in the fieldbook
+\item{dat}{An input data frame of field book that contains plot attributes.
+To design field plot labels, the imported field book must have LOCATION, PLOT,
+ROW, COLUMN/RANGE, REP, TREATMENT columns. The order of the columns in the field book
 is not important, and the columns can be any name the user desires.}
 
 \item{get_unique_id}{Set to 'ruid' if reproducible and informative unique ids
-are to be generated from imported fieldbook. Set to 'uuid' if universal unique ids
-are to be generated from imported fieldbook. Set to 'custom' if imported fieldbook
+are to be generated from imported field book. Set to 'uuid' if universal unique ids
+are to be generated from imported field book. Set to 'custom' if imported field book
 already has unique IDs for each plot.}
 
-\item{unique_id}{is the column identifier for UNIQUE_ID in the imported field book}
+\item{unique_id}{The column identifier for UNIQUE_ID in the imported field book}
 
-\item{Year}{is the year of experiment or trial.}
+\item{Year}{The year of experiment or trial.}
 
-\item{rname}{is the researcher's name. Initials or intials of first and middle
+\item{rname}{The researcher's name. Initials or initials of first and middle
 names and the last name.}
 
-\item{Trial}{is the name of the trial to use.}
+\item{Trial}{The name of the trial to use.}
 
-\item{seed_source}{set to TRUE if seed source is included in the imported fieldbook,
+\item{seed_source}{Set to TRUE if seed source is included in the imported field book,
 FALSE if otherwise.}
 
-\item{IBlock}{set to TRUE if \code{dat} contains incomplete blocks within REPs.}
+\item{IBlock}{Set to TRUE if \code{dat} contains incomplete blocks within REPs.}
 
-\item{rep_id}{is the column identifier for REP in the imported field book.}
+\item{rep_id}{The column identifier for REP in the imported field book.}
 
-\item{plot_id}{is the column identifier for PLOT in the imported field book.}
+\item{plot_id}{The column identifier for PLOT in the imported field book.}
 
-\item{row_id}{is the column identifier for ROW in the imported field book.}
+\item{row_id}{The column identifier for ROW in the imported field book.}
 
-\item{col_id}{is the column identifier for COLUMN in the imported field book.}
+\item{col_id}{The column identifier for COLUMN in the imported field book.}
 
-\item{loc_id}{is the column identifier for LOCATION in the imported field book.}
+\item{loc_id}{The column identifier for LOCATION in the imported field book.}
 
-\item{entry_id}{is the column identifier for ENTRY/TREATMENT in the imported field book.}
+\item{entry_id}{The column identifier for ENTRY/TREATMENT in the imported field book.}
 
-\item{IBlock_id}{is the column identifier for IBLOCK in the imported field book.
+\item{IBlock_id}{The column identifier for IBLOCK in the imported field book.
 It must be provided if \code{IBlock} is set to TRUE.}
 
-\item{seed_source_id}{is the column identifier for SEED_SOURCE in the imported field book.
+\item{seed_source_id}{The column identifier for SEED_SOURCE in the imported field book.
 It must be provided if \code{seed_source} is set to TRUE.}
 
-\item{...}{additional arguments passed to the \code{create_label()} function.}
+\item{...}{Additional arguments passed to the \code{create_label()} function.}
 }
 \value{
-a PDF file containing field plot labels affixed with QR codes, and
- an updated fieldbook-- all saved to the default or set working directory.
+A PDF file containing field plot labels affixed with QR codes, and
+ an updated field book-- all saved to the default or set working directory.
 }
 \description{
-Create machine and human-readable plot labels that are well-suited for field experiments.
+Create machine- and human-readable plot labels that are well-suited for field experiments.
 }
 \details{
 The default column identifiers for LOCATION, PLOT, ROW, COLUMN/RANGE, REP, TREATMENT
-are based on the column IDs of a fieldbook generated using the FieldHub package.
-If user imports any fieldbook generated with other programs,
+are based on the column IDs of a field book generated using the 'FieldHub' package.
+If user imports any field book generated with other programs,
 the user must specify the equivalent column identifiers used for LOCATION, PLOT, REP,
-ROW, COLUMN, and TREATMENT/ENTRY in the imported fieldbook.
+ROW, COLUMN, and TREATMENT/ENTRY in the imported field book.
 
 if \code{get_unique_id = 'ruid'} (i.e. Reproducible Unique IDs), the function concatenates
 location, year, trial name, plot, row and column IDs. if \code{get_unique_id = 'uuid'} 
 (i.e. Universal Unique IDs), the function generates UUIDs by time randomly. 
 Note that UUIDs are uninformative and not reproducible.
 
-If input fieldbook already has unique IDs for each plot, the \code{get_unique_id} 
+If input field book already has unique IDs for each plot, the \code{get_unique_id} 
 argument should be set to 'custom'; and the \code{unique_id}
-argument must be specified as a string using the column name in the input fieldbook
+argument must be specified as a string using the column name in the input field book
 that denotes plot unique IDs.
 
 if \code{Year} is NULL, the function uses the current year as defined in the sys.time().
 
 If the user is printing labels for any incomplete block design, the imported
-fieldbook must include an IBLOCK column if the users wishes to display intra-blocking
+field book must include an IBLOCK column if the users wishes to display intra-blocking
 information for experimental plots on the label.
 
 Set the \code{IBlock} argument to TRUE if the field layout has incomplete
-blocks within replications. The imported  fieldbook must include an IBLOCK column if
+blocks within replications. The imported  field book must include an IBLOCK column if
 the \code{IBlock} argument is set to TRUE.
 }
 \examples{
 
 \dontrun{
-# Generate field plot labels using the square_lattice sample fieldbook
+# Generate field plot labels using the square_lattice sample field book
 library(qrlabelr)
 
 field_label(
@@ -121,7 +121,7 @@ seed_source = FALSE)
 
 
 \dontrun{
-Generate treetag labels using the square_lattice sample fieldbook
+Generate treetag labels using the square_lattice sample field book
 field_label(
 dat = square_lattice,
 wdt = 1,

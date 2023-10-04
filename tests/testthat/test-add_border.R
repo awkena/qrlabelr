@@ -33,5 +33,5 @@
                           TREATMENT = sample(paste0("G-", 1:12))),
                  text_sz = 3,
                  title = NULL), 
-                 "Input fieldbook must be a data frame object.")
+                 "Input field book must be a data frame object.")
   })

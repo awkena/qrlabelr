@@ -1,16 +1,16 @@
 #' Make QR codes
 #'
-#' A helper function for QR code generation using the qrencoder library.
-#' The function converts the generated QR code into a raster grob image that can
-#' be plotted using the grid.draw function in the grid package.
+#' A helper function for QR code generation using the 'qrencoder' library for faster QR code generation.
+#' It converts the generated QR code into a raster grob image that can
+#' be plotted using the `grid.draw()` function in the 'grid' package.
 #'
-#' @param my_id unique ID string to be encoded to QR code
-#' @param ec_level error correction level (`0` - `3`, lowest to highest)
+#' @param my_id Unique ID string to be encoded to QR code.
+#' @param ec_level The error correction level (`0` - `3`, lowest to highest).
 #'
-#' @returns QR code as a raster grob image object.
+#' @returns A QR code as a raster grob image object that can be plotted with the `grid.draw()` 
+#' function in the 'grid' package.
 #'
-#' @examples
-#'  
+#' @examplesIf rlang::is_installed(c("raster", "qrencoder", "assertthat", "grid"))
 #' library(qrlabelr)
 #' qr <- make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 3)
 #' 
@@ -47,29 +47,29 @@ make_qrcode <- function(my_id, ec_level = 3){
 
 
 
-#' Create custom machine and human-readable rectangular plot labels
+#' Create custom machine- and human-readable rectangular plot labels
 #'
 #' @description
-#' This function creates print-ready customized plot labels affixed with QR codes given the page setup,
+#' Create print-ready customized plot labels affixed with QR codes given the page setup,
 #'  label dimensions, the number of rows and columns of labels to print per page.
 #'
-#' @returns a PDF file containing experimental plot labels affixed with QR codes, and
+#' @returns A PDF file containing experimental plot labels affixed with QR codes, and
 #'  saved to the default or set working directory.
 #'
-#' @param wdt  is the label width in inches.
-#' @param hgt is the label height in inches.
-#' @param page_wdt is the page width in inches.
-#' @param page_hgt is the page height in inches.
-#' @param top_mar is the page top margin in inches.
-#' @param bot_mar is the page bottom margin in inches.
-#' @param left_mar is the page left margin in inches.
-#' @param right_mar is the page right margin in inches.
-#' @param numrow is the number of label rows per page. It should be an integer.
-#' @param numcol is the number of label columns per page. It should be an integer.
-#' @param filename is a prefix for the pdf file to be created.
-#' @param font_sz is the font size to use.
+#' @param wdt  The label width in inches.
+#' @param hgt The label height in inches.
+#' @param page_wdt The page width in inches.
+#' @param page_hgt The page height in inches.
+#' @param top_mar The page top margin in inches.
+#' @param bot_mar The page bottom margin in inches.
+#' @param left_mar The page left margin in inches.
+#' @param right_mar The page right margin in inches.
+#' @param numrow The number of label rows per page. It should be an integer.
+#' @param numcol The number of label columns per page. It should be an integer.
+#' @param filename A character prefix for the pdf file to be created.
+#' @param font_sz The font size to use.
 #' @param Treetag Set to TRUE if creating a treetag label.
-#' @param family is the font style to use to print labels.
+#' @param family The font style to use to print labels.
 #' @param rounded Set to TRUE if label has round corners; set to false if label has
 #' square corners.
 #' @param top_left_1 String for top-left row 1 position on a rectangular label.
@@ -81,9 +81,9 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @param center_right_3 String for center-right row 3 position on a rectangular label.
 #' @param bottom_left_1 String for bottom-left row 1 position on a rectangular label.
 #' @param bottom_left_2 String for bottom-left row 2 position on a rectangular label.
-#' @param unique_id is a vector containing unique identifiers or strings to generate QR codes.
-#' @param ec_level error correction level (`0` - `3`, lowest to highest) for QR codes.
-#' @param ... additional optional arguments to be supplied.
+#' @param unique_id A vector containing unique identifiers or strings to generate QR codes.
+#' @param ec_level The error correction level (`0` - `3`, lowest to highest) for QR codes.
+#' @param ... Additional optional arguments to be supplied.
 #' 
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
 #' 
@@ -711,64 +711,64 @@ create_label <- function(
 
 #' Create field plot labels embossed with QR codes
 #' @description
-#' Create machine and human-readable plot labels that are well-suited for field experiments.
+#' Create machine- and human-readable plot labels that are well-suited for field experiments.
 #'  
-#' @returns a PDF file containing field plot labels affixed with QR codes, and
-#'  an updated fieldbook-- all saved to the default or set working directory.
+#' @returns A PDF file containing field plot labels affixed with QR codes, and
+#'  an updated field book-- all saved to the default or set working directory.
 #'
-#' @param dat is an input data frame of fieldbook that contains plot attributes.
-#' To design field plot labels, the imported fieldbook must have LOCATION, PLOT,
-#' ROW, COLUMN/RANGE, REP, TREATMENT columns. The order of the columns in the fieldbook
+#' @param dat  An input data frame of field book that contains plot attributes.
+#' To design field plot labels, the imported field book must have LOCATION, PLOT,
+#' ROW, COLUMN/RANGE, REP, TREATMENT columns. The order of the columns in the field book
 #' is not important, and the columns can be any name the user desires.
-#' @param rep_id is the column identifier for REP in the imported field book.
-#' @param plot_id is the column identifier for PLOT in the imported field book.
-#' @param row_id is the column identifier for ROW in the imported field book.
-#' @param col_id is the column identifier for COLUMN in the imported field book.
-#' @param loc_id is the column identifier for LOCATION in the imported field book.
-#' @param entry_id is the column identifier for ENTRY/TREATMENT in the imported field book.
-#' @param IBlock_id is the column identifier for IBLOCK in the imported field book.
+#' @param rep_id The column identifier for REP in the imported field book.
+#' @param plot_id The column identifier for PLOT in the imported field book.
+#' @param row_id The column identifier for ROW in the imported field book.
+#' @param col_id The column identifier for COLUMN in the imported field book.
+#' @param loc_id The column identifier for LOCATION in the imported field book.
+#' @param entry_id The column identifier for ENTRY/TREATMENT in the imported field book.
+#' @param IBlock_id The column identifier for IBLOCK in the imported field book.
 #' It must be provided if \code{IBlock} is set to TRUE.
-#' @param unique_id is the column identifier for UNIQUE_ID in the imported field book
-#' @param seed_source_id is the column identifier for SEED_SOURCE in the imported field book.
+#' @param unique_id The column identifier for UNIQUE_ID in the imported field book
+#' @param seed_source_id The column identifier for SEED_SOURCE in the imported field book.
 #' It must be provided if \code{seed_source} is set to TRUE.
-#' @param Year is the year of experiment or trial.
-#' @param rname is the researcher's name. Initials or intials of first and middle
+#' @param Year The year of experiment or trial.
+#' @param rname The researcher's name. Initials or initials of first and middle
 #' names and the last name.
-#' @param Trial is the name of the trial to use.
-#' @param seed_source set to TRUE if seed source is included in the imported fieldbook,
+#' @param Trial The name of the trial to use.
+#' @param seed_source Set to TRUE if seed source is included in the imported field book,
 #' FALSE if otherwise.
-#' @param IBlock set to TRUE if \code{dat} contains incomplete blocks within REPs.
+#' @param IBlock Set to TRUE if \code{dat} contains incomplete blocks within REPs.
 #' @param get_unique_id Set to 'ruid' if reproducible and informative unique ids
-#' are to be generated from imported fieldbook. Set to 'uuid' if universal unique ids
-#' are to be generated from imported fieldbook. Set to 'custom' if imported fieldbook
+#' are to be generated from imported field book. Set to 'uuid' if universal unique ids
+#' are to be generated from imported field book. Set to 'custom' if imported field book
 #' already has unique IDs for each plot.
-#' @param ... additional arguments passed to the \code{create_label()} function.
+#' @param ... Additional arguments passed to the \code{create_label()} function.
 #' 
 #' @details
 #' The default column identifiers for LOCATION, PLOT, ROW, COLUMN/RANGE, REP, TREATMENT
-#' are based on the column IDs of a fieldbook generated using the FieldHub package.
-#' If user imports any fieldbook generated with other programs,
+#' are based on the column IDs of a field book generated using the 'FieldHub' package.
+#' If user imports any field book generated with other programs,
 #' the user must specify the equivalent column identifiers used for LOCATION, PLOT, REP,
-#' ROW, COLUMN, and TREATMENT/ENTRY in the imported fieldbook.
+#' ROW, COLUMN, and TREATMENT/ENTRY in the imported field book.
 #' 
 #' if \code{get_unique_id = 'ruid'} (i.e. Reproducible Unique IDs), the function concatenates
 #' location, year, trial name, plot, row and column IDs. if \code{get_unique_id = 'uuid'} 
 #' (i.e. Universal Unique IDs), the function generates UUIDs by time randomly. 
 #' Note that UUIDs are uninformative and not reproducible.
 #' 
-#' If input fieldbook already has unique IDs for each plot, the \code{get_unique_id} 
+#' If input field book already has unique IDs for each plot, the \code{get_unique_id} 
 #' argument should be set to 'custom'; and the \code{unique_id}
-#' argument must be specified as a string using the column name in the input fieldbook
+#' argument must be specified as a string using the column name in the input field book
 #' that denotes plot unique IDs.
 #' 
 #' if \code{Year} is NULL, the function uses the current year as defined in the sys.time().
 #'
 #' If the user is printing labels for any incomplete block design, the imported
-#' fieldbook must include an IBLOCK column if the users wishes to display intra-blocking
+#' field book must include an IBLOCK column if the users wishes to display intra-blocking
 #' information for experimental plots on the label.
 #'
 #' Set the \code{IBlock} argument to TRUE if the field layout has incomplete
-#' blocks within replications. The imported  fieldbook must include an IBLOCK column if
+#' blocks within replications. The imported  field book must include an IBLOCK column if
 #' the \code{IBlock} argument is set to TRUE.
 #'
 #' @seealso \code{\link{create_label}} and \code{\link{gp_label}}
@@ -776,7 +776,7 @@ create_label <- function(
 #' @examples
 #' 
 #'\dontrun{
-#' # Generate field plot labels using the square_lattice sample fieldbook
+#' # Generate field plot labels using the square_lattice sample field book
 #' library(qrlabelr)
 #' 
 #' field_label(
@@ -791,7 +791,7 @@ create_label <- function(
 #'
 #' 
 #' \dontrun{
-#' Generate treetag labels using the square_lattice sample fieldbook
+#' Generate treetag labels using the square_lattice sample field book
 #' field_label(
 #' dat = square_lattice,
 #' wdt = 1,
@@ -956,7 +956,7 @@ field_label <- function(dat,
   # loc, year, trial name, plot, row and column. if 'uuid' (i.e. Universal Unique IDs),
   # the function generates UUIDs by time randomly. Note that UUIDs are uninformative and not reproducible.
   # If 'custom', user must use the 'unique_id' argument to specify the column name
-  # in fieldbook that denotes custom generated unique IDs.
+  # in field book that denotes custom generated unique IDs.
 
   if (get_unique_id == "ruid"){
 
@@ -977,7 +977,7 @@ field_label <- function(dat,
     UNIQUE_ID <- dat[, unique_id]
   }
 
-  # Create an augmented fieldbook containing unique IDs
+  # Create an augmented field book containing unique IDs
   updat <- dplyr::mutate(dat, UNIQUE_ID)
   colnames(updat)[ncol(updat)] <- 'UNIQUE_ID'
 
@@ -1012,39 +1012,39 @@ field_label <- function(dat,
 
 #' Create a general-purpose (gp) label with text aligned in a landscape orientation.
 #' @description
-#' This is a wrapper function that gives more flexibility to the user to design 
+#' This is a wrapper that gives more flexibility to the user to design 
 #' any general-purpose label affixed with QR codes. It gives nine(9) text 
 #' positions in landscape orientation that can be filled with human-readable text
 #' items as specified by the user. Arguments are passed to the `create_label()` function.
 #' 
-#' @returns a PDF file containing plot labels affixed with QR codes, and
+#' @returns A PDF file containing plot labels affixed with QR codes, and
 #'  an updated field book-- all saved to the default or set working directory. 
 #'  
-#' @param dat is an input data frame or field book that contains plot or label attributes.
+#' @param dat An input data frame or field book that contains plot or label attributes.
 #' The order of the columns is not important, and the columns can be any name 
 #' the user desires.
-#' @param get_unique_id is to be set to 'uuid' if universal unique ids are to be generated.
-#' @param unique_id is the column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.
+#' @param get_unique_id Set to 'uuid' if universal unique ids are to be generated.
+#' @param unique_id The column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.
 #'  Set to 'custom' if imported field book already has unique IDs for each plot.
-#' @param top_left_txt1 is the prefix text for top-left row 1.
-#' @param top_left_txt2 is the prefix text for top-left row 2.
-#' @param top_right_txt1 is the prefix text for the top-right row 1.
-#' @param top_right_txt2 is the prefix text for the top-right row 2.
-#' @param center_right_txt1 is the prefix text for center-right row 1.
-#' @param center_right_txt2 is the prefix text for center-right row 2.
-#' @param center_right_txt3 is the prefix text for center-right row 3.
-#' @param bottom_left_txt1 is the column identifier in \code{dat} containing text for bottom-left row 1.
-#' @param bottom_left_txt2 is the column identifier in \code{dat} containing text for bottom-left row 2.
-#' @param top_left_id1 is the column identifier in \code{dat} containing text for top-left row 1.
-#' @param top_left_id2 is the column identifier in \code{dat} containing text for top-left row 2.
-#' @param top_right_id1 is the column identifier in \code{dat} containing text for top-right row 1.
-#' @param top_right_id2 is the column identifier in \code{dat} containing text for top-right row 2.
-#' @param center_right_id1 is the column identifier in \code{dat} containing text for center-right row 1.
-#' @param center_right_id2 is the column identifier in \code{dat} containing text for center-right row 2.
-#' @param center_right_id3 is the column identifier in \code{dat} containing text for center-right row 3.
-#' @param bottom_left_id1 is the column identifier in \code{dat} containing text for bottom-left row 1.
-#' @param bottom_left_id2 is the column identifier in \code{dat} containing text for bottom-left row 2.
-#' @param ... additional arguments passed to the \code{create_label} function.
+#' @param top_left_txt1 The prefix text for top-left row 1.
+#' @param top_left_txt2 The prefix text for top-left row 2.
+#' @param top_right_txt1 The prefix text for the top-right row 1.
+#' @param top_right_txt2 The prefix text for the top-right row 2.
+#' @param center_right_txt1 The prefix text for center-right row 1.
+#' @param center_right_txt2 The prefix text for center-right row 2.
+#' @param center_right_txt3 The prefix text for center-right row 3.
+#' @param bottom_left_txt1 The column identifier in \code{dat} containing text for bottom-left row 1.
+#' @param bottom_left_txt2 The column identifier in \code{dat} containing text for bottom-left row 2.
+#' @param top_left_id1 The column identifier in \code{dat} containing text for top-left row 1.
+#' @param top_left_id2 The column identifier in \code{dat} containing text for top-left row 2.
+#' @param top_right_id1 The column identifier in \code{dat} containing text for top-right row 1.
+#' @param top_right_id2 The column identifier in \code{dat} containing text for top-right row 2.
+#' @param center_right_id1 The column identifier in \code{dat} containing text for center-right row 1.
+#' @param center_right_id2 The column identifier in \code{dat} containing text for center-right row 2.
+#' @param center_right_id3 The column identifier in \code{dat} containing text for center-right row 3.
+#' @param bottom_left_id1 The column identifier in \code{dat} containing text for bottom-left row 1.
+#' @param bottom_left_id2 The column identifier in \code{dat} containing text for bottom-left row 2.
+#' @param ... Additional arguments passed to the \code{create_label} function.
 #'
 #'@seealso \code{\link{create_label}} and \code{\link{field_label}}
 #'
@@ -1288,49 +1288,49 @@ gp_label <- function(dat,
 #' given the page setup, label dimensions, the number of rows and columns of labels 
 #' to print per page.
 #'
-#' @returns a PDF file containing labels affixed with QR codes, and saved to the
+#' @returns A PDF file containing labels affixed with QR codes, and saved to the
 #' default or set working directory.
 #'
-#' @param dat is an input data frame or fieldbook that contains plot attributes.
+#' @param dat An input data frame or field book that contains plot attributes.
 #' The order of the columns is not important, and the columns can be any name 
 #' the user desires.
-#' @param wdt  is the label width in inches.
-#' @param hgt is the label height in inches.
-#' @param page_wdt is the page width in inches.
-#' @param page_hgt is the page height in inches.
-#' @param top_mar is the page top margin in inches.
-#' @param bot_mar is the page bottom margin in inches.
-#' @param left_mar is the page left margin in inches.
-#' @param right_mar is the page right margin in inches.
-#' @param numrow is the number of label rows per page. It should be an integer.
-#' @param numcol is the number of label columns per page. It should be an integer.
-#' @param filename is a prefix for the pdf file to be created.
-#' @param font_sz is the font size to use.
-#' @param family is the font style to use to print labels.
+#' @param wdt  The label width in inches.
+#' @param hgt The label height in inches.
+#' @param page_wdt The page width in inches.
+#' @param page_hgt The page height in inches.
+#' @param top_mar The page top margin in inches.
+#' @param bot_mar The page bottom margin in inches.
+#' @param left_mar The page left margin in inches.
+#' @param right_mar The page right margin in inches.
+#' @param numrow The number of label rows per page. It should be an integer.
+#' @param numcol The number of label columns per page. It should be an integer.
+#' @param filename A prefix for the pdf file to be created.
+#' @param font_sz The font size to use.
+#' @param family The font style to use to print labels.
 #' @param rounded Set to TRUE if label has round corners; set to false if label has
 #' square corners.
-#' @param bot_txt1 is the prefix text for bottom text position 1.
-#' @param bot_txt2 is the prefix text for bottom text position 2.
-#' @param bot_txt3 is the prefix text for bottom text position 3.
-#' @param cent_txt1 is the prefix text for center text position 1.
-#' @param cent_txt2 is the prefix text for center text position 2.
-#' @param cent_txt3 is the prefix text for center text position 3.
-#' @param cent_txt4 is the prefix text for center text position 4.
-#' @param top_txt1 is the prefix text for top text position 1.
-#' @param top_txt2 is the prefix text for top text position 2.
-#' @param top_txt3 is the prefix text for top text position 3.
-#' @param bot_txt1_id is the column identifier in \code{dat} containing text for bottom text position 1.
-#' @param bot_txt2_id is the column identifier in \code{dat} containing text for bottom text position 2.
-#' @param bot_txt3_id is the column identifier in \code{dat} containing text for bottom text position 3.
-#' @param cent_txt1_id is the column identifier in \code{dat} containing text for center text position 1.
-#' @param cent_txt2_id is the column identifier in \code{dat} containing text for center text position 2.
-#' @param cent_txt3_id is the column identifier in \code{dat} containing text for center text position 3.
-#' @param cent_txt4_id is the column identifier in \code{dat} containing text for center text position 4.
-#' @param top_txt1_id is the column identifier in \code{dat} containing text for top text position 1.
-#' @param top_txt2_id is the column identifier in \code{dat} containing text for top text position 2.
-#' @param top_txt3_id is the column identifier in \code{dat} containing text for top text position 3.
-#' @param unique_id is the column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.
-#' @param ec_level error correction level (`0` - `3`, lowest to highest) for QR codes.
+#' @param bot_txt1 The prefix text for bottom text position 1.
+#' @param bot_txt2 The prefix text for bottom text position 2.
+#' @param bot_txt3 The prefix text for bottom text position 3.
+#' @param cent_txt1 The prefix text for center text position 1.
+#' @param cent_txt2 The prefix text for center text position 2.
+#' @param cent_txt3 The prefix text for center text position 3.
+#' @param cent_txt4 The prefix text for center text position 4.
+#' @param top_txt1 The prefix text for top text position 1.
+#' @param top_txt2 The prefix text for top text position 2.
+#' @param top_txt3 The prefix text for top text position 3.
+#' @param bot_txt1_id The column identifier in \code{dat} containing text for bottom text position 1.
+#' @param bot_txt2_id The column identifier in \code{dat} containing text for bottom text position 2.
+#' @param bot_txt3_id The column identifier in \code{dat} containing text for bottom text position 3.
+#' @param cent_txt1_id The column identifier in \code{dat} containing text for center text position 1.
+#' @param cent_txt2_id The column identifier in \code{dat} containing text for center text position 2.
+#' @param cent_txt3_id The column identifier in \code{dat} containing text for center text position 3.
+#' @param cent_txt4_id The column identifier in \code{dat} containing text for center text position 4.
+#' @param top_txt1_id The column identifier in \code{dat} containing text for top text position 1.
+#' @param top_txt2_id The column identifier in \code{dat} containing text for top text position 2.
+#' @param top_txt3_id The column identifier in \code{dat} containing text for top text position 3.
+#' @param unique_id The column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.
+#' @param ec_level The error correction level (`0` - `3`, lowest to highest) for QR codes.
 #' 
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
 #' 
@@ -1871,7 +1871,7 @@ gp_label_portrait <- function(
 
 
 
-#' Make an enhanced field layout plot with border rows 
+#' Make an enhanced field layout plot with border rows. 
 #' 
 #' @description
 #' A helper function that adds border rows to the entire perimeter of a
@@ -1879,31 +1879,28 @@ gp_label_portrait <- function(
 #' have a coordinate that is specified by row and column numbers in the 
 #' grid layout. 
 #' 
-#' @param x is the input data frame of fieldbook that has row and column 
+#' @param x The input data frame of field book that has row and column 
 #' coordinates of each plot. 
 #' 
-#' @param row_id is the string column identifier for ROW in the input fieldbook.
+#' @param row_id The string column identifier for ROW in the input field book.
 #' 
-#' @param col_id is the string column identifier for COLUMN in the input fieldbook.
-#' @param rep_id is the string column identifier for REP in the input fieldbook.
-#' @param trt_id is the string column identifier for TREATMENT in the input fieldbook.
-#' @param title is the title of the field layout plot.
-#' @param text_sz is the text size to print treatment names on the tiles.
-#' @param axis_title_sz is the text size for axis titles.
-#' @param xlab is a string to label x axis; default is 'Column'.
-#' @param ylab is a string to label y axis; default is 'Row'.
-#' @param border_bg a string specifying the background color for the border rows.
-#' @param text_col a string specifying the text color for the border rows.
+#' @param col_id The string column identifier for COLUMN in the input field book.
+#' @param rep_id The string column identifier for REP in the input field book.
+#' @param trt_id The string column identifier for TREATMENT in the input field book.
+#' @param title The title of the field layout plot.
+#' @param text_sz The text size to print treatment names on the tiles.
+#' @param axis_title_sz The text size for axis titles.
+#' @param xlab A string to label x axis; default is 'Column'.
+#' @param ylab A string to label y axis; default is 'Row'.
+#' @param border_bg A string specifying the background color for the border rows.
+#' @param text_col A string specifying the text color for the border rows.
 #' 
 #' 
 #' @note
-#' this function works best with input fieldbooks generated with the FieldHub package
+#' This function works best with input field books generated with the 'FieldHub' package
 #' 
-#' @examples
-#' 
-#' 
+#' @examplesIf rlang::is_installed(c("ggplot2", "desplot"))
 #' # Plot a field layout with border rows
-#' 
 #' library(qrlabelr)
 #' 
 #' set.seed(123)
@@ -1918,7 +1915,7 @@ gp_label_portrait <- function(
 #' 
 #' 
 #' 
-#' @returns a field layout with border rows around the entire perimeter.
+#' @returns A field layout plot with border rows around the entire perimeter.
 #' 
 #' @export
 #' 
@@ -1937,10 +1934,10 @@ add_border <- function (x,
 ) {
   
   if (!inherits(x, what = "data.frame")) {
-    stop("Input fieldbook must be a data frame object.")
+    stop("Input field book must be a data frame object.")
   }
   
-  # Subset relevant columns from input fieldbook 
+  # Subset relevant columns from input field book 
   
   ROW <- x[, row_id]
   

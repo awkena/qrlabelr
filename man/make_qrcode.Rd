@@ -7,20 +7,21 @@
 make_qrcode(my_id, ec_level = 3)
 }
 \arguments{
-\item{my_id}{unique ID string to be encoded to QR code}
+\item{my_id}{Unique ID string to be encoded to QR code.}
 
-\item{ec_level}{error correction level (`0` - `3`, lowest to highest)}
+\item{ec_level}{The error correction level (`0` - `3`, lowest to highest).}
 }
 \value{
-QR code as a raster grob image object.
+A QR code as a raster grob image object that can be plotted with the `grid.draw()` 
+function in the 'grid' package.
 }
 \description{
-A helper function for QR code generation using the qrencoder library.
-The function converts the generated QR code into a raster grob image that can
-be plotted using the grid.draw function in the grid package.
+A helper function for QR code generation using the 'qrencoder' library for faster QR code generation.
+It converts the generated QR code into a raster grob image that can
+be plotted using the `grid.draw()` function in the 'grid' package.
 }
 \examples{
- 
+\dontshow{if (rlang::is_installed(c("raster", "qrencoder", "assertthat", "grid"))) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(qrlabelr)
 qr <- make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 3)
 
@@ -40,5 +41,5 @@ make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
  
 }
 
-
+\dontshow{\}) # examplesIf}
 }
