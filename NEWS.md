@@ -1,2 +1,3 @@
-# qrlabelr 0.0.0.9000
+# qrlabelr (development version)
 
+* Initial CRAN submission.
