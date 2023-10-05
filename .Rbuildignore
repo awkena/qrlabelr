@@ -7,3 +7,12 @@
 ^data-raw$
 ^\.github$
 ^codecov\.yml$
+^CRAN-SUBMISSION$
+^revdep$
+^NULL$
+^lastMiKTeXException$
+^vignettes/profilings
+^vignettes/profiling.Rmd$
+^notes$
+^NEWS$
+^docs$

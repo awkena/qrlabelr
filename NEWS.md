@@ -1,4 +1,4 @@
-# qrlabelr 0.1.0.
+# qrlabelr 0.1.0
 
 * Initial CRAN submission.
 
@@ -9,4 +9,4 @@
 * Initial Release to GitHub
 * Prior to this it was a private package
 
-# NEWS set up
+## NEWS set up
