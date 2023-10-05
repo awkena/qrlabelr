@@ -9,12 +9,10 @@
 ^codecov\.yml$
 ^CRAN-SUBMISSION$
 ^revdep$
-^NULL$
-^lastMiKTeXException$
 ^vignettes/profilings
 ^vignettes/profiling.Rmd$
 ^notes$
 ^NEWS$
 ^docs$
-^check$
-^temp$
+^check/NULL
+^temp/lastMiKTeXException
