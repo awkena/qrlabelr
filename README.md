@@ -14,7 +14,7 @@
 
 # Create Plot Labels Easily With qrlabelr
 
-A no-frills open-source solution for designing print-ready labels affixed with QR codes. **`qrlabelr`** is an R package that features **EasyPlotLabelR**, a Shiny app that simplifies the complicated process of plot label design for non-R users. It also offers easily customizable functions that enable label generation outside the Shiny app. It generates plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program to offer more flexibility in plot label creation steps; guarantees true string fidelity after QR encoding; and provides faster label generation to users.
+A no-frills open-source solution for designing print-ready labels affixed with QR codes. **`qrlabelr`** is an R package that features **EasyQrlabelr**, a Shiny app that simplifies the complicated process of plot label design for non-R users. It also offers easily customizable functions that enable label generation outside the Shiny app. It generates plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program, `(baRcodeR)` to offer more flexibility in plot label creation steps; guarantees true string fidelity after QR encoding; and provides faster label generation to users.
 
 Submit bug reports and feature suggestions, or track changes on the
 [issues page](https://github.com/awkena/qrlabelr/issues).
@@ -433,7 +433,7 @@ manufacturers.
 
 # Authors
 
--   [Alexander Wireko Kena](https://www.github.com/awkena)
+-   [Alexander Wireko Kena](https://github.com/awkena)
 -   [Ebenezer Ogoe](https://github.com/Ebenezer-007)
 -   [Clara Cruet-Burgos](https://www.morrislab.org/people/clara-cruet-burgos)
 -   [Geoffrey Preston    Morris](https://www.morrislab.org/people/geoff-morris)
@@ -464,7 +464,7 @@ R, HTML, CSS, JavaScript
 
 # Support and Feedback
 
-For support and submission of feedback, email the maintainer **Alexander Kena** at [alex.kena24@gmail.com](mailto:alex.kena24@gmail.com){.email}
+For support and submission of feedback, email the maintainer **Alexander Kena** at [alex.kena24@gmail.com](mailto:alex.kena24@gmail.com)
 
 # Roadmap
 
