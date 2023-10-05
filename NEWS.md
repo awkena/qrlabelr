@@ -2,4 +2,8 @@
 
 ## NEWS set up
 * Initial CRAN submission.
-* First public release
+
+## Initial public release
+
+* Initial Release to GitHub
+* Prior to this it was a private package
