@@ -78,7 +78,7 @@ required:
 -   [reactable](https://glin.github.io/reactable/): Interactive data
     tables for *R*, based on the React Table JavaScript library
 
--   [shiny](https://shiny.rstudio.com/): Makes it incredibly easy to
+-   [shiny](https://shiny.posit.co/): Makes it incredibly easy to
     build interactive web applications with *R*
 
 -   [shinycssloaders](https://github.com/daattali/shinycssloaders): Add

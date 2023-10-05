@@ -1,6 +1,6 @@
 Package: qrlabelr
 Type: Package
-Title: Generate Machine- and Human-Readable Plot Labels for Experiments
+Title: Generate Machine- And Human-Readable Plot Labels for Experiments
 Version: 0.0.0.9000
 Authors@R: c(person("Alexander", "Wireko Kena", email = "alex.kena24@gmail.com", 
          role = c("aut", "cre"),
@@ -22,7 +22,7 @@ Authors@R: c(person("Alexander", "Wireko Kena", email = "alex.kena24@gmail.com",
          person("Project Artemis", email = "d.guerena@cgiar.org", role = c("fnd")))
 Maintainer: Alexander Wireko Kena <alex.kena24@gmail.com>
 Description: A no-frills open-source solution for designing experimental or trial plot labels 
-    affixed with QR codes. qrlabelr is an R package that features EasyQrlabelr, 
+    affixed with QR codes. 'qrlabelr' is an R package that features 'EasyQrlabelr', 
     a Shiny app that simplifies the complicated process of plot label design for non-R users. 
     It also offers easily customizable functions that enable plot label generation outside the Shiny app.
     It generates field plot labels that are compatible with the widely used 
