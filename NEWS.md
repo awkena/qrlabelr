@@ -1,4 +1,4 @@
-# qrlabelr (development version)
+# qrlabelr 0.0.0.9000
 
 ## NEWS set up
 * Initial CRAN submission.
