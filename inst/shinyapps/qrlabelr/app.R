@@ -123,7 +123,7 @@ argonSidebar <- argonDash::argonDashSidebar(
   skin = "light",
   background = "white",
   size = "md",
-  brand_logo = "logos/qrlabelr.jpg",
+  brand_logo = "qrlabelr.jpg",
   side = "left",
 
   id = "my_sidebar",
@@ -205,72 +205,16 @@ pg_welcome <- argonDash::argonTabItem(
 
       argonR::argonCarousel(id = "logos",
                 floating = TRUE,
-                width = 5,
+                width = 12,
 
-                div(style = "margin-bottom: -20px;",
+                div(style = "margin-bottom: -150px;",
                 argonR::argonCarouselItem(
-                  src = "logos/usaid_logo.png",
-                  active = TRUE),
+                  src = "logos.png",
+                  active = TRUE)
+                )
 
-                argonR::argonCarouselItem(
-                  src = "logos/ftf.png",
-                  active = FALSE),
-
-                argonR::argonCarouselItem(
-                  src = "logos/csu_logo.png",
-                  active = FALSE),
-
-                argonR::argonCarouselItem(
-                  src = "logos/knust_logo.png",
-                  active = FALSE))
-
-        )),
-
-  argonR::argonColumn(width = 6,
-
-              tags$head(
-                tags$style(
-                  HTML("#sample_labels {
-                     max-width: 100%;
-                     height: auto;
-                     }"))),
-
-              argonR::argonCarousel(id = "sample_labels",
-                            floating = TRUE,
-                            width = 5,
-
-                            div(style = "padding: 20px;",
-                            argonR::argonCarouselItem(
-                              src = "sample_labels/lab_spec_1.png",
-                              active = TRUE,
-                              mode = "img"),
-
-                            argonR::argonCarouselItem(
-                              src = "sample_labels/lab_spec_2.png",
-                              active = FALSE,
-                              mode = "img"),
-
-                            argonR::argonCarouselItem(
-                              src = "sample_labels/lab_spec_4.png",
-                              active = FALSE,
-                              mode = "img"),
-
-                            argonR::argonCarouselItem(
-                              src = "sample_labels/avery_94207.png",
-                              active = FALSE,
-                              mode = "img"),
-
-                            argonR::argonCarouselItem(
-                              src = "sample_labels/ol5125wx.png",
-                              active = FALSE,
-                              mode = "img"),
-
-                            argonR::argonCarouselItem(
-                              src = "sample_labels/treetag_lab_2.png",
-                              active = FALSE,
-                              mode = "img"))
-
-   ))
+        ))
+                  
 ),
 
 
@@ -297,6 +241,13 @@ br(),
   p(" The app outputs a downloadable PDF file based on user-defined page
   and label setting parameters. Users can also download an updated fieldbook for
   digital data collection.", style = "text-align: justify; margin-top: 10px;"),
+
+  br(),
+
+argonR::argonImage(
+  src = "workflow.png",
+  card_mode = TRUE,
+),
 
   br(),
 
