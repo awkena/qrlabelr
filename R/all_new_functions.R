@@ -95,7 +95,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #'  
 #' create_label( 
 #' font_sz = 10,
-#' filename = file.path(tempdir(), "ex1_"), 
+#' filename = file.path(tempdir(), "ex1"), 
 #' top_left_1 = paste("Plot:", 101:105), 
 #' top_left_2 = paste("Row:", c(rep(1, 3), rep(2, 2))), 
 #' top_right_1 = paste("Rep:", rep(1, 5)), 
