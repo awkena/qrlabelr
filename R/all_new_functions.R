@@ -96,19 +96,19 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' create_label( 
 #' font_sz = 10,
 #' filename = file.path(tempdir(), "ex1_"), 
-#' top_left_1 = paste("Plot:", 101:110), 
-#' top_left_2 = paste("Row:", c(rep(1, 6), rep(2, 4))), 
-#' top_right_1 = paste("Rep:", rep(1, 10)), 
-#' top_right_2 = paste("Col:", c(1:6, 1:4)), 
-#' center_right_1 = paste("iBLOCK:", c(rep(1, 6), rep(2, 4))), 
-#' center_right_2 = paste("Seed:", rep("OFF_NUR", 10)), 
-#' center_right_3 = rep("AWk", 10), 
-#' bottom_left_1 = paste("Loc:", rep("BAMBEY", 10)), 
-#' bottom_left_2 = paste0("G-", 1:10),
-#' unique_id = paste("KUMASI2023_PYT", c(101:110), 
-#'                   c(rep(1, 6), rep(2, 4)), c(1:6, 1:4),
+#' top_left_1 = paste("Plot:", 101:105), 
+#' top_left_2 = paste("Row:", c(rep(1, 3), rep(2, 2))), 
+#' top_right_1 = paste("Rep:", rep(1, 5)), 
+#' top_right_2 = paste("Col:", c(1:3, 1:2)), 
+#' center_right_1 = paste("iBLOCK:", c(rep(1, 3), rep(2, 2))), 
+#' center_right_2 = paste("Seed:", rep("OFF_NUR", 5)), 
+#' center_right_3 = rep("AWk", 5), 
+#' bottom_left_1 = paste("Loc:", rep("BAMBEY", 5)), 
+#' bottom_left_2 = paste0("G-", 1:5),
+#' unique_id = paste("KUMASI2023_PYT", c(101:105), 
+#'                   c(rep(1, 3), rep(2, 2)), c(1:3, 1:2),
 #'                   sep = "_"), 
-#' ec_level = 3)
+#' ec_level = 1)
 #' 
 #' @export
 create_label <- function(
