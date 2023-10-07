@@ -66,7 +66,8 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @param right_mar The page right margin in inches.
 #' @param numrow The number of label rows per page. It should be an integer.
 #' @param numcol The number of label columns per page. It should be an integer.
-#' @param filename A character prefix for the pdf file to be created.
+#' @param filename A character prefix or path for the pdf file to be created. Default path
+#' is working directory.
 #' @param font_sz The font size to use.
 #' @param Treetag Set to TRUE if creating a treetag label.
 #' @param family The font style to use to print labels.
@@ -89,12 +90,12 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' 
 #' @examples
 #' 
-#' \dontrun{
 #' # Create rectangular plot labels based on the Avery 94220 template-- the default template
 #' library(qrlabelr)
 #'  
 #' create_label( 
 #' font_sz = 10,
+#' filename = file.path(tempdir(), "ex1_"), 
 #' top_left_1 = paste("Plot:", 101:110), 
 #' top_left_2 = paste("Row:", c(rep(1, 6), rep(2, 4))), 
 #' top_right_1 = paste("Rep:", rep(1, 10)), 
@@ -108,43 +109,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #'                   c(rep(1, 6), rep(2, 4)), c(1:6, 1:4),
 #'                   sep = "_"), 
 #' ec_level = 3)
-#' }
 #' 
-#'  
-#' \dontrun{
-#' Create treetag plot labels
-#' library(qrlabelr)
-#' create_label(
-#' wdt = 1, 
-#' hgt = 6, 
-#' page_wdt = 4, 
-#' page_hgt = 6, 
-#' top_mar = 0, 
-#' bot_mar = 0, 
-#' left_mar = 0, 
-#' right_mar = 0, 
-#' numrow = 1L, 
-#' numcol = 4L, 
-#' filename = 'PlotLabel', 
-#' font_sz = 10,
-#' Treetag = TRUE,
-#' family = 'sans', 
-#' rounded = FALSE, 
-#' top_left_1 = paste("Plot:", 101:110), 
-#' top_left_2 = paste("Row:", c(rep(1, 6), rep(2, 4))), 
-#' top_right_1 = paste("Rep:", rep(1, 10)), 
-#' top_right_2 = paste("Col:", c(1:6, 1:4)), 
-#' center_right_1 = paste("iBLOCK:", c(rep(1, 6), rep(2, 4))), 
-#' center_right_2 = paste("Seed:", rep("OFF_NUR", 10)), 
-#' center_right_3 = rep("AWK", 10), 
-#' bottom_left_1 = paste("Loc:", rep("BAMBEY", 10)), 
-#' bottom_left_2 = paste0("G-", 1:10),
-#' unique_id = paste("KUMASI2023_PYT", c(101:110), 
-#'                   c(rep(1, 6), rep(2, 4)), c(1:6, 1:4),
-#'                   sep = "_"),
-#' ec_level = 3)
-#'  }
-#'
 #' @export
 create_label <- function(
     wdt = 2, # label width
@@ -720,6 +685,20 @@ create_label <- function(
 #' To design field plot labels, the imported field book must have LOCATION, PLOT,
 #' ROW, COLUMN/RANGE, REP, TREATMENT columns. The order of the columns in the field book
 #' is not important, and the columns can be any name the user desires.
+#' @param get_unique_id Set to 'ruid' if reproducible and informative unique ids
+#' are to be generated from imported field book. Set to 'uuid' if universal unique ids
+#' are to be generated from imported field book. Set to 'custom' if imported field book
+#' already has unique IDs for each plot.
+#' @param unique_id The column identifier for UNIQUE_ID in the imported field book.
+#' @param filename A character prefix or path for the pdf file to be created. Default path
+#' is working directory.
+#' @param Year The year of experiment or trial.
+#' @param rname The researcher's name. Initials or initials of first and middle
+#' names and the last name.
+#' @param Trial The name of the trial to use.
+#' @param seed_source Set to TRUE if seed source is included in the imported field book,
+#' FALSE if otherwise.
+#' @param IBlock Set to TRUE if \code{dat} contains incomplete blocks within REPs.
 #' @param rep_id The column identifier for REP in the imported field book.
 #' @param plot_id The column identifier for PLOT in the imported field book.
 #' @param row_id The column identifier for ROW in the imported field book.
@@ -728,20 +707,9 @@ create_label <- function(
 #' @param entry_id The column identifier for ENTRY/TREATMENT in the imported field book.
 #' @param IBlock_id The column identifier for IBLOCK in the imported field book.
 #' It must be provided if \code{IBlock} is set to TRUE.
-#' @param unique_id The column identifier for UNIQUE_ID in the imported field book
 #' @param seed_source_id The column identifier for SEED_SOURCE in the imported field book.
 #' It must be provided if \code{seed_source} is set to TRUE.
-#' @param Year The year of experiment or trial.
-#' @param rname The researcher's name. Initials or initials of first and middle
-#' names and the last name.
-#' @param Trial The name of the trial to use.
-#' @param seed_source Set to TRUE if seed source is included in the imported field book,
-#' FALSE if otherwise.
-#' @param IBlock Set to TRUE if \code{dat} contains incomplete blocks within REPs.
-#' @param get_unique_id Set to 'ruid' if reproducible and informative unique ids
-#' are to be generated from imported field book. Set to 'uuid' if universal unique ids
-#' are to be generated from imported field book. Set to 'custom' if imported field book
-#' already has unique IDs for each plot.
+
 #' @param ... Additional arguments passed to the \code{create_label()} function.
 #' 
 #' @details
@@ -774,51 +742,49 @@ create_label <- function(
 #' @seealso \code{\link{create_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
-#' 
-#'\dontrun{
-#' # Generate field plot labels using the square_lattice sample field book
 #' library(qrlabelr)
+#' df <- data.frame(LOCATION = rep("BAMBEY", 5),
+#'                 PLOT = 1001:1005,
+#'                 ROW = c(rep(1, 3), rep(2, 2)),
+#'                 COLUMN = c(1:3, 1:2),
+#'                 REP = rep(1, 5),
+#'                 IBLOCK = c(rep(1, 3), rep(2, 2)),
+#'                 TREATMENT = paste0("G-", 1:5),
+#'                 SEED_SOURCE = rep("OFF_NUR", 5))
+
+#' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
+#'                  df$COLUMN)
 #' 
 #' field_label(
-#' dat = square_lattice,
-#' font_sz = 10,
-#' IBlock = FALSE,
-#' get_unique_id = "ruid",
-#' rname = "Adoma",
-#' family = "sans",
-#' seed_source = FALSE)
-#' }
-#'
-#' 
-#' \dontrun{
-#' Generate treetag labels using the square_lattice sample field book
-#' field_label(
-#' dat = square_lattice,
-#' wdt = 1,
-#' hgt = 6,
-#' top_mar = 0,
-#' bot_mar = 0,
-#' left_mar = 0,
-#' right_mar = 0,
-#' page_hgt = 6,
-#' page_wdt = 4,
-#' numrow = 1,
-#' numcol = 4,
-#' get_unique_id = "ruid",
-#' font_sz = 10,
-#' IBlock = TRUE,
-#' rounded = FALSE,
-#' rname = "AWK",
-#' family = "sans",
-#' Treetag = TRUE,
-#' seed_source = TRUE,
-#' seed_source_id = "SEED_SOURCE")
-#' }
-#'
+#'   dat = df,
+#'   wdt = 5, 
+#'   hgt = 2,
+#'   page_wdt = 8.5, 
+#'   page_hgt = 11,
+#'   top_mar = 0.75, 
+#'   bot_mar = 0.75, 
+#'   left_mar = 1.75, 
+#'   right_mar = 1.75, 
+#'   numrow = 4L, 
+#'   numcol = 1L, 
+#'   filename = file.path(tempdir(), "fpl"), 
+#'   font_sz = 20, 
+#'   Trial = "PYT", 
+#'   Year = 2023, 
+#'   family = "sans", 
+#'   rounded = TRUE, 
+#'   IBlock = TRUE,
+#'   get_unique_id = "ruid", 
+#'   rname = "AW Kena", 
+#'   seed_source = TRUE, 
+#'   seed_source_id = "SEED_SOURCE",
+#'   ec_level = 1)
+#'   
 #' @export
 field_label <- function(dat,
                         get_unique_id = c("ruid", "uuid", "custom"), # Generate unique ids for QR codes
                         unique_id = NULL,
+                        filename = "PlotLabel",
                         Year = NULL,
                         rname = NULL,
                         Trial = 'PYT',
@@ -991,20 +957,22 @@ field_label <- function(dat,
   ts <- Sys.time() |> format(format = "%H_%M_%S") |> 
     paste0("Updated_Fieldbook_", ... = _, ".csv")
   
-  utils::write.csv(updat, file = ts, row.names = FALSE)
+  utils::write.csv(updat, file = paste0(filename, ts), row.names = FALSE)
 
   # Send updated fieldbook from package environment to global environment
-  .GlobalEnv$updated_fieldbook <- list(updated_fieldbook = updat)
+  #.GlobalEnv$updated_fieldbook <- list(updated_fieldbook = updat)
 
-  do.call(create_label, args = list(top_left_1 = plotid, top_left_2 = rowid,
-                                            top_right_1 = repid,
-                                            top_right_2 = colid,
-                                            center_right_1 = blkid,
-                                            center_right_2 = sds,
-                                            center_right_3 = rnames,
-                                            bottom_left_1 = loc1,
-                                            bottom_left_2 = entry,
-                                            unique_id = UNIQUE_ID, ...))
+  do.call(create_label, args = list(top_left_1 = plotid,
+                                    top_left_2 = rowid,
+                                    top_right_1 = repid,
+                                    top_right_2 = colid,
+                                    center_right_1 = blkid,
+                                    center_right_2 = sds,
+                                    center_right_3 = rnames,
+                                    bottom_left_1 = loc1,
+                                    bottom_left_2 = entry,
+                                    unique_id = UNIQUE_ID, 
+                                    filename = filename, ...))
 
   cat("\n\n\tGenerated labels and updated fieldbook saved to working directory.")
 }
@@ -1026,6 +994,8 @@ field_label <- function(dat,
 #' @param get_unique_id Set to 'uuid' if universal unique ids are to be generated.
 #' @param unique_id The column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.
 #'  Set to 'custom' if imported field book already has unique IDs for each plot.
+#' @param filename A character prefix or path for the pdf file to be created. Default path
+#' is working directory.
 #' @param top_left_txt1 The prefix text for top-left row 1.
 #' @param top_left_txt2 The prefix text for top-left row 2.
 #' @param top_right_txt1 The prefix text for the top-right row 1.
@@ -1049,80 +1019,59 @@ field_label <- function(dat,
 #'@seealso \code{\link{create_label}} and \code{\link{field_label}}
 #'
 #' @examples
-#' \dontrun{
-#' # Generate general-purpose label using the square_lattice sample fieldbook.
 #' library(qrlabelr)
+#' df <- data.frame(LOCATION = rep("BAMBEY", 5),
+#'                  PLOT = 1001:1005,
+#'                  ROW = c(rep(1, 3), rep(2, 2)),
+#'                  COLUMN = c(1:3, 1:2),
+#'                  REP = rep(1, 5),
+#'                  IBLOCK = c(rep(1, 3), rep(2, 2)),
+#'                  TREATMENT = paste0("G-", 1:5),
+#'                  SEED_SOURCE = rep("OFF_NUR", 5))
 #' 
+#' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
+#'                  df$COLUMN)
+#' #' 
+#' gp_label(dat = df,
+#'          wdt = 5,
+#'          hgt = 2,
+#'          page_wdt = 8.5,
+#'          page_hgt = 11,
+#'          top_mar = 0.75,
+#'          bot_mar = 0.75,
+#'          left_mar = 1.75,
+#'          right_mar = 1.75,
+#'          numrow = 4L,
+#'          numcol = 1L,
+#'          filename = file.path(tempdir(), "gpl"),
+#'          font_sz = 20,
+#'          rname = "Adoma",
+#'          get_unique_id = "custom",
+#'          unique_id = 'ids',
+#'          family = "sans",
+#'          top_left_txt1 = 'Plot:',
+#'          top_left_txt2 = 'Row:',
+#'          top_right_txt1 = 'Rep:',
+#'          top_right_txt2 = 'Col:',
+#'          center_right_txt1 = 'iBlock:',
+#'          center_right_txt2 = 'Seed:',
+#'          center_right_txt3 = 'Adoma',
+#'          top_left_id1 = 'PLOT',
+#'          top_left_id2 = 'ROW',
+#'          top_right_id1 = 'REP',
+#'          top_right_id2 = 'COLUMN',
+#'          center_right_id1 = 'IBLOCK',
+#'          center_right_id2 = 'SEED_SOURCE',
+#'          bottom_left_id1 = 'ids',
+#'          bottom_left_id2 = 'TREATMENT',
+#'          ec_level = 1
+#' )
 #' 
-#' gp_label(dat = square_lattice,
-#' get_unique_id = "uuid",
-#' font_sz = 10,
-#' family = "sans",
-#' top_left_txt1 = 'Plot:',
-#' top_left_txt2 = 'Row:',
-#' top_right_txt1 = 'Rep:',
-#' top_right_txt2 = 'Col:',
-#' center_right_txt1 = 'iBlock:',
-#' center_right_txt2 = 'Seed:',
-#' center_right_txt3 = 'AWK',
-#' bottom_left_txt1 = 'Loc:',
-#' top_left_id1 = 'PLOT',
-#' top_left_id2 = 'ROW',
-#' top_right_id1 = 'REP',
-#' top_right_id2 = 'COLUMN',
-#' center_right_id1 = 'IBLOCK',
-#' center_right_id2 = 'SEED_SOURCE',
-#' bottom_left_id1 = 'LOCATION',
-#' bottom_left_id2 = 'TREATMENT'
-#' )
-#' }
-#'
-#'
-#' \dontrun{
-#' Generate general-purpose label using the square_lattice sample fieldbook.
-#' library(qrlabelr)
-#' gp_label(dat = square_lattice,
-#' wdt = 5, 
-#' hgt = 2,
-#' page_wdt = 8.5, 
-#' page_hgt = 11,
-#' top_mar = 0.75, 
-#' bot_mar = 0.75, 
-#' left_mar = 1.75, 
-#' right_mar = 1.75, 
-#' numrow = 4L, 
-#' numcol = 1L, 
-#' filename = 'MyLabel', 
-#' font_sz = 20, 
-#' Trial = 'PYT', 
-#' Year = 2023, 
-#' rname = "Adoma", 
-#' get_unique_id = "uuid",
-#' family = "sans",
-#' top_left_txt1 = 'Plot:',
-#' top_left_txt2 = 'Row:', 
-#' top_right_txt1 = 'Rep:',
-#' top_right_txt2 = 'Col:',
-#' center_right_txt1 = 'iBlock:',
-#' center_right_txt2 = 'Seed:',
-#' center_right_txt3 = 'Adoma',
-#' bottom_left_txt1 = 'Loc:',
-#' top_left_id1 = 'PLOT',
-#' top_left_id2 = 'ROW',
-#' top_right_id1 = 'REP',
-#' top_right_id2 = 'COLUMN',
-#' center_right_id1 = 'IBLOCK',
-#' center_right_id2 = 'SEED_SOURCE',
-#' bottom_left_id1 = 'LOCATION',
-#' bottom_left_id2 = 'TREATMENT'
-#' )
-
-#' }
-#'
 #' @export
 gp_label <- function(dat,
                      get_unique_id = c("uuid", "custom"), # Generate unique ids for QR codes
                      unique_id = NULL,
+                     filename = "PlotLabel",
                      top_left_txt1 = NULL, # Prefix text for top-left row 1
                      top_left_txt2 = NULL, # Prefix text for top-left row 2
                      top_right_txt1 = NULL, # prefix text for top-right row 1
@@ -1257,19 +1206,22 @@ gp_label <- function(dat,
   ts <- Sys.time() |> format(format = "%H_%M_%S") |> 
     paste0("Updated_Fieldbook_", ... = _, ".csv")
 
-  utils::write.csv(updat, file = ts, row.names = FALSE)
+  utils::write.csv(updat, file = paste0(filename, ts), row.names = FALSE)
 
   # Send updated fieldbook from package environment to global environment
-  .GlobalEnv$updated_fieldbook <- list(updated_fieldbook = updat)
+  #.GlobalEnv$updated_fieldbook <- list(updated_fieldbook = updat)
 
-  do.call(create_label, args = list(top_left_1 = topleft1, top_left_2 = topleft2,
-                                            top_right_1 = topright1, top_right_2 = topright2,
-                                            center_right_1 = centerright1,
-                                            center_right_2 = centerright2,
-                                            center_right_3 = centerright3,
-                                            bottom_left_1 = bottomleft1,
-                                            bottom_left_2 = bottomleft2,
-                                            unique_id = UNIQUE_ID, ...))
+  do.call(create_label, args = list(top_left_1 = topleft1, 
+                                    top_left_2 = topleft2,
+                                    top_right_1 = topright1, 
+                                    top_right_2 = topright2,
+                                    center_right_1 = centerright1,
+                                    center_right_2 = centerright2,
+                                    center_right_3 = centerright3,
+                                    bottom_left_1 = bottomleft1,
+                                    bottom_left_2 = bottomleft2,
+                                    unique_id = UNIQUE_ID, 
+                                    filename = filename, ...))
 
   cat("\n\n\tGenerated labels and updated fieldbook saved to working directory.")
 }
@@ -1304,7 +1256,8 @@ gp_label <- function(dat,
 #' @param right_mar The page right margin in inches.
 #' @param numrow The number of label rows per page. It should be an integer.
 #' @param numcol The number of label columns per page. It should be an integer.
-#' @param filename A prefix for the pdf file to be created.
+#' @param filename A character prefix or path for the pdf file to be created. Default path
+#' is working directory.
 #' @param font_sz The font size to use.
 #' @param family The font style to use to print labels.
 #' @param rounded Set to TRUE if label has round corners; set to false if label has
@@ -1335,17 +1288,60 @@ gp_label <- function(dat,
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
+#' library(qrlabelr)
+#' df <- data.frame(LOCATION = rep("BAMBEY", 5),
+#'                  PLOT = 1001:1005,
+#'                  ROW = c(rep(1, 3), rep(2, 2)),
+#'                  COLUMN = c(1:3, 1:2),
+#'                  REP = rep(1, 5),
+#'                  IBLOCK = c(rep(1, 3), rep(2, 2)),
+#'                  TREATMENT = paste0("G-", 1:5),
+#'                  SEED_SOURCE = rep("OFF_NUR", 5))
 #' 
+#' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
+#'                  df$COLUMN)
+#'
+#' gp_label_portrait(
+#' dat = df,
+#' wdt = 2,
+#' hgt = 1,
+#' page_wdt = 8.5,
+#' page_hgt = 11,
+#' top_mar = 0.625,
+#' bot_mar = 0.625,
+#' left_mar = 0.625,
+#' right_mar = 0.625,
+#' numrow = 8L,
+#' numcol = 3L,
+#' filename = file.path(tempdir(), "gpp"),
+#' font_sz = 10,
+#' family = 'sans',
+#' rounded = TRUE,
+#' bot_txt1 = 'Rubi',
+#' cent_txt2 = 'Rep:',
+#' cent_txt3 = 'R:',
+#' cent_txt4 = 'r:',
+#' top_txt1 = 'P:',
+#' top_txt2 = 'B:',
+#' bot_txt2_id = 'ids',
+#' bot_txt3_id = 'LOCATION',
+#' cent_txt1_id = 'TREATMENT',
+#' cent_txt2_id = 'REP',
+#' cent_txt3_id = 'COLUMN',
+#' cent_txt4_id = 'ROW',
+#' top_txt1_id = 'PLOT',
+#' top_txt2_id = 'IBLOCK',
+#' top_txt3_id = 'SEED_SOURCE',
+#' unique_id = 'ids',
+#' ec_level = 1
+#' )
+#'
 #' \dontrun{
 #' # Create a general-purpose label in a portrait text orientation based on the 
 #' # 2 x 1 inch Avery 94220 template for laser-jet printers
 #' 
-#' library(qrlabelr)
-#' dat <- qrlabelr::square_lattice
 #' 
-#' dat$ids <- paste0(dat$LOCATION,'2023', '_PYT', '_', dat$PLOT, '_', dat$ROW, '_',
-#'                   dat$COLUMN)
-#'  
+#' 
 #' gp_label_portrait(
 #'   dat,
 #'   wdt = 2,
@@ -1382,47 +1378,6 @@ gp_label <- function(dat,
 #' )
 #' }
 #' 
-#'  
-#' \dontrun{
-#' # Create a general-purpose label in a portrait text orientation based on the 
-#' # the 2 x 1 inch Online Label RL778 template for thermal roll printers
-#' 
-#' gp_label_portrait(
-#'   dat,
-#'   wdt = 2, # label width
-#'   hgt = 1, # Label height
-#'   page_wdt = 2.125, # page width
-#'   page_hgt = 1.125, # page height
-#'   top_mar = 0.0625, # top margin
-#'   bot_mar = 0.0625, # bottom margin
-#'   left_mar = 0.0625, # left margin
-#'   right_mar = 0.0625, # right margin
-#'   numrow = 1L, # number of label rows per page
-#'   numcol = 1L, # number of label columns per page
-#'   filename = 'PlotLabel', # name for pdf file to be created
-#'   font_sz = 10,
-#'   family = 'sans', # Font style to use
-#'   rounded = TRUE, # Rounded corners
-#'   bot_txt1 = 'Rubi', 
-#'   cent_txt2 = 'Rep:',  
-#'   cent_txt3 = 'R:', 
-#'   cent_txt4 = 'r:', 
-#'   top_txt1 = 'P:', 
-#'   top_txt2 = 'B:',
-#'   bot_txt2_id = 'ids',
-#'   bot_txt3_id = 'LOCATION',
-#'   cent_txt1_id = 'TREATMENT', 
-#'   cent_txt2_id = 'REP', 
-#'   cent_txt3_id = 'COLUMN', 
-#'   cent_txt4_id = 'ROW', 
-#'   top_txt1_id = 'PLOT',
-#'   top_txt2_id = 'IBLOCK',
-#'   top_txt3_id = 'SEED_SOURCE',
-#'   unique_id = 'ids',
-#'   ec_level = 1
-#' )
-#'  }
-#'
 #' @export
 
 

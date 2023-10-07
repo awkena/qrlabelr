@@ -69,7 +69,8 @@ the user desires.}
 
 \item{numcol}{The number of label columns per page. It should be an integer.}
 
-\item{filename}{A prefix for the pdf file to be created.}
+\item{filename}{A character prefix or path for the pdf file to be created. Default path
+is working directory.}
 
 \item{font_sz}{The font size to use.}
 
@@ -137,17 +138,60 @@ given the page setup, label dimensions, the number of rows and columns of labels
 to print per page.
 }
 \examples{
+library(qrlabelr)
+df <- data.frame(LOCATION = rep("BAMBEY", 5),
+                 PLOT = 1001:1005,
+                 ROW = c(rep(1, 3), rep(2, 2)),
+                 COLUMN = c(1:3, 1:2),
+                 REP = rep(1, 5),
+                 IBLOCK = c(rep(1, 3), rep(2, 2)),
+                 TREATMENT = paste0("G-", 1:5),
+                 SEED_SOURCE = rep("OFF_NUR", 5))
+
+df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
+                 df$COLUMN)
+
+gp_label_portrait(
+dat = df,
+wdt = 2,
+hgt = 1,
+page_wdt = 8.5,
+page_hgt = 11,
+top_mar = 0.625,
+bot_mar = 0.625,
+left_mar = 0.625,
+right_mar = 0.625,
+numrow = 8L,
+numcol = 3L,
+filename = file.path(tempdir(), "gpp"),
+font_sz = 10,
+family = 'sans',
+rounded = TRUE,
+bot_txt1 = 'Rubi',
+cent_txt2 = 'Rep:',
+cent_txt3 = 'R:',
+cent_txt4 = 'r:',
+top_txt1 = 'P:',
+top_txt2 = 'B:',
+bot_txt2_id = 'ids',
+bot_txt3_id = 'LOCATION',
+cent_txt1_id = 'TREATMENT',
+cent_txt2_id = 'REP',
+cent_txt3_id = 'COLUMN',
+cent_txt4_id = 'ROW',
+top_txt1_id = 'PLOT',
+top_txt2_id = 'IBLOCK',
+top_txt3_id = 'SEED_SOURCE',
+unique_id = 'ids',
+ec_level = 1
+)
 
 \dontrun{
 # Create a general-purpose label in a portrait text orientation based on the 
 # 2 x 1 inch Avery 94220 template for laser-jet printers
 
-library(qrlabelr)
-dat <- qrlabelr::square_lattice
 
-dat$ids <- paste0(dat$LOCATION,'2023', '_PYT', '_', dat$PLOT, '_', dat$ROW, '_',
-                  dat$COLUMN)
- 
+
 gp_label_portrait(
   dat,
   wdt = 2,
@@ -183,47 +227,6 @@ gp_label_portrait(
   ec_level = 1
 )
 }
-
- 
-\dontrun{
-# Create a general-purpose label in a portrait text orientation based on the 
-# the 2 x 1 inch Online Label RL778 template for thermal roll printers
-
-gp_label_portrait(
-  dat,
-  wdt = 2, # label width
-  hgt = 1, # Label height
-  page_wdt = 2.125, # page width
-  page_hgt = 1.125, # page height
-  top_mar = 0.0625, # top margin
-  bot_mar = 0.0625, # bottom margin
-  left_mar = 0.0625, # left margin
-  right_mar = 0.0625, # right margin
-  numrow = 1L, # number of label rows per page
-  numcol = 1L, # number of label columns per page
-  filename = 'PlotLabel', # name for pdf file to be created
-  font_sz = 10,
-  family = 'sans', # Font style to use
-  rounded = TRUE, # Rounded corners
-  bot_txt1 = 'Rubi', 
-  cent_txt2 = 'Rep:',  
-  cent_txt3 = 'R:', 
-  cent_txt4 = 'r:', 
-  top_txt1 = 'P:', 
-  top_txt2 = 'B:',
-  bot_txt2_id = 'ids',
-  bot_txt3_id = 'LOCATION',
-  cent_txt1_id = 'TREATMENT', 
-  cent_txt2_id = 'REP', 
-  cent_txt3_id = 'COLUMN', 
-  cent_txt4_id = 'ROW', 
-  top_txt1_id = 'PLOT',
-  top_txt2_id = 'IBLOCK',
-  top_txt3_id = 'SEED_SOURCE',
-  unique_id = 'ids',
-  ec_level = 1
-)
- }
 
 }
 \seealso{

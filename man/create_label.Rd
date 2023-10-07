@@ -55,7 +55,8 @@ create_label(
 
 \item{numcol}{The number of label columns per page. It should be an integer.}
 
-\item{filename}{A character prefix for the pdf file to be created.}
+\item{filename}{A character prefix or path for the pdf file to be created. Default path
+is working directory.}
 
 \item{font_sz}{The font size to use.}
 
@@ -100,12 +101,12 @@ Create print-ready customized plot labels affixed with QR codes given the page s
 }
 \examples{
 
-\dontrun{
 # Create rectangular plot labels based on the Avery 94220 template-- the default template
 library(qrlabelr)
  
 create_label( 
 font_sz = 10,
+filename = file.path(tempdir(), "ex1_"), 
 top_left_1 = paste("Plot:", 101:110), 
 top_left_2 = paste("Row:", c(rep(1, 6), rep(2, 4))), 
 top_right_1 = paste("Rep:", rep(1, 10)), 
@@ -119,42 +120,6 @@ unique_id = paste("KUMASI2023_PYT", c(101:110),
                   c(rep(1, 6), rep(2, 4)), c(1:6, 1:4),
                   sep = "_"), 
 ec_level = 3)
-}
-
- 
-\dontrun{
-Create treetag plot labels
-library(qrlabelr)
-create_label(
-wdt = 1, 
-hgt = 6, 
-page_wdt = 4, 
-page_hgt = 6, 
-top_mar = 0, 
-bot_mar = 0, 
-left_mar = 0, 
-right_mar = 0, 
-numrow = 1L, 
-numcol = 4L, 
-filename = 'PlotLabel', 
-font_sz = 10,
-Treetag = TRUE,
-family = 'sans', 
-rounded = FALSE, 
-top_left_1 = paste("Plot:", 101:110), 
-top_left_2 = paste("Row:", c(rep(1, 6), rep(2, 4))), 
-top_right_1 = paste("Rep:", rep(1, 10)), 
-top_right_2 = paste("Col:", c(1:6, 1:4)), 
-center_right_1 = paste("iBLOCK:", c(rep(1, 6), rep(2, 4))), 
-center_right_2 = paste("Seed:", rep("OFF_NUR", 10)), 
-center_right_3 = rep("AWK", 10), 
-bottom_left_1 = paste("Loc:", rep("BAMBEY", 10)), 
-bottom_left_2 = paste0("G-", 1:10),
-unique_id = paste("KUMASI2023_PYT", c(101:110), 
-                  c(rep(1, 6), rep(2, 4)), c(1:6, 1:4),
-                  sep = "_"),
-ec_level = 3)
- }
 
 }
 \seealso{

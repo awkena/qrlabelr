@@ -8,6 +8,7 @@ field_label(
   dat,
   get_unique_id = c("ruid", "uuid", "custom"),
   unique_id = NULL,
+  filename = "PlotLabel",
   Year = NULL,
   rname = NULL,
   Trial = "PYT",
@@ -35,7 +36,10 @@ are to be generated from imported field book. Set to 'uuid' if universal unique 
 are to be generated from imported field book. Set to 'custom' if imported field book
 already has unique IDs for each plot.}
 
-\item{unique_id}{The column identifier for UNIQUE_ID in the imported field book}
+\item{unique_id}{The column identifier for UNIQUE_ID in the imported field book.}
+
+\item{filename}{A character prefix or path for the pdf file to be created. Default path
+is working directory.}
 
 \item{Year}{The year of experiment or trial.}
 
@@ -104,47 +108,43 @@ blocks within replications. The imported  field book must include an IBLOCK colu
 the \code{IBlock} argument is set to TRUE.
 }
 \examples{
-
-\dontrun{
-# Generate field plot labels using the square_lattice sample field book
 library(qrlabelr)
+df <- data.frame(LOCATION = rep("BAMBEY", 5),
+                PLOT = 1001:1005,
+                ROW = c(rep(1, 3), rep(2, 2)),
+                COLUMN = c(1:3, 1:2),
+                REP = rep(1, 5),
+                IBLOCK = c(rep(1, 3), rep(2, 2)),
+                TREATMENT = paste0("G-", 1:5),
+                SEED_SOURCE = rep("OFF_NUR", 5))
+df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
+                 df$COLUMN)
 
 field_label(
-dat = square_lattice,
-font_sz = 10,
-IBlock = FALSE,
-get_unique_id = "ruid",
-rname = "Adoma",
-family = "sans",
-seed_source = FALSE)
-}
-
-
-\dontrun{
-Generate treetag labels using the square_lattice sample field book
-field_label(
-dat = square_lattice,
-wdt = 1,
-hgt = 6,
-top_mar = 0,
-bot_mar = 0,
-left_mar = 0,
-right_mar = 0,
-page_hgt = 6,
-page_wdt = 4,
-numrow = 1,
-numcol = 4,
-get_unique_id = "ruid",
-font_sz = 10,
-IBlock = TRUE,
-rounded = FALSE,
-rname = "AWK",
-family = "sans",
-Treetag = TRUE,
-seed_source = TRUE,
-seed_source_id = "SEED_SOURCE")
-}
-
+  dat = df,
+  wdt = 5, 
+  hgt = 2,
+  page_wdt = 8.5, 
+  page_hgt = 11,
+  top_mar = 0.75, 
+  bot_mar = 0.75, 
+  left_mar = 1.75, 
+  right_mar = 1.75, 
+  numrow = 4L, 
+  numcol = 1L, 
+  filename = file.path(tempdir(), "fpl"), 
+  font_sz = 20, 
+  Trial = "PYT", 
+  Year = 2023, 
+  family = "sans", 
+  rounded = TRUE, 
+  IBlock = TRUE,
+  get_unique_id = "ruid", 
+  rname = "AW Kena", 
+  seed_source = TRUE, 
+  seed_source_id = "SEED_SOURCE",
+  ec_level = 1)
+  
 }
 \seealso{
 \code{\link{create_label}} and \code{\link{gp_label}}
