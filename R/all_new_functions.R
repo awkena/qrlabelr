@@ -92,10 +92,12 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' 
 #' # Create rectangular plot labels based on the Avery 94220 template-- the default template
 #' library(qrlabelr)
-#'  
-#' create_label( 
+#' file <- file.path(tempdir(), "ex1")
+#' 
+#' 
+#' create_label(
 #' font_sz = 10,
-#' filename = file.path(tempdir(), "ex1"), 
+#' filename = tempfile(), 
 #' top_left_1 = paste("Plot:", 101:105), 
 #' top_left_2 = paste("Row:", c(rep(1, 3), rep(2, 2))), 
 #' top_right_1 = paste("Rep:", rep(1, 5)), 
@@ -767,7 +769,7 @@ create_label <- function(
 #'   right_mar = 1.75, 
 #'   numrow = 4L, 
 #'   numcol = 1L, 
-#'   filename = file.path(tempdir(), "fpl"), 
+#'   filename = tempfile(), 
 #'   font_sz = 20, 
 #'   Trial = "PYT", 
 #'   Year = 2023, 
@@ -1043,7 +1045,7 @@ field_label <- function(dat,
 #'          right_mar = 1.75,
 #'          numrow = 4L,
 #'          numcol = 1L,
-#'          filename = file.path(tempdir(), "gpl"),
+#'          filename = tempfile(),
 #'          font_sz = 20,
 #'          rname = "Adoma",
 #'          get_unique_id = "custom",
@@ -1313,7 +1315,7 @@ gp_label <- function(dat,
 #' right_mar = 0.625,
 #' numrow = 8L,
 #' numcol = 3L,
-#' filename = file.path(tempdir(), "gpp"),
+#' filename = tempfile(),
 #' font_sz = 10,
 #' family = 'sans',
 #' rounded = TRUE,

@@ -132,7 +132,7 @@ field_label(
   right_mar = 1.75, 
   numrow = 4L, 
   numcol = 1L, 
-  filename = file.path(tempdir(), "fpl"), 
+  filename = tempfile(), 
   font_sz = 20, 
   Trial = "PYT", 
   Year = 2023, 
