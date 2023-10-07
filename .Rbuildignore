@@ -16,3 +16,4 @@
 ^docs$
 ^check/NULL
 ^temp/lastMiKTeXException
+^.DS_Store
