@@ -92,8 +92,6 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' 
 #' # Create rectangular plot labels based on the Avery 94220 template-- the default template
 #' library(qrlabelr)
-#' file <- file.path(tempdir(), "ex1")
-#' 
 #' 
 #' create_label(
 #' font_sz = 10,
