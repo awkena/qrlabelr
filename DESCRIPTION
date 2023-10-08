@@ -40,7 +40,6 @@ Imports:
     bslib (>= 0.4.2),
     desplot (>= 1.10),
     dplyr (>= 1.0.10),
-    FielDHub,
     ggplot2 (>= 3.4.2),
     grid,
     purrr (>= 1.0.1),
