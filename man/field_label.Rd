@@ -108,6 +108,7 @@ blocks within replications. The imported  field book must include an IBLOCK colu
 the \code{IBlock} argument is set to TRUE.
 }
 \examples{
+
 library(qrlabelr)
 df <- data.frame(LOCATION = rep("BAMBEY", 5),
                 PLOT = 1001:1005,
@@ -121,6 +122,7 @@ df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
 file <- tempfile()
 
+\donttest{
 field_label(
   dat = df,
   wdt = 5, 
@@ -145,6 +147,7 @@ field_label(
   seed_source = TRUE, 
   seed_source_id = "SEED_SOURCE",
   ec_level = 1)
+ }
   
 }
 \seealso{

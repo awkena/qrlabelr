@@ -105,6 +105,8 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
 file <- tempfile()
+
+\donttest{
 gp_label(dat = df,
          wdt = 5,
          hgt = 2,
@@ -139,6 +141,7 @@ gp_label(dat = df,
          bottom_left_id2 = 'TREATMENT',
          ec_level = 1
 )
+}
 
 }
 \seealso{

@@ -138,6 +138,8 @@ given the page setup, label dimensions, the number of rows and columns of labels
 to print per page.
 }
 \examples{
+# Create a general-purpose label in a portrait text orientation based on the 
+# 2 x 1 inch Avery 94220 template for laser-jet printers
 library(qrlabelr)
 df <- data.frame(LOCATION = rep("BAMBEY", 5),
                  PLOT = 1001:1005,
@@ -151,6 +153,7 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
 file <- tempfile()
+\donttest{
 gp_label_portrait(
 dat = df,
 wdt = 2,
@@ -184,47 +187,6 @@ top_txt2_id = 'IBLOCK',
 top_txt3_id = 'SEED_SOURCE',
 unique_id = 'ids',
 ec_level = 1
-)
-
-\dontrun{
-# Create a general-purpose label in a portrait text orientation based on the 
-# 2 x 1 inch Avery 94220 template for laser-jet printers
-
-
-
-gp_label_portrait(
-  dat,
-  wdt = 2,
-  hgt = 1, 
-  page_wdt = 8.5, 
-  page_hgt = 11,
-  top_mar = 0.625,
-  bot_mar = 0.625,
-  left_mar = 0.625,
-  right_mar = 0.625,
-  numrow = 8L,
-  numcol = 3L,
-  filename = 'PlotLabel',
-  font_sz = 10,
-  family = 'sans', 
-  rounded = TRUE,
-  bot_txt1 = 'Rubi', 
-  cent_txt2 = 'Rep:',  
-  cent_txt3 = 'R:', 
-  cent_txt4 = 'r:', 
-  top_txt1 = 'P:', 
-  top_txt2 = 'B:',
-  bot_txt2_id = 'ids',
-  bot_txt3_id = 'LOCATION',
-  cent_txt1_id = 'TREATMENT', 
-  cent_txt2_id = 'REP', 
-  cent_txt3_id = 'COLUMN', 
-  cent_txt4_id = 'ROW', 
-  top_txt1_id = 'PLOT',
-  top_txt2_id = 'IBLOCK',
-  top_txt3_id = 'SEED_SOURCE',
-  unique_id = 'ids',
-  ec_level = 1
 )
 }
 

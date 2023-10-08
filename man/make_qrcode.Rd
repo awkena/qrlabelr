@@ -35,7 +35,7 @@ grid::grid.draw(qr)
 # grDevices::graphics.off()
 
 
-\dontrun{
+\donttest{
 library(qrlabelr)
 make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
  

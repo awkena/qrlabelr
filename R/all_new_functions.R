@@ -24,7 +24,7 @@
 #' # grDevices::graphics.off()
 #'
 #'
-#' \dontrun{
+#' \donttest{
 #' library(qrlabelr)
 #' make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
 #'  
@@ -89,7 +89,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
-#' 
+#' \donttest{
 #' # Create rectangular plot labels based on the Avery 94220 template-- the default template
 #' library(qrlabelr)
 #' file <- tempfile()
@@ -109,6 +109,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #'                   c(rep(1, 3), rep(2, 2)), c(1:3, 1:2),
 #'                   sep = "_"), 
 #' ec_level = 1)
+#' }
 #' 
 #' @export
 create_label <- function(
@@ -742,6 +743,7 @@ create_label <- function(
 #' @seealso \code{\link{create_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
+#' 
 #' library(qrlabelr)
 #' df <- data.frame(LOCATION = rep("BAMBEY", 5),
 #'                 PLOT = 1001:1005,
@@ -756,6 +758,7 @@ create_label <- function(
 #'                  df$COLUMN)
 #' file <- tempfile()
 #' 
+#' \donttest{
 #' field_label(
 #'   dat = df,
 #'   wdt = 5, 
@@ -780,6 +783,7 @@ create_label <- function(
 #'   seed_source = TRUE, 
 #'   seed_source_id = "SEED_SOURCE",
 #'   ec_level = 1)
+#'  }
 #'   
 #' @export
 field_label <- function(dat,
@@ -1033,6 +1037,8 @@ field_label <- function(dat,
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
 #' file <- tempfile()
+#' 
+#' \donttest{
 #' gp_label(dat = df,
 #'          wdt = 5,
 #'          hgt = 2,
@@ -1067,6 +1073,7 @@ field_label <- function(dat,
 #'          bottom_left_id2 = 'TREATMENT',
 #'          ec_level = 1
 #' )
+#' }
 #' 
 #' @export
 gp_label <- function(dat,
@@ -1289,6 +1296,8 @@ gp_label <- function(dat,
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
+#' # Create a general-purpose label in a portrait text orientation based on the 
+#' # 2 x 1 inch Avery 94220 template for laser-jet printers
 #' library(qrlabelr)
 #' df <- data.frame(LOCATION = rep("BAMBEY", 5),
 #'                  PLOT = 1001:1005,
@@ -1302,6 +1311,7 @@ gp_label <- function(dat,
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
 #' file <- tempfile()
+#' \donttest{
 #' gp_label_portrait(
 #' dat = df,
 #' wdt = 2,
@@ -1336,51 +1346,9 @@ gp_label <- function(dat,
 #' unique_id = 'ids',
 #' ec_level = 1
 #' )
+#'}
 #'
-#' \dontrun{
-#' # Create a general-purpose label in a portrait text orientation based on the 
-#' # 2 x 1 inch Avery 94220 template for laser-jet printers
-#' 
-#' 
-#' 
-#' gp_label_portrait(
-#'   dat,
-#'   wdt = 2,
-#'   hgt = 1, 
-#'   page_wdt = 8.5, 
-#'   page_hgt = 11,
-#'   top_mar = 0.625,
-#'   bot_mar = 0.625,
-#'   left_mar = 0.625,
-#'   right_mar = 0.625,
-#'   numrow = 8L,
-#'   numcol = 3L,
-#'   filename = 'PlotLabel',
-#'   font_sz = 10,
-#'   family = 'sans', 
-#'   rounded = TRUE,
-#'   bot_txt1 = 'Rubi', 
-#'   cent_txt2 = 'Rep:',  
-#'   cent_txt3 = 'R:', 
-#'   cent_txt4 = 'r:', 
-#'   top_txt1 = 'P:', 
-#'   top_txt2 = 'B:',
-#'   bot_txt2_id = 'ids',
-#'   bot_txt3_id = 'LOCATION',
-#'   cent_txt1_id = 'TREATMENT', 
-#'   cent_txt2_id = 'REP', 
-#'   cent_txt3_id = 'COLUMN', 
-#'   cent_txt4_id = 'ROW', 
-#'   top_txt1_id = 'PLOT',
-#'   top_txt2_id = 'IBLOCK',
-#'   top_txt3_id = 'SEED_SOURCE',
-#'   unique_id = 'ids',
-#'   ec_level = 1
-#' )
-#' }
-#' 
 #' @export
-
 
 gp_label_portrait <- function(
     dat,
