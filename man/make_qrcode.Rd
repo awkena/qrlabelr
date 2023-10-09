@@ -23,7 +23,7 @@ be plotted using the `grid.draw()` function in the 'grid' package.
 \examples{
 \dontshow{if (rlang::is_installed(c("raster", "qrencoder", "assertthat", "grid"))) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(qrlabelr)
-qr <- make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 3)
+qr <- make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
 
 # Plot QR code using the grid package
 grid::pushViewport(grid::viewport(x = grid::unit(0.5, "npc"),
@@ -33,13 +33,5 @@ grid::pushViewport(grid::viewport(x = grid::unit(0.5, "npc"),
 grid::grid.draw(qr)
 # clean up any open graphical device
 # grDevices::graphics.off()
-
-
-\donttest{
-library(qrlabelr)
-make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
- 
-}
-
 \dontshow{\}) # examplesIf}
 }

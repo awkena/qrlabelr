@@ -12,7 +12,7 @@
 #'
 #' @examplesIf rlang::is_installed(c("raster", "qrencoder", "assertthat", "grid"))
 #' library(qrlabelr)
-#' qr <- make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 3)
+#' qr <- make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
 #' 
 #' # Plot QR code using the grid package
 #' grid::pushViewport(grid::viewport(x = grid::unit(0.5, "npc"),
@@ -22,14 +22,6 @@
 #' grid::grid.draw(qr)
 #' # clean up any open graphical device
 #' # grDevices::graphics.off()
-#'
-#'
-#' \donttest{
-#' library(qrlabelr)
-#' make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
-#'  
-#' }
-#'
 #'
 #' @export
 make_qrcode <- function(my_id, ec_level = 3){
