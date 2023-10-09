@@ -757,7 +757,7 @@ create_label <- function(
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
 #' 
-#' \donttest{
+#' \dontrun{
 #' file <- tempfile()
 #' field_label(
 #'   dat = df,
@@ -1310,7 +1310,7 @@ gp_label <- function(dat,
 #' 
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
-#' \donttest{
+#' \dontrun{
 #' file <- tempfile()
 #' gp_label_portrait(
 #' dat = df,
