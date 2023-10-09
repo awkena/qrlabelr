@@ -55,7 +55,7 @@ have a coordinate that is specified by row and column numbers in the
 grid layout.
 }
 \note{
-This function works best with input field books generated with the 'FieldHub' package
+This function works best with input field books generated with the 'FielDHub' package
 }
 \examples{
 \dontshow{if (rlang::is_installed(c("ggplot2", "desplot"))) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

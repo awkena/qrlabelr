@@ -1,6 +1,6 @@
-#' Launch EasyPlotLabelR.
+#' Launch 'EasyQrlabelr'.
 #'
-#' @description An interface function to launch the EasyPlotLabelR Shiny app.
+#' @description An interface function to launch the 'EasyQrlabelr' Shiny app.
 #'
 #' @concept "plot labels"
 #'

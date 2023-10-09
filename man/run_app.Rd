@@ -2,11 +2,11 @@
 % Please edit documentation in R/run_app.R
 \name{run_app}
 \alias{run_app}
-\title{Launch EasyPlotLabelR.}
+\title{Launch 'EasyQrlabelr'.}
 \usage{
 run_app()
 }
 \description{
-An interface function to launch the EasyPlotLabelR Shiny app.
+An interface function to launch the 'EasyQrlabelr' Shiny app.
 }
 \concept{"plot labels"}

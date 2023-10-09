@@ -1,6 +1,6 @@
 #' @title rcbd
-#' @description A sample fieldbook generated with the FielDHub package based on a
-#' Randomised Complete Block Design layout at two locations.
+#' @description A sample field book generated with the 'FielDHub' package based on a
+#' Randomized Complete Block Design layout at two locations.
 #' @docType data
 #' @usage data(rcbd)
 #' @format A data frame with 144 observations and 7 variables:

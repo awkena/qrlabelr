@@ -691,7 +691,7 @@ create_label <- function(
 #' @param Trial The name of the trial to use.
 #' @param seed_source Set to TRUE if seed source is included in the imported field book,
 #' FALSE if otherwise.
-#' @param IBlock Set to TRUE if \code{dat} contains incomplete blocks within REPs.
+#' @param IBlock Set to TRUE if \code{dat} contains incomplete blocks within replications.
 #' @param rep_id The column identifier for REP in the imported field book.
 #' @param plot_id The column identifier for PLOT in the imported field book.
 #' @param row_id The column identifier for ROW in the imported field book.
@@ -1813,7 +1813,7 @@ gp_label_portrait <- function(
 #' 
 #' 
 #' @note
-#' This function works best with input field books generated with the 'FieldHub' package
+#' This function works best with input field books generated with the 'FielDHub' package
 #' 
 #' @examplesIf rlang::is_installed(c("ggplot2", "desplot"))
 #' # Plot a field layout with border rows

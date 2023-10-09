@@ -52,7 +52,7 @@ It generates field plot labels that are compatible with the widely used digital 
 This vignette will guide you through the process of installing the package, and how to use its customizable functions, and the Shiny app.  
 
 # Installation
-To install **`qrlabelr`**, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from CRAN:  
+To install **`qrlabelr`**, you will first need to have R and the 'RStudio' IDE installed on your computer. Once you have these tools installed, you can open 'RStudio' and enter the following command in the console to install the package from CRAN:  
 
 `install.packages("qrlabelr")`
 
@@ -69,7 +69,7 @@ Alternatively, you can install the package together with its vignettes as follow
 
 One must have the `knitr` package installed before vignettes can be built during package installation.  
 
-To view vignettes for the package in RStudio, run the following code in the R console:  
+To view vignettes for the package in 'RStudio', run the following code in the R console:  
 
 `utils::vignette("qrlabelr")`
 
@@ -184,7 +184,7 @@ field_label(dat = qrlabelr::square_lattice,
             )
 ```
 
-The above example creates field plot labels using a sample field book named `square_lattice` generated with the FielDHub package. The `square_lattice` sample fieldbook is available in the `qrlabelr` package, and it was generated based on a Square Lattice Design layout at two locations.  
+The above example creates field plot labels using a sample field book named `square_lattice` generated with the FielDHub package. The `square_lattice` sample field book is available in the `qrlabelr` package, and it was generated based on a Square Lattice Design layout at two locations.  
 
 It follows from the above example that to create any custom rectangular label based on a template, users must specify page setting and label dimension parameters using the following arguments:  
 
@@ -218,7 +218,7 @@ The following arguments must also be specified if the input field book was not g
 
 The arguments `seed_source = TRUE` and `seed_source_id = "SEED_SOURCE" ` are optional and should be used only when the user intends to show seed source on the field label.  
 
-The function creates a pdf file with a name prefix of `'PlotLabel'` that is saved to the user's working directory. The function also saves an updated fieldbook to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
+The function creates a pdf file with a name prefix of `'PlotLabel'` that is saved to the user's working directory. The function also saves an updated field book to the  user's working directory which can be exported to the Field Book mobile app for digital data collection.  
 
 
 ## Creating general-purpose labels in R  
@@ -300,7 +300,7 @@ gp_label_portrait(
 ```
 
 
-To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait()` functions in RStudio, run the following codes in the R console:  
+To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait()` functions in 'RStudio', run the following codes in the R console:  
 
 ``` {r eval=FALSE}
 ?qrlabelr::field_label
@@ -332,9 +332,9 @@ Figure 3 shows the main pages or tabs available in the Shiny app and their corre
 
 To create plot labels, start by clicking on the "Import field book" sidebar menu. This presents a page with a number of input widgets all geared towards the upload of a field book. Click the "Browse..." button and navigate to a desired field book in CSV, XLS, or XLSX format. If the field book was generated with FieldHub or BMS, turn on the "Generated with FieldHub" or Generated with BMS switch respectively. These switches allow users to automatically populate relevant input widgets fields that will be covered in subsequent sections. However, users should turn off these switches if the imported field book was generated using other programs.  
 
-To preview the uploaded field book right in the app, turn on the switch labelled "Preview Field book". This displays the uploaded field book in a dedicated card from which the field book can be examined, but not modified. Click the "Submit Field book" button after all the necessary configurations have been made, and click the Next button to move to the next tab.  
+To preview the uploaded field book right in the app, turn on the switch labeled "Preview Field book". This displays the uploaded field book in a dedicated card from which the field book can be examined, but not modified. Click the "Submit Field book" button after all the necessary configurations have been made, and click the Next button to move to the next tab.  
 
-In case a field book is yet to be generated, a "Launch FielDHub" button has been provided for convenience. This opens the GitHub page of the author of FielDHub in a new window, allowing for the fast and easy generation of a fieldbook.  
+In case a field book is yet to be generated, a "Launch 'FielDHub'" button has been provided for convenience. This opens the GitHub page of the author of 'FielDHub' in a new window, allowing for the fast and easy generation of a field book.  
 
 ### Label information tab  
 
@@ -350,7 +350,7 @@ There is also an option to show the seed source on the label which can be activa
 
 The widget labeled "Incomplete blocks", as can be inferred from the name, should be ticked if the experimental design consists of incomplete blocks. If checked, the user will be required to provide the input ID of the incomplete blocks using its designated widget.  
 
-Lastly, there are drop-down input widgets for defining the various parameters of the imported fieldbook if the type of label to generate is Field plot labels. The options provided in these widgets correspond to the various names in the uploaded fieldbook. However, if general-purpose labels are to be generated, at each desired position, the prefix of the parameter to be displayed, and the ID of the parameter in the imported fieldbook are both to be defined by the user. It should be noted that not all positions have to be filled -- only those desired by the user.  
+Lastly, there are drop-down input widgets for defining the various parameters of the imported field book if the type of label to generate is Field plot labels. The options provided in these widgets correspond to the various names in the uploaded field book. However, if general-purpose labels are to be generated, at each desired position, the prefix of the parameter to be displayed, and the ID of the parameter in the imported field book are both to be defined by the user. It should be noted that not all positions have to be filled -- only those desired by the user.  
 
 Once the desired information has been defined for all the required fields as well as QR codes generated, click the Next button to continue to the next tab.  
 
@@ -372,9 +372,9 @@ Once all values have been entered and verified, click the Next button to proceed
 
 ### Label setup tab  
 
-Similar to the Page setup page, this page allows for the customization of label-specific parameters. A list of font families is provided, one of which can be chosen. Options include a monospace font type (Courier), a Sans (Helvetica) type, and a Sans-serif type (Times). Users can also set the default font size as well, which is set to 8 by default.  
+Similar to the Page setup page, this page allows for the customization of label-specific parameters. A list of font families is provided, one of which can be chosen. Options include a mono space font type (Courier), a Sans (Helvetica) type, and a Sans-serif type (Times). Users can also set the default font size as well, which is set to 8 by default.  
 
-In addition, it is possible to choose a label to preview by specifying the row number of the plot in the imported fieldbook using the designated widget. This feature is based on the fact that each row in the imported fieldbook corresponds to a single plot label. The preview is rendered in a dedicated card directly below the Next button.  
+In addition, it is possible to choose a label to preview by specifying the row number of the plot in the imported field book using the designated widget. This feature is based on the fact that each row in the imported field book corresponds to a single plot label. The preview is rendered in a dedicated card directly below the Next button.  
 
 If no template or Custom is chosen in the Template setup page, the label width and height will have to be defined as well. Lastly, there is an option to generate labels with rounded or sharp corners.  
 
@@ -388,7 +388,7 @@ There is a text input box to enter a prefix of the file to be downloaded. One ca
 
 Once plot labels have been customized and created, it can be saved for printing and future use by clicking on the "Download labels" button in the app. This will save the generated labels as a PDF file. Note that this button will be enabled only after the successful generation of labels.  
 
-Users have the option to download an augmented fieldbook which contains all the unique IDs that were used in generating the unique QR codes, if either the RUID or UUID method was chosen in the Label information tab.  
+Users have the option to download an augmented field book which contains all the unique IDs that were used in generating the unique QR codes, if either the RUID or UUID method was chosen in the Label information tab.  
 
 ### Customizing Plot Labels  
 

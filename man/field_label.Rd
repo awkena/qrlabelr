@@ -51,7 +51,7 @@ names and the last name.}
 \item{seed_source}{Set to TRUE if seed source is included in the imported field book,
 FALSE if otherwise.}
 
-\item{IBlock}{Set to TRUE if \code{dat} contains incomplete blocks within REPs.}
+\item{IBlock}{Set to TRUE if \code{dat} contains incomplete blocks within replications.}
 
 \item{rep_id}{The column identifier for REP in the imported field book.}
 

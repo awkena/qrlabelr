@@ -20,7 +20,7 @@ A data frame with 144 observations and 7 variables:
 data(rcbd)
 }
 \description{
-A sample fieldbook generated with the FielDHub package based on a
-Randomised Complete Block Design layout at two locations.
+A sample field book generated with the 'FielDHub' package based on a
+Randomized Complete Block Design layout at two locations.
 }
 \keyword{datasets}

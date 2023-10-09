@@ -14,7 +14,7 @@
 
 # Create Plot Labels Easily With qrlabelr
 
-A no-frills open-source solution for designing print-ready labels affixed with QR codes. **`qrlabelr`** is an R package that features **EasyQrlabelr**, a Shiny app that simplifies the complicated process of plot label design for non-R users. It also offers easily customizable functions that enable label generation outside the Shiny app. It generates plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program, `(baRcodeR)` to offer more flexibility in plot label creation steps; guarantees true string fidelity after QR encoding; and provides faster label generation to users.
+A no-frills open-source solution for designing print-ready labels affixed with QR codes. '**`qrlabelr`**' is an R package that features '**EasyQrlabelr**', a Shiny app that simplifies the complicated process of plot label design for non-R users. It also offers easily 'customizable' functions that enable label generation outside the Shiny app. It generates plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program, '`(baRcodeR)`' to offer more flexibility in plot label creation steps; guarantees true string fidelity after QR encoding; and provides faster label generation to users.
 
 Submit bug reports and feature suggestions, or track changes on the
 [issues page](https://github.com/awkena/qrlabelr/issues).
@@ -49,66 +49,66 @@ Submit bug reports and feature suggestions, or track changes on the
 To run this package locally on a machine, the following R packages are
 required:
 
--   [argonDash](https://rinterface.github.io/argonDash/): Argon Shiny
+-   ['argonDash'](https://rinterface.github.io/argonDash/): Argon Shiny
     Dashboard Template
 
--   [argonR](https://cran.r-project.org/package=argonR): R Interface to
+-   ['argonR'](https://cran.r-project.org/package=argonR): R Interface to
     Argon HTML Design
 
--   [bslib](https://rstudio.github.io/bslib/): Custom 'Bootstrap' 'Sass'
+-   ['bslib'](https://rstudio.github.io/bslib/): Custom 'Bootstrap' 'Sass'
     Themes for 'shiny' and 'rmarkdown'
 
--   [dplyr](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8):
+-   ['dplyr'](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8):
     A fast, consistent tool for working with data frame like objects,
     both in memory and out of memory
 
--   [grid](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html):
+-   ['grid'](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html):
     A rewrite of the graphics layout capabilities, plus some support for
     interaction
 
--   [purrr](https://CRAN.R-project.org/package=purrr): A complete and
+-   ['purrr'](https://CRAN.R-project.org/package=purrr): A complete and
     consistent functional programming toolkit for R.
 
--   [qrencoder](https://CRAN.R-project.org/package=qrencoder): Quick Response          Code (QR Code) / Matrix Barcode Creator
+-   ['qrencoder'](https://CRAN.R-project.org/package=qrencoder): Quick Response          Code (QR Code) / Matrix 'Barcode' Creator
 
--   [raster](https://rspatial.org/raster/pkg/index.html): Geographic
+-   ['raster'](https://rspatial.org/raster/pkg/index.html): Geographic
     Data Analysis and Modeling. Reading, writing, manipulating,
     analyzing and modeling of spatial data
 
--   [reactable](https://glin.github.io/reactable/): Interactive data
+-   ['reactable'](https://glin.github.io/reactable/): Interactive data
     tables for *R*, based on the React Table JavaScript library
 
--   [shiny](https://shiny.posit.co/): Makes it incredibly easy to
+-   ['shiny'](https://shiny.posit.co/): Makes it incredibly easy to
     build interactive web applications with *R*
 
--   [shinycssloaders](https://github.com/daattali/shinycssloaders): Add
+-   ['shinycssloaders'](https://github.com/daattali/shinycssloaders): Add
     loading animations to a 'shiny' output while it is recalculating
 
--   [shinyjs](https://deanattali.com/shinyjs/): Easily improve the user
+-   ['shinyjs'](https://deanattali.com/shinyjs/): Easily improve the user
     experience of your Shiny apps in seconds
 
--   [shinyBS](https://CRAN.R-project.org/package=shinyBS): Twitter Bootstrap           Components for Shiny
+-   ['shinyBS'](https://CRAN.R-project.org/package=shinyBS): Twitter Bootstrap           Components for Shiny
 
--   [shinyWidgets](https://github.com/dreamRs/shinyWidgets): Collection
+-   ['shinyWidgets'](https://github.com/dreamRs/shinyWidgets): Collection
     of custom input controls and user interface components for 'Shiny'
     applications
     
--   [uuid](https://CRAN.R-project.org/package=uuid): Tools for Generating and       Handling of UUIDs
+-   ['uuid'](https://CRAN.R-project.org/package=uuid): Tools for Generating and       Handling of UUIDs
 
--   [tools](https://www.rdocumentation.org/packages/tools/versions/3.6.2):
+-   ['tools'](https://www.rdocumentation.org/packages/tools/versions/3.6.2):
     Tools for package development, administration and documentation.
 
 # Recommended packages
 
--   [Rtools](https://cran.r-project.org/bin/windows/Rtools/rtools43/rtools.html):      Needed for package development.
+-   ['Rtools'](https://cran.r-project.org/bin/windows/Rtools/rtools43/rtools.html):      Needed for package development.
 
--   [rmarkdown](https://CRAN.R-project.org/package=rmarkdown): When
+-   ['rmarkdown'](https://CRAN.R-project.org/package=rmarkdown): When
     installed, display of the project's README.md help will be rendered
     with R Markdown.
 
 # Installation
 
-To install **`qrlabelr`**, you will first need to have R and the RStudio IDE installed on your computer. Once you have these tools installed, you can open RStudio and enter the following command in the console to install the package from CRAN:  
+To install **`qrlabelr`**, you will first need to have R and the 'RStudio' IDE installed on your computer. Once you have these tools installed, you can open 'RStudio' and enter the following command in the console to install the package from CRAN:  
 
 ``` r
 install.packages("qrlabelr")
@@ -132,7 +132,7 @@ devtools::install_github("awkena/qrlabelr", build_vignettes = TRUE)
 
 One must have the `knitr` package installed before vignettes can be built during package installation.  
 
-To view vignettes for the package in RStudio, run the following code in the R console:  
+To view vignettes for the package in 'RStudio', run the following code in the R console:  
 
 ``` r
 utils::vignette("qrlabelr")
@@ -150,7 +150,7 @@ The method described above will download and install the `qrlabelr` package on y
 library(qrlabelr)
 ```
 
-**Users who have R and RStudio already installed must ensure they are up to date before installing qrlabelr. All installed packages must also be updated before installing qrlabelr from GitHub**  
+**Users who have R and 'RStudio' already installed must ensure they are up to date before installing qrlabelr. All installed packages must also be updated before installing qrlabelr from GitHub**  
 
 # Usage
 ## Generating field books
@@ -158,9 +158,9 @@ To use qrlabelr, one must first generate a field book or data input that shows i
 
 Typically, layout information for field plots are obtained based on the experimental design and treatment randomization. For field plot labels, it is strongly recommended to have the grid coordinates of plots (row and column numbers of plots) included in the field book.
 
-There are free open-source software such as [FielDHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as BMS can equally be used to generate an input field book if desired.  
+There are free open-source software such as ['FielDHub'](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as 'BMS' can equally be used to generate an input field book if desired.  
 
-**Input data must be imported as a data frame into qrlabelr for use. We recommend that users save input data as csv or as xls or xlsx files for easy import to qrlabelr**  
+**Input data must be imported as a data frame into qrlabelr for use. We recommend that users save input data as 'csv' or as 'xls' or 'xlsx' files for easy import to 'qrlabelr'**  
 
 ## Plot label design options  
 The qrlabelr package offers two user-centered options for creating plot labels affixed with QR codes.  
@@ -207,13 +207,13 @@ Affixing QR codes on labels makes them machine-readable for easy plot/sample ide
 
 The qrlabelr package provides three methods for producing unique IDs for each plot. These methods are **reproducible unique IDs (`RUID`)**, **universal unique IDs (`UUID`)**, and **custom unique IDs (`custom`)**. The RUID method is, however, only available when the user chooses the `field_label()` function in R or the `Field plot label` option in the Shiny app.  
 
-RUIDs are informative and reproducible, hence, can be regenerated when provided with the same input field book. For field experiments or trials, we strongly recommend the use of RUIDs. An RUID is generated by concatenating LOCATION and year of experiment, trial name, PLOT, ROW and COLUMN ids for each experimental plot Eg. **`KUMASI2023_PYT_101_1_1`**.  
+'RUIDs' are informative and reproducible, hence, can be regenerated when provided with the same input field book. For field experiments or trials, we strongly recommend the use of 'RUIDs'. An RUID is generated by concatenating LOCATION and year of experiment, trial name, PLOT, ROW and COLUMN ids for each experimental plot, 'eg'. **`KUMASI2023_PYT_101_1_1`**.  
 
-The UUID method produces random time-based unique IDs that are not reproducible and informative, but are highly unique due to their pseudo-random nature.  
+The 'UUID' method produces random time-based unique IDs that are not reproducible and informative, but are highly unique due to their pseudo-random nature.  
 
 if the input field book contains a column that represents unique IDs suitable for QR code generation, the user can choose the `'custom'` method.  
 
-Users can set the desired **error correction level (ecl)** for generating QR codes. The ecl indicates how much of the QR code is used up for error correction. There are four levels, with 0 (7%) being the lowest level and 3 (30%) being the highest value possible. For field experiments, we strongly recommend that the error correction level be set to 3, which is the default setting.  
+Users can set the desired **error correction level ('ecl')** for generating QR codes. The ecl indicates how much of the QR code is used up for error correction. There are four levels, with 0 (7%) being the lowest level and 3 (30%) being the highest value possible. For field experiments, we strongly recommend that the error correction level be set to 3, which is the default setting.  
 
 
 ## Creating field plot labels in R
@@ -370,7 +370,7 @@ gp_label_portrait(
 
 ```
 
-To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait()` functions in RStudio, run the following codes in the R console:  
+To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait()` functions in 'RStudio', run the following codes in the R console:  
 
 ``` r
 ?qrlabelr::field_label
@@ -414,16 +414,16 @@ If the app does not run as expected, check the following:
 
 # FAQ
 
-## Can I use my own generated fieldbooks in Shiny app?
+## Can I use my own generated field books in Shiny app?
 
 Yes, you can. However, you would have to manually select the input ID
 for the various column names that correspond to the required label information.  
 
-## How do I access my generated labels and updated fieldbook?
+## How do I access my generated labels and updated field book?
 
-If plot labels were generated with the customizable functions, a PDF file containing the generated labels and an updated fieldbook would be saved to the user's working directory.
+If plot labels were generated with the customizable functions, a PDF file containing the generated labels and an updated field book would be saved to the user's working directory.
 
-If labels were generated using the Shiny app, there is a download button on the `Generate label tab`, which can be used to save all generated labels and updated fieldbook to a local machine.
+If labels were generated using the Shiny app, there is a download button on the `Generate label tab`, which can be used to save all generated labels and updated field book to a local machine.
 
 ## Are generated labels compatible with popular label templates?
 
