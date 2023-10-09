@@ -89,7 +89,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Create rectangular plot labels based on the Avery 94220 template-- the default template
 #' library(qrlabelr)
 #' file <- tempfile()
@@ -756,9 +756,9 @@ create_label <- function(
 
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
-#' file <- tempfile()
 #' 
 #' \donttest{
+#' file <- tempfile()
 #' field_label(
 #'   dat = df,
 #'   wdt = 5, 
@@ -1036,9 +1036,9 @@ field_label <- function(dat,
 #' 
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
-#' file <- tempfile()
 #' 
-#' \donttest{
+#' \dontrun{
+#' file <- tempfile()
 #' gp_label(dat = df,
 #'          wdt = 5,
 #'          hgt = 2,
@@ -1310,8 +1310,8 @@ gp_label <- function(dat,
 #' 
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
-#' file <- tempfile()
 #' \donttest{
+#' file <- tempfile()
 #' gp_label_portrait(
 #' dat = df,
 #' wdt = 2,

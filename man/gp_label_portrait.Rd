@@ -152,8 +152,8 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
-file <- tempfile()
 \donttest{
+file <- tempfile()
 gp_label_portrait(
 dat = df,
 wdt = 2,

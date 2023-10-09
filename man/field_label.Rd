@@ -120,9 +120,9 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
                 SEED_SOURCE = rep("OFF_NUR", 5))
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
-file <- tempfile()
 
 \donttest{
+file <- tempfile()
 field_label(
   dat = df,
   wdt = 5, 
