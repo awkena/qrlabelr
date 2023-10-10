@@ -2457,8 +2457,8 @@ server <- function(input, output, session) {
             grid::pushViewport(aa)
             
             if (input$rounded == TRUE) {
-              grid::grid.roundrect(gp = gpar(lwd = 0.5))
-            } else (grid::grid.rect(gp = gpar(lwd = 0.5)))
+              grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+            } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
             
             # Add Plot ID to label; note coordinates
             grid::grid.text(label = lab_inf()[[1]][input$lab_sel],
@@ -3048,8 +3048,8 @@ server <- function(input, output, session) {
           grid::pushViewport(aa)
           
           if(input$rounded == TRUE){
-            grid::grid.roundrect(gp = gpar(lwd = 0.5))
-          }else(grid::grid.rect(gp = gpar(lwd = 0.5)))
+            grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+          }else(grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
           
           # Add Plot ID to label; note coordinates
           grid::grid.text(label = plotid[i],
