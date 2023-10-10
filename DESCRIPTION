@@ -3,31 +3,21 @@ Type: Package
 Title: Generate Machine- And Human-Readable Plot Labels for Experiments
 Version: 0.1.0
 Authors@R: c(person("Alexander", "Wireko Kena", email = "alex.kena24@gmail.com", 
-         role = c("aut", "cre"),
-         comment = c(ORCID = "0000-0003-3385-4945")),
-         person("Ebenezer", "Ogoe", email = "ebenezerogoe@gmail.com", 
-         role = c("aut")),
-         person("Clara", "Cruet Burgos", email = "clara.cruet_burgos@colostate.edu", 
-         role = c("ctb")),
-         person("Geoffrey", "Preston Morris", email = "geoff.morris@colostate.edu", 
-         role = c("ctb")),
-         person("Rubi", "Raymundo-Carhuapoma", email = "r.raymundo_carhuapoma@colostate.edu",
-         role = c("ctb")),
-         person("Yihan", "Wu", email = "yihan.wu@queensu.ca", role = c("ctb"),
-         comment = c(ORCID = "0000-0002-1202-4208")),
-         person("Robert", "Colautti", email = "robert.colautti@queensu.ca", role = c("ctb"),
-         comment = c(ORCID = "0000-0003-4213-0711")),
-         person("Colorado State University", email = "CAS_SCS@mail.colostate.edu",
-         role = c("cph")),
-         person("Kwame Nkrumah University of Science and Technology", email = "uro@knust.edu.gh",
-         role = c("cph")),
-         person("Feed The Future Innovation Lab for Crop Improvement", email = "ilci@cornell.edu",
-         role = c("fnd")),
+         role = c("aut", "cre"), comment = c(ORCID = "0000-0003-3385-4945")),
+         person("Ebenezer", "Ogoe", email = "ebenezerogoe@gmail.com", role = c("aut")),
+         person("Clara", "Cruet Burgos", email = "clara.cruet_burgos@colostate.edu", role = c("ctb")),
+         person("Geoffrey", "Preston Morris", email = "geoff.morris@colostate.edu", role = c("ctb")),
+         person("Rubi", "Raymundo-Carhuapoma", email = "r.raymundo_carhuapoma@colostate.edu", role = c("ctb")),
+         person("Yihan", "Wu", email = "yihan.wu@queensu.ca", role = c("ctb"), comment = c(ORCID = "0000-0002-1202-4208")),
+         person("Robert", "Colautti", email = "robert.colautti@queensu.ca", role = c("ctb"), comment = c(ORCID = "0000-0003-4213-0711")),
+         person("Colorado State University", email = "CAS_SCS@mail.colostate.edu", role = c("cph")),
+         person("Kwame Nkrumah University of Science and Technology", email = "uro@knust.edu.gh", role = c("cph")),
+         person("Feed The Future Innovation Lab for Crop Improvement", email = "ilci@cornell.edu", role = c("fnd")),
          person("Project Artemis", email = "d.guerena@cgiar.org", role = c("fnd")))
 Maintainer: Alexander Wireko Kena <alex.kena24@gmail.com>
-Description: A no-frills open-source solution for designing experimental or trial plot labels affixed with QR codes.
-    It features 'EasyQrlabelr', a Shiny app that simplifies the complicated process of 
-    plot label design for non-R users. 
+Description: A no-frills open-source solution for designing experimental or trial plot labels affixed with QR codes. 
+    It features 'EasyQrlabelr', a 'shiny' app that simplifies the complicated process of plot label design for non-R users. 
+    This software builds on the methods described by Wu et al. (2020) <doi:10.1111/2041-210X.13405>.
 License: GPL (>= 3)
 BugReports: https://github.com/awkena/qrlabelr/issues
 Encoding: UTF-8

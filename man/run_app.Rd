@@ -6,7 +6,10 @@
 \usage{
 run_app()
 }
+\value{
+No return value, called for side effects. Opens the 'EasyQrlabelr' 'shiny' app in your default browser.
+}
 \description{
-An interface function to launch the 'EasyQrlabelr' Shiny app.
+An interface function to launch the 'EasyQrlabelr' 'shiny' app.
 }
 \concept{"plot labels"}

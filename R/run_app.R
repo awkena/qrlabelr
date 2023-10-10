@@ -1,6 +1,7 @@
 #' Launch 'EasyQrlabelr'.
 #'
-#' @description An interface function to launch the 'EasyQrlabelr' Shiny app.
+#' @description An interface function to launch the 'EasyQrlabelr' 'shiny' app.
+#' @returns No return value, called for side effects. Opens the 'EasyQrlabelr' 'shiny' app in your default browser.
 #'
 #' @concept "plot labels"
 #'

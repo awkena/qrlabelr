@@ -82,8 +82,8 @@ is working directory.}
 \item{...}{Additional arguments passed to the \code{create_label} function.}
 }
 \value{
-A PDF file containing plot labels affixed with QR codes, and
- an updated field book-- all saved to the default or set working directory.
+A PDF file containing plot labels affixed with QR codes, and a data frame of
+ an updated field book; all saved to the default or working directory.
 }
 \description{
 This is a wrapper that gives more flexibility to the user to design 
@@ -105,8 +105,8 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
 
-\dontrun{
-file <- tempfile()
+\donttest{
+file <- paste0(tempfile())
 gp_label(dat = df,
          wdt = 5,
          hgt = 2,

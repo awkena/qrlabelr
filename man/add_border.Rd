@@ -46,7 +46,7 @@ coordinates of each plot.}
 \item{text_col}{A string specifying the text color for the border rows.}
 }
 \value{
-A field layout plot with border rows around the entire perimeter.
+A 'ggplot2' graphical object of field layout with border rows around the entire perimeter.
 }
 \description{
 A helper function that adds border rows to the entire perimeter of a

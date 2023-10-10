@@ -124,8 +124,8 @@ square corners.}
 \item{ec_level}{The error correction level (`0` - `3`, lowest to highest) for QR codes.}
 }
 \value{
-A PDF file containing labels affixed with QR codes, and saved to the
-default or set working directory.
+A PDF file containing labels affixed with QR codes, saved to the
+default or working directory.
 }
 \description{
 This is a standalone function that gives more flexibility to the user to 
@@ -152,8 +152,8 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
-\dontrun{
-file <- tempfile()
+\donttest{
+file <- paste0(tempfile())
 gp_label_portrait(
 dat = df,
 wdt = 2,

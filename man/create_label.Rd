@@ -92,18 +92,17 @@ square corners.}
 \item{...}{Additional optional arguments to be supplied.}
 }
 \value{
-A PDF file containing experimental plot labels affixed with QR codes, and
- saved to the default or set working directory.
+A PDF file containing experimental plot labels affixed with QR codes, saved to the default or working directory.
 }
 \description{
 Create print-ready customized plot labels affixed with QR codes given the page setup,
  label dimensions, the number of rows and columns of labels to print per page.
 }
 \examples{
-\dontrun{
+\donttest{
 # Create rectangular plot labels based on the Avery 94220 template-- the default template
 library(qrlabelr)
-file <- tempfile()
+file <- paste0(tempfile())
 create_label(
 font_sz = 10,
 filename = file, 

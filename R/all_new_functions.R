@@ -45,8 +45,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' Create print-ready customized plot labels affixed with QR codes given the page setup,
 #'  label dimensions, the number of rows and columns of labels to print per page.
 #'
-#' @returns A PDF file containing experimental plot labels affixed with QR codes, and
-#'  saved to the default or set working directory.
+#' @returns A PDF file containing experimental plot labels affixed with QR codes, saved to the default or working directory.
 #'
 #' @param wdt  The label width in inches.
 #' @param hgt The label height in inches.
@@ -81,10 +80,10 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Create rectangular plot labels based on the Avery 94220 template-- the default template
 #' library(qrlabelr)
-#' file <- tempfile()
+#' file <- paste0(tempfile())
 #' create_label(
 #' font_sz = 10,
 #' filename = file, 
@@ -671,8 +670,8 @@ create_label <- function(
 #' @description
 #' Create machine- and human-readable plot labels that are well-suited for field experiments.
 #'  
-#' @returns A PDF file containing field plot labels affixed with QR codes, and
-#'  an updated field book-- all saved to the default or set working directory.
+#' @returns A PDF file containing field plot labels affixed with QR codes, and a
+#'  data frame of an updated field book; all saved to the default or working directory.
 #'
 #' @param dat  An input data frame of field book that contains plot attributes.
 #' To design field plot labels, the imported field book must have LOCATION, PLOT,
@@ -749,8 +748,8 @@ create_label <- function(
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
 #' 
-#' \dontrun{
-#' file <- tempfile()
+#' \donttest{
+#' file <- paste0(tempfile())
 #' field_label(
 #'   dat = df,
 #'   wdt = 5, 
@@ -971,7 +970,7 @@ field_label <- function(dat,
                                     unique_id = UNIQUE_ID, 
                                     filename = filename, ...))
 
-  cat("\n\n\tGenerated labels and updated fieldbook saved to working directory.")
+  #cat("\n\n\tGenerated labels and updated fieldbook saved to working directory.")
 }
 
 
@@ -982,8 +981,8 @@ field_label <- function(dat,
 #' positions in landscape orientation that can be filled with human-readable text
 #' items as specified by the user. Arguments are passed to the `create_label()` function.
 #' 
-#' @returns A PDF file containing plot labels affixed with QR codes, and
-#'  an updated field book-- all saved to the default or set working directory. 
+#' @returns A PDF file containing plot labels affixed with QR codes, and a data frame of
+#'  an updated field book; all saved to the default or working directory. 
 #'  
 #' @param dat An input data frame or field book that contains plot or label attributes.
 #' The order of the columns is not important, and the columns can be any name 
@@ -1029,8 +1028,8 @@ field_label <- function(dat,
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
 #' 
-#' \dontrun{
-#' file <- tempfile()
+#' \donttest{
+#' file <- paste0(tempfile())
 #' gp_label(dat = df,
 #'          wdt = 5,
 #'          hgt = 2,
@@ -1223,7 +1222,7 @@ gp_label <- function(dat,
                                     unique_id = UNIQUE_ID, 
                                     filename = filename, ...))
 
-  cat("\n\n\tGenerated labels and updated fieldbook saved to working directory.")
+  #cat("\n\n\tGenerated labels and updated fieldbook saved to working directory.")
 }
 
 
@@ -1240,8 +1239,8 @@ gp_label <- function(dat,
 #' given the page setup, label dimensions, the number of rows and columns of labels 
 #' to print per page.
 #'
-#' @returns A PDF file containing labels affixed with QR codes, and saved to the
-#' default or set working directory.
+#' @returns A PDF file containing labels affixed with QR codes, saved to the
+#' default or working directory.
 #'
 #' @param dat An input data frame or field book that contains plot attributes.
 #' The order of the columns is not important, and the columns can be any name 
@@ -1302,8 +1301,8 @@ gp_label <- function(dat,
 #' 
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
-#' \dontrun{
-#' file <- tempfile()
+#' \donttest{
+#' file <- paste0(tempfile())
 #' gp_label_portrait(
 #' dat = df,
 #' wdt = 2,
@@ -1782,7 +1781,7 @@ gp_label_portrait <- function(
     
   } # End of create_label ()
   
-  cat("\n\n\tGenerated labels saved to working directory as a PDF file.")
+  #cat("\n\n\tGenerated labels saved to working directory as a PDF file.")
 } 
 
 
@@ -1831,7 +1830,7 @@ gp_label_portrait <- function(
 #' 
 #' 
 #' 
-#' @returns A field layout plot with border rows around the entire perimeter.
+#' @returns A 'ggplot2' graphical object of field layout with border rows around the entire perimeter.
 #' 
 #' @export
 #' 
