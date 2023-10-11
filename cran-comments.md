@@ -1,3 +1,21 @@
+## Changes made since first submission
+Following suggestions by Beni Altmann, we have made these changes before resubmitting the package to CRAN:
+
+❯ The 'shiny' package name used in the description field has been placed in single   quotes and changed all letters to lowercase. 
+
+❯ Extra spaces in the description field of DESCRIPTION removed and formatted to     comply with best practices.
+  
+❯ Methods used in the package as described by Wu et al. (2020)                      doi:10.1111/2041-210X.13405> added to the description field.
+  
+❯ Added \value and example to run_app.Rd. 
+
+❯ All \dontrun{} in examples replaced with \donttest{}. To make examples pass on    Windows platforms, we added an if statement to check if tempfile or tempdir       exists before running examples. 
+
+❯ Messages written to console by functions suppressed except for progress bar.
+
+❯ All examples in vignette write to tempdir() instead of user's home file space.
+
+
 ## R CMD check results from the terminal in R 
 
 0 errors | 0 warnings | 1 note
