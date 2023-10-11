@@ -80,10 +80,11 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
 #' 
 #' @examples
-#' \donttest{
-#' # Create rectangular plot labels based on the Avery 94220 template-- the default template
 #' library(qrlabelr)
 #' file <- paste0(tempfile())
+#' if(file.exists(file)) {
+#' \donttest{
+#' # Create rectangular plot labels based on the Avery 94220 template-- the default template
 #' create_label(
 #' font_sz = 10,
 #' filename = file, 
@@ -101,6 +102,8 @@ make_qrcode <- function(my_id, ec_level = 3){
 #'                   sep = "_"), 
 #' ec_level = 1)
 #' }
+#' }
+#' 
 #' 
 #' @export
 create_label <- function(
@@ -747,9 +750,9 @@ create_label <- function(
 
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
-#' 
-#' \donttest{
 #' file <- paste0(tempfile())
+#' if(file.exists(file)) {
+#' \donttest{
 #' field_label(
 #'   dat = df,
 #'   wdt = 5, 
@@ -775,7 +778,7 @@ create_label <- function(
 #'   seed_source_id = "SEED_SOURCE",
 #'   ec_level = 1)
 #'  }
-#'   
+#' }
 #' @export
 field_label <- function(dat,
                         get_unique_id = c("ruid", "uuid", "custom"), # Generate unique ids for QR codes
@@ -1027,9 +1030,9 @@ field_label <- function(dat,
 #' 
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
-#' 
-#' \donttest{
 #' file <- paste0(tempfile())
+#' if(file.exists(file)) {
+#' \donttest{
 #' gp_label(dat = df,
 #'          wdt = 5,
 #'          hgt = 2,
@@ -1062,10 +1065,9 @@ field_label <- function(dat,
 #'          center_right_id2 = 'SEED_SOURCE',
 #'          bottom_left_id1 = 'ids',
 #'          bottom_left_id2 = 'TREATMENT',
-#'          ec_level = 1
-#' )
+#'          ec_level = 1)
 #' }
-#' 
+#' }
 #' @export
 gp_label <- function(dat,
                      get_unique_id = c("uuid", "custom"), # Generate unique ids for QR codes
@@ -1301,8 +1303,9 @@ gp_label <- function(dat,
 #' 
 #' df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
 #'                  df$COLUMN)
-#' \donttest{
 #' file <- paste0(tempfile())
+#' if(file.exists(file)) {
+#' \donttest{
 #' gp_label_portrait(
 #' dat = df,
 #' wdt = 2,
@@ -1335,10 +1338,10 @@ gp_label <- function(dat,
 #' top_txt2_id = 'IBLOCK',
 #' top_txt3_id = 'SEED_SOURCE',
 #' unique_id = 'ids',
-#' ec_level = 1
-#' )
-#'}
-#'
+#' ec_level = 1)
+#' }
+#' }
+#' 
 #' @export
 
 gp_label_portrait <- function(

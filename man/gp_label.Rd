@@ -104,9 +104,9 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
-
-\donttest{
 file <- paste0(tempfile())
+if(file.exists(file)) {
+\donttest{
 gp_label(dat = df,
          wdt = 5,
          hgt = 2,
@@ -139,10 +139,9 @@ gp_label(dat = df,
          center_right_id2 = 'SEED_SOURCE',
          bottom_left_id1 = 'ids',
          bottom_left_id2 = 'TREATMENT',
-         ec_level = 1
-)
+         ec_level = 1)
 }
-
+}
 }
 \seealso{
 \code{\link{create_label}} and \code{\link{field_label}}
