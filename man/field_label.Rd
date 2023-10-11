@@ -82,7 +82,7 @@ Create machine- and human-readable plot labels that are well-suited for field ex
 }
 \details{
 The default column identifiers for LOCATION, PLOT, ROW, COLUMN/RANGE, REP, TREATMENT
-are based on the column IDs of a field book generated using the 'FieldHub' package.
+are based on the column IDs of a field book generated using the 'FielDHub' package.
 If user imports any field book generated with other programs,
 the user must specify the equivalent column identifiers used for LOCATION, PLOT, REP,
 ROW, COLUMN, and TREATMENT/ENTRY in the imported field book.
@@ -97,7 +97,7 @@ argument should be set to 'custom'; and the \code{unique_id}
 argument must be specified as a string using the column name in the input field book
 that denotes plot unique IDs.
 
-if \code{Year} is NULL, the function uses the current year as defined in the sys.time().
+if \code{Year} is NULL, the function uses the current year as defined in the `sys.time()`.
 
 If the user is printing labels for any incomplete block design, the imported
 field book must include an IBLOCK column if the users wishes to display intra-blocking

@@ -8,7 +8,7 @@
 A no-frills open-source solution for designing experimental or trial plot labels
 affixed with QR codes. 'qrlabelr' is an R package that features 'EasyQrlabelr',
 a Shiny app that simplifies the complicated process of plot label design for non-R users.
-It also offers easily customizable functions that enable plot label generation outside the Shiny app.
+It also offers easily 'customizable' functions that enable plot label generation outside the Shiny app.
 It generates field plot labels that are compatible with the widely used
 digital data collection mobile app, Field Book. Our software builds on the foundation
 of an existing open-source program to offer more flexibility in plot label creation steps;

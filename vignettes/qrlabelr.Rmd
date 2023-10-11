@@ -33,8 +33,8 @@ knitr::opts_chunk$set(
   - [QR code generation](#qr-code-generation)
   - [Creating field plot labels in R](#creating-field-plot-labels-in-r)  
   - [Creating general-purpose labels in R](#creating-general-purpose-labels-in-r)   
-  - [Creating labels with Shiny app: EasyPlotLabelR](#creating-labels-with-shiny-app-easyplotlabelr)  
-    - [Import fieldbook tab](#import-fieldbook-tab)  
+  - [Creating labels with 'shiny' app: 'EasyQrlabelr'](#creating-labels-with-shiny-app-easyqrlabelr)  
+    - [Import field book tab](#import-field-book-tab)  
     - [Label information tab](#label-information-tab)  
     - [Template setup tab](#template-setup-tab)  
     - [Page setup tab](#page-setup-tab)  
@@ -45,11 +45,11 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-**qrlabelr** is an R package that provides customizable functions and an intuitive Shiny app for generating print-ready machine and human-readable labels affixed with QR codes. The app is designed to be user-friendly, fast and efficient, allowing researchers to create accurate and highly informative plot labels without the need for licensed commercial software.  
+**qrlabelr** is an R package that provides customizable functions and an intuitive 'shiny' app for generating print-ready machine and human-readable labels affixed with QR codes. The app is designed to be user-friendly, fast and efficient, allowing researchers to create accurate and highly informative plot labels without the need for licensed commercial software.  
 
 It generates field plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program to offer more flexibility in plot label creation steps;  guarantees true string fidelity after QR encoding; and provides faster label generation to users.  
 
-This vignette will guide you through the process of installing the package, and how to use its customizable functions, and the Shiny app.  
+This vignette will guide you through the process of installing the package, and how to use its customizable functions, and the 'shiny' app.  
 
 # Installation
 To install **`qrlabelr`**, you will first need to have R and the 'RStudio' IDE installed on your computer. Once you have these tools installed, you can open 'RStudio' and enter the following command in the console to install the package from CRAN:  
@@ -99,11 +99,11 @@ The qrlabelr package offers two user-centered options for creating plot labels a
 
 The first option involves the use of customizable functions to create rectangular field plot labels or any rectangular general-purpose labels embossed with QR codes. This option is for users who find working in R comfortable.  
 
-The package also provides a helper function to access a user-friendly Shiny app (EasyPlotLabelR) for non-R users who may find working in R not so comfortable. This option allows users to run the Shiny app using their computer as host without the need for internet.  
+The package also provides a helper function to access a user-friendly 'shiny' app ('EasyQrlabelr') for non-R users who may find working in R not so comfortable. This option allows users to run the 'shiny' app using their computer as host without the need for internet.  
 
-**Both the customizable functions and Shiny app were created to deliver the exact same features, so it all boils down to a user's preference.**  
+**Both the customizable functions and 'shiny' app were created to deliver the exact same features, so it all boils down to a user's preference.**  
 
-You can choose to create labels using the Shiny app, or with the use of customizable functions in R. It boils down to a user's preference, as both the functions and Shiny app were created to deliver the exact same features. We were only motivated by the need to serve both groups -- those comfortable with working with codes, and those who prefer to work with a GUI-based application.  
+You can choose to create labels using the 'shiny' app, or with the use of customizable functions in R. It boils down to a user's preference, as both the functions and 'shiny' app were created to deliver the exact same features. We were only motivated by the need to serve both groups -- those comfortable with working with codes, and those who prefer to work with a GUI-based application.  
 
 ## Label content  
 
@@ -132,14 +132,14 @@ For a field plot label option, a landscape text orientation is used. The text ni
 8. Bottom-left row 1 text position is mapped to **Location of experiment** or trial\    
 9. Bottom-left row 2 text position is mapped to **Entry name**\     
 
-**To change any of these default human-readable text items to specific user-preferred texts, use the `gp_label()` customizable function in R or the `General-purpose landscape text label` method in the Shiny app.**.  
+**To change any of these default human-readable text items to specific user-preferred texts, use the `gp_label()` customizable function in R or the `General-purpose landscape text label` method in the 'shiny' app.**.  
 
 
 
 ## QR code generation  
 Affixing QR codes on the plot labels makes them machine-readable for easy plot identification and tracking. The text for generating QR codes must be unique for each plot.  
 
-The qrlabelr package provides three methods for producing unique IDs for each plot. These methods are **reproducible unique IDs (`RUID`)**, **universal unique IDs (`UUID`)**, and **custom unique IDs (`custom`)**. The RUID method is, however, only available when the user chooses the `field_label()` function in R or the `Field plot label` option in the Shiny app.    
+The qrlabelr package provides three methods for producing unique IDs for each plot. These methods are **reproducible unique IDs (`RUID`)**, **universal unique IDs (`UUID`)**, and **custom unique IDs (`custom`)**. The RUID method is, however, only available when the user chooses the `field_label()` function in R or the `Field plot label` option in the 'shiny' app.    
 
 RUIDs are informative and reproducible, hence, can be regenerated when provided with the same input field book. For field experiments or trials, we strongly recommend the use of RUIDs. An RUID is generated by concatenating LOCATION and year of experiment, trial name, PLOT, ROW and COLUMN ids for each experimental plot Eg. **`KUMASI2023_PYT_101_1_1`**.  
 
@@ -205,7 +205,7 @@ The example above creates labels with QR codes generated using the reproducible 
 
 The arguments `Trial = 'PYT'` and `Year = 2023` are required if the method for generating unique IDs for QR codes is set to `get_unique_id = "ruid"`.  Users can set the font size for the label using the `font_sz` argument. Rectangular labels with rounded corners are generated with the argument `rounded = TRUE`, else set it to `rounded = FALSE`. 
 
-The following arguments must also be specified if the input field book was not generated with the FieldHub package:  
+The following arguments must also be specified if the input field book was not generated with the FielDHub package:  
 
 - `rep_id`: column id in input field book for **REP**; default is 'REP'\  
 - `plot_id`: column id in input field book for **PLOT**; default is 'PLOT'\  
@@ -312,26 +312,26 @@ To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait
 **Note that the default label template for the above functions is [Avery 94220 template](https://www.avery.com/blank/labels/94220).**. 
 
 
-## Creating labels with Shiny app: EasyPlotLabelR  
+## Creating labels with 'shiny' app: EasyQrlabelr  
 
-To create your first plot label using the Shiny app, you will need to open the EasyPlotLabelR Shiny app. You can do this by entering the following command in the console:  
+To create your first plot label using the 'shiny' app, you will need to open the 'EasyQrlabelr' 'shiny' app. You can do this by entering the following command in the console:  
 ```{r eval=FALSE}
 qrlabelr::run_app()
 ```
 
 
-This will open a new window in your default web browser that displays the EasyPlotLabelR Shiny app. The user is then greeted with a Welcome page that provides an overview of the web app, some quick instructions to get started, sample labels, among others. In the header of the web app is a convenient Help button which can be accessed anytime for a quick overview of the purpose of each tab in generating a label.  
+This will open a new window in your default web browser that displays the 'EasyQrlabelr' 'shiny' app. The user is then greeted with a Welcome page that provides an overview of the web app, some quick instructions to get started, sample labels, among others. In the header of the web app is a convenient Help button which can be accessed anytime for a quick overview of the purpose of each tab in generating a label.  
 
-Figure 3 shows the main pages or tabs available in the Shiny app and their corresponding features.  
+Figure 3 shows the main pages or tabs available in the 'shiny' app and their corresponding features.  
 
 |<img src='images/workflow.PNG' style="width: 800px;" />|
 |:--:| 
-| *Fig. 3. Workflow of the Shiny app, EasyPlotLabelR* | 
+| *Fig. 3. Workflow of the 'shiny' app, 'EasyQrlabelr'* | 
 
 
-### Import fieldbook tab  
+### Import field book tab  
 
-To create plot labels, start by clicking on the "Import field book" sidebar menu. This presents a page with a number of input widgets all geared towards the upload of a field book. Click the "Browse..." button and navigate to a desired field book in CSV, XLS, or XLSX format. If the field book was generated with FieldHub or BMS, turn on the "Generated with FieldHub" or Generated with BMS switch respectively. These switches allow users to automatically populate relevant input widgets fields that will be covered in subsequent sections. However, users should turn off these switches if the imported field book was generated using other programs.  
+To create plot labels, start by clicking on the "Import field book" sidebar menu. This presents a page with a number of input widgets all geared towards the upload of a field book. Click the "Browse..." button and navigate to a desired field book in CSV, XLS, or XLSX format. If the field book was generated with FielDHub or BMS, turn on the "Generated with FielDHub" or Generated with BMS switch respectively. These switches allow users to automatically populate relevant input widgets fields that will be covered in subsequent sections. However, users should turn off these switches if the imported field book was generated using other programs.  
 
 To preview the uploaded field book right in the app, turn on the switch labeled "Preview Field book". This displays the uploaded field book in a dedicated card from which the field book can be examined, but not modified. Click the "Submit Field book" button after all the necessary configurations have been made, and click the Next button to move to the next tab.  
 
@@ -393,8 +393,8 @@ Users have the option to download an augmented field book which contains all the
 
 ### Customizing Plot Labels  
 
-The Shiny app offers a wide range of customization options for your plot labels. You can choose from a variety of different templates, label type, and font styles to create a label that is tailored to your specific needs and preferences. To access the customization options, configure the appearance of the labels using the options provided in the app.  
+The 'shiny' app offers a wide range of customization options for your plot labels. You can choose from a variety of different templates, label type, and font styles to create a label that is tailored to your specific needs and preferences. To access the customization options, configure the appearance of the labels using the options provided in the app.  
 
 ## Conclusion  
 
-This user-friendly R package allows researchers to easily generate machine and human-readable plot labels. With its easy-to-use web app and wide range of customization options, the incorporated Shiny app makes it simple to create accurate and informative plot labels without the need for licensed commercial software. Give qrlabelr a try and enjoy the convenience it brings to your work!  
+This user-friendly R package allows researchers to easily generate machine and human-readable plot labels. With its easy-to-use web app and wide range of customization options, the incorporated 'shiny' app makes it simple to create accurate and informative plot labels without the need for licensed commercial software. Give qrlabelr a try and enjoy the convenience it brings to your work!  

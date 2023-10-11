@@ -18,7 +18,7 @@ Maintainer: Alexander Wireko Kena <alex.kena24@gmail.com>
 Description: A no-frills open-source solution for designing plot labels affixed with QR 
     codes. It features 'EasyQrlabelr', a 'shiny' app that simplifies the process 
     of plot label design for non-R users. This software builds on the methods 
-    described by Wu et al. (2020) <doi:10.1111/2041-210X.13405>.
+    described by Wu 'et al.' (2020) <doi:10.1111/2041-210X.13405>.
 License: GPL (>= 3)
 BugReports: https://github.com/awkena/qrlabelr/issues
 Encoding: UTF-8
