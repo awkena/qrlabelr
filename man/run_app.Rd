@@ -12,4 +12,10 @@ No return value, called for side effects. Opens the 'EasyQrlabelr' 'shiny' app i
 \description{
 An interface function to launch the 'EasyQrlabelr' 'shiny' app.
 }
+\examples{
+library(qrlabelr)
+if(interactive())
+qrlabelr::run_app()
+
+}
 \concept{"plot labels"}
