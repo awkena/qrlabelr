@@ -153,7 +153,7 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
 file <- paste0(tempfile())
-if(file.exists(file)) {
+if(file.exists(file)) 
 \donttest{
 gp_label_portrait(
 dat = df,
@@ -188,7 +188,6 @@ top_txt2_id = 'IBLOCK',
 top_txt3_id = 'SEED_SOURCE',
 unique_id = 'ids',
 ec_level = 1)
-}
 }
 
 }

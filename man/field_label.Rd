@@ -121,7 +121,7 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
 file <- paste0(tempfile())
-if(file.exists(file)) {
+if(file.exists(file)) 
 \donttest{
 field_label(
   dat = df,
@@ -148,7 +148,7 @@ field_label(
   seed_source_id = "SEED_SOURCE",
   ec_level = 1)
  }
-}
+
 }
 \seealso{
 \code{\link{create_label}} and \code{\link{gp_label}}

@@ -101,7 +101,7 @@ Create print-ready customized plot labels affixed with QR codes given the page s
 \examples{
 library(qrlabelr)
 file <- paste0(tempfile())
-if(file.exists(file)) {
+if(file.exists(file)) 
 \donttest{
 # Create rectangular plot labels based on the Avery 94220 template-- the default template
 create_label(
@@ -121,7 +121,7 @@ unique_id = paste("KUMASI2023_PYT", c(101:105),
                   sep = "_"), 
 ec_level = 1)
 }
-}
+
 
 
 }
