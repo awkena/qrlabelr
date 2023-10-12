@@ -120,9 +120,9 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
                 SEED_SOURCE = rep("OFF_NUR", 5))
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
-file <- paste0(tempfile())
-if(file.exists(file)) 
+file <- tempdir()
 \donttest{
+if(dir.exists(file)) 
 field_label(
   dat = df,
   wdt = 5, 
@@ -135,7 +135,7 @@ field_label(
   right_mar = 1.75, 
   numrow = 4L, 
   numcol = 1L, 
-  filename = file, 
+  filename = file.path(file, "fld"), 
   font_sz = 20, 
   Trial = "PYT", 
   Year = 2023, 

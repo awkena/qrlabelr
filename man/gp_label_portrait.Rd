@@ -152,9 +152,9 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
-file <- paste0(tempfile())
-if(file.exists(file)) 
+file <- tempdir()
 \donttest{
+if(dir.exists(file)) 
 gp_label_portrait(
 dat = df,
 wdt = 2,
@@ -167,7 +167,7 @@ left_mar = 0.625,
 right_mar = 0.625,
 numrow = 8L,
 numcol = 3L,
-filename = file,
+filename = file.path(file, "gpp"),
 font_sz = 10,
 family = 'sans',
 rounded = TRUE,
