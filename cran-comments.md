@@ -1,3 +1,6 @@
+## Changes made since second submission
+❯ if statement in examples has been placed inside the \donttest{} as suggested by Beni Altmann.
+
 ## Changes made since first submission
 Following suggestions by Beni Altmann, we have made these changes before resubmitting the package to CRAN:
 
