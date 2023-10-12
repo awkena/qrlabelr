@@ -104,9 +104,9 @@ df <- data.frame(LOCATION = rep("BAMBEY", 5),
 
 df$ids <- paste0(df$LOCATION,'2023', '_PYT', '_', df$PLOT, '_', df$ROW, '_',
                  df$COLUMN)
-file <- tempdir()
+file <- tempfile()
 \donttest{
-if(dir.exists(file)) 
+if(file.exists(file)) 
 gp_label(dat = df,
          wdt = 5,
          hgt = 2,
@@ -118,7 +118,7 @@ gp_label(dat = df,
          right_mar = 1.75,
          numrow = 4L,
          numcol = 1L,
-         filename = file.path(file, "gpl"),
+         filename = file,
          font_sz = 20,
          rname = "Adoma",
          get_unique_id = "custom",
