@@ -10,6 +10,9 @@
 [![R-CMD-check](https://github.com/awkena/qrlabelr/actions/workflows/OScheck.yml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/OScheck.yml)
 [![test-coverage](https://github.com/awkena/qrlabelr/actions/workflows/codecov3.yml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/codecov3.yml)
 [![Codecov test coverage](https://codecov.io/gh/awkena/qrlabelr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/awkena/qrlabelr?branch=main)
+[![](https://www.r-pkg.org/badges/version/qrlabelr?color=orange)](https://cran.r-project.org/package=qrlabelr)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/qrlabelr?color=blue)](https://cran.r-project.org/package=qrlabelr)
+[![CRAN checks](https://badges.cranchecks.info/summary/qrlabelr.svg)](https://cran.r-project.org/web/checks/check_results_qrlabelr.html)
 <!-- badges: end -->
 
 # Create Plot Labels Easily With qrlabelr
