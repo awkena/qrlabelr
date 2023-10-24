@@ -1,3 +1,7 @@
+## Changes made since release of version 0.1.0
+* Added new options to print labels row-wise from left to right or column-wise from top to bottom.
+* Added new options to draw rectangles around labels or no rectangles.
+
 ## Changes made since second submission
 ❯ if statement in examples has been placed inside the \donttest{} as suggested by Beni Altmann.
 

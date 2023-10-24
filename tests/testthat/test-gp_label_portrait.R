@@ -32,6 +32,8 @@ test_that("Create plot label PDF successful generation", {
       font_sz = 10,
       family = 'sans', 
       rounded = TRUE,
+      print_across = TRUE,
+      rect = TRUE,
       bot_txt1 = 'Rubi', 
       cent_txt2 = 'Rep:',  
       cent_txt3 = 'R:', 

@@ -20,6 +20,8 @@ create_label(
   Treetag = FALSE,
   family = "sans",
   rounded = TRUE,
+  print_across = TRUE,
+  rect = TRUE,
   top_left_1 = NULL,
   top_left_2 = NULL,
   top_right_1 = NULL,
@@ -67,6 +69,12 @@ is working directory.}
 \item{rounded}{Set to TRUE if label has round corners; set to false if label has
 square corners.}
 
+\item{print_across}{Set to TRUE to print labels across rows, left to right; else 
+set to FALSE to print labels down columns, top to bottom. Default is \code{TRUE}.}
+
+\item{rect}{Set to TRUE to draw rectangles around labels, else set to FALSE. 
+Default is \code{TRUE}.}
+
 \item{top_left_1}{String for top-left row 1 position on a rectangular label.}
 
 \item{top_left_2}{String for top-left row 2 position on a rectangular label.}
@@ -107,6 +115,8 @@ if(file.exists(file))
 create_label(
 font_sz = 10,
 filename = file, 
+print_across = TRUE,
+rect = TRUE,
 top_left_1 = paste("Plot:", 101:105), 
 top_left_2 = paste("Row:", c(rep(1, 3), rep(2, 2))), 
 top_right_1 = paste("Rep:", rep(1, 5)), 

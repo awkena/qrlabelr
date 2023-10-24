@@ -20,6 +20,8 @@ gp_label_portrait(
   font_sz = 8,
   family = "sans",
   rounded = TRUE,
+  print_across = TRUE,
+  rect = TRUE,
   bot_txt1 = NULL,
   bot_txt2 = NULL,
   bot_txt3 = NULL,
@@ -78,6 +80,12 @@ is working directory.}
 
 \item{rounded}{Set to TRUE if label has round corners; set to false if label has
 square corners.}
+
+\item{print_across}{Set to TRUE to print labels across rows, left to right; else 
+set to FALSE to print labels down columns, top to bottom. Default is \code{TRUE}.}
+
+\item{rect}{Set to TRUE to draw rectangles around labels, else set to FALSE. 
+Default is \code{TRUE}.}
 
 \item{bot_txt1}{The prefix text for bottom text position 1.}
 
@@ -171,6 +179,8 @@ filename = file,
 font_sz = 10,
 family = 'sans',
 rounded = TRUE,
+print_across = TRUE,
+rect = TRUE,
 bot_txt1 = 'Rubi',
 cent_txt2 = 'Rep:',
 cent_txt3 = 'R:',

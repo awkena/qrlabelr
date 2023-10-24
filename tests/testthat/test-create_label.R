@@ -19,6 +19,8 @@ test_that("Create plot label PDF successful generation", {
              Treetag = FALSE,
              family = 'sans', 
              rounded = TRUE, 
+             print_across = TRUE,
+             rect = TRUE,
              top_left_1 = paste("Plot:", 101:110), 
              top_left_2 = paste("Row:", c(rep(1, 6), rep(2, 4))), 
              top_right_1 = paste("Rep:", rep(1, 10)), 
