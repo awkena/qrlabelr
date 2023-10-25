@@ -946,15 +946,14 @@ pg_label_setup <- argonDash::argonTabItem(
       argonR::argonColumn(width = 6,
       shinyWidgets::prettyCheckbox(inputId = "rounded", label = "Round corner labels",
                    value = TRUE, status = "primary", shape = "curve", outline = TRUE)),
-
-    argonR::argonColumn(width = 6,
-      shinyBS::popify(trigger = "focus",
-        numericInput(inputId = "lab_sel", h4("Input label to preview:"),
-                          value = 1, min = 1),
-             title = "Label to preview", placement = "bottom",
-             content =  "Input the row number of any plot in your fieldbook to preview its label.")
-
-    )),
+      
+      argonR::argonColumn(width = 6,
+      shinyWidgets::prettyCheckbox(inputId = "rect", label = "Draw rectangle around label",
+                                   value = TRUE, status = "primary", shape = "curve", outline = TRUE)),
+    
+argonR::argonColumn(width = 6,
+                    shinyWidgets::prettyCheckbox(inputId = "print_across", label = "Fill page by row",
+                                                 value = TRUE, status = "primary", shape = "curve", outline = TRUE))),
 
     br(),
 
@@ -981,7 +980,17 @@ pg_label_setup <- argonDash::argonTabItem(
 
       #p("Alternatively, launch the FielDHub Shiny app to generate a FieldBook"),
       #p("Currently points to the GitHub's page of package author"),
-
+      argonR::argonRow(
+      argonR::argonColumn(width = 6,
+                          shinyBS::popify(trigger = "focus",
+                                          numericInput(inputId = "lab_sel", h4("Input label to preview:"),
+                                                       value = 1, min = 1),
+                                          title = "Label to preview", placement = "top",
+                                          content =  "Input the row number of any plot in your fieldbook to preview its label.")
+                          
+      )),
+      
+      br(),
       # Plot output
       plotOutput(outputId = "preview", height = "800px")
     )
@@ -1397,18 +1406,18 @@ server <- function(input, output, session) {
     shinyjs::disable(id = "gen_labels")
     shinyjs::disable(id = "down_fieldbook")
     shinyjs::disable(id = "down_labels")
-
+    
 
     tryCatch({
       if (input$label_type == "field" || input$label_type == "gp") {
         reactive_create_label <- reactive(create_label())
         reactive_create_label()
-        
+
       } else if (input$label_type == "gpp") {
-        
+
         reactive_gp_label_portrait <- reactive(gp_label_portrait())
         reactive_gp_label_portrait()
-        
+
       }
     },
     warning = function(cond) {
@@ -1713,7 +1722,7 @@ server <- function(input, output, session) {
     })
   })
   
-  # Update numeric input widget for label preview; observed only when the submited data
+  # Update numeric input widget for label preview; observed only when the submitted data
   # action button is clicked
   observe({
     req(input$submit_dat)
@@ -1723,48 +1732,54 @@ server <- function(input, output, session) {
   
   
   
-  # Update REP and LOC select inputs in the Generate labels tab
-  observe({
-    if(input$label_type == "field"){
-      req(input$rep_id, input$loc_id)
-      Rep_levels <- unique(dat[,input$rep_id]) # Unique Rep ids
-      Loc_levels <- unique(dat[,input$loc_id])# Unique Location ids
-      
-      shinyWidgets::updatePickerInput(session, inputId = "REP", choices =  Rep_levels)
-      
-      shinyWidgets::updatePickerInput(session, inputId = "LOC", choices = Loc_levels)
-    }
-  })
+  # # Update REP and LOC select inputs in the Generate labels tab
+  # observe({
+  #   if(input$label_type == "field"){
+  #     req(input$rep_id, input$loc_id)
+  #     
+  #     if (input$rep_id != "none") {
+  #     Rep_levels <- unique(dat[,input$rep_id]) # Unique Rep ids
+  #     } else (Rep_levels <- NULL)
+  #     
+  #     if (input$loc_id != "none") {
+  #     Loc_levels <- unique(dat[,input$loc_id])# Unique Location ids
+  #     } else (Loc_levels <- NULL)
+  #     
+  #     shinyWidgets::updatePickerInput(session, inputId = "REP", choices =  Rep_levels)
+  #     
+  #     shinyWidgets::updatePickerInput(session, inputId = "LOC", choices = Loc_levels)
+  #   }
+  # })
   
   
-  # Hide or show respective widgets as and when necessary
-  observe({
-    if (input$label_type == "field") {
-      if (input$all_labels == TRUE) {
-        shinyjs::disable(id = "loca")
-        shinyjs::disable(id = "bal_design")
-        shinyjs::disable(id = "Repl")
-        
-      } else {
-        shinyjs::enable(id = "bal_design")
-        shinyjs::enable(id = "Repl")
-        shinyjs::enable(id = "loca")
-      }
-      
-      if (input$all_labels == FALSE & input$bal_design == FALSE) {
-        shinyjs::disable(id = "Repl")
-        shinyjs::hide(id = "Repl")
-        
-      } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
-        shinyjs::show(id = "Repl")
-        shinyjs::enable(id = "Repl")
-        shinyjs::disable(id = "all_labels")
-      }
-    } 
-  })
+  # # Hide or show respective widgets as and when necessary
+  # observe({
+  #   if (input$label_type == "field") {
+  #     if (input$all_labels == TRUE) {
+  #       shinyjs::disable(id = "loca")
+  #       shinyjs::disable(id = "bal_design")
+  #       shinyjs::disable(id = "Repl")
+  #       
+  #     } else {
+  #       shinyjs::enable(id = "bal_design")
+  #       shinyjs::enable(id = "Repl")
+  #       shinyjs::enable(id = "loca")
+  #     }
+  #     
+  #     if (input$all_labels == FALSE & input$bal_design == FALSE) {
+  #       shinyjs::disable(id = "Repl")
+  #       shinyjs::hide(id = "Repl")
+  #       
+  #     } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
+  #       shinyjs::show(id = "Repl")
+  #       shinyjs::enable(id = "Repl")
+  #       shinyjs::disable(id = "all_labels")
+  #     }
+  #   } 
+  # })
   
   observe({
-    if (input$label_type == "gp" || input$label_type == "gpp") {
+    if (input$label_type == "gp" || input$label_type == "gpp" || input$label_type == "field" ) {
       shinyjs::hide(id = "loca")
       shinyjs::hide(id = "bal_design")
       shinyjs::hide(id = "all_labels")
@@ -1778,13 +1793,13 @@ server <- function(input, output, session) {
     }
   })
   
-  observe({
-    if (input$bal_design == TRUE) {
-      shinyjs::disable(id = "all_labels")
-    } else {
-      shinyjs::enable(id = "all_labels")
-    }
-  })
+  # observe({
+  #   if (input$bal_design == TRUE) {
+  #     shinyjs::disable(id = "all_labels")
+  #   } else {
+  #     shinyjs::enable(id = "all_labels")
+  #   }
+  # })
   
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   #                   Section 4. Regular functions (the "workhorses")                       #
@@ -1802,15 +1817,15 @@ server <- function(input, output, session) {
   
   # Initialize label info
   init_label_info <- function() {
-    updateSelectInput(inputId = "rep_id", choices = dat_columns)
-    updateSelectInput(inputId = "row_id", choices = dat_columns)
-    updateSelectInput(inputId = "loc_id", choices = dat_columns)
-    updateSelectInput(inputId = "IBlock_id", choices = dat_columns)
-    updateSelectInput(inputId = "plot_id", choices = dat_columns)
-    updateSelectInput(inputId = "col_id", choices = dat_columns)
-    updateSelectInput(inputId = "entry_id", choices = dat_columns)
-    updateSelectInput(inputId = "unique_id", choices = dat_columns)
-    updateSelectInput(inputId = "seed", choices = dat_columns)
+    updateSelectInput(inputId = "rep_id", choices = c("none", dat_columns))
+    updateSelectInput(inputId = "row_id", choices = c("none", dat_columns))
+    updateSelectInput(inputId = "loc_id", choices = c("none", dat_columns))
+    updateSelectInput(inputId = "IBlock_id", choices = c("none", dat_columns))
+    updateSelectInput(inputId = "plot_id", choices = c("none", dat_columns))
+    updateSelectInput(inputId = "col_id", choices = c("none", dat_columns))
+    updateSelectInput(inputId = "entry_id", choices = c("none", dat_columns))
+    updateSelectInput(inputId = "unique_id", choices = c("none", dat_columns))
+    updateSelectInput(inputId = "seed", choices = c("none", dat_columns))
     
     # Update select inputs for general purpose landscape labels
     updateSelectInput(inputId = "toplt_sel_r1", choices = c("none", dat_columns), selected = "none")
@@ -1845,32 +1860,32 @@ server <- function(input, output, session) {
   # Invoked to automatically set the respective input widgets if a FieldHub-generated
   # fieldbook is uploaded
   autoset_fieldhub <- function() {
-    updateSelectInput(inputId = "rep_id", choices = dat_columns, selected = "REP")
-    updateSelectInput(inputId = "row_id", choices = dat_columns, selected = "ROW")
-    updateSelectInput(inputId = "loc_id", choices = dat_columns, selected = "LOCATION")
-    updateSelectInput(inputId = "IBlock_id", choices = dat_columns, selected = "IBLOCK")
-    updateSelectInput(inputId = "plot_id", choices = dat_columns, selected = "PLOT")
-    updateSelectInput(inputId = "col_id", choices = dat_columns, selected = "COLUMN")
-    updateSelectInput(inputId = "entry_id", choices = dat_columns, selected = "TREATMENT")
+    updateSelectInput(inputId = "rep_id", choices = c("none", dat_columns), selected = "REP")
+    updateSelectInput(inputId = "row_id", choices = c("none", dat_columns), selected = "ROW")
+    updateSelectInput(inputId = "loc_id", choices = c("none", dat_columns), selected = "LOCATION")
+    updateSelectInput(inputId = "IBlock_id", choices = c("none", dat_columns), selected = "IBLOCK")
+    updateSelectInput(inputId = "plot_id", choices = c("none", dat_columns), selected = "PLOT")
+    updateSelectInput(inputId = "col_id", choices = c("none", dat_columns), selected = "COLUMN")
+    updateSelectInput(inputId = "entry_id", choices = c("none", dat_columns), selected = "TREATMENT")
   }
   
   autoset_BMS <- function() {
     if(ext == "xls" | ext == "xlsx" ){
-      updateSelectInput(inputId = "rep_id", choices = dat_columns, selected = "REP_NO")
-      updateSelectInput(inputId = "row_id", choices = dat_columns, selected = "FIELDMAP RANGE")
-      updateSelectInput(inputId = "loc_id", choices = dat_columns, selected = "LOCATION_NAME")
-      updateSelectInput(inputId = "IBlock_id", choices = dat_columns, selected = "BLOCK_NO")
-      updateSelectInput(inputId = "plot_id", choices = dat_columns, selected = "PLOT_NO")
-      updateSelectInput(inputId = "col_id", choices = dat_columns, selected = "FIELDMAP COLUMN")
-      updateSelectInput(inputId = "entry_id", choices = dat_columns, selected = "DESIGNATION")
-    }else{
-      updateSelectInput(inputId = "rep_id", choices = dat_columns, selected = "REP_NO")
-      updateSelectInput(inputId = "row_id", choices = dat_columns, selected = "FIELDMAP.RANGE")
-      updateSelectInput(inputId = "loc_id", choices = dat_columns, selected = "LOCATION_NAME")
-      updateSelectInput(inputId = "IBlock_id", choices = dat_columns, selected = "BLOCK_NO")
-      updateSelectInput(inputId = "plot_id", choices = dat_columns, selected = "PLOT_NO")
-      updateSelectInput(inputId = "col_id", choices = dat_columns, selected = "FIELDMAP.COLUMN")
-      updateSelectInput(inputId = "entry_id", choices = dat_columns, selected = "DESIGNATION")
+      updateSelectInput(inputId = "rep_id", choices = c("none", dat_columns), selected = "REP_NO")
+      updateSelectInput(inputId = "row_id", choices = c("none", dat_columns), selected = "FIELDMAP RANGE")
+      updateSelectInput(inputId = "loc_id", choices = c("none", dat_columns), selected = "LOCATION_NAME")
+      updateSelectInput(inputId = "IBlock_id", choices = c("none", dat_columns), selected = "BLOCK_NO")
+      updateSelectInput(inputId = "plot_id", choices = c("none", dat_columns), selected = "PLOT_NO")
+      updateSelectInput(inputId = "col_id", choices = c("none", dat_columns), selected = "FIELDMAP COLUMN")
+      updateSelectInput(inputId = "entry_id", choices = c("none", dat_columns), selected = "DESIGNATION")
+    } else {
+      updateSelectInput(inputId = "rep_id", choices = c("none", dat_columns), selected = "REP_NO")
+      updateSelectInput(inputId = "row_id", choices = c("none", dat_columns), selected = "FIELDMAP.RANGE")
+      updateSelectInput(inputId = "loc_id", choices = c("none", dat_columns), selected = "LOCATION_NAME")
+      updateSelectInput(inputId = "IBlock_id", choices = c("none", dat_columns), selected = "BLOCK_NO")
+      updateSelectInput(inputId = "plot_id", choices = c("none", dat_columns), selected = "PLOT_NO")
+      updateSelectInput(inputId = "col_id", choices = c("none", dat_columns), selected = "FIELDMAP.COLUMN")
+      updateSelectInput(inputId = "entry_id", choices = c("none", dat_columns), selected = "DESIGNATION")
       
     }
     
@@ -1983,20 +1998,33 @@ server <- function(input, output, session) {
   
   
   lab_inf <- reactive({
+    
     if (input$label_type == "field") {
       #req(input$label_type == "field")
       
+      if (input$plot_id != "none") {
       plott <- paste("Plot ID:", dat[, input$plot_id]) # Plot ids
+      } else (plott <- NULL)
       
+      if (input$rep_id != "none") {
       repp <- paste("Rep ID:", dat[, input$rep_id]) # Rep ids
+      } else (repp <- NULL)
       
+      if (input$loc_id != "none") {
       loc <- paste("Loc:", dat[, input$loc_id]) # Location ids
+      } else (loc <- NULL)
       
+      if (input$row_id != "none") {
       roww <- paste("Row ID:", dat[, input$row_id]) # Row ids
+      } else (roww <- NULL)
       
+      if (input$col_id != "none") {
       coll <- paste("Col. ID:", dat[, input$col_id]) # Column ids
+      } else (coll <- NULL)
       
+      if (input$entry_id != "none") {
       entry <-  dat[, input$entry_id]
+      } else (entry <- NULL)
       
       rnames <- rep(input$rname, nrow(dat)) # Researcher's name
       
@@ -2004,19 +2032,24 @@ server <- function(input, output, session) {
       
       if (input$IBlock == TRUE) {
         
-        iblock <- paste("iBlock ID:", dat[, input$IBlock_id])
+        if (input$IBlock_id != "none") {
+        iblock <- paste("B:", dat[, input$IBlock_id])
         
-      } else {
-        iblock <- rep("No iBlock", nrow(dat))
-      }
+      } else (iblock <- NULL)
+      
+    } else (iblock <- NULL)
+      
       
       if(input$seed_source == TRUE) {
         
-        sdsource  <- paste("Seed:", dat[, input$seed])
+        if (input$seed != "none") {
         
-      } else {
-        sdsource  <- NULL
-      }
+    
+        sdsource  <- paste(dat[, input$seed])
+        
+      } else (sdsource  <- NULL)
+        
+    } else (sdsource  <- NULL)
       
       # Combine all results as a list for field plot labels
       fld_all <- list(plott, roww, repp, coll, iblock, sdsource, rnames, loc, entry)
@@ -2161,10 +2194,23 @@ server <- function(input, output, session) {
       if (input$uniqueids == "get_unique_id") {
         
         trial_name <- gsub(" ", "_", input$tname)
-        loc2 <- dat[, input$loc_id]
-        plott2 <- dat[, input$plot_id]
-        rows <- dat[, input$row_id]
-        cols <- dat[, input$col_id]
+        
+        if (input$loc_id != "none") {
+          loc2 <- dat[, input$loc_id]
+        } else (loc2 <- rep("none", nrow(dat)))
+        
+        if (input$plot_id != "none") {
+          plott2 <- dat[, input$plot_id]
+        } else (plott2 <- rep(0, nrow(dat)))
+        
+        
+        if (input$row_id != "none") {
+          rows <- dat[, input$row_id]
+        } else (rows <- rep(0, nrow(dat)))
+        
+        if (input$col_id != "none") {
+          cols <- dat[, input$col_id]
+        } else (cols <- rep(0, nrow(dat)))
         
         ids <- paste(paste0(gsub(" ", "", loc2), input$yr), trial_name,
                      plott2, rows, cols, sep = "_" )
@@ -2320,9 +2366,18 @@ server <- function(input, output, session) {
             
             grid::pushViewport(tt)
             
-            if (input$rounded == TRUE) {
-              grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
-            } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            # if (input$rounded == TRUE) {
+            #   grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+            # } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            
+            # Draw rectangle around labels
+            if (input$rect == TRUE) {
+              
+              if (input$rounded == TRUE) {
+                grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+              } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+              
+            } 
             
             # Add Plot ID to label; note coordinates
             grid::grid.text(label = lab_inf()[[1]][input$lab_sel],
@@ -2373,7 +2428,13 @@ server <- function(input, output, session) {
             grid::upViewport()
             
             # Add location of experiment to label
-            grid::grid.text(label = lab_inf()[[8]][input$lab_sel],
+            # grid::grid.text(label = lab_inf()[[8]][input$lab_sel],
+            #                 rot = 90,
+            #                 x = grid::unit(lx, "in"),
+            #                 y = grid::unit(ly, "in"),
+            #                 gp = bold_font3, hjust = 0, vp = tt)
+            
+            grid::grid.text(label = UNIQUE_ID()[input$lab_sel],
                             rot = 90,
                             x = grid::unit(lx, "in"),
                             y = grid::unit(ly, "in"),
@@ -2456,9 +2517,18 @@ server <- function(input, output, session) {
             
             grid::pushViewport(aa)
             
-            if (input$rounded == TRUE) {
-              grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
-            } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            # if (input$rounded == TRUE) {
+            #   grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+            # } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            
+            # Draw rectangle around labels
+            if (input$rect == TRUE) {
+              
+              if (input$rounded == TRUE) {
+                grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+              } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+              
+            } 
             
             # Add Plot ID to label; note coordinates
             grid::grid.text(label = lab_inf()[[1]][input$lab_sel],
@@ -2520,7 +2590,12 @@ server <- function(input, output, session) {
             grid::upViewport()
             
             # Add location of experiment to label
-            grid::grid.text(label = lab_inf()[[8]][input$lab_sel],
+            # grid::grid.text(label = lab_inf()[[8]][input$lab_sel],
+            #                 x= grid::unit(px, "in"),
+            #                 y = grid::unit(ly, "in"),
+            #                 gp = bold_font3, hjust = 0, vp = aa)
+            
+            grid::grid.text(label = UNIQUE_ID()[input$lab_sel],
                             x= grid::unit(px, "in"),
                             y = grid::unit(ly, "in"),
                             gp = bold_font3, hjust = 0, vp = aa)
@@ -2571,9 +2646,18 @@ server <- function(input, output, session) {
             
             grid::pushViewport(aa)
             
-            if (input$rounded == TRUE) {
-              grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
-            } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            # if (input$rounded == TRUE) {
+            #   grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+            # } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            
+            # Draw rectangle around labels
+            if (input$rect == TRUE) {
+              
+              if (input$rounded == TRUE) {
+                grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+              } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+              
+            } 
             
             # Add text1 to label (bottom position 1); note coordinates
             grid::grid.text(label = lab_inf()[[1]][input$lab_sel],
@@ -2669,7 +2753,7 @@ server <- function(input, output, session) {
         showModal(modalDialog(title = "Error",
                               "A label preview error occurred. Check the page/label setting parameters or
                            the input for label to preview."))
-        
+
       })
       
     }) # end of label preview
@@ -2709,55 +2793,66 @@ server <- function(input, output, session) {
     
     
     if (input$label_type == "field") {
-      #' Subset label info from imported field book
-      #' bal_design
-      if (input$all_labels == TRUE & input$bal_design == FALSE ) {
-        plotid <- lab_inf()[[1]] # Plot ids
-        repid <- lab_inf()[[2]] # Rep ids
-        rowid <- lab_inf()[[3]] # Row ids
-        colid <- lab_inf()[[4]]   # Column ids
-        Blkid <- lab_inf()[[5]] # iBlocks
-        seed_src <- lab_inf()[[6]] # seed source
-        rname <- lab_inf()[[7]]
-        loc1 <-  lab_inf()[[8]] # Location ids
-        Entry <- lab_inf()[[9]]# Entry or treatment ids
+      plotid <- lab_inf()[[1]] # Plot ids
+      repid <- lab_inf()[[2]] # Rep ids
+      rowid <- lab_inf()[[3]] # Row ids
+      colid <- lab_inf()[[4]]   # Column ids
+      Blkid <- lab_inf()[[5]] # iBlocks
+      seed_src <- lab_inf()[[6]] # seed source
+      rname <- lab_inf()[[7]]
+      ids <-  UNIQUE_ID() # unique ids
+      Entry <- lab_inf()[[9]]# Entry or treatment ids
+      
+      qrcds <- bb$bb # QR codes
+      
+      # if (input$all_labels == TRUE & input$bal_design == FALSE ) {
+      #   plotid <- lab_inf()[[1]] # Plot ids
+      #   repid <- lab_inf()[[2]] # Rep ids
+      #   rowid <- lab_inf()[[3]] # Row ids
+      #   colid <- lab_inf()[[4]]   # Column ids
+      #   Blkid <- lab_inf()[[5]] # iBlocks
+      #   seed_src <- lab_inf()[[6]] # seed source
+      #   rname <- lab_inf()[[7]]
+      #   ids <-  UNIQUE_ID() # unique ids
+      #   Entry <- lab_inf()[[9]]# Entry or treatment ids
+      #   
+      #   qrcds <- bb$bb # QR codes
         
-        qrcds <- bb$bb # QR codes
+      # } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
+      #   
+      #   cc <- which(dat[, input$rep_id] == input$REP & dat[, input$loc_id] == input$LOC)
+      #   
+      #   plotid <- lab_inf()[[1]][cc] # Plot ids
+      #   repid <- lab_inf()[[2]][cc] # Rep ids
+      #   rowid <- lab_inf()[[3]][cc] # Row ids
+      #   colid <- lab_inf()[[4]][cc]   # Column ids
+      #   Blkid <- lab_inf()[[5]][cc] # iBlocks
+      #   seed_src <- lab_inf()[[6]][cc] # seed source
+      #   rname <- lab_inf()[[7]][cc]
+      #   ids <-  UNIQUE_ID()[cc] # unique ids
+      #   Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
+      #   
+      #   qrcds <- bb$bb[cc] # QR codes
+      #   
         
-      } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
-        
-        cc <- which(dat[, input$rep_id] == input$REP & dat[, input$loc_id] == input$LOC)
-        
-        plotid <- lab_inf()[[1]][cc] # Plot ids
-        repid <- lab_inf()[[2]][cc] # Rep ids
-        rowid <- lab_inf()[[3]][cc] # Row ids
-        colid <- lab_inf()[[4]][cc]   # Column ids
-        Blkid <- lab_inf()[[5]][cc] # iBlocks
-        seed_src <- lab_inf()[[6]][cc] # seed source
-        rname <- lab_inf()[[7]][cc]
-        loc1 <-  lab_inf()[[8]][cc] # Location ids
-        Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
-        
-        qrcds <- bb$bb[cc] # QR codes
-        
-        
-      } else if (input$all_labels == FALSE & input$bal_design == FALSE) {
-        
-        cc <- which(dat[,input$loc_id] == input$LOC)
-        
-        plotid <- lab_inf()[[1]][cc] # Plot ids
-        repid <- lab_inf()[[2]][cc] # Rep ids
-        rowid <- lab_inf()[[3]][cc] # Row ids
-        colid <- lab_inf()[[4]][cc]   # Column ids
-        Blkid <- lab_inf()[[5]][cc] # iBlocks
-        seed_src <- lab_inf()[[6]][cc] # seed source
-        rname <- lab_inf()[[7]][cc]
-        loc1 <-  lab_inf()[[8]][cc] # Location ids
-        Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
-        
-        qrcds <- bb$bb[cc] # QR codes
-        
-      }
+      # } else if (input$all_labels == FALSE & input$bal_design == FALSE) {
+      #   
+      #   cc <- which(dat[,input$loc_id] == input$LOC)
+      #   
+      #   plotid <- lab_inf()[[1]][cc] # Plot ids
+      #   repid <- lab_inf()[[2]][cc] # Rep ids
+      #   rowid <- lab_inf()[[3]][cc] # Row ids
+      #   colid <- lab_inf()[[4]][cc]   # Column ids
+      #   Blkid <- lab_inf()[[5]][cc] # iBlocks
+      #   seed_src <- lab_inf()[[6]][cc] # seed source
+      #   rname <- lab_inf()[[7]][cc]
+      #   ids <-  UNIQUE_ID()[cc] # unique ids
+      #   Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
+      #   
+      #   qrcds <- bb$bb[cc] # QR codes
+      #   
+      # }
+      
     } else if (input$label_type == "gp") {
       plotid <- lab_inf()[[1]] # Top-left row 1
       repid <- lab_inf()[[3]] # Top-left row 2
@@ -2779,7 +2874,19 @@ server <- function(input, output, session) {
     
     
     #' Generate label positions -- prints across rows of grid layout
-    pos <- expand.grid(x = 1:input$numcol, y = 1:input$numrow)
+    #pos <- expand.grid(x = 1:input$numcol, y = 1:input$numrow)
+    
+    # Generate label positions -- prints across rows of grid layout
+    if (input$print_across == TRUE) {
+      
+      pos <- expand.grid(x = 1:input$numcol, y = 1:input$numrow)
+      
+    } else {
+      
+      pos <- expand.grid(y = 1:input$numrow, x = 1:input$numcol)
+      
+    }
+    
     
     duplication <- ceiling(nn/nrow(pos))
     
@@ -2920,7 +3027,8 @@ server <- function(input, output, session) {
     plain_font2 <- grid::gpar(fontface = "plain", fontsize = fsize-2)
     plain_font3 <- grid::gpar(fontface = "plain", fontsize = fsize-4)
     bold_font3 <- grid::gpar(fontface = "bold", fontsize = fsize-4)
-    bold_font4 <- grid::gpar(fontface = "plain", fontsize = floor(fsize/2.5))
+    bold_font4 <- grid::gpar(fontface = "bold", fontsize = floor(fsize/2.5))
+    plain_font4 <- grid::gpar(fontface = "plain", fontsize = floor(fsize/2.5))
     
     withProgress(message = paste("Designing", nn, "labels."), value = 0, {
       
@@ -2944,16 +3052,24 @@ server <- function(input, output, session) {
         
         if (input$templates == "Treetag LTS14") {
           
-          tt <- grid::viewport(layout.pos.row=label_posn['y'],
-                               layout.pos.col=label_posn['x'])
+          tt <- grid::viewport(layout.pos.row = label_posn['y'],
+                               layout.pos.col = label_posn['x'])
           
           
           grid::pushViewport(tt)
           
+          # if (input$rounded == TRUE) {
+          #   grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+          # } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
           
-          if (input$rounded == TRUE) {
-            grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
-          } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+          # Draw rectangle around labels
+          if (input$rect == TRUE) {
+            
+            if (input$rounded == TRUE) {
+              grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+            } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            
+          } 
           
           # Add Plot ID to label; note coordinates
           grid::grid.text(label = plotid[i],
@@ -3002,8 +3118,8 @@ server <- function(input, output, session) {
           # Go back to label viewport
           grid::upViewport()
           
-          # Add location of experiment to label
-          grid::grid.text(label = loc1[i], rot = 90,
+          # Add Unique ID to label
+          grid::grid.text(label = ids[i], rot = 90,
                           x= grid::unit(lx, "in"),
                           y = grid::unit(ly, "in"),
                           gp = plain_font4, hjust = 0, vp = tt)
@@ -3033,7 +3149,7 @@ server <- function(input, output, session) {
           grid::grid.text(label = Entry[i], rot = 90,
                           x = grid::unit(ee, "in"),
                           y = grid::unit(ey, "in"),
-                          gp = bold_font4, hjust = 0, vp = tt)
+                          gp = bold_font3, hjust = 0, vp = tt)
           
           grid::pushViewport(qq2)
           
@@ -3042,14 +3158,23 @@ server <- function(input, output, session) {
           
           grid::popViewport(2)
           
-        }else{
+        } else {
           grid::pushViewport(grid::viewport(layout.pos.row=label_posn['y'],
                                             layout.pos.col=label_posn['x']))
           grid::pushViewport(aa)
           
-          if(input$rounded == TRUE){
-            grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
-          }else(grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+          # if(input$rounded == TRUE){
+          #   grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+          # }else(grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+          
+          # Draw rectangle around labels
+          if (input$rect == TRUE) {
+            
+            if (input$rounded == TRUE) {
+              grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+            } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+            
+          } 
           
           # Add Plot ID to label; note coordinates
           grid::grid.text(label = plotid[i],
@@ -3079,13 +3204,13 @@ server <- function(input, output, session) {
           grid::grid.text(label = seed_src[i],
                           x = grid::unit(0.42, "npc"),
                           y = grid::unit(0.47, "npc"),
-                          gp = bold_font3, hjust = 0, vp = aa)
+                          gp = plain_font3, hjust = 0, vp = aa)
           
           # Add researcher's name to label; note coordinates
           grid::grid.text(label = rname[i],
                           x = grid::unit(0.42, "npc"),
                           y = grid::unit(0.35, "npc"),
-                          gp = bold_font3, hjust = 0, vp = aa)
+                          gp = plain_font3, hjust = 0, vp = aa)
           
           # Push viewport for qr code
           
@@ -3100,21 +3225,19 @@ server <- function(input, output, session) {
           grid::pushViewport(bl)
           
           # Add Block ID to label; note coordinates
-          # Add Block ID to label; note coordinates
-          
           grid::grid.text(label = Blkid[i],
                           x = grid::unit(0.01, "npc"),
                           y = grid::unit(0.8, "npc"),
-                          gp = bold_font2, hjust = 0)
+                          gp = plain_font2, hjust = 0)
           
           # Go back to label viewport
           grid::upViewport()
           
-          # Add location of experiment to label
-          grid::grid.text(label = loc1[i],
+          # Add Unique ID to label
+          grid::grid.text(label = ids[i],
                           x= grid::unit(px, "in"),
                           y = grid::unit(ly, "in"),
-                          gp = bold_font3, hjust = 0, vp = aa)
+                          gp = plain_font4, hjust = 0, vp = aa)
           
           # Add entry or treatment name to label
           grid::grid.text(label = Entry[i],
@@ -3191,7 +3314,17 @@ server <- function(input, output, session) {
     nn <- length(qrcds)
     
     #' Generate label positions -- prints across rows of grid layout
-    pos <- expand.grid(x = 1:input$numcol, y = 1:input$numrow)
+    # pos <- expand.grid(x = 1:input$numcol, y = 1:input$numrow)
+    # Generate label positions -- prints across rows of grid layout
+    if (input$print_across == TRUE) {
+      
+      pos <- expand.grid(x = 1:input$numcol, y = 1:input$numrow)
+      
+    } else {
+      
+      pos <- expand.grid(y = 1:input$numrow, x = 1:input$numcol)
+      
+    }
     
     duplication <- ceiling(nn/nrow(pos))
     
@@ -3308,9 +3441,19 @@ server <- function(input, output, session) {
                                           layout.pos.col=label_posn['x']))
         grid::pushViewport(aa)
         
-        if (input$rounded == TRUE) {
-          grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
-        } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+        # if (input$rounded == TRUE) {
+        #   grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+        # } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+        
+        
+        # Draw rectangle around labels
+        if (input$rect == TRUE) {
+          
+          if (input$rounded == TRUE) {
+            grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
+          } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
+          
+        } 
         
         # Add text1 to label (bottom position 1); note coordinates
         grid::grid.text(label = text1[i],
