@@ -929,16 +929,16 @@ field_label <- function(dat,
   # Block ids if it is an incomplete block design
   if (IBlock == TRUE) {
     iblock <- dat[, IBlock_id]
-    blkid <- paste("IBlock ID:", iblock)
+    blkid <- paste("B:", iblock)
   } else {
-    blkid <- rep('No IBlock', nrow(dat))
+    blkid <- NULL
   }
   
   
   # Show seed source on label
   if (seed_source == TRUE) {
     
-    sds <- paste("Seed:", dat[, seed_source_id])
+    sds <- paste(dat[, seed_source_id])
     
   } else {
     sds <- NULL
@@ -995,7 +995,7 @@ field_label <- function(dat,
                                     center_right_1 = blkid,
                                     center_right_2 = sds,
                                     center_right_3 = rnames,
-                                    bottom_left_1 = loc1,
+                                    bottom_left_1 = UNIQUE_ID,
                                     bottom_left_2 = entry,
                                     unique_id = UNIQUE_ID, 
                                     filename = filename, ...))
