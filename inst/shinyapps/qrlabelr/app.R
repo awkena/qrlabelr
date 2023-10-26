@@ -1407,7 +1407,7 @@ server <- function(input, output, session) {
     shinyjs::disable(id = "down_fieldbook")
     shinyjs::disable(id = "down_labels")
     
-
+   
     tryCatch({
       if (input$label_type == "field" || input$label_type == "gp") {
         reactive_create_label <- reactive(create_label())
@@ -1439,7 +1439,8 @@ server <- function(input, output, session) {
     # Reset the button after successful label generation
     shinyjs::enable(id = "gen_labels")
     shinyjs::removeClass(id = "UpdateAnimate", class = "fas fa-spinner fa-spin")
-  })
+  
+    })
 
 
   
@@ -2861,7 +2862,7 @@ server <- function(input, output, session) {
       Blkid <- lab_inf()[[5]] # Center-right row 1
       seed_src <- lab_inf()[[6]] # Center-right row 2
       rname <- lab_inf()[[7]] # Center-right row 3
-      loc1 <-  lab_inf()[[8]] # Bottom-left row 1
+      ids <-  lab_inf()[[8]] # Bottom-left row 1
       Entry <- lab_inf()[[9]]# Bottom-left row 2
       
       qrcds <- bb$bb # QR codes

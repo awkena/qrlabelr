@@ -1,6 +1,7 @@
 # qrlabelr 0.1.1
 This is a patch release. The following patches have been made to 'qrlabelr' since the release of version 0.1.0:
 * Fixed a font size bug in Treetag label option in 'shiny' app.
+* Fixed a bug in the general-purpose label option in 'shiny' app.
 * Added a new argument to the `create_label()` and `gp_label_portrait()` functions to allow users to fill multi-row and column pages with labels horizontally (left to right ) or vertically (top to bottom).
 * Added a new argument to the `create_label()` and `gp_label_portrait()` functions to allow users the option to draw rectangles around labels or make labels without rectangular borders.
 * Simplified the 'shiny' app by disabling subset functionality on the 'Generate labels' tab.
