@@ -10,7 +10,9 @@ This is a patch release. The following patches have been made to 'qrlabelr' sinc
 * `iBlock ID` prefix in the iBlock delineated text position truncated to `B` in the `field_label()` function and 'shiny' app.
 * Field plot label option in 'shiny' app now allows users to blank any delineated human-readable text position with NULL text.
 
-## R CMD check results from the terminal in R 
+## R CMD check results from the terminal in R and RStudio
+
+Status: OK
 
 0 errors | 0 warnings | 0 notes
 
@@ -37,7 +39,7 @@ This is a patch release. The following patches have been made to 'qrlabelr' sinc
   Found the following files/directories:
     'lastMiKTeXException'
     
-  This NOTE appears to be a bug in the R-hub platform and has been reported by many.
+This NOTE appears to be a bug in the R-hub platform and has been reported by many.
 
 ❯ On ubuntu-gcc-release (r-release)
   checking CRAN incoming feasibility ... [7s/28s] NOTE
@@ -122,7 +124,7 @@ Following suggestions by Beni Altmann, we have made these changes before resubmi
   Found the following files/directories:
     'lastMiKTeXException'
     
-  This NOTE appears to be a bug in the R-hub platform and has been reported by many.
+This NOTE appears to be a bug in the R-hub platform and has been reported by many.
 
 ❯ On ubuntu-gcc-release (r-release)
   checking CRAN incoming feasibility ... [7s/28s] NOTE
