@@ -9,6 +9,7 @@
 #' @import shinyWidgets
 #' @import tools
 #' @import ggplot2
+#' @import QBMS
 #' @importFrom purrr map
 #' @importFrom dplyr mutate
 #' @importFrom assertthat assert_that is.number is.count is.string

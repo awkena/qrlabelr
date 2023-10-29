@@ -86,13 +86,16 @@ The method described above will download and install the `qrlabelr` package on y
 # Usage  
 ## Generating field books  
 
-To use qrlabelr, one must first generate a field book or data input that shows individual experimental plot or label attributes. **A field or study book is required as an input data input in qrlabelr.**  
+To use qrlabelr, one must first generate a field book or data input that shows individual experimental plot or label attributes. **A field or study book is required as an input data input in qrlabelr for plot labels. For seed packet labels, a data input containing the attributes of the seed samples must be provided**. 
 
-Typically, layout information for field plots are obtained based on the experimental design and treatment randomization. For field plot labels, it is strongly recommended to have the grid coordinates of plots (row and column numbers of plots) included in the field book.
+Typically, layout information for field plots are obtained based on the experimental design and treatment randomization. For field plot labels, it is strongly recommended to have the grid coordinates of plots (row and column numbers of plots) included in the field book.  
 
-There are free open-source software such as [FielDHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as BMS can equally be used to generate an input field book if desired.  
+There are free open-source software such as [FielDHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as 'BMS' or 'breedbase' can equally be used to generate an input field book if desired. *The qrlabelr package is 'BrAPI- compliant'*.  
 
-**Input data must be imported as a data frame into qrlabelr for use. We recommend that users save input data as csv or as xls or xlsx files for easy import to qrlabelr**  
+In R, users can use available functions in the ['QBMS'](https://icarda-git.github.io/QBMS/index.html) package to query 'BrAPI'-supported databases for input field books. A user-friendly UI component for accessing data from 'BrAPI'-supported databases is available in the 'shiny' app.  
+
+
+**Input data must be imported as a data frame into qrlabelr for use. We recommend that users save input data as csv or as xls or xlsx files for easy import to qrlabelr**.    
 
 ## Plot label design options  
 The qrlabelr package offers two user-centered options for creating plot labels affixed with QR codes.  
@@ -341,7 +344,15 @@ Figure 3 shows the main pages or tabs available in the 'shiny' app and their cor
 
 ### Import field book tab  
 
-To create plot labels, start by clicking on the "Import field book" sidebar menu. This presents a page with a number of input widgets all geared towards the upload of a field book. Click the "Browse..." button and navigate to a desired field book in CSV, XLS, or XLSX format. If the field book was generated with FielDHub or BMS, turn on the "Generated with FielDHub" or Generated with BMS switch respectively. These switches allow users to automatically populate relevant input widgets fields that will be covered in subsequent sections. However, users should turn off these switches if the imported field book was generated using other programs.  
+To create plot labels, start by clicking on the "Import field book" sidebar menu.  
+
+Users can upload input field books from a local source on their computer or by querying BrAPI supported breeding databases. The current supported databases are *'BMS'* and *'breedbase'*.  
+
+Clicking on this tab presents a page with a number of input widgets all geared towards the upload of a field book.  
+
+To upload data from a local source, turn on the switch for 'From local source' and then click the "Browse..." button and navigate to a desired field book in CSV, XLS, or XLSX format. If the field book was generated with FielDHub, turn on the "From FielDHub" switch. This switch allows users to automatically populate relevant input widgets fields that will be covered in subsequent sections. However, users should turn off this switch if the imported field book was generated using other programs. 
+
+To access data directly from 'BrAPI'-supported breeding databases such as 'BMS' or 'breedbase', turn on the switch for 'From BrAPI databases' and proceed to fill out the log-in page for the database. After a successful sign-in, select crop to GET all programs under the crop. Select the specific program to GET all trials for the program. Select a specific trial to GET all studies. Select a specific study/environment to GET data or study book for import into the 'shiny' app.
 
 To preview the uploaded field book right in the app, turn on the switch labeled "Preview Field book". This displays the uploaded field book in a dedicated card from which the field book can be examined, but not modified. Click the "Submit Field book" button after all the necessary configurations have been made, and click the Next button to move to the next tab.  
 

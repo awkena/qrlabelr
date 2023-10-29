@@ -1,120 +1,121 @@
+
 # Defines site header
 argonHeader <- argonDash::argonDashHeader(
   gradient = TRUE,
   color = "primary",
   separator = FALSE,
   separator_color = "secondary",
-
+  
   argonR::argonH1("EasyQrlabelr", display = 3, class = "text-center"),
-
-
+  
+  
   # Add a help info drop down menu to page; positioned at top-right corner
   argonR::argonRow(center = TRUE,
-  shinyWidgets::dropdownButton(
-    inputId = "help1",
-    label = "HELP!",
-    status = "success",
-    size = "default",
-    circle = FALSE,
-    inline = TRUE,
-    margin = "10%",
-    width = "200%",
-    icon = argonR::argonIcon(name="settings", color = "yellow"),
-
-    # Help menu for import fieldbook tab
-    div(
-    actionLink(inputId = "help2", "Import fieldbook tab"),
-
-    shinyBS::bsPopover(id = "help2",
-             title = "Import fieldbook tab",
-             placement = "bottom",
-             trigger = "click",
-             content = paste("<li>Click <strong>Browse</strong> to upload your fieldbook file in csv, xls, or xlsx format.",
-                             "For programs with no access to BMS, we recommend using the free FieldHub Shiny app to generate a fieldbook.",
-                             "Users using BMS to generate a fieldbook must remember to add a field map before exporting a study book",
-                             sep = "<br><li>"),
-             options = list(container = "body"))),
-
-   br(),
-   # Help menu for Label information tab
-   div(
-     actionLink(inputId = "help3", "Label information tab"),
-
-     shinyBS::bsPopover(id = "help3",
-               title = "Label information tab",
-               placement = "bottom",
-               trigger = "click",
-               content = paste("<li>Users must fill out all fields before generating QR codes.",
-                               "The program can generate reproducible unique IDs for each plot if this option is selected below.",
-                               "The program combines location, year, trial name, plot, row and column IDs to generate reproducible unique IDs.",
-                               "The program can generate universal unique IDs (UUIDs)  for each plot if this option is selected below.",
-                               "Note that UUIDs are randomly generated, hence, not reproducible and are uninformative.",
-                               "Users must first generate QR codes before proceeding to other tabs or pages.",
-                                                      sep = "<br><li>"),
-               options = list(container = "body"))),
-
-   br(),
-   # Help menu for Template setup tab
-   div(
-     actionLink(inputId = "help4", "Template setup tab"),
-
-     shinyBS::bsPopover(id = "help4",
-               title = "Template setup tab",
-               placement = "bottom",
-               trigger = "click",
-               content = paste("<li>Select one of the available label templates from popular vendors.",
-                               "See table below for details of available label templates.",
-                               "Choose <strong>Custom</strong> if you do not find your template.",
-                               sep = "<br><li>"),
-               options = list(container = "body"))),
-
-   br(),
-   # Help menu for page setup tab
-   div(
-     actionLink(inputId = "help5", "Page setup tab"),
-
-     shinyBS::bsPopover(id = "help5",
-               title = "Page setup tab",
-               placement = "bottom",
-               trigger = "click",
-               content = paste("<li>Manually input page margin and size parameters (in inches) if you selected Custom label template in the Template setup widget",
-                               "The inputed number of rows and columns for labels per page must be intergers.",
-                               "Check the website of the label vendor to get the these page setting parameters.",
-                                sep = "<br><li>"),
-               options = list(container = "body"))),
-
-   br(),
-   # Help menu for Label setup tab
-   div(
-     actionLink(inputId = "help6", "Label setup tab"),
-
-     shinyBS::bsPopover(id = "help6",
-               title = "Label setup tab",
-               placement = "bottom",
-               trigger = "click",
-               content = paste("<li>Manually input label dimensions (in inches) if you selected Custom label template in the Template setup widget",
-                               "Check the website of the label vendor to get these page setting parameters.",
-                               "Use the label preview output to set an appropriate font size.",
-                               sep = "<br><li>"),
-               options = list(container = "body"))),
-   br(),
-   # Help menu for Generate labels tab
-   div(
-     actionLink(inputId = "help7", "Generate labels tab"),
-
-     shinyBS::bsPopover(id = "help7",
-               title = "Generate labels tab",
-               placement = "bottom",
-               trigger = "click",
-               content = paste("<li>By default, the Generate label button is set to print labels by LOCATION subsets",
-                               "Turn on the corresponding switches below to generate ALL labels or by REP and LOCATION subsets",
-                               sep = "<br><li>"),
-               options = list(container = "body")))
-
+                   shinyWidgets::dropdownButton(
+                     inputId = "help1",
+                     label = "HELP!",
+                     status = "success",
+                     size = "default",
+                     circle = FALSE,
+                     inline = TRUE,
+                     margin = "10%",
+                     width = "200%",
+                     icon = argonR::argonIcon(name="settings", color = "yellow"),
+                     
+                     # Help menu for import fieldbook tab
+                     div(
+                       actionLink(inputId = "help2", "Import fieldbook tab"),
+                       
+                       shinyBS::bsPopover(id = "help2",
+                                          title = "Import fieldbook tab",
+                                          placement = "bottom",
+                                          trigger = "click",
+                                          content = paste("<li>Click <strong>Browse</strong> to upload your fieldbook file in csv, xls, or xlsx format.",
+                                                          "For programs with no access to BMS, we recommend using the free FieldHub Shiny app to generate a fieldbook.",
+                                                          "Users using BMS to generate a fieldbook must remember to add a field map before exporting a study book",
+                                                          sep = "<br><li>"),
+                                          options = list(container = "body"))),
+                     
+                     br(),
+                     # Help menu for Label information tab
+                     div(
+                       actionLink(inputId = "help3", "Label information tab"),
+                       
+                       shinyBS::bsPopover(id = "help3",
+                                          title = "Label information tab",
+                                          placement = "bottom",
+                                          trigger = "click",
+                                          content = paste("<li>Users must fill out all fields before generating QR codes.",
+                                                          "The program can generate reproducible unique IDs for each plot if this option is selected below.",
+                                                          "The program combines location, year, trial name, plot, row and column IDs to generate reproducible unique IDs.",
+                                                          "The program can generate universal unique IDs (UUIDs)  for each plot if this option is selected below.",
+                                                          "Note that UUIDs are randomly generated, hence, not reproducible and are uninformative.",
+                                                          "Users must first generate QR codes before proceeding to other tabs or pages.",
+                                                          sep = "<br><li>"),
+                                          options = list(container = "body"))),
+                     
+                     br(),
+                     # Help menu for Template setup tab
+                     div(
+                       actionLink(inputId = "help4", "Template setup tab"),
+                       
+                       shinyBS::bsPopover(id = "help4",
+                                          title = "Template setup tab",
+                                          placement = "bottom",
+                                          trigger = "click",
+                                          content = paste("<li>Select one of the available label templates from popular vendors.",
+                                                          "See table below for details of available label templates.",
+                                                          "Choose <strong>Custom</strong> if you do not find your template.",
+                                                          sep = "<br><li>"),
+                                          options = list(container = "body"))),
+                     
+                     br(),
+                     # Help menu for page setup tab
+                     div(
+                       actionLink(inputId = "help5", "Page setup tab"),
+                       
+                       shinyBS::bsPopover(id = "help5",
+                                          title = "Page setup tab",
+                                          placement = "bottom",
+                                          trigger = "click",
+                                          content = paste("<li>Manually input page margin and size parameters (in inches) if you selected Custom label template in the Template setup widget",
+                                                          "The inputed number of rows and columns for labels per page must be intergers.",
+                                                          "Check the website of the label vendor to get the these page setting parameters.",
+                                                          sep = "<br><li>"),
+                                          options = list(container = "body"))),
+                     
+                     br(),
+                     # Help menu for Label setup tab
+                     div(
+                       actionLink(inputId = "help6", "Label setup tab"),
+                       
+                       shinyBS::bsPopover(id = "help6",
+                                          title = "Label setup tab",
+                                          placement = "bottom",
+                                          trigger = "click",
+                                          content = paste("<li>Manually input label dimensions (in inches) if you selected Custom label template in the Template setup widget",
+                                                          "Check the website of the label vendor to get these page setting parameters.",
+                                                          "Use the label preview output to set an appropriate font size.",
+                                                          sep = "<br><li>"),
+                                          options = list(container = "body"))),
+                     br(),
+                     # Help menu for Generate labels tab
+                     div(
+                       actionLink(inputId = "help7", "Generate labels tab"),
+                       
+                       shinyBS::bsPopover(id = "help7",
+                                          title = "Generate labels tab",
+                                          placement = "bottom",
+                                          trigger = "click",
+                                          content = paste("<li>By default, the Generate label button is set to print labels by LOCATION subsets",
+                                                          "Turn on the corresponding switches below to generate ALL labels or by REP and LOCATION subsets",
+                                                          sep = "<br><li>"),
+                                          options = list(container = "body")))
+                     
+                   )
+                   
   )
-
-  )
-
+  
 )
 
 # Defines site sidebar
@@ -125,9 +126,9 @@ argonSidebar <- argonDash::argonDashSidebar(
   size = "md",
   brand_logo = "qrlabelr.jpg",
   side = "left",
-
+  
   id = "my_sidebar",
-
+  
   argonDash::argonSidebarHeader(title = "Main Menu"),
   argonDash::argonSidebarMenu(
     argonDash::argonSidebarItem(
@@ -135,19 +136,19 @@ argonSidebar <- argonDash::argonDashSidebar(
       icon = argonR::argonIcon(name = "satisfied", color = "green"),
       "Welcome"
     ),
-
+    
     argonDash::argonSidebarItem(
       tabName = "data_import",
       icon = argonR::argonIcon(name = "cloud-upload-96", color = "info"),
       "Import fieldbook"
     ),
-
+    
     argonDash::argonSidebarItem(
       tabName = "label_info",
       icon = argonR::argonIcon(name = "tag", color = "green"),
       "Label information"
     ),
-
+    
     argonDash::argonSidebarItem(
       tabName = "template_setup",
       icon = argonR::argonIcon(name = "palette", color = "default"),
@@ -163,7 +164,7 @@ argonSidebar <- argonDash::argonDashSidebar(
       icon = argonR::argonIcon(name = "settings", color = "green"),
       "Label setup"
     ),
-
+    
     argonDash::argonSidebarItem(
       tabName = "generate_labels",
       icon = argonR::argonIcon(name = "button-play", color = "primary"),
@@ -180,7 +181,7 @@ argonFooter <- argonDash::argonDashFooter(
   src = NULL,
   argonDash::argonFooterMenu(
     argonDash::argonFooterItem("Submit issues on this Shiny app on GitHub",
-                    src = "https://github.com/awkena/qrlabelr")
+                               src = "https://github.com/awkena/qrlabelr")
   )
 )
 
@@ -188,13 +189,13 @@ argonFooter <- argonDash::argonDashFooter(
 # Welcome page
 pg_welcome <- argonDash::argonTabItem(
   tabName = "welcome",
-    argonR::argonRow(center = TRUE,
-
-    argonR::argonColumn(width = 6,
-
-                tags$head(
-                  tags$style(
-                    HTML("#logos {
+  argonR::argonRow(center = TRUE,
+                   
+                   argonR::argonColumn(width = 6,
+                                       
+                                       tags$head(
+                                         tags$style(
+                                           HTML("#logos {
                          padding-top: 5px;
                          padding-left: 3px;
                          padding-right: 3px;
@@ -202,69 +203,69 @@ pg_welcome <- argonDash::argonTabItem(
                          max-width: 100%;
                          height: auto;
                        }" ))),
-
-      argonR::argonCarousel(id = "logos",
-                floating = TRUE,
-                width = 12,
-
-                div(style = "margin-bottom: -150px;",
-                argonR::argonCarouselItem(
-                  src = "logos.png",
-                  active = TRUE)
-                )
-
-        ))
-                  
-),
-
-
-br(),
-
+                       
+                       argonR::argonCarousel(id = "logos",
+                                             floating = TRUE,
+                                             width = 12,
+                                             
+                                             div(style = "margin-bottom: -150px;",
+                                                 argonR::argonCarouselItem(
+                                                   src = "logos.png",
+                                                   active = TRUE)
+                                             )
+                                             
+                       ))
+                   
+  ),
+  
+  
+  br(),
+  
   # Some intro text that may need to be summarized into two paragraphs or less
   argonR::argonH1("Welcome!", display = 4),
-
-  p("Welcome to EasyQrlabelR: a Shiny app for the qrlabelr package for designing print-ready
+  
+  p("Welcome to EasyQrlabelR: a BrAPI-compliant shiny app for the qrlabelr package for designing print-ready
     plot labels affixed with QR codes. This app simplifies the complicated process
-    of plot label design. It generates plot labels that are compatible with the
+    of label design. It generates plot labels that are compatible with the
     widely used digital data collection mobile app, Field Book.",
     style = "text-align: justify; margin-top: 10px;"),
-
-  p("The software requires users to upload a fieldbook (csv, xls, or xlsx file format)
-  that contains plot and field map information. Users can either upload a fieldbook
-  that already contains custom unique plot IDs or opt for the app to create reproducible
-  unique IDs for each plot.", style = "text-align: justify; margin-top: 10px;"),
-
+  
+  p("Users can upload a field/study book either from a local source (csv, xls, or xlsx file format)
+    or from a BrAPI database. The supported BrAPI databases are BMS and BreedBase.
+    The imported data should contain plot or sample attributes.",
+    style = "text-align: justify; margin-top: 10px;"),
+  
   p("Users can either choose from a list of preset common label templates or opt to
     design any custom rectangular label given the page and label setting parameters.",
     style = "text-align: justify; margin-top: 10px;"),
-
+  
   p(" The app outputs a downloadable PDF file based on user-defined page
   and label setting parameters. Users can also download an updated fieldbook for
   digital data collection.", style = "text-align: justify; margin-top: 10px;"),
-
+  
   br(),
-
-argonR::argonImage(
-  src = "workflow.png",
-  card_mode = TRUE,
-),
-
+  
+  argonR::argonImage(
+    src = "workflow.png",
+    card_mode = TRUE,
+  ),
+  
   br(),
-
+  
   argonR::argonH1("How to use this Shiny app", display = 4),
-
+  
   # Instruction infographic
   argonR::argonImage(
     src = "instructions.png",
     card_mode = TRUE,
   )
-
+  
 )
 
 # Fieldbook import tab setup
 pg_data_import <- argonDash::argonTabItem(
   tabName = "data_import",
-
+  
   argonR::argonCard(
     width = 12,
     title = "Upload your data",
@@ -279,101 +280,82 @@ pg_data_import <- argonDash::argonTabItem(
     background_color = NULL,
     gradient = FALSE,
     floating = FALSE,
-
-
-    # Custom CSS to style the file upload widget. The specific classes and IDs were
-    # identified with Mozilla Firefox's Inspect element
-    tags$style(HTML('#datUploader_progress {height: 15px !important;}
+    
+    p(tags$strong("Select input data source:")),
+    
+    argonR::argonRow(
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::prettySwitch(inputId = "from_local",
+                                                     label = "From local source",
+                                                     value = FALSE, status = "primary", fill = FALSE))),
+    
+    argonR::argonRow(
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::prettySwitch(inputId = "brapi",
+                                                     label = "From BrAPI Databases",
+                                                     value = FALSE, status = "primary", fill = FALSE))
+    ),
+    
+    br(),
+    
+    div(id = "local_source",
+        # Custom CSS to style the file upload widget. The specific classes and IDs were
+        # identified with Mozilla Firefox's Inspect element
+        tags$style(HTML('#datUploader_progress {height: 15px !important;}
                     .input-group .form-control:not(:first-child) {
                     padding-left: 10px; border-left: 0;}
                     #my_sidebar > div > a > img {
                     max-height: 8.5rem !important;}
                     ')),
-
-    fileInput(inputId = "datUploader", "Upload a Fieldbook file in CSV, XLS, or
+        
+        fileInput(inputId = "datUploader", "Upload a Fieldbook file in CSV, XLS, or
               XLSX format:",
               accept = c(".csv", ".xls", ".xlsx"),
               width = '50%',
               placeholder = "  No file selected"),
-
-argonR::argonRow(center = TRUE,
-         argonR::argonColumn(width = 6,
-    shinyjs::disabled(shinyWidgets::prettySwitch(inputId = "from_fieldhub",
-                                   label = "From FieldHub",
-                                   value = FALSE, status = "primary", fill = TRUE)),
-
-      shinyBS::bsPopover(id = "from_fieldhub", title = "FieldHub switch",
-                content = "Turn on the switch if imported fieldbook was generated using the FieldHub package",
-                placement = "top",
-                trigger = "focus",
-                options = list(container = "body")),
-
-    shinyjs::disabled(shinyWidgets::prettySwitch(inputId = "from_BMS",
-                                   label = "From BMS",
-                                   value = FALSE, status = "primary", fill = TRUE)),
-
-      shinyBS::bsPopover(id = "from_BMS", title = "BMS switch",
-                content = "Turn on the switch if imported fieldbook was generated in BMS",
-                placement = "top",
-                trigger = "focus",
-                options = list(container = "body")),
-
-      shinyjs::disabled(shinyWidgets::prettySwitch(inputId = "preview_dat",
-                                   label = "Preview Fieldbook",
-                                   value = FALSE, status = "primary", fill = TRUE)),
-
-      shinyBS::bsPopover(id = "preview_dat", title = "Preview fieldbook switch",
-                content = "Turn on the switch to preview the imported fieldbook",
-                placement = "top",
-                trigger = "focus",
-                options = list(container = "body"))
-    )
-),
-
-
-
-    br(),
-
-    argonR::argonRow(
-      argonR::argonColumn(width = 12,
-             shinyjs::disabled(actionButton(inputId = "submit_dat", "Submit Fieldbook"))),
-
-      br(), br(), br(), br(),
-
-
-      argonR::argonColumn(width = 12, offset = 8,
-             actionButton(inputId = "npg1", label = div("Next", icon("chevron-right")))
-      )
-
-         )
-
-    ),
-
-
-  shinyjs::hidden(div(id = "fieldbookcard",
-                      argonR::argonCard(
-                        width = 12,
-                        title = "Imported Fieldbook",
-                        src = NULL,
-                        hover_lift = FALSE,
-                        shadow = TRUE,
-                        shadow_size = NULL,
-                        hover_shadow = FALSE,
-                        border_level = 0,
-                        icon = argonR::argonIcon("atom"),
-                        status = "primary",
-                        background_color = NULL,
-                        gradient = FALSE,
-                        floating = FALSE,
-
-                        shinycssloaders::withSpinner(reactable::reactableOutput(
-                          outputId = "imported_fieldbook"))
-                      )
-  )),
-
+        
+        argonR::argonRow(center = TRUE,
+                         argonR::argonColumn(width = 6,
+                                             shinyjs::disabled(shinyWidgets::prettySwitch(inputId = "from_fieldhub",
+                                                                                          label = "From FieldHub",
+                                                                                          value = FALSE, status = "primary", fill = TRUE)),
+                                             
+                                             shinyBS::bsPopover(id = "from_fieldhub", title = "FieldHub switch",
+                                                                content = "Turn on the switch if imported fieldbook was generated using the FieldHub package",
+                                                                placement = "top",
+                                                                trigger = "focus",
+                                                                options = list(container = "body"))
+                                             
+                                             # shinyjs::disabled(shinyWidgets::prettySwitch(inputId = "from_BMS",
+                                             #                                              label = "From BMS",
+                                             #                                              value = FALSE, status = "primary", fill = TRUE)),
+                                             # 
+                                             # shinyBS::bsPopover(id = "from_BMS", title = "BMS switch",
+                                             #                    content = "Turn on the switch if imported fieldbook was generated in BMS",
+                                             #                    placement = "top",
+                                             #                    trigger = "focus",
+                                             #                    options = list(container = "body")),
+                                             # 
+                                             # shinyjs::disabled(shinyWidgets::prettySwitch(inputId = "preview_dat",
+                                             #                                              label = "Preview Fieldbook",
+                                             #                                              value = FALSE, status = "primary", fill = TRUE)),
+                                             # 
+                                             # shinyBS::bsPopover(id = "preview_dat", title = "Preview fieldbook switch",
+                                             #                    content = "Turn on the switch to preview the imported fieldbook",
+                                             #                    placement = "top",
+                                             #                    trigger = "focus",
+                                             #                    options = list(container = "body"))
+                         )
+        ))
+    
+    
+    
+  ),
+  
+  # Card for BrAPI
   argonR::argonCard(
     width = 12,
-    title = "Generate a Fieldbook",
+    title = "Import from BrAPI supported databases",
     src = NULL,
     hover_lift = FALSE,
     shadow = TRUE,
@@ -385,14 +367,123 @@ argonR::argonRow(center = TRUE,
     background_color = NULL,
     gradient = FALSE,
     floating = FALSE,
-
-    p("Alternatively, launch the FielDHub Shiny app to generate a FieldBook"),
-    p("Currently points to the GitHub's page of package author"),
-
-    # This button will be modified to point to the FieldHub package
-    # After this Shiny app is converted into a package
-    actionButton(inputId = "fieldhub_launcher", "Launch FielDHub",
-                 onclick = "window.open('https://github.com/DidierMurilloF/FielDHub#fieldhub-paper')")
+    
+    
+    div(id = "brapi_inputs",
+        
+        
+        argonR::argonRow(
+          argonR::argonColumn(width = 4,
+                              textInput("login_lk", "Enter link to login page:")),
+          
+          argonR::argonColumn(width = 4,
+                              selectInput("brapi_engine", "Select engine:", choices = c("bms", "breedbase")))
+          
+          
+        ),
+        
+        p("Do not expose your login credentials"),
+        p("Use database login credentials to sign in"),
+        
+        argonR::argonRow(
+          argonR::argonColumn(width = 4,
+                              textInput("user_name", "User name:")),
+          
+          argonR::argonColumn(width = 4,
+                              passwordInput("pwd", "Password:")),
+          
+          argonR::argonColumn(width = 4,
+                              selectInput("brapi_crops", "Select crop:", choices = "none"))
+          
+          
+        ),
+        
+        argonR::argonRow(
+          
+          # After this Shiny app is converted into a package
+          argonR::argonColumn(width = 4, center = TRUE,
+                              actionButton(inputId = "brapi_login", "Login", icon = NULL, width = NULL,
+                                           span(id="Animate", class=""))),
+          
+          argonR::argonColumn(width = 4, offset = 4, center = TRUE,
+                              actionButton("GET1", "GET program", icon = NULL, width = NULL,
+                                           span(id="Animate", class="")))
+          
+        ),
+        
+        
+        
+        br(), br(),
+        p("Select program after successful login"),
+        argonR::argonRow(
+          
+          argonR::argonColumn(width = 4,
+                              selectizeInput("brapi_prgs", "Select program:", choices = "none")),
+          
+          argonR::argonColumn(width = 4,
+                              selectInput("brapi_trials", "Select trial:", choices = "none")),
+          
+          argonR::argonColumn(width = 4,
+                              selectizeInput("brapi_studies", "Select study:", choices = "none"))
+          
+          
+        ),
+        
+        argonR::argonRow(
+          
+          
+          argonR::argonColumn(width = 4, center = TRUE,
+                              actionButton("GET2", "GET trial", icon = NULL, width = NULL,
+                                           span(id="Animate", class=""))),
+          
+          argonR::argonColumn(width = 4, center = TRUE,
+                              actionButton("GET3", "GET study", icon = NULL, width = NULL,
+                                           span(id="Animate", class=""))),
+          
+          argonR::argonColumn(width = 4, center = TRUE,
+                              actionButton("GET4", "GET data", icon = NULL, width = NULL,
+                                           span(id="Animate", class="")))
+          
+          
+        )
+    )
+  ),
+  
+  div(id = "fieldbookcard",
+      argonR::argonCard(
+        width = 12,
+        title = "Imported Field book",
+        src = NULL,
+        hover_lift = FALSE,
+        shadow = TRUE,
+        shadow_size = NULL,
+        hover_shadow = FALSE,
+        border_level = 0,
+        icon = argonR::argonIcon("atom"),
+        status = "primary",
+        background_color = NULL,
+        gradient = FALSE,
+        floating = FALSE,
+        
+        argonR::argonRow(
+          argonR::argonColumn(width = 12,
+                              shinyjs::disabled(actionButton(inputId = "submit_dat", "Submit Fieldbook")))
+        ),
+        
+        br(), 
+        
+        # Output for imported field book
+        reactable::reactableOutput(outputId = "imported_fieldbook"),
+        
+        br(), br(), br(),
+        
+        argonR::argonRow(
+          argonR::argonColumn(width = 12, offset = 8,
+                              actionButton(inputId = "npg1", label = div("Next", icon("chevron-right")))
+                              
+                              
+          )),
+      )
   )
 )
 
@@ -403,8 +494,8 @@ warn_2 <- "Upload label data sheet"
 # Generate labels tab setup
 pg_generate_labels <- argonDash::argonTabItem(
   tabName = "generate_labels",
-
-
+  
+  
   # Mimics a classic ArgonUI card
   argonR::argonCard(
     # Card configuration
@@ -421,78 +512,78 @@ pg_generate_labels <- argonDash::argonTabItem(
     background_color = NULL,
     gradient = FALSE,
     floating = FALSE,
-
+    
     # Page items
     argonR::argonRow(
       argonR::argonColumn(width = 3,
-             textInput("filename", "Enter pdf file name prefix", value = "PlotLabel")),
-
-
-      argonR::argonColumn(width = 3, offset = 1,
-             div(id = "Repl",
-             shinyWidgets::pickerInput(inputId = "REP", label = "Print label by REP",
-                         choices = warn, options = list(style = "default")))),
-
-      argonR::argonColumn(width = 3, offset = 1,
-             div(id = "loca",
-             shinyWidgets::pickerInput(inputId = "LOC", label = "Print label by LOC",
-                         choices = warn, options = list(style = "default"))))
-
+                          textInput("filename", "Enter pdf file name prefix", value = "PlotLabel"))
+      
+      
+      # argonR::argonColumn(width = 3, offset = 1,
+      #                     div(id = "Repl",
+      #                         shinyWidgets::pickerInput(inputId = "REP", label = "Print label by REP",
+      #                                                   choices = warn, options = list(style = "default")))),
+      # 
+      # argonR::argonColumn(width = 3, offset = 1,
+      #                     div(id = "loca",
+      #                         shinyWidgets::pickerInput(inputId = "LOC", label = "Print label by LOC",
+      #                                                   choices = warn, options = list(style = "default"))))
+      # 
     ),
-
-    argonR::argonRow(
-      argonR::argonColumn(width = 12,
-    shinyBS::popify(trigger = "focus",
-      shinyWidgets::prettySwitch(inputId = "all_labels", inline = TRUE,
-                 label = "Print All Labels",
-                 value = FALSE, fill = TRUE, status = "primary"),
-
-                title = "Print All Switch", placement = "top",
-                content = "Turn on the switch to generate labels for all plots in imported fieldbook",
-                options = list(container = "body")))
-    ),
-
-    argonR::argonRow(
-      argonR::argonColumn(width = 12,
-      shinyBS::popify(
-       shinyWidgets::prettySwitch(inputId = "bal_design", inline = TRUE,
-                          label = "Print by REP and LOC",
-                          value = FALSE, fill = TRUE, status = "primary"),
-
-                         title = "Subset by REP and LOCATION",
-                         content = "Turn on the switch to generate labels by REP and LOCATION subset",
-                         placement = "bottom",
-                         trigger = "focus",
-                         options = list(container = "body")))
-      ),
-
+    
+    # argonR::argonRow(
+    #   argonR::argonColumn(width = 12,
+    #                       shinyBS::popify(trigger = "focus",
+    #                                       shinyWidgets::prettySwitch(inputId = "all_labels", inline = TRUE,
+    #                                                                  label = "Print All Labels",
+    #                                                                  value = FALSE, fill = TRUE, status = "primary"),
+    #                                       
+    #                                       title = "Print All Switch", placement = "top",
+    #                                       content = "Turn on the switch to generate labels for all plots in imported fieldbook",
+    #                                       options = list(container = "body")))
+    # ),
+    # 
+    # argonR::argonRow(
+    #   argonR::argonColumn(width = 12,
+    #                       shinyBS::popify(
+    #                         shinyWidgets::prettySwitch(inputId = "bal_design", inline = TRUE,
+    #                                                    label = "Print by REP and LOC",
+    #                                                    value = FALSE, fill = TRUE, status = "primary"),
+    #                         
+    #                         title = "Subset by REP and LOCATION",
+    #                         content = "Turn on the switch to generate labels by REP and LOCATION subset",
+    #                         placement = "bottom",
+    #                         trigger = "focus",
+    #                         options = list(container = "body")))
+    # ),
+    # 
     actionButton(inputId = "gen_labels", label = ("Generate labels "),
                  icon = NULL, width = NULL, span(id="UpdateAnimate", class="")),
-
+    
     br(), br(), br(),
-
+    
     argonR::argonRow(
       argonR::argonColumn(width = 12,
-                  shinyjs::disabled(downloadButton(outputId = "down_labels",
-                                                   "Download labels"))
+                          shinyjs::disabled(downloadButton(outputId = "down_labels",
+                                                           "Download labels"))
       )),
-
+    
     br(), br(),
-
+    
     argonR::argonRow(center = TRUE,
-             shinyjs::disabled(downloadButton(outputId = "down_fieldbook",
-                                              "Download Fieldbook"))
+                     shinyjs::disabled(downloadButton(outputId = "down_fieldbook",
+                                                      "Download Fieldbook"))
     )
-
+    
   )
-
+  
 )
 
 
 pg_label_info <- argonDash::argonTabItem(
   tabName = "label_info",
-
-
+  
+  
   # Mimics a classic ArgonUI card
   argonR::argonCard(
     # Card configuration
@@ -509,77 +600,77 @@ pg_label_info <- argonDash::argonTabItem(
     background_color = NULL,
     gradient = FALSE,
     floating = FALSE,
-
+    
     argonR::argonRow(
-             argonR::argonColumn(width = 6,
-
-              shinyBS::popify(shinyWidgets::pickerInput(inputId = "label_type",
-                                  label = "Select type of label",
-                                  choices = c("Field plot label" = "field",
-                                              "General-purpose landscape text label" = "gp",
-                                              "General-purpose portrait text label" = "gpp"),
-                                  selected = "Field plot label with QR code",
-                                  width = "75%",
-                                  options = list(style = "btn-primary")),
-                      trigger = "focus",
-                      title = "Type of label to design", placement = "top",
-                      content =  "Select from the available options the type of label to design."),
-
-               shinyBS::popify(shinyWidgets::pickerInput(inputId = "uniqueids",
-                                  label = "Select method for unique IDs",
-                                  choices = c("Reproducible Unique IDs" = "get_unique_id",
-                                              "Universal Unique IDs" = "uuids", "Custom Unique IDs" = "use_my_id"),
-                                  selected = "Reproducible Unique IDs",
-                                  width = "75%",
-                                  options = list(style = "btn-primary")),
-
-                      trigger = "focus",
-                      title = "Method for generating unique IDs", placement = "top",
-                      content =  "Select the <strong>Custom</strong> option if imported fieldbook contains a unique ID column for QR codes."),
-             ),
-
-             argonR::argonColumn(width = 6,
-                         shinyBS::popify(
-                           shinyjs::disabled(
-                             sliderInput(inputId = "ec_level", label = "QR code error level",
-                                         min = 0, max = 3, step = 1, value = 3)),
-
-                           trigger = "focus",
-                           title = "QR code error correction level", placement = "right",
-                           content =  "Use error correction level of 3 if labels will be used in the field."),
-
-                         shinyjs::disabled(actionButton(inputId = "gen_qrcode",
-                                                        label = "Generate QR codes",
-                                                        icon = NULL, width = NULL,
-                                                        span(id="Animate", class=""))
-                     ))),
-      br(),
-
-     argonR::argonRow(center = TRUE,
-
       argonR::argonColumn(width = 6,
-
-             shinyBS::popify(shinyWidgets::prettyCheckbox(inputId = "IBlock", label = "Incomplete blocks",
-                              value = FALSE, status = "primary", shape = "curve",
-                              outline = TRUE),
-
-                    trigger = "focus",
-                    title = "iBlock switch", placement = "top",
-                    content = "Turn on the switch if imported fieldbook contains incomplete blocks within REPS"),
-
-             shinyBS::popify(shinyWidgets::prettyCheckbox(inputId = "seed_source", inline = TRUE,
-                                   label = "Show seed source",
-                                   value = FALSE, status = "primary", shape = "curve",
-                                   outline = TRUE),
-
-                    trigger = "focus",
-                    title = "Seed Source Switch", placement = "bottom",
-                    content = "Turn on the switch to show input widget for seed source.")
-        )
-      )
-    ),
-
-
+                          
+                          shinyBS::popify(shinyWidgets::pickerInput(inputId = "label_type",
+                                                                    label = "Select type of label",
+                                                                    choices = c("Field plot label" = "field",
+                                                                                "General-purpose landscape text label" = "gp",
+                                                                                "General-purpose portrait text label" = "gpp"),
+                                                                    selected = "Field plot label with QR code",
+                                                                    width = "75%",
+                                                                    options = list(style = "btn-primary")),
+                                          trigger = "focus",
+                                          title = "Type of label to design", placement = "top",
+                                          content =  "Select from the available options the type of label to design."),
+                          
+                          shinyBS::popify(shinyWidgets::pickerInput(inputId = "uniqueids",
+                                                                    label = "Select method for unique IDs",
+                                                                    choices = c("Reproducible Unique IDs" = "get_unique_id",
+                                                                                "Universal Unique IDs" = "uuids", "Custom Unique IDs" = "use_my_id"),
+                                                                    selected = "Reproducible Unique IDs",
+                                                                    width = "75%",
+                                                                    options = list(style = "btn-primary")),
+                                          
+                                          trigger = "focus",
+                                          title = "Method for generating unique IDs", placement = "top",
+                                          content =  "Select the <strong>Custom</strong> option if imported fieldbook contains a unique ID column for QR codes."),
+      ),
+      
+      argonR::argonColumn(width = 6,
+                          shinyBS::popify(
+                            shinyjs::disabled(
+                              sliderInput(inputId = "ec_level", label = "QR code error level",
+                                          min = 0, max = 3, step = 1, value = 3)),
+                            
+                            trigger = "focus",
+                            title = "QR code error correction level", placement = "right",
+                            content =  "Use error correction level of 3 if labels will be used in the field."),
+                          
+                          shinyjs::disabled(actionButton(inputId = "gen_qrcode",
+                                                         label = "Generate QR codes",
+                                                         icon = NULL, width = NULL,
+                                                         span(id="Animate", class=""))
+                          ))),
+    br(),
+    
+    argonR::argonRow(center = TRUE,
+                     
+                     argonR::argonColumn(width = 6,
+                                         
+                                         shinyBS::popify(shinyWidgets::prettyCheckbox(inputId = "IBlock", label = "Incomplete blocks",
+                                                                                      value = FALSE, status = "primary", shape = "curve",
+                                                                                      outline = TRUE),
+                                                         
+                                                         trigger = "focus",
+                                                         title = "iBlock switch", placement = "top",
+                                                         content = "Turn on the switch if imported fieldbook contains incomplete blocks within REPS"),
+                                         
+                                         shinyBS::popify(shinyWidgets::prettyCheckbox(inputId = "seed_source", inline = TRUE,
+                                                                                      label = "Show seed source",
+                                                                                      value = FALSE, status = "primary", shape = "curve",
+                                                                                      outline = TRUE),
+                                                         
+                                                         trigger = "focus",
+                                                         title = "Seed Source Switch", placement = "bottom",
+                                                         content = "Turn on the switch to show input widget for seed source.")
+                     )
+    )
+  ),
+  
+  
   argonR::argonCard(
     # Card configuration
     width = 12,
@@ -595,294 +686,294 @@ pg_label_info <- argonDash::argonTabItem(
     background_color = NULL,
     gradient = FALSE,
     floating = FALSE,
-
+    
     argonR::argonRow(
-
+      
       argonR::argonColumn(width = 6,
-
-             numericInput(inputId = "yr", label = "Input year of experiment",
-                       value = "", min = 1970, max = 2050)),
-
+                          
+                          numericInput(inputId = "yr", label = "Input year of experiment",
+                                       value = "", min = 1970, max = 2050)),
+      
       argonR::argonColumn(width = 6,
-             shinyBS::popify(trigger = "focus",
-               textInput(inputId = "tname", label = "Input trial name",
-                       value = "PYT"),
-              title = "Trial name", placement = "top",
-              content =  "Input a short descriptive name for the trial before generating QR codes."))
+                          shinyBS::popify(trigger = "focus",
+                                          textInput(inputId = "tname", label = "Input trial name",
+                                                    value = "PYT"),
+                                          title = "Trial name", placement = "top",
+                                          content =  "Input a short descriptive name for the trial before generating QR codes."))
     ),
-
+    
     argonR::argonRow(
-
+      
       argonR::argonColumn(width = 6,
-             textInput(inputId = "rname", label = "Input your name",
-                       value = "", placeholder = 'Initial(s) + Last name'),
+                          textInput(inputId = "rname", label = "Input your name",
+                                    value = "", placeholder = 'Initial(s) + Last name'),
       ),
-
+      
       argonR::argonColumn(width = 6,
-
-             selectInput(inputId = "seed", label = "Select seed source ID",
-                       choices = warn))
-
-      ),
-
+                          
+                          selectInput(inputId = "seed", label = "Select seed source ID",
+                                      choices = warn))
+      
+    ),
+    
     argonR::argonRow(
       argonR::argonColumn(width = 6,
-             selectInput(inputId = "rep_id", "Select ID for REP", choices = warn),
-             selectInput(inputId = "row_id", "Select ID for ROW", choices = warn),
-             selectInput(inputId = "loc_id", "Select ID for LOCATION", choices = warn),
-             selectInput(inputId = "IBlock_id", "Select ID for IBlock", choices = warn)
+                          selectInput(inputId = "rep_id", "Select ID for REP", choices = warn),
+                          selectInput(inputId = "row_id", "Select ID for ROW", choices = warn),
+                          selectInput(inputId = "loc_id", "Select ID for LOCATION", choices = warn),
+                          selectInput(inputId = "IBlock_id", "Select ID for IBlock", choices = warn)
       ),
-
+      
       argonR::argonColumn(width = 6,
-             selectInput("plot_id", "Select ID for PLOT", choices = warn),
-             selectInput("col_id", "Select ID for COLUMN", choices = warn),
-             selectInput("entry_id", "Select ID for TREATMENT/ENTRY", choices = warn),
-             selectInput("unique_id", "Select ID for UNIQUE IDs", choices = warn)
+                          selectInput("plot_id", "Select ID for PLOT", choices = warn),
+                          selectInput("col_id", "Select ID for COLUMN", choices = warn),
+                          selectInput("entry_id", "Select ID for TREATMENT/ENTRY", choices = warn),
+                          selectInput("unique_id", "Select ID for UNIQUE IDs", choices = warn)
       )
     ), # End of input widgets for field plot labels
-
-
+    
+    
     # Input widgets for general purpose labels with QR code (15 widgets)
     argonR::argonRow(center = TRUE,
-             shinyWidgets::pickerInput(inputId = "QRcode_id", label = "Select QR code ID",
-                         choices = warn_2, options = list(style = "btn-primary"))
+                     shinyWidgets::pickerInput(inputId = "QRcode_id", label = "Select QR code ID",
+                                               choices = warn_2, options = list(style = "btn-primary"))
     ),
-
-   br(),
-
-    argonR::argonRow(
-      argonR::argonColumn(width = 6,
-                  shinyWidgets::dropdownButton(
-                    inputId = "toplt",
-                    label = "Top-left position",
-                    status = "success",
-                    icon = argonR::argonIcon(name = "tag", color = "yellow"),
-                    width = "250%",
-                    margin = "5%",
-                    circle = FALSE,
-                    size = "sm",
-
-                    argonR::argonRow(
-
-                      argonR::argonColumn(width = 6,
-                             textInput(inputId = "toplt_txt_r1", label = "ROW 1 text prefix",
-                                       value = "", placeholder = "Enter a short text"),
-                             textInput(inputId = "toplt_txt_r2", label = "ROW 2 text prefix",
-                                       value = "", placeholder = "Enter a short text")),
-
-                      argonR::argonColumn(width = 6,
-                             selectInput("toplt_sel_r1", "Select ID for ROW 1", choices = warn_2),
-                             selectInput("toplt_sel_r2", "Select ID for ROW 2", choices = warn_2))
-
-                    ))),
-
-      br(), br(), br(),
-
-              argonR::argonColumn(width = 6,
-                  shinyWidgets::dropdownButton(
-                    inputId = "centrt",
-                    label = "Center-right position",
-                    status = "success",
-                    icon = argonR::argonIcon(name = "tag", color = "yellow"),
-                    width = "250%",
-                    margin = "5%",
-                    circle = FALSE,
-                    size = "sm",
-
-                    argonR::argonRow(
-
-                      argonR::argonColumn(width = 6,
-                             textInput(inputId = "centrt_txt_r1", label = "ROW 1 text prefix",
-                                       value = "", placeholder = "Enter a short text"),
-                             textInput(inputId = "centrt_txt_r2", label = "ROW 2 text prefix",
-                                       value = "", placeholder = "Enter a short text"),
-                             textInput(inputId = "centrt_txt_r3", label = "ROW 3 text prefix",
-                                       value = "", placeholder = "Enter a short text")),
-
-                      argonR::argonColumn(width = 6,
-                             selectInput("centrt_sel_r1", "Select ID for ROW 1", choices = warn_2),
-                             selectInput("centrt_sel_r2", "Select ID for ROW 2", choices = warn_2),
-                             selectInput("centrt_sel_r3", "Select ID for ROW 3", choices = warn_2))
-
-                    )))
-      ),
-
-    br(), br(), br(),
-
-    argonR::argonRow(
-      argonR::argonColumn(width = 6,
-        shinyWidgets::dropdownButton(
-          inputId = "toprt",
-          label = "Top-right position",
-          status = "success",
-          icon = argonR::argonIcon(name = "tag", color = "yellow"),
-          width = "250%",
-          margin = "5%",
-          circle = FALSE,
-          size = "sm",
-
-
-          argonR::argonRow(
-            argonR::argonColumn(width = 6,
-                   textInput(inputId = "toprt_txt_r1", label = "ROW 1 text prefix",
-                             value = "", placeholder = "Enter a short text"),
-                   textInput(inputId = "toprt_txt_r2", label = "ROW 2 text prefix",
-                             value = "", placeholder = "Enter a short text")),
-
-            argonR::argonColumn(width = 6,
-                   selectInput("toprt_sel_r1", "Select ID for ROW 1", choices = warn_2),
-                   selectInput("toprt_sel_r2", "Select ID for ROW 2", choices = warn_2))
-
-          ))),
-
-      br(), br(), br(),
-
-      argonR::argonColumn(width = 6,
-        shinyWidgets::dropdownButton(
-          inputId = "botlt",
-          label = "Bottom-left position",
-          status = "success",
-          icon = argonR::argonIcon(name = "tag", color = "yellow"),
-          width = "250%",
-          margin = "5%",
-          circle = FALSE,
-          size = "sm",
-
-          argonR::argonRow(
-            argonR::argonColumn(width = 6,
-                   textInput(inputId = "botlt_txt_r1", label = "ROW 1 text prefix",
-                             value = "", placeholder = "Enter a short text"),
-                   textInput(inputId = "botlt_txt_r2", label = "ROW 2 text prefix",
-                             value = "", placeholder = "Enter a short text")),
-
-            argonR::argonColumn(width = 6,
-                   selectInput("botlt_sel_r1", "Select ID for ROW 1", choices = warn_2),
-                   selectInput("botlt_sel_r2", "Select ID for ROW 2", choices = warn_2))
-
-          )))
-    ),
-
-   #-----------------------------------------------------------------------------------------------#
-   # Input widgets for general purpose labels with portrait text orientation (15 widgets)
-   argonR::argonRow(center = TRUE,
-                    shinyWidgets::pickerInput(inputId = "QRcode_id2", label = "Select QR code ID",
-                                choices = warn_2, options = list(style = "btn-primary"))
-   ),
-   
-   br(),
-   
-   argonR::argonRow(
-     argonR::argonColumn(width = 6,
-                         shinyWidgets::dropdownButton(
-                           inputId = "toptxt",
-                           label = "Top text positions",
-                           status = "success",
-                           icon = argonR::argonIcon(name = "tag", color = "yellow"),
-                           width = "250%",
-                           margin = "5%",
-                           circle = FALSE,
-                           size = "sm",
-                           
-                           argonR::argonRow(
-                             
-                             argonR::argonColumn(width = 6,
-                                                 textInput(inputId = "top_txt1", label = "ROW 1 text prefix",
-                                                           value = "", placeholder = "Enter a short text"),
-                                                 textInput(inputId = "top_txt2", label = "ROW 2 text prefix",
-                                                           value = "", placeholder = "Enter a short text"),
-                                                 textInput(inputId = "top_txt3", label = "ROW 3 text prefix",
-                                                           value = "", placeholder = "Enter a short text")
-                             ),
-                             
-                             argonR::argonColumn(width = 6,
-                                                 selectInput("top_sel1", "Select ID for ROW 1", choices = warn_2),
-                                                 selectInput("top_sel2", "Select ID for ROW 2", choices = warn_2),
-                                                 selectInput("top_sel3", "Select ID for ROW 3", choices = warn_2)
-                             )
-                             
-                           ))),
-     
-     br(), br(), br(),
-     
-     argonR::argonColumn(width = 6,
-                         shinyWidgets::dropdownButton(
-                           inputId = "centtxt",
-                           label = "Center text positions",
-                           status = "success",
-                           icon = argonR::argonIcon(name = "tag", color = "yellow"),
-                           width = "250%",
-                           margin = "5%",
-                           circle = FALSE,
-                           size = "sm",
-                           
-                           argonR::argonRow(
-                             
-                             argonR::argonColumn(width = 6,
-                                                 textInput(inputId = "cent_txt1", label = "ROW 1 text prefix",
-                                                           value = "", placeholder = "Enter a short text"),
-                                                 textInput(inputId = "cent_txt2", label = "ROW 2 text prefix",
-                                                           value = "", placeholder = "Enter a short text"),
-                                                 textInput(inputId = "cent_txt3", label = "ROW 3 text prefix",
-                                                           value = "", placeholder = "Enter a short text"),
-                                                 textInput(inputId = "cent_txt4", label = "ROW 4 text prefix",
-                                                           value = "", placeholder = "Enter a short text")),
-                             
-                             argonR::argonColumn(width = 6,
-                                                 selectInput("cent_sel1", "Select ID for ROW 1", choices = warn_2),
-                                                 selectInput("cent_sel2", "Select ID for ROW 2", choices = warn_2),
-                                                 selectInput("cent_sel3", "Select ID for ROW 3", choices = warn_2),
-                                                 selectInput("cent_sel4", "Select ID for ROW 4", choices = warn_2)
-                             )
-                             
-                           )))
-   ),
-   
-   br(), br(), br(),
-   
-   argonR::argonRow(
-     
-     argonR::argonColumn(width = 6,
-                         shinyWidgets::dropdownButton(
-                           inputId = "bottxt",
-                           label = "Bottom text positions",
-                           status = "success",
-                           icon = argonR::argonIcon(name = "tag", color = "yellow"),
-                           width = "250%",
-                           margin = "5%",
-                           circle = FALSE,
-                           size = "sm",
-                           
-                           argonR::argonRow(
-                             argonR::argonColumn(width = 6,
-                                                 textInput(inputId = "bot_txt1", label = "ROW 1 text prefix",
-                                                           value = "", placeholder = "Enter a short text"),
-                                                 textInput(inputId = "bot_txt2", label = "ROW 2 text prefix",
-                                                           value = "", placeholder = "Enter a short text"),
-                                                 textInput(inputId = "bot_txt3", label = "ROW 3 text prefix",
-                                                           value = "", placeholder = "Enter a short text")
-                             ),
-                             
-                             argonR::argonColumn(width = 6,
-                                                 selectInput("bot_sel1", "Select ID for ROW 1", choices = warn_2),
-                                                 selectInput("bot_sel2", "Select ID for ROW 2", choices = warn_2),
-                                                 selectInput("bot_sel3", "Select ID for ROW 3", choices = warn_2),
-                             )
-                             
-                           )))
-   ),
-   
-   
-   
-   #----------------------------------------------------------------------------------------------#   
-   
-   
+    
     br(),
-   
-   
-
+    
+    argonR::argonRow(
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::dropdownButton(
+                            inputId = "toplt",
+                            label = "Top-left position",
+                            status = "success",
+                            icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                            width = "250%",
+                            margin = "5%",
+                            circle = FALSE,
+                            size = "sm",
+                            
+                            argonR::argonRow(
+                              
+                              argonR::argonColumn(width = 6,
+                                                  textInput(inputId = "toplt_txt_r1", label = "ROW 1 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "toplt_txt_r2", label = "ROW 2 text prefix",
+                                                            value = "", placeholder = "Enter a short text")),
+                              
+                              argonR::argonColumn(width = 6,
+                                                  selectInput("toplt_sel_r1", "Select ID for ROW 1", choices = warn_2),
+                                                  selectInput("toplt_sel_r2", "Select ID for ROW 2", choices = warn_2))
+                              
+                            ))),
+      
+      br(), br(), br(),
+      
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::dropdownButton(
+                            inputId = "centrt",
+                            label = "Center-right position",
+                            status = "success",
+                            icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                            width = "250%",
+                            margin = "5%",
+                            circle = FALSE,
+                            size = "sm",
+                            
+                            argonR::argonRow(
+                              
+                              argonR::argonColumn(width = 6,
+                                                  textInput(inputId = "centrt_txt_r1", label = "ROW 1 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "centrt_txt_r2", label = "ROW 2 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "centrt_txt_r3", label = "ROW 3 text prefix",
+                                                            value = "", placeholder = "Enter a short text")),
+                              
+                              argonR::argonColumn(width = 6,
+                                                  selectInput("centrt_sel_r1", "Select ID for ROW 1", choices = warn_2),
+                                                  selectInput("centrt_sel_r2", "Select ID for ROW 2", choices = warn_2),
+                                                  selectInput("centrt_sel_r3", "Select ID for ROW 3", choices = warn_2))
+                              
+                            )))
+    ),
+    
+    br(), br(), br(),
+    
+    argonR::argonRow(
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::dropdownButton(
+                            inputId = "toprt",
+                            label = "Top-right position",
+                            status = "success",
+                            icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                            width = "250%",
+                            margin = "5%",
+                            circle = FALSE,
+                            size = "sm",
+                            
+                            
+                            argonR::argonRow(
+                              argonR::argonColumn(width = 6,
+                                                  textInput(inputId = "toprt_txt_r1", label = "ROW 1 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "toprt_txt_r2", label = "ROW 2 text prefix",
+                                                            value = "", placeholder = "Enter a short text")),
+                              
+                              argonR::argonColumn(width = 6,
+                                                  selectInput("toprt_sel_r1", "Select ID for ROW 1", choices = warn_2),
+                                                  selectInput("toprt_sel_r2", "Select ID for ROW 2", choices = warn_2))
+                              
+                            ))),
+      
+      br(), br(), br(),
+      
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::dropdownButton(
+                            inputId = "botlt",
+                            label = "Bottom-left position",
+                            status = "success",
+                            icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                            width = "250%",
+                            margin = "5%",
+                            circle = FALSE,
+                            size = "sm",
+                            
+                            argonR::argonRow(
+                              argonR::argonColumn(width = 6,
+                                                  textInput(inputId = "botlt_txt_r1", label = "ROW 1 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "botlt_txt_r2", label = "ROW 2 text prefix",
+                                                            value = "", placeholder = "Enter a short text")),
+                              
+                              argonR::argonColumn(width = 6,
+                                                  selectInput("botlt_sel_r1", "Select ID for ROW 1", choices = warn_2),
+                                                  selectInput("botlt_sel_r2", "Select ID for ROW 2", choices = warn_2))
+                              
+                            )))
+    ),
+    
+    #-----------------------------------------------------------------------------------------------#
+    # Input widgets for general purpose labels with portrait text orientation (15 widgets)
+    argonR::argonRow(center = TRUE,
+                     shinyWidgets::pickerInput(inputId = "QRcode_id2", label = "Select QR code ID",
+                                               choices = warn_2, options = list(style = "btn-primary"))
+    ),
+    
+    br(),
+    
+    argonR::argonRow(
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::dropdownButton(
+                            inputId = "toptxt",
+                            label = "Top text positions",
+                            status = "success",
+                            icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                            width = "250%",
+                            margin = "5%",
+                            circle = FALSE,
+                            size = "sm",
+                            
+                            argonR::argonRow(
+                              
+                              argonR::argonColumn(width = 6,
+                                                  textInput(inputId = "top_txt1", label = "ROW 1 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "top_txt2", label = "ROW 2 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "top_txt3", label = "ROW 3 text prefix",
+                                                            value = "", placeholder = "Enter a short text")
+                              ),
+                              
+                              argonR::argonColumn(width = 6,
+                                                  selectInput("top_sel1", "Select ID for ROW 1", choices = warn_2),
+                                                  selectInput("top_sel2", "Select ID for ROW 2", choices = warn_2),
+                                                  selectInput("top_sel3", "Select ID for ROW 3", choices = warn_2)
+                              )
+                              
+                            ))),
+      
+      br(), br(), br(),
+      
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::dropdownButton(
+                            inputId = "centtxt",
+                            label = "Center text positions",
+                            status = "success",
+                            icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                            width = "250%",
+                            margin = "5%",
+                            circle = FALSE,
+                            size = "sm",
+                            
+                            argonR::argonRow(
+                              
+                              argonR::argonColumn(width = 6,
+                                                  textInput(inputId = "cent_txt1", label = "ROW 1 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "cent_txt2", label = "ROW 2 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "cent_txt3", label = "ROW 3 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "cent_txt4", label = "ROW 4 text prefix",
+                                                            value = "", placeholder = "Enter a short text")),
+                              
+                              argonR::argonColumn(width = 6,
+                                                  selectInput("cent_sel1", "Select ID for ROW 1", choices = warn_2),
+                                                  selectInput("cent_sel2", "Select ID for ROW 2", choices = warn_2),
+                                                  selectInput("cent_sel3", "Select ID for ROW 3", choices = warn_2),
+                                                  selectInput("cent_sel4", "Select ID for ROW 4", choices = warn_2)
+                              )
+                              
+                            )))
+    ),
+    
+    br(), br(), br(),
+    
+    argonR::argonRow(
+      
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::dropdownButton(
+                            inputId = "bottxt",
+                            label = "Bottom text positions",
+                            status = "success",
+                            icon = argonR::argonIcon(name = "tag", color = "yellow"),
+                            width = "250%",
+                            margin = "5%",
+                            circle = FALSE,
+                            size = "sm",
+                            
+                            argonR::argonRow(
+                              argonR::argonColumn(width = 6,
+                                                  textInput(inputId = "bot_txt1", label = "ROW 1 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "bot_txt2", label = "ROW 2 text prefix",
+                                                            value = "", placeholder = "Enter a short text"),
+                                                  textInput(inputId = "bot_txt3", label = "ROW 3 text prefix",
+                                                            value = "", placeholder = "Enter a short text")
+                              ),
+                              
+                              argonR::argonColumn(width = 6,
+                                                  selectInput("bot_sel1", "Select ID for ROW 1", choices = warn_2),
+                                                  selectInput("bot_sel2", "Select ID for ROW 2", choices = warn_2),
+                                                  selectInput("bot_sel3", "Select ID for ROW 3", choices = warn_2),
+                              )
+                              
+                            )))
+    ),
+    
+    
+    
+    #----------------------------------------------------------------------------------------------#   
+    
+    
+    br(),
+    
+    
+    
     argonR::argonRow(
       argonR::argonColumn(width = 4,
-             actionButton(inputId = "npg2", label = div("Next", icon("chevron-right"))))
+                          actionButton(inputId = "npg2", label = div("Next", icon("chevron-right"))))
     )
   )
 )
@@ -890,8 +981,8 @@ pg_label_info <- argonDash::argonTabItem(
 # Label setting tab setup
 pg_label_setup <- argonDash::argonTabItem(
   tabName = "label_setup",
-
-
+  
+  
   # Mimics a classic ArgonUI card
   argonR::argonCard(
     # Card configuration
@@ -908,79 +999,79 @@ pg_label_setup <- argonDash::argonTabItem(
     background_color = NULL,
     gradient = FALSE,
     floating = FALSE,
-
+    
     # Page items
-     h4("Label dimensions"),
+    h4("Label dimensions"),
     argonR::argonRow(
       argonR::argonColumn(width = 6,
-             numericInput(inputId = "wdt", "Label width (inches)", value = 2, min = 2, max = 4)
+                          numericInput(inputId = "wdt", "Label width (inches)", value = 2, min = 2, max = 4)
       ),
-
-      argonR::argonColumn(width = 6,
-             numericInput(inputId = "hgt", "Label height (inches)", value = 1, min = 1, max = 3))
-    ),
-
-    br(),
-
-    argonR::argonRow(
-      argonR::argonColumn(width = 6,
-             shinyWidgets::pickerInput(inputId = "family", label = h4("Choose font family"),
-                         choices = c("Helvetica" = "sans", "Times" = "serif",
-                                     "Courier" = "mono"),
-                         selected = "sans",
-                         options = list(title = "None selected", style = "btn-primary"))
-      ),
-
-      argonR::argonColumn(width = 6,
-             shinyBS::popify(trigger = "focus",
-               numericInput(inputId = "font_size", h4("Set Font Size:"), value = 8,
-                                 min = 1, max = 28),
-                    title = "Font Size", placement = "top",
-                    content =  "Use the label preview below to choose an appropriate font size.")
-      )
-    ),
-
-    br(),
-
-    argonR::argonRow(
-      argonR::argonColumn(width = 6,
-      shinyWidgets::prettyCheckbox(inputId = "rounded", label = "Round corner labels",
-                   value = TRUE, status = "primary", shape = "curve", outline = TRUE)),
       
       argonR::argonColumn(width = 6,
-      shinyWidgets::prettyCheckbox(inputId = "rect", label = "Draw rectangle around label",
-                                   value = TRUE, status = "primary", shape = "curve", outline = TRUE)),
+                          numericInput(inputId = "hgt", "Label height (inches)", value = 1, min = 1, max = 3))
+    ),
     
-argonR::argonColumn(width = 6,
-                    shinyWidgets::prettyCheckbox(inputId = "print_across", label = "Fill page by row",
-                                                 value = TRUE, status = "primary", shape = "curve", outline = TRUE))),
-
     br(),
-
+    
+    argonR::argonRow(
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::pickerInput(inputId = "family", label = h4("Choose font family"),
+                                                    choices = c("Helvetica" = "sans", "Times" = "serif",
+                                                                "Courier" = "mono"),
+                                                    selected = "sans",
+                                                    options = list(title = "None selected", style = "btn-primary"))
+      ),
+      
+      argonR::argonColumn(width = 6,
+                          shinyBS::popify(trigger = "focus",
+                                          numericInput(inputId = "font_size", h4("Set Font Size:"), value = 8,
+                                                       min = 1, max = 28),
+                                          title = "Font Size", placement = "top",
+                                          content =  "Use the label preview below to choose an appropriate font size.")
+      )
+    ),
+    
+    br(),
+    
+    argonR::argonRow(
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::prettyCheckbox(inputId = "rounded", label = "Round corner labels",
+                                                       value = TRUE, status = "primary", shape = "curve", outline = TRUE)),
+      
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::prettyCheckbox(inputId = "rect", label = "Draw rectangle around label",
+                                                       value = TRUE, status = "primary", shape = "curve", outline = TRUE)),
+      
+      argonR::argonColumn(width = 6,
+                          shinyWidgets::prettyCheckbox(inputId = "print_across", label = "Fill page by row",
+                                                       value = TRUE, status = "primary", shape = "curve", outline = TRUE))),
+    
+    br(),
+    
     argonR::argonRow(
       argonR::argonColumn(width = 4,
-             actionButton(inputId = "npg5", label = div("Next", icon("chevron-right"))))
+                          actionButton(inputId = "npg5", label = div("Next", icon("chevron-right"))))
     )
-),
-
-    argonR::argonCard(
-      width = 12,
-      title = "Preview label",
-      src = NULL,
-      hover_lift = FALSE,
-      shadow = TRUE,
-      shadow_size = NULL,
-      hover_shadow = FALSE,
-      border_level = 0,
-      icon = argonR::argonIcon("atom"),
-      status = "primary",
-      background_color = NULL,
-      gradient = FALSE,
-      floating = FALSE,
-
-      #p("Alternatively, launch the FielDHub Shiny app to generate a FieldBook"),
-      #p("Currently points to the GitHub's page of package author"),
-      argonR::argonRow(
+  ),
+  
+  argonR::argonCard(
+    width = 12,
+    title = "Preview label",
+    src = NULL,
+    hover_lift = FALSE,
+    shadow = TRUE,
+    shadow_size = NULL,
+    hover_shadow = FALSE,
+    border_level = 0,
+    icon = argonR::argonIcon("atom"),
+    status = "primary",
+    background_color = NULL,
+    gradient = FALSE,
+    floating = FALSE,
+    
+    #p("Alternatively, launch the FielDHub Shiny app to generate a FieldBook"),
+    #p("Currently points to the GitHub's page of package author"),
+    argonR::argonRow(
       argonR::argonColumn(width = 6,
                           shinyBS::popify(trigger = "focus",
                                           numericInput(inputId = "lab_sel", h4("Input label to preview:"),
@@ -989,17 +1080,17 @@ argonR::argonColumn(width = 6,
                                           content =  "Input the row number of any plot in your fieldbook to preview its label.")
                           
       )),
-      
-      br(),
-      # Plot output
-      plotOutput(outputId = "preview", height = "800px")
-    )
+    
+    br(),
+    # Plot output
+    plotOutput(outputId = "preview", height = "800px")
+  )
 )
 
 # Page settings tab setup
 pg_page_setup <- argonDash::argonTabItem(
   tabName = "page_setup",
-
+  
   # Mimics a classic ArgonUI card
   argonR::argonCard(
     # Card configuration
@@ -1016,46 +1107,46 @@ pg_page_setup <- argonDash::argonTabItem(
     background_color = NULL,
     gradient = FALSE,
     floating = FALSE,
-
+    
     # Page items
     # Margins
     argonR::argonRow(argonR::argonColumn(width = 6,
-                         h4("Height margins (inches)"),
-                         numericInput(inputId = "top_mar", "Top", value = 0.625, min = 0.5,
-                                      max = 2),
-                         numericInput(inputId = "bot_mar", "Bottom", value = 0.625, min = 1,
-                                      max = 2)),
-
-             argonR::argonColumn(width = 6,
-                         h4("Width margins (inches)"),
-                         numericInput(inputId = "left_mar", "Left", value = 0.625,
-                                      min = 0.5, max = 2),
-                         numericInput(inputId = "right_mar", "Right", value = 0.625,
-                                      min = 1, max = 2)
-             )
+                                         h4("Height margins (inches)"),
+                                         numericInput(inputId = "top_mar", "Top", value = 0.625, min = 0.5,
+                                                      max = 2),
+                                         numericInput(inputId = "bot_mar", "Bottom", value = 0.625, min = 1,
+                                                      max = 2)),
+                     
+                     argonR::argonColumn(width = 6,
+                                         h4("Width margins (inches)"),
+                                         numericInput(inputId = "left_mar", "Left", value = 0.625,
+                                                      min = 0.5, max = 2),
+                                         numericInput(inputId = "right_mar", "Right", value = 0.625,
+                                                      min = 1, max = 2)
+                     )
     ),
-
+    
     br(),
     h4("Labels per page:"),
     argonR::argonRow(
       argonR::argonColumn(width = 6,
-
-             numericInput(inputId = "numrow", "Number of rows", value = 8,
-                          min = 1, max = 3),
-
-             numericInput(inputId = "numcol", "Number of columns", value = 3,
-                          min = 1, max = 3)),
-
+                          
+                          numericInput(inputId = "numrow", "Number of rows", value = 8,
+                                       min = 1, max = 3),
+                          
+                          numericInput(inputId = "numcol", "Number of columns", value = 3,
+                                       min = 1, max = 3)),
+      
       argonR::argonColumn(width = 6,
-             numericInput(inputId = "page_wdt", "Page width (inches)", value = 8.5,
-                          min = 1, max = 3, step = 0.1),
-             numericInput(inputId = "page_hgt", "Page height (inches)", value = 11,
-                          min = 1, max = 3, step = 0.1))
+                          numericInput(inputId = "page_wdt", "Page width (inches)", value = 8.5,
+                                       min = 1, max = 3, step = 0.1),
+                          numericInput(inputId = "page_hgt", "Page height (inches)", value = 11,
+                                       min = 1, max = 3, step = 0.1))
     ),
-
+    
     argonR::argonRow(
       argonR::argonColumn(width = 4,
-             actionButton(inputId = "npg4", label = div("Next", icon("chevron-right"))))
+                          actionButton(inputId = "npg4", label = div("Next", icon("chevron-right"))))
     )
   )
 )
@@ -1063,8 +1154,8 @@ pg_page_setup <- argonDash::argonTabItem(
 # Label template tab setup
 pg_template_setup <- argonDash::argonTabItem(
   tabName = "template_setup",
-
-
+  
+  
   # Mimics a classic ArgonUI card
   argonR::argonCard(
     # Card configuration
@@ -1081,36 +1172,36 @@ pg_template_setup <- argonDash::argonTabItem(
     background_color = NULL,
     gradient = FALSE,
     floating = FALSE,
-
+    
     # Page items
     shinyBS::popify(trigger = "focus",
-      shinyWidgets::pickerInput(inputId = "templates", label = h4("Select a desired template"),
-                       choices = c("Custom","Avery 94220", "Avery 94200", "Avery 94224",
-                                   "Avery 94237", "Avery 94207", "Avery 94241",
-                                   "Avery 94213", "Avery 94242", "OnlineLabel OL5125",
-                                   "OnlineLabel RL778", "OnlineLabel RL2800",
-                                   "OnlineLabel RL782", "Treetag LTS14"),
-                       selected = "Avery 94220",
-                       options = list(style = "btn-primary")),
-
-           title = "Custom setting", placement = "top",
-           content =  "Choose <strong>Custom</strong> to define your own values in the Page setup and Label setup tabs."),
-
+                    shinyWidgets::pickerInput(inputId = "templates", label = h4("Select a desired template"),
+                                              choices = c("Custom","Avery 94220", "Avery 94200", "Avery 94224",
+                                                          "Avery 94237", "Avery 94207", "Avery 94241",
+                                                          "Avery 94213", "Avery 94242", "OnlineLabel OL5125",
+                                                          "OnlineLabel RL778", "OnlineLabel RL2800",
+                                                          "OnlineLabel RL782", "Treetag LTS14"),
+                                              selected = "Avery 94220",
+                                              options = list(style = "btn-primary")),
+                    
+                    title = "Custom setting", placement = "top",
+                    content =  "Choose <strong>Custom</strong> to define your own values in the Page setup and Label setup tabs."),
+    
     br(),
-
+    
     argonR::argonRow(
       argonR::argonColumn(width = 4,
-             actionButton(inputId = "npg3", label = div("Next", icon("chevron-right"))))
+                          actionButton(inputId = "npg3", label = div("Next", icon("chevron-right"))))
     ),
-
+    
     br(),
-
+    
     argonR::argonH1("Common labels", display = 4),
     shinycssloaders::withSpinner(reactable::reactableOutput(outputId = "common_labels")),
-
+    
     br(), br(),
-
-
+    
+    
   )
 )
 
@@ -1118,17 +1209,17 @@ pg_template_setup <- argonDash::argonTabItem(
 # Piece everything together in UI
 ui <- function(request) {
   argonDash::argonDashPage(
-  title = "EasyQrlabelr",
-  author = "Alexander Wireko Kena, Ebenezer Ogoe, Clara Cruet Burgos, Geoffrey Preston Morris",
-  description = "A Shiny app to generate custom print-ready plot labels affixed with QR codes",
-  sidebar = argonSidebar,
-  navbar = NULL,
-  header = argonHeader,
-  body = argonDash::argonDashBody(
-
-    tags$head(
-      tags$style(
-        HTML(".shiny-notification {
+    title = "EasyQrlabelr",
+    author = "Alexander Wireko Kena, Ebenezer Ogoe, Clara Cruet Burgos, Geoffrey Preston Morris",
+    description = "A Shiny app to generate custom print-ready plot labels affixed with QR codes",
+    sidebar = argonSidebar,
+    navbar = NULL,
+    header = argonHeader,
+    body = argonDash::argonDashBody(
+      
+      tags$head(
+        tags$style(
+          HTML(".shiny-notification {
               height: 100px;
               width: 300px;
               position:fixed;
@@ -1136,51 +1227,51 @@ ui <- function(request) {
               left: calc(80% - 200px);;
             }
            "
+          )
         )
-      )
+      ),
+      
+      shinyjs::useShinyjs(),
+      argonDash::argonTabItems(
+        pg_welcome,
+        pg_data_import,
+        pg_label_info,
+        pg_template_setup,
+        pg_page_setup,
+        pg_label_setup,
+        pg_generate_labels
+      ),
+      
     ),
-
-    shinyjs::useShinyjs(),
-    argonDash::argonTabItems(
-      pg_welcome,
-      pg_data_import,
-      pg_label_info,
-      pg_template_setup,
-      pg_page_setup,
-      pg_label_setup,
-      pg_generate_labels
-    ),
-
-  ),
-  footer = argonFooter
-
-
-)
+    footer = argonFooter
+    
+    
+  )
 }
 
 # Server component of app
 server <- function(input, output, session) {
-
+  
   error_numeric <- "must be a positive numeric value."
   error_string <- "must be string value."
-
+  
   # stop app when app is closed
   session$onSessionEnded(function() {
     stopApp()
-
+    
   })
-
-
+  
+  
   # Event to navigate from data import tab to label info tab
-
+  
   observeEvent(input$npg1, {
     shinyjs::runjs("$('a[data-value=\"label_info\"]').tab('show');")
-
+    
   })
-
-
+  
+  
   # Event to navigate from label info tab to template setup tab
-
+  
   observeEvent(input$npg2, {
     tryCatch({
       assertthat::assert_that(is.valid_count(input$yr) && nchar(input$yr) == 4,
@@ -1190,7 +1281,7 @@ server <- function(input, output, session) {
       assertthat::assert_that(assertthat::is.string(input$rname),
                               msg = paste("'Researcher name'", error_string))
       shinyjs::runjs("$('a[data-value=\"template_setup\"]').tab('show');")
-
+      
     },
     warning = function(cond) {
       showModal(modalDialog(title = "Warning",
@@ -1203,17 +1294,17 @@ server <- function(input, output, session) {
                                   cond$message, "Rectify before proceeding.")))
     })
   })
-
-
+  
+  
   # Event to navigate from template setup page to page setup tab
-
+  
   observeEvent(input$npg3, {
     shinyjs::runjs("$('a[data-value=\"page_setup\"]').tab('show');")
-
+    
   })
-
+  
   # Event to navigate from page setup tab to label setup tab
-
+  
   observeEvent(input$npg4, {
     tryCatch({
       assertthat::assert_that(is.valid_number(input$top_mar),
@@ -1232,7 +1323,7 @@ server <- function(input, output, session) {
                               msg = paste("'Number of rows'", "must be a positive integer"))
       assertthat::assert_that(is.valid_count(input$numcol),
                               msg = paste("'Number of columns'", "must be a positive integer"))
-
+      
       shinyjs::runjs("$('a[data-value=\"label_setup\"]').tab('show');")
     },
     warning = function(cond) {
@@ -1245,11 +1336,11 @@ server <- function(input, output, session) {
                             paste("The following error was generated:",
                                   cond$message, "Rectify before proceeding.")))
     })
-
+    
   })
-
+  
   # Event to navigate from label setup tab to generate labels tab
-
+  
   observeEvent(input$npg5, {
     tryCatch({
       assertthat::assert_that(is.valid_number(input$wdt),
@@ -1261,7 +1352,7 @@ server <- function(input, output, session) {
       assertthat::assert_that(is.valid_count(input$lab_sel),
                               msg = paste("'Label to preview'", "must be a positive integer"))
       shinyjs::runjs("$('a[data-value=\"generate_labels\"]').tab('show');")
-
+      
     },
     warning = function(cond) {
       showModal(modalDialog(title = "Warning",
@@ -1274,7 +1365,7 @@ server <- function(input, output, session) {
                                   cond$message, "Rectify before proceeding.")))
     })
   })
-
+  
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   #                         Section 1. Global variables                                     #
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
@@ -1282,65 +1373,65 @@ server <- function(input, output, session) {
   dat_columns <- c()
   pdf_filename <- c()
   ext <- c()
-
-
+  
+  
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   #                       Section 2. ObserveEvent() Expressions                             #
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   ## Triggered on clicking the 'Upload Fieldbook' button
   observeEvent(input$datUploader, {
-
+    
     # Set 'Generated with FieldHub' switch to false on file upload
     shinyWidgets::updatePrettySwitch(inputId = "from_fieldhub", value = FALSE)
-    shinyWidgets::updatePrettySwitch(inputId = "from_BMS", value = FALSE)
-
+    #shinyWidgets::updatePrettySwitch(inputId = "from_BMS", value = FALSE)
+    
     tryCatch({
       dat <<- input$datUploader
       ext <<- tools::file_ext(dat$datapath)
       req(dat)
-
+      
       if (ext == "xls" || ext == "xlsx") {
         dat <<- as.data.frame(readxl::read_excel(dat$datapath))
       } else {
-
+        
         # Read the submitted fieldbook into the global 'dat' variable
         dat <<- read.csv(dat$datapath, header = TRUE) }
-
+      
       # Update input widgets with column names obtained from the data
       dat_columns <<- colnames(dat)
-
+      
       if(input$from_fieldhub == TRUE) {
         autoset_fieldhub()
       } else if(input$from_fieldhub == FALSE) {
         init_label_info()
-      }else if(input$from_BMS == TRUE){
-        autoset_BMS()
-      }else if(input$from_BMS == FALSE){
-        init_label_info()
+        # }else if(input$from_BMS == TRUE){
+        #   autoset_BMS()
+        # }else if(input$from_BMS == FALSE){
+        #   init_label_info()
       }
-
+      
       # Enable the initially disabled Preview fieldbook and Generated with FieldHub
       # and BMS switches and submit data action button
-      shinyjs::enable(id = "preview_dat")
+      # shinyjs::enable(id = "preview_dat")
       shinyjs::enable(id = "from_fieldhub")
-      shinyjs::enable(id = "from_BMS")
+      # shinyjs::enable(id = "from_BMS")
       shinyjs::enable(id = "submit_dat")
-
-      observe({
-        if (input$from_fieldhub == TRUE) {
-          shinyjs::disable(id = "from_BMS")
-        } else {
-          shinyjs::enable(id = "from_BMS")
-        }
-
-        if (input$from_BMS == TRUE) {
-          shinyjs::disable(id = "from_fieldhub")
-        } else {
-          shinyjs::enable(id = "from_fieldhub")
-        }
-
-      })
-
+      
+      # observe({
+      #   if (input$from_fieldhub == TRUE) {
+      #     shinyjs::disable(id = "from_BMS")
+      #   } else {
+      #     shinyjs::enable(id = "from_BMS")
+      #   }
+      #   
+      #   if (input$from_BMS == TRUE) {
+      #     shinyjs::disable(id = "from_fieldhub")
+      #   } else {
+      #     shinyjs::enable(id = "from_fieldhub")
+      #   }
+      #   
+      # })
+      
     },
     warning = function(cond) {
       showModal(modalDialog(title = "Warning",
@@ -1357,26 +1448,223 @@ server <- function(input, output, session) {
                             from the Data import page."))
     })
   })
-
-
-
+  
+  
+  # BrAPI BMS codes
+  
+  observeEvent(input$brapi_login,{
+    
+    # Show the spinning animation
+    shinyjs::addClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+    tryCatch({
+      
+      if (input$brapi == TRUE) {
+        
+        if (input$brapi_engine == "bms") {
+          
+          # config your BMS connection (by providing your BMS login page URL)
+          QBMS::set_qbms_config(input$login_lk, time_out = 300)
+          
+          # login using your BMS account (interactive mode)
+          # or pass your BMS username and password as parameters (batch mode)
+          QBMS::login_bms(username = input$user_name, password = input$pwd)
+          
+        } else {
+          
+          # config your BMS connection (by providing your BMS login page URL)
+          QBMS::set_qbms_config(input$login_lk, 
+                                time_out = 300, 
+                                no_auth = TRUE,
+                                engine = "breedbase")
+          
+        }
+        
+        
+        # list supported crops in the current bms server
+        crops <- QBMS::list_crops() # character vector
+        
+        # Update widget for BMS crops
+        updateSelectInput(inputId = "brapi_crops", choices = c(crops))
+      }
+    },
+    
+    warning = function(cond) {
+      showModal(modalDialog(title = "Warning",
+                            paste("Warnings were generated:", cond$message)))
+    },
+    
+    error = function(cond) {
+      showModal(modalDialog(title = "Error",
+                            paste("The following error was generated:", cond$message)))
+    })
+    
+    # stop the spinning animation
+    shinyjs::removeClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+  })
+  
+  
+  # GET programs 
+  observeEvent(input$GET1,{
+    
+    # Show the spinning animation
+    shinyjs::addClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+    tryCatch({
+      
+      if (input$brapi_crops != "none") {
+        QBMS::set_crop(input$brapi_crops)
+        
+        # list all breeding programs in the selected crop
+        prg <- QBMS::list_programs() # data frame
+        prg <- prg[,1]
+        
+        # Update widget for BMS programs
+        updateSelectInput(inputId = "brapi_prgs", choices = c(prg))
+      }
+      
+    },
+    
+    warning = function(cond) {
+      showModal(modalDialog(title = "Warning",
+                            paste("Warnings were generated:", cond$message)))
+    }, 
+    
+    error = function(cond) {
+      showModal(modalDialog(title = "Error",
+                            paste("The following error was generated:", cond$message)))
+    })
+    
+    # stop the spinning animation
+    shinyjs::removeClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+  })
+  
+  
+  # GET trials
+  observeEvent(input$GET2,{
+    # Show the spinning animation
+    shinyjs::addClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+    tryCatch({
+      
+      if (input$brapi_prgs != "none") {
+        QBMS::set_program(input$brapi_prgs) 
+        # list all studies/trials in the selected program
+        trials <- QBMS::list_trials() # data frame
+        trials <- trials[,1] # Convert to a character vector
+        # Update widget for BMS programs
+        updateSelectInput(inputId = "brapi_trials", choices = c(trials))
+      }
+    },
+    
+    warning = function(cond) {
+      showModal(modalDialog(title = "Warning",
+                            paste("Warnings were generated:", cond$message)))
+    }, 
+    
+    error = function(cond) {
+      showModal(modalDialog(title = "Error",
+                            paste("The following error was generated:", cond$message)))
+    })
+    
+    # stop the spinning animation
+    shinyjs::removeClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+  })
+  
+  
+  # GET studies
+  observeEvent(input$GET3,{
+    
+    # Show the spinning animation
+    shinyjs::addClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+    tryCatch({
+      
+      if (input$brapi_trials != "none") {
+        
+        # select a specific study/trial by name
+        QBMS::set_trial(input$brapi_trials)
+        
+        # list all environments/locations information in the selected study/trial
+        studies <- QBMS::list_studies()
+        
+        studies <- studies[1:nrow(studies), 1] # Convert studies to a character vector
+        
+        updateSelectInput(inputId = "brapi_studies", choices = c(studies))
+      }
+    },
+    
+    warning = function(cond) {
+      showModal(modalDialog(title = "Warning",
+                            paste("Warnings were generated:", cond$message)))
+    }, 
+    
+    error = function(cond) {
+      showModal(modalDialog(title = "Error",
+                            paste("The following error was generated:", cond$message)))  
+    })
+    
+    # stop the spinning animation
+    shinyjs::removeClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+  })
+  
+  # GET data
+  observeEvent(input$GET4,{
+    
+    # Show the spinning animation
+    shinyjs::addClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+    shinyjs::enable(id = "submit_dat")
+    tryCatch({
+      if (input$brapi_studies != "none") {
+        QBMS::set_study(input$brapi_studies)
+        
+        dat <<- QBMS::get_study_data()
+        dat <<- dat
+        # Update input widgets with column names obtained from the data
+        dat_columns <<- colnames(dat)
+        init_label_info()
+      }
+    },
+    
+    warning = function(cond) {
+      showModal(modalDialog(title = "Warning",
+                            paste("Warnings were generated:", cond$message)))
+    }, 
+    
+    error = function(cond) {
+      showModal(modalDialog(title = "Error",
+                            paste("The following error was generated:", cond$message))) 
+    })
+    
+    # stop the spinning animation
+    shinyjs::removeClass(id = "Animate", class = "fas fa-spinner fa-spin")
+    
+  })
+  
+  
+  
   # Update year input widgets with current year; user can input year manually
   yrs <- format(Sys.time(),'%Y')
   updateTextInput(inputId = "yr", value = yrs)
-
-
+  
+  
   ## Triggered on clicking the 'Submit Fieldbook' button
   observeEvent(input$submit_dat,{
-
+    
     # Reactivate GR code and error correction level buttons
     shinyjs::enable(id = "gen_qrcode")
     shinyjs::enable(id = "ec_level")
-
+    
     # Displays the imported fieldbook
     output$imported_fieldbook <- reactable::renderReactable({
       tryCatch({
-        reactable::reactable(data.frame(dat), fullWidth = TRUE, defaultPageSize = 15, columns = NULL,
-                  bordered = TRUE, highlight = TRUE, resizable = TRUE)
+        reactable::reactable(data.frame(dat), fullWidth = TRUE, defaultPageSize = 10, columns = NULL,
+                             bordered = TRUE, highlight = TRUE, resizable = TRUE)
       },
       warning = function(cond) {
         showModal(modalDialog(title = "Warning",
@@ -1394,30 +1682,74 @@ server <- function(input, output, session) {
       })
     })
   })
-
-
+  
+  # Hide and show BrAPI widgets
+  observe({
+    
+    if (input$brapi == FALSE) {
+      
+      shinyjs::hide(id = "brapi_inputs")
+      shinyjs::enable(id = "from_local")
+      
+    } else {
+      
+      shinyjs::show(id = "brapi_inputs")
+      shinyjs::disable(id = "from_local")
+    }
+    
+  })
+  
+  observe({
+    
+    if (input$from_local == FALSE) {
+      
+      shinyjs::hide(id = "local_source")
+      shinyjs::enable(id = "brapi")
+      
+    } else {
+      
+      shinyjs::show(id = "local_source")
+      shinyjs::disable(id = "brapi")
+    }
+  })
+  
+  
+  observe({
+    
+    if (input$brapi_engine == "breedbase") {
+      
+      shinyjs::disable(id = "pwd")
+      shinyjs::disable(id = "user_name")
+      
+    } else {
+      
+      shinyjs::enable(id = "pwd")
+      shinyjs::enable(id = "user_name")
+    }
+  })
+  
   ## Triggered on clicking the 'Generate labels' button
   observeEvent(input$gen_labels, {
-
+    
     # Show the spinning animation
     shinyjs::addClass(id = "UpdateAnimate", class = "fas fa-spinner fa-spin")
-
+    
     # Disable the buttons so the user does not click them in the middle of processing
     shinyjs::disable(id = "gen_labels")
     shinyjs::disable(id = "down_fieldbook")
     shinyjs::disable(id = "down_labels")
     
-   
+    
     tryCatch({
       if (input$label_type == "field" || input$label_type == "gp") {
         reactive_create_label <- reactive(create_label())
         reactive_create_label()
-
+        
       } else if (input$label_type == "gpp") {
-
+        
         reactive_gp_label_portrait <- reactive(gp_label_portrait())
         reactive_gp_label_portrait()
-
+        
       }
     },
     warning = function(cond) {
@@ -1435,14 +1767,13 @@ server <- function(input, output, session) {
       shinyjs::enable(id = "gen_labels")
       shinyjs::removeClass(id = "UpdateAnimate", class = "fas fa-spinner fa-spin")
     })
-
+    
     # Reset the button after successful label generation
     shinyjs::enable(id = "gen_labels")
     shinyjs::removeClass(id = "UpdateAnimate", class = "fas fa-spinner fa-spin")
+  })
   
-    })
-
-
+  
   
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   #                 Section 3. Observe() Expressions and Downloaders                        #
@@ -1590,14 +1921,9 @@ server <- function(input, output, session) {
       shinyjs::hide(id = "centrt")
       shinyjs::hide(id = "botlt")
       
-      
-      
-      
     } else {
       
-      
     }
-    
     
   })
   
@@ -1625,13 +1951,13 @@ server <- function(input, output, session) {
   )
   
   ## Show or hide the imported Fieldbook according to the state of the switch
-  observe({
-    if (input$preview_dat == TRUE) {
-      shinyjs::show(id = "fieldbookcard")
-    } else {
-      shinyjs::hideElement(id = "fieldbookcard")
-    }
-  })
+  # observe({
+  #   if (input$preview_dat == TRUE) {
+  #     shinyjs::show(id = "fieldbookcard")
+  #   } else {
+  #     shinyjs::hideElement(id = "fieldbookcard")
+  #   }
+  # })
   
   # Create reactive object for common labels
   cls <- reactive({
@@ -1643,7 +1969,7 @@ server <- function(input, output, session) {
   observe({
     output$common_labels <- reactable::renderReactable({
       isolate({reactable::reactable(cls(), fullWidth = TRUE, defaultPageSize = 15,
-                         bordered = TRUE, highlight = TRUE, resizable = TRUE)
+                                    bordered = TRUE, highlight = TRUE, resizable = TRUE)
       })
     })
   })
@@ -1685,7 +2011,7 @@ server <- function(input, output, session) {
                        value = clabs$Width.margin.in[clabs$Template == input$templates])
     
     shinyWidgets::updatePrettyCheckbox(session, inputId = "rounded",
-                         value = clabs$Rounded[clabs$Template == input$templates])
+                                       value = clabs$Rounded[clabs$Template == input$templates])
     
   })
   
@@ -1700,8 +2026,8 @@ server <- function(input, output, session) {
       if(input$from_fieldhub == TRUE ){
         autoset_fieldhub()
         
-      }else if(input$from_BMS == TRUE){
-        autoset_BMS()
+        # }else if(input$from_BMS == TRUE){
+        #   autoset_BMS()
         
       } else {
         init_label_info()
@@ -1779,20 +2105,20 @@ server <- function(input, output, session) {
   #   } 
   # })
   
-  observe({
-    if (input$label_type == "gp" || input$label_type == "gpp" || input$label_type == "field" ) {
-      shinyjs::hide(id = "loca")
-      shinyjs::hide(id = "bal_design")
-      shinyjs::hide(id = "all_labels")
-      shinyjs::hide(id = "Repl")
-      
-    } else {
-      shinyjs::show(id = "loca")
-      shinyjs::show(id = "bal_design")
-      shinyjs::show(id = "all_labels")
-      shinyjs::show(id = "Repl")
-    }
-  })
+  # observe({
+  #   if (input$label_type == "gp" || input$label_type == "gpp" || input$label_type == "field" ) {
+  #     shinyjs::hide(id = "loca")
+  #     shinyjs::hide(id = "bal_design")
+  #     shinyjs::hide(id = "all_labels")
+  #     shinyjs::hide(id = "Repl")
+  #     
+  #   } else {
+  #     shinyjs::show(id = "loca")
+  #     shinyjs::show(id = "bal_design")
+  #     shinyjs::show(id = "all_labels")
+  #     shinyjs::show(id = "Repl")
+  #   }
+  # })
   
   # observe({
   #   if (input$bal_design == TRUE) {
@@ -1898,16 +2224,16 @@ server <- function(input, output, session) {
     if (input$label_type == "gp"){
       
       shinyWidgets::updatePickerInput(session, inputId = "uniqueids", 
-                        label = "Select method for unique IDs",
-                        choices = c("Universal Unique IDs" = "uuids", 
-                                    "Custom Unique IDs" = "use_my_ids"))
+                                      label = "Select method for unique IDs",
+                                      choices = c("Universal Unique IDs" = "uuids", 
+                                                  "Custom Unique IDs" = "use_my_ids"))
       
     } else if (input$label_type == "field") {
       shinyWidgets::updatePickerInput(session, inputId = "uniqueids", 
-                        label = "Select method for unique IDs",
-                        choices = c("Reproducible Unique IDs" = "get_unique_id",
-                                    "Universal Unique IDs" = "uuids", 
-                                    "Custom Unique IDs" = "use_my_ids"))
+                                      label = "Select method for unique IDs",
+                                      choices = c("Reproducible Unique IDs" = "get_unique_id",
+                                                  "Universal Unique IDs" = "uuids", 
+                                                  "Custom Unique IDs" = "use_my_ids"))
     }
   })
   
@@ -1917,15 +2243,15 @@ server <- function(input, output, session) {
     if (input$label_type == "gpp"){
       
       shinyWidgets::updatePickerInput(session, inputId = "uniqueids", 
-                        label = "Select method for unique IDs",
-                        choices = c("Custom Unique IDs" = "use_my_ids"))
+                                      label = "Select method for unique IDs",
+                                      choices = c("Custom Unique IDs" = "use_my_ids"))
       
     } else if (input$label_type == "field") {
       shinyWidgets::updatePickerInput(session, inputId = "uniqueids", 
-                        label = "Select method for unique IDs",
-                        choices = c("Reproducible Unique IDs" = "get_unique_id",
-                                    "Universal Unique IDs" = "uuids", 
-                                    "Custom Unique IDs" = "use_my_ids"))
+                                      label = "Select method for unique IDs",
+                                      choices = c("Reproducible Unique IDs" = "get_unique_id",
+                                                  "Universal Unique IDs" = "uuids", 
+                                                  "Custom Unique IDs" = "use_my_ids"))
     }
   })
   
@@ -1936,24 +2262,24 @@ server <- function(input, output, session) {
     if (input$label_type == "gpp"){
       
       shinyWidgets::updatePickerInput(session, inputId = "templates", label = "Select a desired template",
-                        choices = c("Custom","Avery 94220", "Avery 94200", "Avery 94224",
-                                    "Avery 94237", "Avery 94207", "Avery 94241",
-                                    "Avery 94213", "Avery 94242", "OnlineLabel OL5125",
-                                    "OnlineLabel RL778", "OnlineLabel RL2800",
-                                    "OnlineLabel RL782"),
-                        selected = "Avery 94220",
-                        options = list(style = "btn-primary"))
+                                      choices = c("Custom","Avery 94220", "Avery 94200", "Avery 94224",
+                                                  "Avery 94237", "Avery 94207", "Avery 94241",
+                                                  "Avery 94213", "Avery 94242", "OnlineLabel OL5125",
+                                                  "OnlineLabel RL778", "OnlineLabel RL2800",
+                                                  "OnlineLabel RL782"),
+                                      selected = "Avery 94220",
+                                      options = list(style = "btn-primary"))
       
       
     } else {
       shinyWidgets::updatePickerInput(session, inputId = "templates", label = "Select a desired template",
-                        choices = c("Custom","Avery 94220", "Avery 94200", "Avery 94224",
-                                    "Avery 94237", "Avery 94207", "Avery 94241",
-                                    "Avery 94213", "Avery 94242", "OnlineLabel OL5125",
-                                    "OnlineLabel RL778", "OnlineLabel RL2800",
-                                    "OnlineLabel RL782", "Treetag LTS14"),
-                        selected = "Avery 94220",
-                        options = list(style = "btn-primary"))
+                                      choices = c("Custom","Avery 94220", "Avery 94200", "Avery 94224",
+                                                  "Avery 94237", "Avery 94207", "Avery 94241",
+                                                  "Avery 94213", "Avery 94242", "OnlineLabel OL5125",
+                                                  "OnlineLabel RL778", "OnlineLabel RL2800",
+                                                  "OnlineLabel RL782", "Treetag LTS14"),
+                                      selected = "Avery 94220",
+                                      options = list(style = "btn-primary"))
     }
   })
   
@@ -2004,27 +2330,27 @@ server <- function(input, output, session) {
       #req(input$label_type == "field")
       
       if (input$plot_id != "none") {
-      plott <- paste("Plot ID:", dat[, input$plot_id]) # Plot ids
+        plott <- paste("Plot ID:", dat[, input$plot_id]) # Plot ids
       } else (plott <- NULL)
       
       if (input$rep_id != "none") {
-      repp <- paste("Rep ID:", dat[, input$rep_id]) # Rep ids
+        repp <- paste("Rep ID:", dat[, input$rep_id]) # Rep ids
       } else (repp <- NULL)
       
       if (input$loc_id != "none") {
-      loc <- paste("Loc:", dat[, input$loc_id]) # Location ids
+        loc <- paste("Loc:", dat[, input$loc_id]) # Location ids
       } else (loc <- NULL)
       
       if (input$row_id != "none") {
-      roww <- paste("Row ID:", dat[, input$row_id]) # Row ids
+        roww <- paste("Row ID:", dat[, input$row_id]) # Row ids
       } else (roww <- NULL)
       
       if (input$col_id != "none") {
-      coll <- paste("Col. ID:", dat[, input$col_id]) # Column ids
+        coll <- paste("Col. ID:", dat[, input$col_id]) # Column ids
       } else (coll <- NULL)
       
       if (input$entry_id != "none") {
-      entry <-  dat[, input$entry_id]
+        entry <-  dat[, input$entry_id]
       } else (entry <- NULL)
       
       rnames <- rep(input$rname, nrow(dat)) # Researcher's name
@@ -2034,23 +2360,23 @@ server <- function(input, output, session) {
       if (input$IBlock == TRUE) {
         
         if (input$IBlock_id != "none") {
-        iblock <- paste("B:", dat[, input$IBlock_id])
+          iblock <- paste("B:", dat[, input$IBlock_id])
+          
+        } else (iblock <- NULL)
         
       } else (iblock <- NULL)
-      
-    } else (iblock <- NULL)
       
       
       if(input$seed_source == TRUE) {
         
         if (input$seed != "none") {
-        
-    
-        sdsource  <- paste(dat[, input$seed])
+          
+          
+          sdsource  <- paste(dat[, input$seed])
+          
+        } else (sdsource  <- NULL)
         
       } else (sdsource  <- NULL)
-        
-    } else (sdsource  <- NULL)
       
       # Combine all results as a list for field plot labels
       fld_all <- list(plott, roww, repp, coll, iblock, sdsource, rnames, loc, entry)
@@ -2754,7 +3080,7 @@ server <- function(input, output, session) {
         showModal(modalDialog(title = "Error",
                               "A label preview error occurred. Check the page/label setting parameters or
                            the input for label to preview."))
-
+        
       })
       
     }) # end of label preview
@@ -2818,7 +3144,7 @@ server <- function(input, output, session) {
       #   Entry <- lab_inf()[[9]]# Entry or treatment ids
       #   
       #   qrcds <- bb$bb # QR codes
-        
+      
       # } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
       #   
       #   cc <- which(dat[, input$rep_id] == input$REP & dat[, input$loc_id] == input$LOC)
@@ -2835,7 +3161,7 @@ server <- function(input, output, session) {
       #   
       #   qrcds <- bb$bb[cc] # QR codes
       #   
-        
+      
       # } else if (input$all_labels == FALSE & input$bal_design == FALSE) {
       #   
       #   cc <- which(dat[,input$loc_id] == input$LOC)
@@ -3576,6 +3902,10 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 
-  
-  
-  
+
+
+
+
+
+
+

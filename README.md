@@ -17,7 +17,7 @@
 
 # Create Plot Labels Easily With qrlabelr
 
-A no-frills open-source solution for designing print-ready labels affixed with QR codes. '**`qrlabelr`**' is an R package that features '**EasyQrlabelr**', a 'shiny' app that simplifies the complicated process of plot label design for non-R users. It also offers easily 'customizable' functions that enable label generation outside the 'shiny' app. It generates plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program, `('baRcodeR')` to offer more flexibility in plot label creation steps; guarantees true string fidelity after QR encoding; and provides faster label generation to users.
+A no-frills open-source solution for designing print-ready labels affixed with QR codes. '**`qrlabelr`**' is an R package that features '**EasyQrlabelr**', a 'BrAPI-compliant' 'shiny' app that simplifies the complicated process of plot label design for non-R users. It also offers easily 'customizable' functions that enable label generation outside the 'shiny' app. It generates plot labels that are compatible with the widely used digital data collection mobile app, Field Book. Our software builds on the foundation of an existing open-source program, `('baRcodeR')` to offer more flexibility in plot label creation steps; guarantees true string fidelity after QR encoding; and provides faster label generation to users.
 
 Submit bug reports and feature suggestions, or track changes on the
 [issues page](https://github.com/awkena/qrlabelr/issues).
@@ -157,13 +157,16 @@ library(qrlabelr)
 
 # Usage
 ## Generating field books
-To use qrlabelr, one must first generate a field book or data input that shows individual experimental plot or label attributes. **A field or study book is required as an input data input in qrlabelr.**  
+To use qrlabelr, one must first generate a field book or data input that shows individual experimental plot or label attributes. **A field or study book is required as an input data input in qrlabelr for plot labels. For seed packet labels, a data input containing the attributes of the seed samples must be provided**.  
 
-Typically, layout information for field plots are obtained based on the experimental design and treatment randomization. For field plot labels, it is strongly recommended to have the grid coordinates of plots (row and column numbers of plots) included in the field book.
+Typically, layout information for field plots are obtained based on the experimental design and treatment randomization. For field plot labels, it is strongly recommended to have the grid coordinates of plots (row and column numbers of plots) included in the field book.  
 
-There are free open-source software such as ['FielDHub'](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as 'BMS' can equally be used to generate an input field book if desired.  
+There are free open-source software such as [FielDHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as 'BMS' or 'breedbase' can equally be used to generate an input field book if desired. *The qrlabelr package is 'BrAPI- compliant'*.  
 
-**Input data must be imported as a data frame into qrlabelr for use. We recommend that users save input data as 'csv' or as 'xls' or 'xlsx' files for easy import to 'qrlabelr'**  
+In R, users can use available functions in the ['QBMS'](https://icarda-git.github.io/QBMS/index.html) package to query 'BrAPI'-supported databases for input field books. A user-friendly UI component for accessing data from 'BrAPI'-supported databases is available in the 'shiny' app.   
+
+
+**Input data must be imported as a data frame into qrlabelr for use. We recommend that users save input data as csv or as xls or xlsx files for easy import to qrlabelr**.    
 
 ## Plot label design options  
 The qrlabelr package offers two user-centered options for creating plot labels affixed with QR codes.  
@@ -405,8 +408,9 @@ Run the following code in the RStudio console to launch the
 
 This will open a new window in your default web browser that displays the 'EasyQrlabelr' 'shiny' app. The user is then greeted with a Welcome page that provides an overview of the web app, some quick instructions to get started, sample labels, among others. In the header of the 'shiny' app is a convenient Help button which can be accessed anytime for a quick overview of the purpose of each tab in generating a label.  
 
+Users can upload input field books from a local source on their computer or by querying BrAPI supported breeding databases. The current supported databases are *'BMS'* and *'breedbase'*. Options for data import can be found in the 'Import fieldbook' tab. 
 
-Follow the simple steps in Figure 3 to use the 'shiny' app to create plot labels.
+Follow the simple steps in Figure 3 to use the 'shiny' app to create plot or any general-purpose labels.
 
 |<img src='inst/extdata/instructions.PNG' style="width: 800px;" />|
 |:--:| 

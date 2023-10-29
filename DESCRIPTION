@@ -1,7 +1,7 @@
 Package: qrlabelr
 Type: Package
 Title: Generate Machine- And Human-Readable Plot Labels for Experiments
-Version: 0.1.1
+Version: 0.2.0
 Authors@R: c(person("Alexander", "Wireko Kena", email = "alex.kena24@gmail.com", 
          role = c("aut", "cre"), comment = c(ORCID = "0000-0003-3385-4945")),
          person("Ebenezer", "Ogoe", email = "ebenezerogoe@gmail.com", role = c("aut")),
@@ -16,9 +16,9 @@ Authors@R: c(person("Alexander", "Wireko Kena", email = "alex.kena24@gmail.com",
          person("Project Artemis", email = "d.guerena@cgiar.org", role = c("fnd")))
 Maintainer: Alexander Wireko Kena <alex.kena24@gmail.com>
 Description: A no-frills open-source solution for designing plot labels affixed with QR 
-    codes. It features 'EasyQrlabelr', a 'shiny' app that simplifies the process 
-    of plot label design for non-R users. This software builds on the methods 
-    described by Wu 'et al.' (2020) <doi:10.1111/2041-210X.13405>.
+    codes. It features 'EasyQrlabelr', a 'BrAPI-compliant' 'shiny' app that 
+    simplifies the process of plot label design for non-R users. It builds on the 
+    methods described by Wu 'et al.' (2020) <doi:10.1111/2041-210X.13405>.
 License: GPL (>= 3)
 BugReports: https://github.com/awkena/qrlabelr/issues
 Encoding: UTF-8
@@ -34,6 +34,7 @@ Imports:
     ggplot2 (>= 3.4.2),
     grid,
     purrr (>= 1.0.1),
+    QBMS (>= 0.9.1),
     qrencoder (>= 0.1.0),
     raster (>= 3.6.23),
     reactable (>= 0.4.3),
@@ -46,6 +47,7 @@ Imports:
     utils,
     uuid
 Suggests: 
+    async (>= 0.0.0.9004),
     covr,
     knitr,
     rlang (>= 1.1.1),
