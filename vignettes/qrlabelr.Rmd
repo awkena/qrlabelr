@@ -94,6 +94,12 @@ There are free open-source software such as [FielDHub](https://github.com/Didier
 
 In R, users can use available functions in the ['QBMS'](https://icarda-git.github.io/QBMS/index.html) package to query 'BrAPI'-supported databases for input field books. A user-friendly UI component for accessing data from 'BrAPI'-supported databases is available in the 'shiny' app.  
 
+For BrAPI compliance, users must install the ['async'](https://github.com/gaborcsardi/async) package in addition to the 'QBMS' package as follows:
+
+``` r
+remotes::install_github("r-lib/async")
+```
+
 
 **Input data must be imported as a data frame into qrlabelr for use. We recommend that users save input data as csv or as xls or xlsx files for easy import to qrlabelr**.    
 
