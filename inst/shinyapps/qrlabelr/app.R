@@ -377,7 +377,15 @@ pg_data_import <- argonDash::argonTabItem(
                               textInput("login_lk", "Enter link to login page:")),
           
           argonR::argonColumn(width = 4,
-                              selectInput("brapi_engine", "Select engine:", choices = c("bms", "breedbase")))
+                              selectInput("brapi_engine", "Select engine:", choices = c("bms", "breedbase"))),
+          
+          argonR::argonColumn(width = 4,
+                              shinyWidgets::prettyCheckbox(inputId = "no_auth", 
+                                                           label = "No authentication?", 
+                                                           status = "primary", 
+                                                           shape = "curve",
+                                                           value = FALSE))
+          
           
           
         ),
@@ -402,7 +410,7 @@ pg_data_import <- argonDash::argonTabItem(
           
           # After this Shiny app is converted into a package
           argonR::argonColumn(width = 4, center = TRUE,
-                              actionButton(inputId = "brapi_login", "Login", icon = NULL, width = NULL,
+                              actionButton(inputId = "brapi_login", "Connect", icon = NULL, width = NULL,
                                            span(id="Animate", class=""))),
           
           argonR::argonColumn(width = 4, offset = 4, center = TRUE,
@@ -414,7 +422,7 @@ pg_data_import <- argonDash::argonTabItem(
         
         
         br(), br(),
-        p("Select program after successful login"),
+        p("Select program after successful connection"),
         argonR::argonRow(
           
           argonR::argonColumn(width = 4,
@@ -517,46 +525,9 @@ pg_generate_labels <- argonDash::argonTabItem(
     argonR::argonRow(
       argonR::argonColumn(width = 3,
                           textInput("filename", "Enter pdf file name prefix", value = "PlotLabel"))
-      
-      
-      # argonR::argonColumn(width = 3, offset = 1,
-      #                     div(id = "Repl",
-      #                         shinyWidgets::pickerInput(inputId = "REP", label = "Print label by REP",
-      #                                                   choices = warn, options = list(style = "default")))),
-      # 
-      # argonR::argonColumn(width = 3, offset = 1,
-      #                     div(id = "loca",
-      #                         shinyWidgets::pickerInput(inputId = "LOC", label = "Print label by LOC",
-      #                                                   choices = warn, options = list(style = "default"))))
-      # 
     ),
     
-    # argonR::argonRow(
-    #   argonR::argonColumn(width = 12,
-    #                       shinyBS::popify(trigger = "focus",
-    #                                       shinyWidgets::prettySwitch(inputId = "all_labels", inline = TRUE,
-    #                                                                  label = "Print All Labels",
-    #                                                                  value = FALSE, fill = TRUE, status = "primary"),
-    #                                       
-    #                                       title = "Print All Switch", placement = "top",
-    #                                       content = "Turn on the switch to generate labels for all plots in imported fieldbook",
-    #                                       options = list(container = "body")))
-    # ),
-    # 
-    # argonR::argonRow(
-    #   argonR::argonColumn(width = 12,
-    #                       shinyBS::popify(
-    #                         shinyWidgets::prettySwitch(inputId = "bal_design", inline = TRUE,
-    #                                                    label = "Print by REP and LOC",
-    #                                                    value = FALSE, fill = TRUE, status = "primary"),
-    #                         
-    #                         title = "Subset by REP and LOCATION",
-    #                         content = "Turn on the switch to generate labels by REP and LOCATION subset",
-    #                         placement = "bottom",
-    #                         trigger = "focus",
-    #                         options = list(container = "body")))
-    # ),
-    # 
+    
     actionButton(inputId = "gen_labels", label = ("Generate labels "),
                  icon = NULL, width = NULL, span(id="UpdateAnimate", class="")),
     
@@ -1404,10 +1375,7 @@ server <- function(input, output, session) {
         autoset_fieldhub()
       } else if(input$from_fieldhub == FALSE) {
         init_label_info()
-        # }else if(input$from_BMS == TRUE){
-        #   autoset_BMS()
-        # }else if(input$from_BMS == FALSE){
-        #   init_label_info()
+        
       }
       
       # Enable the initially disabled Preview fieldbook and Generated with FieldHub
@@ -1416,21 +1384,6 @@ server <- function(input, output, session) {
       shinyjs::enable(id = "from_fieldhub")
       # shinyjs::enable(id = "from_BMS")
       shinyjs::enable(id = "submit_dat")
-      
-      # observe({
-      #   if (input$from_fieldhub == TRUE) {
-      #     shinyjs::disable(id = "from_BMS")
-      #   } else {
-      #     shinyjs::enable(id = "from_BMS")
-      #   }
-      #   
-      #   if (input$from_BMS == TRUE) {
-      #     shinyjs::disable(id = "from_fieldhub")
-      #   } else {
-      #     shinyjs::enable(id = "from_fieldhub")
-      #   }
-      #   
-      # })
       
     },
     warning = function(cond) {
@@ -1464,7 +1417,10 @@ server <- function(input, output, session) {
         if (input$brapi_engine == "bms") {
           
           # config your BMS connection (by providing your BMS login page URL)
-          QBMS::set_qbms_config(input$login_lk, time_out = 300)
+          QBMS::set_qbms_config(input$login_lk, 
+                                time_out = 300,
+                                no_auth = input$no_auth,
+                                engine = "bms")
           
           # login using your BMS account (interactive mode)
           # or pass your BMS username and password as parameters (batch mode)
@@ -1472,10 +1428,10 @@ server <- function(input, output, session) {
           
         } else {
           
-          # config your BMS connection (by providing your BMS login page URL)
+          # config your BMS connection (by providing your breedbase login page URL)
           QBMS::set_qbms_config(input$login_lk, 
                                 time_out = 300, 
-                                no_auth = TRUE,
+                                no_auth = input$no_auth,
                                 engine = "breedbase")
           
         }
@@ -1716,15 +1672,18 @@ server <- function(input, output, session) {
   
   observe({
     
-    if (input$brapi_engine == "breedbase") {
+    if (input$no_auth == TRUE) {
       
       shinyjs::disable(id = "pwd")
       shinyjs::disable(id = "user_name")
+      
+      
       
     } else {
       
       shinyjs::enable(id = "pwd")
       shinyjs::enable(id = "user_name")
+      
     }
   })
   
@@ -2059,74 +2018,6 @@ server <- function(input, output, session) {
   
   
   
-  # # Update REP and LOC select inputs in the Generate labels tab
-  # observe({
-  #   if(input$label_type == "field"){
-  #     req(input$rep_id, input$loc_id)
-  #     
-  #     if (input$rep_id != "none") {
-  #     Rep_levels <- unique(dat[,input$rep_id]) # Unique Rep ids
-  #     } else (Rep_levels <- NULL)
-  #     
-  #     if (input$loc_id != "none") {
-  #     Loc_levels <- unique(dat[,input$loc_id])# Unique Location ids
-  #     } else (Loc_levels <- NULL)
-  #     
-  #     shinyWidgets::updatePickerInput(session, inputId = "REP", choices =  Rep_levels)
-  #     
-  #     shinyWidgets::updatePickerInput(session, inputId = "LOC", choices = Loc_levels)
-  #   }
-  # })
-  
-  
-  # # Hide or show respective widgets as and when necessary
-  # observe({
-  #   if (input$label_type == "field") {
-  #     if (input$all_labels == TRUE) {
-  #       shinyjs::disable(id = "loca")
-  #       shinyjs::disable(id = "bal_design")
-  #       shinyjs::disable(id = "Repl")
-  #       
-  #     } else {
-  #       shinyjs::enable(id = "bal_design")
-  #       shinyjs::enable(id = "Repl")
-  #       shinyjs::enable(id = "loca")
-  #     }
-  #     
-  #     if (input$all_labels == FALSE & input$bal_design == FALSE) {
-  #       shinyjs::disable(id = "Repl")
-  #       shinyjs::hide(id = "Repl")
-  #       
-  #     } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
-  #       shinyjs::show(id = "Repl")
-  #       shinyjs::enable(id = "Repl")
-  #       shinyjs::disable(id = "all_labels")
-  #     }
-  #   } 
-  # })
-  
-  # observe({
-  #   if (input$label_type == "gp" || input$label_type == "gpp" || input$label_type == "field" ) {
-  #     shinyjs::hide(id = "loca")
-  #     shinyjs::hide(id = "bal_design")
-  #     shinyjs::hide(id = "all_labels")
-  #     shinyjs::hide(id = "Repl")
-  #     
-  #   } else {
-  #     shinyjs::show(id = "loca")
-  #     shinyjs::show(id = "bal_design")
-  #     shinyjs::show(id = "all_labels")
-  #     shinyjs::show(id = "Repl")
-  #   }
-  # })
-  
-  # observe({
-  #   if (input$bal_design == TRUE) {
-  #     shinyjs::disable(id = "all_labels")
-  #   } else {
-  #     shinyjs::enable(id = "all_labels")
-  #   }
-  # })
   
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   #                   Section 4. Regular functions (the "workhorses")                       #

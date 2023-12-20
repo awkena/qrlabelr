@@ -98,6 +98,8 @@ required:
     
 -   ['uuid'](https://CRAN.R-project.org/package=uuid): Tools for Generating and       Handling of UUIDs
 
+-  ['QBMS'](https://icarda-git.github.io/QBMS/index.html): Query the Breeding Management System(s)
+
 -   ['tools'](https://www.rdocumentation.org/packages/tools/versions/3.6.2):
     Tools for package development, administration and documentation.
 

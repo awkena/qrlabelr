@@ -3,10 +3,9 @@ This is a minor release. The following changes were made since the release of ve
 * Added 'BrAPI'-compliance features to the 'shiny' app. This implies that users can now query or access data directly from 'BMS' and 'breedbase' databases via the 'QBMS' package.
 * Redesigned the 'Import fieldbook' tab in the 'shiny' app to reflect these new features.
 * Added the 'QBMS' package to the Imports field in the DESCRIPTION file.
-* Added the 'async' package to the Suggests field in the DESCRIPTION file to boost the speed of querying breeding databases.
 * Updated the NAMESPACE accordingly.
 * Fixed a mislabeled object bug in the general-purpose landscape text label option in the 'shiny' app.
-* 
+* Updated the roles of three persons in the package DESCRIPTION file to author status from contributor status.
 
 # qrlabelr 0.1.1
 This is a patch release. The following patches have been made to 'qrlabelr' since the release of version 0.1.0:

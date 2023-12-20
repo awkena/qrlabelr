@@ -5,9 +5,9 @@ Version: 0.2.0
 Authors@R: c(person("Alexander", "Wireko Kena", email = "alex.kena24@gmail.com", 
          role = c("aut", "cre"), comment = c(ORCID = "0000-0003-3385-4945")),
          person("Ebenezer", "Ogoe", email = "ebenezerogoe@gmail.com", role = c("aut")),
-         person("Clara", "Cruet Burgos", email = "clara.cruet_burgos@colostate.edu", role = c("ctb")),
-         person("Geoffrey", "Preston Morris", email = "geoff.morris@colostate.edu", role = c("ctb")),
-         person("Rubi", "Raymundo-Carhuapoma", email = "r.raymundo_carhuapoma@colostate.edu", role = c("ctb")),
+         person("Clara", "Cruet Burgos", email = "clara.cruet_burgos@colostate.edu", role = c("aut")),
+         person("Geoffrey", "Preston Morris", email = "geoff.morris@colostate.edu", role = c("aut")),
+         person("Rubi", "Raymundo-Carhuapoma", email = "r.raymundo_carhuapoma@colostate.edu", role = c("aut")),
          person("Yihan", "Wu", email = "yihan.wu@queensu.ca", role = c("ctb"), comment = c(ORCID = "0000-0002-1202-4208")),
          person("Robert", "Colautti", email = "robert.colautti@queensu.ca", role = c("ctb"), comment = c(ORCID = "0000-0003-4213-0711")),
          person("Colorado State University", email = "CAS_SCS@mail.colostate.edu", role = c("cph")),
@@ -47,7 +47,6 @@ Imports:
     utils,
     uuid
 Suggests: 
-    async (>= 0.0.0.9004),
     covr,
     knitr,
     rlang (>= 1.1.1),
