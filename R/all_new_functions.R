@@ -980,8 +980,7 @@ field_label <- function(dat,
   }
   
   # File name and timestamp for updated fieldbook
-  ts <- Sys.time() |> format(format = "%H_%M_%S") |> 
-    paste0("Updated_Fieldbook_", ... = _, ".csv")
+  ts <- paste0("Updated_Fieldbook_", format(Sys.time(), format = "%H_%M_%S"), ".csv")
   
   utils::write.csv(updat, file = paste0(filename, ts), row.names = FALSE)
   
@@ -1231,8 +1230,7 @@ gp_label <- function(dat,
   }
   
   # File name and timestamp for updated fieldbook
-  ts <- Sys.time() |> format(format = "%H_%M_%S") |> 
-    paste0("Updated_Fieldbook_", ... = _, ".csv")
+  ts <- paste0("Updated_Fieldbook_", format(Sys.time(), format = "%H_%M_%S"), ".csv")
   
   utils::write.csv(updat, file = paste0(filename, ts), row.names = FALSE)
   
