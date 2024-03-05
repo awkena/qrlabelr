@@ -1344,6 +1344,7 @@ server <- function(input, output, session) {
   dat_columns <- c()
   pdf_filename <- c()
   ext <- c()
+  updated_fieldbook_filename <- c()
   
   
   #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
@@ -1892,7 +1893,7 @@ server <- function(input, output, session) {
   ## Downloads generated labels
   output$down_labels <- downloadHandler(
     filename = function() {
-      paste(pdf_filename)
+      paste(basename(pdf_filename))
     },
     content = function(file) {
       file.copy(pdf_filename, file)
@@ -1902,10 +1903,11 @@ server <- function(input, output, session) {
   ## Downloads updated Fieldbook with unique IDs
   output$down_fieldbook <- downloadHandler(
     filename = function() {
-      paste("Updated_Fieldbook.csv")
+      paste(basename(updated_fieldbook_filename))
     },
     content = function(file) {
-      file.copy("Updated_Fieldbook.csv", file)
+        target_dir = tempdir()
+        file.copy(updated_fieldbook_filename, file)
     }
   )
   
@@ -2176,7 +2178,7 @@ server <- function(input, output, session) {
   
   
   ## Create an augmented fieldbook containing unique IDs
-  create_aug_fieldbook <- function() {
+  create_aug_fieldbook <- function(target_dir) {
     
     if (input$uniqueids == "get_unique_id" | input$uniqueids == "uuids") {
       
@@ -2192,7 +2194,8 @@ server <- function(input, output, session) {
       colnames(updat)[1] <- colnames(updat)[1] 
     }
     
-    write.csv(updat, file = "Updated_Fieldbook.csv", row.names = FALSE)
+    updated_fieldbook_filename <<- file.path(target_dir, "Updated_Fieldbook.csv")
+    write.csv(updat, file = updated_fieldbook_filename, row.names = FALSE)
   }
   
   ## Function make QR codes as raster object
@@ -3087,8 +3090,11 @@ server <- function(input, output, session) {
     
     nn <- length(qrcds)
     
+    # Use common tempdir to write app's outputs
+    temp_directory <- tempdir()
+
     # Call the function to create the augmented fieldbook containing unique IDs
-    create_aug_fieldbook()
+    create_aug_fieldbook(target_dir = temp_directory)
     
     
     #' Generate label positions -- prints across rows of grid layout
@@ -3114,10 +3120,10 @@ server <- function(input, output, session) {
     
     cory <- label_pos$y # label y coordinate
     
-    #' Create pdf file to be saved in working directory
-    
-    pdf_filename <<- paste0(input$filename, paste0(input$wdt,'in'), 'x',
-                            paste0(input$hgt,'in'), Sys.time()) # name of pdf file
+    #' Create pdf file to be saved in temp_directory 
+    pdf_filename <<- file.path(temp_directory,
+                            paste0(input$filename, paste0(input$wdt,'in'), 'x',
+                            paste0(input$hgt,'in'), Sys.time())) # name of pdf file 
     
     pdf_filename <<- paste0(gsub(":","_", pdf_filename), ".pdf")
     
