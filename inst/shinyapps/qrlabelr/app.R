@@ -3558,14 +3558,18 @@ server <- function(input, output, session) {
     
     cory <- label_pos$y # label y coordinate
     
-    #' Create pdf file to be saved in working directory
-    
-    pdf_filename <<- paste0(input$filename, paste0(input$wdt,'in'), 'x',
-                            paste0(input$hgt,'in'), Sys.time()) # name of pdf file
-    
+
+    # Use common tempdir to write app's outputs
+    # TODO: this funcitonality should moved into a function (DRY)
+    temp_directory <- tempdir()
+ 
+    #' Create pdf file to be saved in temp_directory 
+    pdf_filename <<- file.path(temp_directory,
+                            paste0(input$filename, paste0(input$wdt,'in'), 'x',
+                            paste0(input$hgt,'in'), Sys.time())) # name of pdf file 
+
     pdf_filename <<- paste0(gsub(":","_", pdf_filename), ".pdf")
-    
-    
+
     #' Font size to print text on labels
     fsize <- input$font_size
     
