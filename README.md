@@ -10,7 +10,7 @@
 [![test-coverage](https://github.com/awkena/qrlabelr/actions/workflows/codecov3.yml/badge.svg)](https://github.com/awkena/qrlabelr/actions/workflows/codecov3.yml)
 [![Codecov test coverage](https://codecov.io/gh/awkena/qrlabelr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/awkena/qrlabelr?branch=main)
 [![](https://www.r-pkg.org/badges/version/qrlabelr?color=orange)](https://cran.r-project.org/package=qrlabelr)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/qrlabelr?color=blue)](https://cran.r-project.org/package=qrlabelr)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/qrlabelr?color=blue)](https://r-pkg.org/pkg/qrlabelr)
 [![CRAN checks](https://badges.cranchecks.info/summary/qrlabelr.svg)](https://cran.r-project.org/web/checks/check_results_qrlabelr.html)
 [![DOI](https://zenodo.org/badge/619870772.svg)](https://zenodo.org/doi/10.5281/zenodo.10636596)
 <!-- badges: end -->
