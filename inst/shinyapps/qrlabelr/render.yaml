@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: qrlabelr
+    runtime: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PORT
+        value: 3838
+    autoDeploy: true
