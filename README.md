@@ -459,7 +459,7 @@ manufacturers.
 # Authors
 
 -   [Alexander Wireko Kena](https://github.com/awkena)
--   [Ebenezer Ogoe](https://github.com/Ebenezer-007)
+-   [Ebenezer Ogoe](https://github.com/ebenogoe)
 -   [Clara Cruet-Burgos](https://www.morrislab.org/people/clara-cruet-burgos)
 -   [Geoffrey Preston    Morris](https://www.morrislab.org/people/geoff-morris)
 
