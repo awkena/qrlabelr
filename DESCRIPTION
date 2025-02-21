@@ -56,7 +56,7 @@ Suggests:
     vdiffr (>= 1.0.5)
 VignetteBuilder: knitr
 Depends: 
-    R (>= 4.1.0),
+    R (>= 4.2.0),
     shinyBS (>= 0.61.1)
 Config/testthat/edition: 3
 Language: en-US
