@@ -584,6 +584,17 @@ create_label <- function(
                       y = grid::unit(ey, "in"),
                       gp = plain_font4, hjust = 0, vp = tt)
       
+      # Add 'qrlabelr' branding at the extreme right edge
+      grid::grid.text(
+        label = "qrlabelr",
+        x = grid::unit(0.5 * wdt, "in"),
+        y = grid::unit(0.02 * hgt, "in"),
+        rot = 180,
+        gp = grid::gpar(fontface = "plain", fontsize = font_sz/2, 
+                        col = "gray30"),
+        just = "center",
+        vp = tt)
+      
       grid::pushViewport(qq2)
       
       # Add second QR code
@@ -676,6 +687,17 @@ create_label <- function(
                       x= grid::unit(ex, "in"),
                       y = grid::unit(ey, "in"),
                       gp = bold_font3, hjust = 0, vp = aa)
+      
+      # Add 'qrlabelr' branding at the extreme left edge
+      grid::grid.text(
+        label = "qrlabelr",
+        x = grid::unit(0.02 * wdt, "in"),
+        y = grid::unit(0.5 * hgt, "in"),
+        rot = 90,
+        gp = grid::gpar(fontface = "plain", fontsize = font_sz/2, 
+                        col = "gray30"),
+        just = "center",
+        vp = aa)
       
       grid::popViewport(2)
     }
