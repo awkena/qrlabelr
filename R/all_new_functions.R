@@ -939,6 +939,8 @@ field_label <- function(dat,
   # If 'custom', user must use the 'unique_id' argument to specify the column name
   # in field book that denotes custom generated unique IDs.
   
+  get_unique_id <- match.arg(get_unique_id)
+  
   if (get_unique_id == "ruid"){
     
     trial_name <- gsub(" ", "_", Trial)
@@ -1200,6 +1202,8 @@ gp_label <- function(dat,
   # the function generates UUIDs by time randomly. Note that UUIDs are uninformative and not reproducible.
   # If 'custom', user must use the 'unique_id' argument to specify the column name
   # in fieldbook that denotes custom generated unique IDs.
+  
+  get_unique_id <- match.arg(get_unique_id)
   
   if (get_unique_id == "uuid") {
     UNIQUE_ID <- uuid::UUIDgenerate(use.time = TRUE, n = nrow(dat), output = "string")
