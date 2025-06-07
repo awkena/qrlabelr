@@ -78,6 +78,7 @@ make_qrcode <- function(my_id, ec_level = 3){
 #' @param bottom_left_1 String for bottom-left row 1 position on a rectangular label.
 #' @param bottom_left_2 String for bottom-left row 2 position on a rectangular label.
 #' @param unique_id A vector containing unique identifiers or strings to generate QR codes.
+#' @param include_qr Logical. Set to FALSE to exclude QR codes. Default is TRUE.
 #' @param ec_level The error correction level (`0` - `3`, lowest to highest) for QR codes.
 #' @param ... Additional optional arguments to be supplied.
 #' 
@@ -140,6 +141,7 @@ create_label <- function(
     bottom_left_1 = NULL, # Text for bottom-left row 1
     bottom_left_2 = NULL, # Text for bottom-left row 2
     unique_id = NULL, # Unique ids for QR codes
+    include_qr = TRUE,
     ec_level = 3,
     ...){
   
@@ -199,34 +201,6 @@ create_label <- function(
   
   assertthat::assert_that(assertthat::is.string(family),
                           msg = paste("'family'", error_string))
-  
-  # assertthat::assert_that(assertthat::is.string(top_left_1),
-  #                         msg = paste("'top_left_1'", error_string))
-  #
-  # assertthat::assert_that(assertthat::is.string(top_left_2),
-  #                         msg = paste("'top_left_2'", error_string))
-  #
-  # assertthat::assert_that(assertthat::is.string(top_right_1),
-  #                         msg = paste("'top_right_1'", error_string))
-  #
-  # assertthat::assert_that(assertthat::is.string(top_right_2),
-  #                         msg = paste("'top_right_2'", error_string))
-  #
-  # assertthat::assert_that(assertthat::is.string(center_right_1),
-  #                         msg = paste("'center_right_1'", error_string))
-  #
-  # assertthat::assert_that(assertthat::is.string(center_right_2),
-  #                         msg = paste("'center_right_2'", error_string))
-  #
-  # assertthat::assert_that(assertthat::is.string(center_right_3),
-  #                         msg = paste("'center_right_3'", error_string))
-  #
-  # assertthat::assert_that(assertthat::is.string(bottom_left_1),
-  #                         msg = paste("'bottom_left_1'", error_string))
-  #
-  # assertthat::assert_that(assertthat::is.string(bottom_left_2),
-  #                         msg = paste("'bottom_left_2'", error_string))
-  
   ## -- Assertions end
   
   # Calculate space between label columns if any
@@ -320,16 +294,31 @@ create_label <- function(
   }
   
   # Create QR codes from unique ids
-  if (!is.null(unique_id)) {
+  
+  if (include_qr) {
+    
+    if (is.null(unique_id)) {
+      stop("`unique_id` is required when `include_qr = TRUE`.")
+    }
+    
     bb <- unique_id |> purrr::map(\(x) make_qrcode(ec_level = ec_level, x))
     nn <- length(bb) # total number of labels to generate
+    
   } else {
-    stop("Unique IDs for generating QR codes are missing!!")
+    
+    text_fields <- list(
+      top_left_1, top_left_2,
+      top_right_1, top_right_2,
+      center_right_1, center_right_2, center_right_3,
+      bottom_left_1, bottom_left_2)
+    
+    text_lengths <- vapply(text_fields, function(x) if (is.null(x)) 0 else length(x), numeric(1))
+    nn <- max(text_lengths, 1)
+    bb <- NULL
   }
   
-  
   # Generate label positions -- prints across rows of grid layout
-  if (print_across == TRUE) {
+  if (print_across) {
     
     pos <- expand.grid(x = 1:numcol, y = 1:numrow)
     
@@ -381,7 +370,7 @@ create_label <- function(
                                     widths = grid::unit(c(rep(wdt + col_space, numcol-1), wdt), "in"),
                                     heights = grid::unit(c(rep(hgt + row_space, numrow-1), hgt), "in"))
   
-  if (Treetag == TRUE) {
+  if (Treetag) {
     # Viewport for first QR codes
     qq <- grid::viewport(x = grid::unit(0.57, "npc"),
                          y = grid::unit(0.3, "npc"),
@@ -500,16 +489,16 @@ create_label <- function(
       
     }
     
-    if (Treetag == TRUE) {
+    if (Treetag) {
       tt <- grid::viewport(layout.pos.row=label_posn['y'],
                            layout.pos.col=label_posn['x'])
       
       grid::pushViewport(tt)
       
       # Draw rectangle around labels
-      if (rect == TRUE) {
+      if (rect) {
         
-        if (rounded == TRUE) {
+        if (rounded) {
           grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
         } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
         
@@ -609,9 +598,9 @@ create_label <- function(
       grid::pushViewport(aa)
       
       # Draw rectangle around labels
-      if (rect == TRUE) {
+      if (rect) {
         
-        if (rounded == TRUE) {
+        if (rounded) {
           grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
         } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
         
@@ -860,7 +849,7 @@ field_label <- function(dat,
     
   }
   
-  if (seed_source == TRUE & is.null(seed_source_id)) {
+  if (seed_source & is.null(seed_source_id)) {
     stop(paste("Use the 'seed_source_id' argument to specify the column name in your fieldbook containing seed source ids."))
   }
   
@@ -906,7 +895,7 @@ field_label <- function(dat,
   # }
   
   # Define year for experiment
-  if (is.null(Year) == TRUE) {
+  if (is.null(Year)) {
     yr <- format(Sys.time(),'%Y')
   } else {
     yr <- as.character(Year)
@@ -927,7 +916,7 @@ field_label <- function(dat,
   rnames <- rep(rname, nrow(dat)) # Researcher's name
   
   # Block ids if it is an incomplete block design
-  if (IBlock == TRUE) {
+  if (IBlock) {
     iblock <- dat[, IBlock_id]
     blkid <- paste("B:", iblock)
   } else {
@@ -936,7 +925,7 @@ field_label <- function(dat,
   
   
   # Show seed source on label
-  if (seed_source == TRUE) {
+  if (seed_source) {
     
     sds <- paste(dat[, seed_source_id])
     

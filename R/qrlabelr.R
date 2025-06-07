@@ -1,4 +1,5 @@
 #' @title Generate Machine- And Human-Readable Plot Labels for Experiments.
+#' "_PACKAGE"
 #'
 #' @import argonDash
 #' @import argonR
@@ -19,10 +20,6 @@
 #' @importFrom utils setTxtProgressBar txtProgressBar write.csv
 #' @importFrom uuid UUIDgenerate
 #' @importFrom desplot geom_tileborder
-
-#'
-#'
-#' @docType package
 #'
 #' @name qrlabelr
 #'

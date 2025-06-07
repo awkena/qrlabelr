@@ -32,6 +32,7 @@ create_label(
   bottom_left_1 = NULL,
   bottom_left_2 = NULL,
   unique_id = NULL,
+  include_qr = TRUE,
   ec_level = 3,
   ...
 )
@@ -94,6 +95,8 @@ Default is \code{TRUE}.}
 \item{bottom_left_2}{String for bottom-left row 2 position on a rectangular label.}
 
 \item{unique_id}{A vector containing unique identifiers or strings to generate QR codes.}
+
+\item{include_qr}{Logical. Set to FALSE to exclude QR codes. Default is TRUE.}
 
 \item{ec_level}{The error correction level (`0` - `3`, lowest to highest) for QR codes.}
 

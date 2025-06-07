@@ -576,7 +576,7 @@ test_that("Create plot label input errors", {
                             bottom_left_1 = paste("Loc:", rep("BAMBEY", 10)), 
                             bottom_left_2 = paste0("G-", 1:10),
                             unique_id = NULL ), 
-               "Unique IDs for generating QR codes are missing!!")
+               "`unique_id` is required when `include_qr = TRUE`.")
   
   
   
