@@ -463,6 +463,7 @@ create_label <- function(
   lab_vp <- grid::viewport(layout = label_layout)
   grid::pushViewport(lab_vp)
   
+  # Fonts for text display
   bold_font <- grid::gpar(fontface = "bold", fontsize = fsize)
   bold_font2 <- grid::gpar(fontface = "bold", fontsize = fsize-2)
   plain_font2 <- grid::gpar(fontface = "plain", fontsize = fsize-2)
@@ -590,7 +591,7 @@ create_label <- function(
         x = grid::unit(0.5 * wdt, "in"),
         y = grid::unit(0.02 * hgt, "in"),
         rot = 180,
-        gp = grid::gpar(fontface = "plain", fontsize = font_sz/2, 
+        gp = grid::gpar(fontface = "plain", fontsize = plain_font4, 
                         col = "gray30"),
         just = "center",
         vp = tt)
@@ -654,7 +655,6 @@ create_label <- function(
                       gp = plain_font3, hjust = 0, vp = aa)
       
       # Push viewport for qr code
-      
       grid::pushViewport(qq)
       
       # Add QR code
@@ -662,7 +662,6 @@ create_label <- function(
       grid::popViewport()
       
       # Define viewport for Block ID if it is an incomplete block design
-      
       grid::pushViewport(bl)
       
       # Add Block ID to label; note coordinates
@@ -694,7 +693,7 @@ create_label <- function(
         x = grid::unit(0.02 * wdt, "in"),
         y = grid::unit(0.5 * hgt, "in"),
         rot = 90,
-        gp = grid::gpar(fontface = "plain", fontsize = font_sz/2, 
+        gp = grid::gpar(fontface = "plain", fontsize = plain_font4, 
                         col = "gray30"),
         just = "center",
         vp = aa)
@@ -1328,6 +1327,7 @@ gp_label <- function(dat,
 #' @param top_txt2_id The column identifier in \code{dat} containing text for top text position 2.
 #' @param top_txt3_id The column identifier in \code{dat} containing text for top text position 3.
 #' @param unique_id The column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.
+#' @param include_qr Logical. Set to FALSE to exclude QR codes. Default is TRUE.
 #' @param ec_level The error correction level (`0` - `3`, lowest to highest) for QR codes.
 #' 
 #' @seealso \code{\link{field_label}} and \code{\link{gp_label}}
@@ -1428,8 +1428,8 @@ gp_label_portrait <- function(
     top_txt2_id = NULL, # Top position text 2 column ID
     top_txt3_id = NULL, # Top position text 3 column ID
     unique_id = NULL, # Column ID for Unique ids for QR codes
+    include_qr = TRUE,
     ec_level = 3 # qr code error correction level
-    
 ) {
   
   error_numeric <- "must be a positive numeric value."
@@ -1613,20 +1613,34 @@ gp_label_portrait <- function(
   }
   
   # Create QR codes from unique ids
-  if (!is.null(unique_id)) {
+  if (include_qr) {
+    
+    if (is.null(unique_id)) {
+      stop("`unique_id` is required when `include_qr = TRUE`.")
+    }
+    
     bb <- dat[, unique_id] |> purrr::map(\(x) make_qrcode(ec_level = ec_level, x))
     nn <- length(bb) # total number of labels to generate
-  } else if (is.null(unique_id)) {
-    stop("Unique IDs for generating QR codes are missing!!")
+    
+  } else {
+    
+    text_fields <- list(
+      text1, text2,
+      text3, text4,
+      text5, text6, 
+      text7, text8, 
+      text9, text10)
+    
+    text_lengths <- vapply(text_fields, function(x) if (is.null(x)) 0 else length(x), numeric(1))
+    nn <- max(text_lengths, 1)
+    bb <- NULL
   }
-  
   
   # clean up any open graphical devices if function fails
   on.exit(grDevices::graphics.off())
   
-  
   # Generate label positions -- prints across rows of grid layout
-  if (print_across == TRUE) {
+  if (print_across) {
     
     pos <- expand.grid(x = 1:numcol, y = 1:numrow)
     
@@ -1709,8 +1723,6 @@ gp_label_portrait <- function(
   
   txt10x <- 0.05*wdt # y coordinate for txt10
   
-  
-  
   # Viewport for a new page
   new.page <- grid::viewport(width = grid::unit(page_wdt, "in"),
                              height = grid::unit(page_hgt, "in"))
@@ -1752,9 +1764,9 @@ gp_label_portrait <- function(
     grid::pushViewport(aa)
     
     # Draw rectangle around labels
-    if (rect == TRUE) {
+    if (rect) {
       
-      if (rounded == TRUE) {
+      if (rounded) {
         grid::grid.roundrect(gp = grid::gpar(lwd = 0.5))
       } else (grid::grid.rect(gp = grid::gpar(lwd = 0.5)))
       
@@ -1791,15 +1803,12 @@ gp_label_portrait <- function(
                     y = grid::unit(txt1y, "in"), rot = 90,
                     gp = bold_font2, just = c(-0.5, 0.5), vp = aa)
     
-    
     # Define viewport for QR code; note coordinates and dimension
-    
     grid::pushViewport(qq)
     
     # Add first QR code
     grid::grid.draw(bb[[i]])
     # grid::popViewport()
-    
     
     # Go back to label viewport
     grid::upViewport()
@@ -1810,13 +1819,11 @@ gp_label_portrait <- function(
                     y = grid::unit(txt1y, "in"), rot = 90,
                     gp = bold_font3, hjust = 0, vp = aa)
     
-    
     # Add text7 to label (center position 4); note coordinates
     grid::grid.text(label = text7[i],
                     x = grid::unit(txt6x, "in"),
                     y = grid::unit(txt7y, "in"), rot = 90,
                     gp = bold_font3, hjust = 0, vp = aa)
-    
     
     # Add text8 to label (top position 1); note coordinates
     grid::grid.text(label = text8[i],
@@ -1824,13 +1831,11 @@ gp_label_portrait <- function(
                     y = grid::unit(txt1y, "in"), rot = 90,
                     gp = bold_font3, hjust = 0, vp = aa)
     
-    
     # Add text9 to label (top position 2); note coordinates
     grid::grid.text(label = text9[i],
                     x = grid::unit(txt8x, "in"),
                     y = grid::unit(txt7y, "in"), rot = 90,
                     gp = bold_font3, hjust = 0, vp = aa)
-    
     
     # Add text10 to label (top position 3); note coordinates
     grid::grid.text(label = text10[i],
@@ -1838,15 +1843,21 @@ gp_label_portrait <- function(
                     y = grid::unit(txt1y, "in"), rot = 90,
                     gp = bold_font, hjust = 0, vp = aa)
     
+    # Add 'qrlabelr' branding at the extreme left edge
+    grid::grid.text(
+      label = "qrlabelr",
+      x = grid::unit(0.7 * wdt, "in"),
+      y = grid::unit(0.96 * hgt, "in"),
+      gp = grid::gpar(fontface = "plain", fontsize = bold_font4, 
+                      col = "gray30"),
+      just = "center",
+      vp = aa)
     
     grid::popViewport(2)
     
-    
   } # End of create_label ()
   
-  #cat("\n\n\tGenerated labels saved to working directory as a PDF file.")
 } 
-
 
 
 #' Make an enhanced field layout plot with border rows. 

@@ -43,6 +43,7 @@ gp_label_portrait(
   top_txt2_id = NULL,
   top_txt3_id = NULL,
   unique_id = NULL,
+  include_qr = TRUE,
   ec_level = 3
 )
 }
@@ -128,6 +129,8 @@ Default is \code{TRUE}.}
 \item{top_txt3_id}{The column identifier in \code{dat} containing text for top text position 3.}
 
 \item{unique_id}{The column identifier in \code{dat} containing unique identifiers or strings to generate QR codes.}
+
+\item{include_qr}{Logical. Set to FALSE to exclude QR codes. Default is TRUE.}
 
 \item{ec_level}{The error correction level (`0` - `3`, lowest to highest) for QR codes.}
 }

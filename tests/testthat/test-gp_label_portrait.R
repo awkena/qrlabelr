@@ -879,7 +879,7 @@ test_that("Create plot label input errors", {
       unique_id = NULL,
       ec_level = 1
     ),
-    "Unique IDs for generating QR codes are missing!!"
+    "`unique_id` is required when `include_qr = TRUE`."
   )
 })
 

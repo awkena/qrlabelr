@@ -3333,7 +3333,7 @@ server <- function(input, output, session) {
             x = grid::unit(0.5 * input$wdt, "in"),
             y = grid::unit(0.02 * input$hgt, "in"),
             rot = 180,
-            gp = grid::gpar(fontface = "plain", fontsize = fsize/2, 
+            gp = grid::gpar(fontface = "plain", fontsize = plain_font4, 
                             col = "gray30"),
             just = "center",
             vp = tt)
@@ -3438,7 +3438,7 @@ server <- function(input, output, session) {
             x = grid::unit(0.02 * input$wdt, "in"),
             y = grid::unit(0.5 * input$hgt, "in"),
             rot = 90,
-            gp = grid::gpar(fontface = "plain", fontsize = fsize/2, 
+            gp = grid::gpar(fontface = "plain", fontsize = plain_font4, 
                             col = "gray30"),
             just = "center",
             vp = aa)
@@ -3735,6 +3735,15 @@ server <- function(input, output, session) {
                         y = grid::unit(txt1y, "in"), rot = 90,
                         gp = bold_font, hjust = 0, vp = aa)
         
+        # Add 'qrlabelr' branding at the extreme left edge
+        grid::grid.text(
+          label = "qrlabelr",
+          x = grid::unit(0.7 * input$wdt, "in"),
+          y = grid::unit(0.96 * input$hgt, "in"),
+          gp = grid::gpar(fontface = "plain", fontsize = bold_font4, 
+                          col = "gray30"),
+          just = "center",
+          vp = aa)
         
         grid::popViewport(2)
         
