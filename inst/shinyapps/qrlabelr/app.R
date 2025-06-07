@@ -3026,54 +3026,6 @@ server <- function(input, output, session) {
       
       qrcds <- bb$bb # QR codes
       
-      # if (input$all_labels == TRUE & input$bal_design == FALSE ) {
-      #   plotid <- lab_inf()[[1]] # Plot ids
-      #   repid <- lab_inf()[[2]] # Rep ids
-      #   rowid <- lab_inf()[[3]] # Row ids
-      #   colid <- lab_inf()[[4]]   # Column ids
-      #   Blkid <- lab_inf()[[5]] # iBlocks
-      #   seed_src <- lab_inf()[[6]] # seed source
-      #   rname <- lab_inf()[[7]]
-      #   ids <-  UNIQUE_ID() # unique ids
-      #   Entry <- lab_inf()[[9]]# Entry or treatment ids
-      #   
-      #   qrcds <- bb$bb # QR codes
-      
-      # } else if (input$all_labels == FALSE & input$bal_design == TRUE) {
-      #   
-      #   cc <- which(dat[, input$rep_id] == input$REP & dat[, input$loc_id] == input$LOC)
-      #   
-      #   plotid <- lab_inf()[[1]][cc] # Plot ids
-      #   repid <- lab_inf()[[2]][cc] # Rep ids
-      #   rowid <- lab_inf()[[3]][cc] # Row ids
-      #   colid <- lab_inf()[[4]][cc]   # Column ids
-      #   Blkid <- lab_inf()[[5]][cc] # iBlocks
-      #   seed_src <- lab_inf()[[6]][cc] # seed source
-      #   rname <- lab_inf()[[7]][cc]
-      #   ids <-  UNIQUE_ID()[cc] # unique ids
-      #   Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
-      #   
-      #   qrcds <- bb$bb[cc] # QR codes
-      #   
-      
-      # } else if (input$all_labels == FALSE & input$bal_design == FALSE) {
-      #   
-      #   cc <- which(dat[,input$loc_id] == input$LOC)
-      #   
-      #   plotid <- lab_inf()[[1]][cc] # Plot ids
-      #   repid <- lab_inf()[[2]][cc] # Rep ids
-      #   rowid <- lab_inf()[[3]][cc] # Row ids
-      #   colid <- lab_inf()[[4]][cc]   # Column ids
-      #   Blkid <- lab_inf()[[5]][cc] # iBlocks
-      #   seed_src <- lab_inf()[[6]][cc] # seed source
-      #   rname <- lab_inf()[[7]][cc]
-      #   ids <-  UNIQUE_ID()[cc] # unique ids
-      #   Entry <- lab_inf()[[9]][cc] # Entry or treatment ids
-      #   
-      #   qrcds <- bb$bb[cc] # QR codes
-      #   
-      # }
-      
     } else if (input$label_type == "gp") {
       plotid <- lab_inf()[[1]] # Top-left row 1
       repid <- lab_inf()[[3]] # Top-left row 2
@@ -3375,6 +3327,17 @@ server <- function(input, output, session) {
                           y = grid::unit(ey, "in"),
                           gp = bold_font3, hjust = 0, vp = tt)
           
+          # Add 'qrlabelr' branding at the extreme right edge
+          grid::grid.text(
+            label = "qrlabelr",
+            x = grid::unit(0.5 * input$wdt, "in"),
+            y = grid::unit(0.02 * input$hgt, "in"),
+            rot = 180,
+            gp = grid::gpar(fontface = "plain", fontsize = fsize/2, 
+                            col = "gray30"),
+            just = "center",
+            vp = tt)
+          
           grid::pushViewport(qq2)
           
           # Add second QR code
@@ -3468,6 +3431,17 @@ server <- function(input, output, session) {
                           x= grid::unit(ex, "in"),
                           y = grid::unit(ey, "in"),
                           gp = bold_font3, hjust = 0, vp = aa)
+          
+          # Add 'qrlabelr' branding at the extreme left edge
+          grid::grid.text(
+            label = "qrlabelr",
+            x = grid::unit(0.02 * input$wdt, "in"),
+            y = grid::unit(0.5 * input$hgt, "in"),
+            rot = 90,
+            gp = grid::gpar(fontface = "plain", fontsize = fsize/2, 
+                            col = "gray30"),
+            just = "center",
+            vp = aa)
           
           grid::popViewport(2)
         }
