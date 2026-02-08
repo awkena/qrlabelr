@@ -98,7 +98,7 @@ required:
     
 -   ['uuid'](https://CRAN.R-project.org/package=uuid): Tools for Generating and       Handling of UUIDs
 
--  ['QBMS'](https://github.com/icarda/QBMS): Query the Breeding Management System(s)
+-  ['QBMS'](https://cran.r-project.org/web/packages/QBMS/index.html): Query the Breeding Management System(s)
 
 -   ['tools'](https://www.rdocumentation.org/packages/tools/versions/3.6.2):
     Tools for package development, administration and documentation.
@@ -233,7 +233,7 @@ Users can set the desired **error correction level ('ecl')** for generating QR c
 
 To create field plot labels in R based on the default plot label content settings, use the `field_label()` function. This function creates rectangular field plot labels based on a template, where the page setting and label dimension parameters can be defined by the user using specific arguments.  
 
-For instance, to create field plot labels based on the [Avery 94241 template](https://www.avery.com), the `field_label()` function is used as shown in the code snippet below:  
+For instance, to create field plot labels based on the Avery 94241 template, the `field_label()` function is used as shown in the code snippet below:  
 
 ``` r 
 library(qrlabelr)
@@ -402,7 +402,7 @@ To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait
 ?qrlabelr::gp_label_portrait
 ```
 
-**Note that the default label template for the above functions is [Avery 94220 template](https://www.avery.com).**
+**Note that the default label template for the above functions is Avery 94220 template.**
 
 ## Creating labels with 'shiny' app: 'EasyQrlabelr'
 Run the following code in the RStudio console to launch the
