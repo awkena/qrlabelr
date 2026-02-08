@@ -98,7 +98,7 @@ required:
     
 -   ['uuid'](https://CRAN.R-project.org/package=uuid): Tools for Generating and       Handling of UUIDs
 
--  ['QBMS'](https://icarda-git.github.io/QBMS/index.html): Query the Breeding Management System(s)
+-  ['QBMS'](https://github.com/icarda/QBMS): Query the Breeding Management System(s)
 
 -   ['tools'](https://www.rdocumentation.org/packages/tools/versions/3.6.2):
     Tools for package development, administration and documentation.
@@ -165,7 +165,7 @@ Typically, layout information for field plots are obtained based on the experime
 
 There are free open-source software such as [FielDHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as 'BMS' or 'breedbase' can equally be used to generate an input field book if desired. *The qrlabelr package is 'BrAPI- compliant'*.  
 
-In R, users can use available functions in the ['QBMS'](https://icarda-git.github.io/QBMS/index.html) package to query 'BrAPI'-supported databases for input field books. A user-friendly UI component for accessing data from 'BrAPI'-supported databases is available in the 'shiny' app.   
+In R, users can use available functions in the ['QBMS'](https://github.com/icarda/QBMS) package to query 'BrAPI'-supported databases for input field books. A user-friendly UI component for accessing data from 'BrAPI'-supported databases is available in the 'shiny' app.   
 
 For BrAPI compliance, users must install the ['async'](https://github.com/gaborcsardi/async) package in addition to the 'QBMS' package as follows:
 
@@ -233,7 +233,7 @@ Users can set the desired **error correction level ('ecl')** for generating QR c
 
 To create field plot labels in R based on the default plot label content settings, use the `field_label()` function. This function creates rectangular field plot labels based on a template, where the page setting and label dimension parameters can be defined by the user using specific arguments.  
 
-For instance, to create field plot labels based on the [Avery 94241 template](https://www.avery.com/blank/labels/94241), the `field_label()` function is used as shown in the code snippet below:  
+For instance, to create field plot labels based on the [Avery 94241 template](https://www.avery.com), the `field_label()` function is used as shown in the code snippet below:  
 
 ``` r 
 library(qrlabelr)
@@ -402,7 +402,7 @@ To view details of the `field_label()`, the `gp_label()`, and `gp_label_portrait
 ?qrlabelr::gp_label_portrait
 ```
 
-**Note that the default label template for the above functions is [Avery 94220 template](https://www.avery.com/blank/labels/94220).**
+**Note that the default label template for the above functions is [Avery 94220 template](https://www.avery.com).**
 
 ## Creating labels with 'shiny' app: 'EasyQrlabelr'
 Run the following code in the RStudio console to launch the
