@@ -3,7 +3,7 @@
 #'
 #' @import argonDash
 #' @import argonR
-#' @import bslib
+#' @rawNamespace import(bslib, except = show_toast)
 #' @import reactable
 #' @import readxl
 #' @import shinyBS
