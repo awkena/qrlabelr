@@ -98,7 +98,7 @@ required:
     
 -   ['uuid'](https://CRAN.R-project.org/package=uuid): Tools for Generating and       Handling of UUIDs
 
--  ['QBMS'](https://cran.r-project.org/web/packages/QBMS/index.html): Query the Breeding Management System(s)
+-  ['QBMS'](https://CRAN.R-project.org/package=QBMS): Query the Breeding Management System(s)
 
 -   ['tools'](https://www.rdocumentation.org/packages/tools/versions/3.6.2):
     Tools for package development, administration and documentation.
@@ -165,7 +165,7 @@ Typically, layout information for field plots are obtained based on the experime
 
 There are free open-source software such as [FielDHub](https://github.com/DidierMurilloF/FielDHub), which users can use to easily generate an input field book for plot label design in qrlabelr. Other user-preferred software such as 'BMS' or 'breedbase' can equally be used to generate an input field book if desired. *The qrlabelr package is 'BrAPI- compliant'*.  
 
-In R, users can use available functions in the ['QBMS'](https://github.com/icarda/QBMS) package to query 'BrAPI'-supported databases for input field books. A user-friendly UI component for accessing data from 'BrAPI'-supported databases is available in the 'shiny' app.   
+In R, users can use available functions in the ['QBMS'](https://CRAN.R-project.org/package=QBMS) package to query 'BrAPI'-supported databases for input field books. A user-friendly UI component for accessing data from 'BrAPI'-supported databases is available in the 'shiny' app.   
 
 For BrAPI compliance, users must install the ['async'](https://github.com/gaborcsardi/async) package in addition to the 'QBMS' package as follows:
 
