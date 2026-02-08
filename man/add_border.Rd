@@ -58,7 +58,7 @@ grid layout.
 This function works best with input field books generated with the 'FielDHub' package
 }
 \examples{
-\dontshow{if (rlang::is_installed(c("ggplot2", "desplot"))) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed(c("ggplot2", "desplot"))) withAutoprint(\{ # examplesIf}
 # Plot a field layout with border rows
 library(qrlabelr)
 

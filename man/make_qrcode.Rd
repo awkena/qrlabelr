@@ -21,7 +21,7 @@ It converts the generated QR code into a raster grob image that can
 be plotted using the `grid.draw()` function in the 'grid' package.
 }
 \examples{
-\dontshow{if (rlang::is_installed(c("raster", "qrencoder", "assertthat", "grid"))) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed(c("raster", "qrencoder", "assertthat", "grid"))) withAutoprint(\{ # examplesIf}
 library(qrlabelr)
 qr <- make_qrcode("KUMASI2023_PYT_101_1_1", ec_level = 1)
 

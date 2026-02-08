@@ -1,3 +1,11 @@
+# qrlabelr 0.2.1
+This is a minor release. The following changes were made since the release of version 0.2.0:
+* Fixed warning for Import bslib, except for show_toast(); namespace updated.
+* Fixed R dependency warning; now dependency set to R (>= 4.2.0).
+* Added an option in create_label() function to generate labels without QR code.
+* Added qrlabelr branding to labels generated using qrlabelr.
+* Added a docker container for the EasyQrlabelr shiny app.
+
 # qrlabelr 0.2.0
 This is a minor release. The following changes were made since the release of version 0.1.1:
 * Added 'BrAPI'-compliance features to the 'shiny' app. This implies that users can now query or access data directly from 'BMS' and 'breedbase' databases via the 'QBMS' package.

@@ -17,7 +17,7 @@
                     xlab = "Row", 
                     ylab = "Range")
     
-  vdiffr::expect_doppelganger("test layout", pp)
+  vdiffr::expect_doppelganger("test layout.new", pp)
   })
   
   
