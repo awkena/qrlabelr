@@ -1,3 +1,8 @@
+# qrlabelr 0.2.2
+This is a minor release. The following changes were made since the release of version 0.2.1:
+* Fixed PDF file naming formatting in the create_label() and the gp_label_portrait() functions in the Shiny app.
+* This bug fix resolves an error message during the last step of label generation on Windows computers.
+
 # qrlabelr 0.2.1
 This is a minor release. The following changes were made since the release of version 0.2.0:
 * Fixed warning for Import bslib, except for show_toast(); namespace updated.

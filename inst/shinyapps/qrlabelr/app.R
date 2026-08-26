@@ -3073,11 +3073,21 @@ server <- function(input, output, session) {
     cory <- label_pos$y # label y coordinate
     
     #' Create pdf file to be saved in temp_directory 
-    pdf_filename <<- file.path(temp_directory,
-                            paste0(input$filename, paste0(input$wdt,'in'), 'x',
-                            paste0(input$hgt,'in'), Sys.time())) # name of pdf file 
+    # pdf_filename <<- file.path(temp_directory,
+    #                         paste0(input$filename, paste0(input$wdt,'in'), 'x',
+    #                         paste0(input$hgt,'in'), Sys.time())) # name of pdf file 
+    # 
+    # pdf_filename <<- paste0(gsub(":","_", pdf_filename), ".pdf")
     
-    pdf_filename <<- paste0(gsub(":","_", pdf_filename), ".pdf")
+    # Format the time safely for file names (e.g., 2026-08-26_19-10-22)
+    safe_time <- format(Sys.time(), "%Y-%m-%d_%H-%M-%S")
+    
+    # Create the pdf filename without modifying the directory path
+    pdf_filename <<- file.path(temp_directory, 
+                               paste0(input$filename, 
+                                      input$wdt, "in", "x", 
+                                      input$hgt, "in", "_", 
+                                      safe_time, ".pdf"))
     
     
     #' Font size to print text on labels
@@ -3538,11 +3548,21 @@ server <- function(input, output, session) {
     temp_directory <- tempdir()
  
     #' Create pdf file to be saved in temp_directory 
-    pdf_filename <<- file.path(temp_directory,
-                            paste0(input$filename, paste0(input$wdt,'in'), 'x',
-                            paste0(input$hgt,'in'), Sys.time())) # name of pdf file 
-
-    pdf_filename <<- paste0(gsub(":","_", pdf_filename), ".pdf")
+    # pdf_filename <<- file.path(temp_directory,
+    #                         paste0(input$filename, paste0(input$wdt,'in'), 'x',
+    #                         paste0(input$hgt,'in'), Sys.time())) # name of pdf file 
+    # 
+    # pdf_filename <<- paste0(gsub(":","_", pdf_filename), ".pdf")
+    
+    # Format the time safely for file names (e.g., 2026-08-26_19-10-22)
+    safe_time <- format(Sys.time(), "%Y-%m-%d_%H-%M-%S")
+    
+    # Create the pdf filename without modifying the directory path
+    pdf_filename <<- file.path(temp_directory, 
+                               paste0(input$filename, 
+                                      input$wdt, "in", "x", 
+                                      input$hgt, "in", "_", 
+                                      safe_time, ".pdf"))
 
     #' Font size to print text on labels
     fsize <- input$font_size
